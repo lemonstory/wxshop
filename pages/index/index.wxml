@@ -24,9 +24,7 @@
     <view>48小时快递退款</view>
   </view>
 
-
-
-  <!--一个循环开始 -->
+<!--一个循环开始 -->
   <view style="background-color: #FFFFFF;margin-top:20rpx;width:100%;">
     <block wx:for="{{sectionTitle}}" wx:key="sectionTitle" wx:for-index="idx" wx:for-item="sectionTitleItem">
       <template is="sectionTitle" data="{{title:sectionTitleItem.title}}" />

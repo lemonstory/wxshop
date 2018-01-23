@@ -1,66 +1,41 @@
 // pages/category/category.js
+var util = require('../../utils/util.js');
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
+    navList: [{ id:0,name: '居家' },
+      { id: 1,name: '餐厨' },
+      { id: 2,name: '配件' },
+      { id: 3,name: '服装' },
+      { id: 4,name: '电器' }],
   
+    categoryList: [],
+    currentCategory: { id: 0, wap_banner_url:"../../image/1.png"},
+    scrollLeft: 0,
+    scrollTop: 0,
+    goodsCount: 0,
+    scrollHeight: 0
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-  
-  },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
+ onReady: function () {
+    // 页面渲染完成
+  },
   onShow: function () {
-  
+    // 页面显示
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
   onHide: function () {
-  
+    // 页面隐藏
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
   onUnload: function () {
-  
+    // 页面关闭
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
+// 点击处理左侧导航选中事件
+  handleTapSelected: function (event) {
+    var that = this;
+    var that = this;
+    var id = event.currentTarget.dataset.id;
+    console.log(id);
+}
 })

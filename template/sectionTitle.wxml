@@ -1,0 +1,5 @@
+<template name="sectionTitle">
+  <view class="weui-cells__title section-title">
+    {{title}}
+  </view>
+</template>

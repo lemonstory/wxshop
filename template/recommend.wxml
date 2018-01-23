@@ -1,3 +1,12 @@
+<!-- 
+  index: 下标
+  id： id
+  favourable：今日特价
+  purchase： 加价购
+  cover： 图片
+  recommendDesc： 描述
+  recommendPrice ： 价格
+ -->
 <template name="recommend" style="display:flex;justify-content: space-between;">
   <view class="weui-flex__item " style="margin-bottom:30rpx;width:345rpx;height:auto;box-sizing: border-box;" data-index="{{index}}" data-id="{{id}}">
     <image style="width:345rpx;height:345rpx;  box-sizing: border-box;" mode="aspectFill" src="{{cover ? cover : '/image/bg_album_default.png'}}"></image>

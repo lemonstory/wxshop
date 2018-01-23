@@ -3,6 +3,7 @@
 const app = getApp();
 const Toast = require('../../zanui-weapp/dist/toast/index');
 var util = require('../../utils/util.js')
+var constant = require('../../utils/constant.js')
 Page(Object.assign({}, Toast, {
   data: {
     banner: [{ image: '../../image/1.png' },
@@ -24,8 +25,14 @@ Page(Object.assign({}, Toast, {
     autoplay: true,
     interval: 5000,
     duration: 1000,
+    params: {
+        pageSize: 10,
+        currentPage: 1
+    },
+    requestPath: 'http://dev.magento.com/media/catalog/product/cache/f073062f50e48eb0f0998593e568d857', 
   },
   onLoad: function () {
+    this.getHomeData()
   },
   onReady: function () {
 
@@ -74,9 +81,6 @@ Page(Object.assign({}, Toast, {
 
   },
 
-
-
-
   //处理用户搜索事件
   bindSearch: function () {
     var path = "/pages/search/search";
@@ -85,6 +89,26 @@ Page(Object.assign({}, Toast, {
     })
 
   },
-
+  /**
+     * 获取首页数据
+     */
+  getHomeData: function () {
+    console.log("🚀 🚀 🚀 getHomeData run");
+    var that = this;
+    var url = constant.constant.domain + constant.constant.path + '/V1/products?searchCriteria[filterGroups][0][filters][0][field]=is_featured&searchCriteria[filterGroups][0][filters][0][value]=1&searchCriteria[filterGroups][0][filters][0][conditionType]=eq&searchCriteria[sortOrders][0][field]=updated_at&searchCriteria[sortOrders][0][direction]=DESC&searchCriteria[pageSize]=' + that.data.params.pageSize + '&searchCriteria[currentPage]=' + that.data.params.currentPage;
+    wx.request({
+      url: url,
+      // data: {},
+      header: util.adminRequestHeader(true),
+      success: function (res) {
+        console.log('打印返回数据')
+        console.log(res.data)
+        for (var i = 0; i < res.data.items.length; i++) {
+          res.data.items[i].custom_attributes[3].value = that.data.requestPath + res.data.items[i].custom_attributes[3].value
+        }
+        that.setData(res.data)
+      }
+    })
+  }
 
 }));

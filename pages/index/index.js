@@ -25,14 +25,22 @@ Page(Object.assign({}, Toast, {
     autoplay: true,
     interval: 5000,
     duration: 1000,
+    requestPath: 'http://dev.magento.com/media/catalog/product/cache/f073062f50e48eb0f0998593e568d857',
+    // 人气推荐参数
     params: {
         pageSize: 10,
         currentPage: 1
     },
-    requestPath: 'http://dev.magento.com/media/catalog/product/cache/f073062f50e48eb0f0998593e568d857', 
+    // 新品推荐参数
+    newParams: {
+        pageSize: 10,
+        currentPage: 1,
+        startTime: new Date
+    }
   },
   onLoad: function () {
-    this.getHomeData()
+    this.getHomePopData()
+    this.getHomeNewData()
   },
   onReady: function () {
 
@@ -90,12 +98,33 @@ Page(Object.assign({}, Toast, {
 
   },
   /**
-     * 获取首页数据
+     * 获取首页人气推荐数据
      */
-  getHomeData: function () {
-    console.log("🚀 🚀 🚀 getHomeData run");
+  getHomePopData: function () {
+    console.log("🚀 🚀 🚀 getHomePopData run");
     var that = this;
     var url = constant.constant.domain + constant.constant.path + '/V1/products?searchCriteria[filterGroups][0][filters][0][field]=is_featured&searchCriteria[filterGroups][0][filters][0][value]=1&searchCriteria[filterGroups][0][filters][0][conditionType]=eq&searchCriteria[sortOrders][0][field]=updated_at&searchCriteria[sortOrders][0][direction]=DESC&searchCriteria[pageSize]=' + that.data.params.pageSize + '&searchCriteria[currentPage]=' + that.data.params.currentPage;
+    wx.request({
+      url: url,
+      // data: {},
+      header: util.adminRequestHeader(true),
+      success: function (res) {
+        // console.log('打印返回数据')
+        // console.log(res.data)
+        for (var i = 0; i < res.data.items.length; i++) {
+          res.data.items[i].custom_attributes[3].value = that.data.requestPath + res.data.items[i].custom_attributes[3].value
+        }
+        that.setData(res.data)
+      }
+    })
+  },
+  /**
+     * 获取首页新品推荐数据
+     */
+  getHomeNewData: function () {
+    console.log("🚀 🚀 🚀 getHomeNewData run");
+    var that = this;
+    var url = constant.constant.domain + constant.constant.path + '/V1/products?searchCriteria[filterGroups][0][filters][0][field]=news_from_date&searchCriteria[filterGroups][0][filters][0][value]=' + that.data.newParams.startTime + '&searchCriteria[filterGroups][0][filters][0][conditionType]=lteq&searchCriteria[filterGroups][1][filters][0][field]=news_to_date&searchCriteria[filterGroups][1][filters][0][value]=' + that.data.newParams.startTime + '&searchCriteria[filterGroups][1][filters][0][conditionType]=gteq&searchCriteria[sortOrders][0][field]=updated_at&searchCriteria[sortOrders][0][direction]=DESC&searchCriteria[pageSize]=' + that.data.newParams.pageSize + '&searchCriteria[currentPage]=' + that.data.newParams.currentPage;
     wx.request({
       url: url,
       // data: {},
@@ -106,7 +135,7 @@ Page(Object.assign({}, Toast, {
         for (var i = 0; i < res.data.items.length; i++) {
           res.data.items[i].custom_attributes[3].value = that.data.requestPath + res.data.items[i].custom_attributes[3].value
         }
-        that.setData(res.data)
+        that.setData({'newData': res.data.items})
       }
     })
   }

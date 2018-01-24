@@ -234,7 +234,6 @@ function adminRequestHeader(isAdmin = false) {
   }
   return header;
 }
-
 module.exports = {
   formatTime: formatTime,
   isMobile: isMobile,

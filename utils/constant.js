@@ -7,7 +7,6 @@ var constant = {
   "username": "admin",
   "password": "xnm2015,",
   // adminToken-->key
-  "adminTokenKey": 'adminTokenKey'
+  "adminTokenKey":'adminTokenKey'
 }
-
 module.exports.constant = constant;

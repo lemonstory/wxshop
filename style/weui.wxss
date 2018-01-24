@@ -604,7 +604,6 @@ icon {
   top: 0;
   width: 1px;
   bottom: 0;
-  border-left: 1rpx solid #C7C7C7;
   color: #C7C7C7;
   left: -0.65em;
   top: .36em;
@@ -811,9 +810,9 @@ icon {
   word-wrap: normal;
   word-wrap: break-word;
   word-break: break-all;
+  margin-top:5rpx;
 }
 .weui-media-box__desc {
-  color: #999999;
   font-size: 13px;
   line-height: 1.2;
   overflow: hidden;

@@ -8,13 +8,18 @@
   recommendPrice ： 价格
  -->
 <template name="recommend" style="display:flex;justify-content: space-between;">
-  <view class="weui-flex__item " style="margin-bottom:30rpx;width:345rpx;height:auto;box-sizing: border-box;" data-index="{{index}}" data-id="{{id}}">
+  <view class="weui-flex__item " style="margin-bottom:30rpx;width:345rpx;height:auto;box-sizing: border-box;" data-index="{{index}}" data-id="{{id}}" bindtap='handleTapGoodsDetail' >
     <image style="width:345rpx;height:345rpx;  box-sizing: border-box;" mode="aspectFill" src="{{cover ? cover : '/image/bg_album_default.png'}}"></image>
     <view class="weui-media-box__title" style="width:100%; box-sizing: border-box;text-overflow: ellipsis;font-size: 26rpx;display:flex;">
-    <view style='width:auto;height:30rpx;padding:0 30rpx;background:#E77A7E;line-height:30rpx;color:#fff; border-radius: 6rpx;font-size:22rpx;margin-right:10rpx'>{{favourable}}</view>
-       <view style='width:auto;height:30rpx;padding:0 30rpx;background:#E77A7E;line-height:30rpx;color:#fff; border-radius: 6rpx;font-size:22rpx;'>{{purchase}}</view>
+    <block wx:if="{{favourable!=''}}">
+      <view style='width:auto;height:30rpx;padding:0 30rpx;background:#E77A7E;line-height:30rpx;color:#fff; border-radius: 6rpx;font-size:22rpx;margin-right:10rpx'>{{favourable}}</view>
+      </block>
+       <block wx:if="{{purchase!=''}}">
+      <view style='width:auto;height:30rpx;padding:0 30rpx;background:#E77A7E;line-height:30rpx;color:#fff; border-radius: 6rpx;font-size:22rpx;'>{{purchase}}</view>
+        </block>
     </view>
-  <view class="weui-media-box__desc" style="margin-top:10rpx;font-size:26rpx;width:100%; text-overflow: ellipsis; overflow:hidden;  box-sizing: border-box;">{{recommendDesc}}</view>
-  <view class="weui-media-box__desc" style="margin-top:10rpx;font-size:26rpx;width:100%; text-overflow: ellipsis; overflow:hidden; box-sizing: border-box;font-weight: bold;">{{recommendPrice}}</view>
- </view>
+  
+    <view class="weui-media-box__desc" style="margin-top:10rpx;font-size:26rpx;width:100%; text-overflow: ellipsis; overflow:hidden;  box-sizing: border-box;">{{recommendDesc}}</view>
+    <view class="weui-media-box__desc" style="margin-top:10rpx;font-size:26rpx;width:100%; text-overflow: ellipsis; overflow:hidden; box-sizing: border-box;font-weight: bold;">￥{{recommendPrice}}</view>
+  </view>
 </template>

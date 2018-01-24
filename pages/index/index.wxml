@@ -1,48 +1,64 @@
 <!--index.wxml-->
 <import src="../../template/recommend.wxml" />
 <import src="../../template/sectionTitle.wxml" />
+<import src="../../template/footer.wxml" />
 <view class="container">
   <view class="search-box">
     <view class="search-icon">
-      <image src="http://image.365zhiding.com/wxapp/20171112/sou.png"></image>
+      <image src="../../iconimage/search.png"></image>
     </view>
-    <input class="search" style="display:flex; justify-content: center;padding-left:240rpx;" placeholder='搜索商品，共10224件好物' placeholder-style='color:#9B9B9B'></input>
+    <input class="search" style="display:flex; justify-content: center;padding-left:240rpx;" placeholder='搜索商品，共10224件好物' placeholder-style='color:#7F7F7F;font-size:26rpx;'></input>
   </view>
   <view class="banner">
     <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
       <block wx:for="{{banner}}" wx:key="banner" wx:for-index="idx">
         <swiper-item data-src="{{item.url}}" bindtap="handleBanner" data-index="{{idx}}" data-id="{{item.id}}">
-           <image src="{{item.image}}" class="slide-image" width="750rpx" height="410rpx" /> 
+          <image src="{{item.image}}" class="slide-image" width="750rpx" height="410rpx" />
         </swiper-item>
       </block>
     </swiper>
   </view>
 
+  <!--banner图下的字  -->
   <view class="tab-title">
-    <view>网易自营品牌</view>
-    <view>30天无忧退款</view>
-    <view>48小时快递退款</view>
+    <view style='display:flex;align-items: center;'>
+      <image src="../../iconimage/checked.png" style='width:24rpx;height:24rpx;display:flex;margin-right:10rpx;'></image>
+      <view>网易自营品牌</view>
+    </view>
+    <view style='display:flex;align-items: center;'>
+      <image src="../../iconimage/checked.png" style='width:24rpx;height:24rpx;display:flex;margin-right:10rpx;'></image>
+      <view>30天无忧退款</view>
+    </view>
+    <view style='display:flex;align-items: center;'>
+      <image src="../../iconimage/checked.png" style='width:24rpx;height:24rpx;display:flex;margin-right:10rpx;'></image>
+      <view>48小时快递退款</view>
+    </view>
   </view>
 
-<!--一个循环开始 -->
+
+  <!--一个循环开始 -->
   <view style="background-color: #FFFFFF;margin-top:20rpx;width:100%;">
     <block wx:for="{{sectionTitle}}" wx:key="sectionTitle" wx:for-index="idx" wx:for-item="sectionTitleItem">
       <template is="sectionTitle" data="{{title:sectionTitleItem.title}}" />
     </block>
     <view class="weui-flex row-container page__bd_spacing">
-       <!-- <image style="width:710rpx;height:345rpx;box-sizing: border-box;margin-bottom:30rpx;" mode="aspectFill" src="{{recommendImg}}"></image>  -->
-      <block wx:for="{{items}}" wx:key="recommendItem" wx:for-index="idx" wx:for-item="recommendItem">
-      <view wx:if="{{idx == 0}}"><image style="width:710rpx;height:345rpx;box-sizing: border-box;margin-bottom:30rpx;" mode="aspectFill" src="{{recommendItem.custom_attributes[3].value}}"></image></view>
+      <!-- <image style="width:710rpx;height:345rpx;box-sizing: border-box;margin-bottom:30rpx;" mode="aspectFill" src="{{recommendImg}}"></image>  -->
+      <block wx:for="{{items}}" wx:key="recommendItem" wx:for-index="idx" wx:for-item="recommendItem" >
+        <view wx:if="{{idx == 0}}">
+          <image style="width:710rpx;height:345rpx;box-sizing: border-box;margin-bottom:30rpx;" mode="aspectFill" src="{{recommendItem.custom_attributes[3].value}}"></image>
+        </view>
         <!-- <view></view> -->
         <template wx:else is="recommend" data="{{index:idx, id: recommendItem.id, title: recommendItem.name,cover: recommendItem.custom_attributes[3].value,recommendDesc:recommendItem.name,favourable:recommendItem.custom_attributes[2].value,purchase:recommendItem.custom_attributes[2].value,recommendPrice:recommendItem.price}}"
         />
       </block>
     </view>
   </view>
-  <!--一个循环结束  -->
+  <!--一个循环结束-->
   <!-- 查看更多 -->
-  <view style="background-color: #FFFFFF;width:100%;">
-  
+  <view style="background-color: #FFFFFF;width:100%;height:100rpx;display:flex;justify-content: center;align-items: center;border-top:1rpx solid #eee;" bindtap='handleTapMore'>
+  查看更多
+<image src="../../static/images/go.png" style='width:14rpx;height:24rpx;display:flex;margin-left:10rpx;display:flex;'></image>
+
   </view>
   <!--一个循环开始 -->
   <view style="background-color: #FFFFFF;margin-top:20rpx;width:100%;">
@@ -52,11 +68,15 @@
     <view class="weui-flex row-container page__bd_spacing">
       <!-- <image style="width:710rpx;height:345rpx;box-sizing: border-box;margin-bottom:30rpx;" mode="aspectFill" src="{{recommendImg}}"></image> -->
       <block wx:for="{{newData}}" wx:key="recommendItem" wx:for-index="idx" wx:for-item="recommendItem">
-       <view wx:if="{{idx == 0}}"><image style="width:710rpx;height:345rpx;box-sizing: border-box;margin-bottom:30rpx;" mode="aspectFill" src="{{recommendItem.custom_attributes[3].value}}"></image></view>
+        <view wx:if="{{idx == 0}}">
+          <image style="width:710rpx;height:345rpx;box-sizing: border-box;margin-bottom:30rpx;" mode="aspectFill" src="{{recommendItem.custom_attributes[3].value}}"></image>
+        </view>
         <template wx:else is="recommend" data="{{index:idx, id: recommendItem.id, title: recommendItem.name,cover: recommendItem.custom_attributes[3].value,recommendDesc:recommendItem.name,favourable:recommendItem.custom_attributes[2].value,purchase:recommendItem.custom_attributes[2].value,recommendPrice:recommendItem.price}}"
         />
       </block>
     </view>
   </view>
   <!--一个循环结束  -->
+
+    <template is="footer" />
 </view>

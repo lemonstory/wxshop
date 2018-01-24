@@ -15,8 +15,8 @@
 }
 
 .page__ft {
-  padding-top: 40px;
-  padding-bottom: 10px;
+  padding-top: 10px;
+  padding-bottom: 40px;
   text-align: center;
 }
 .title {
@@ -82,6 +82,5 @@
   background: #FAFAFA;
   font-size:24rpx;
   font-family:PingFang-SC-Regular;
-  color:#3A3A3A;
-  
+  color:#333;
 } 

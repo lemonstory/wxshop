@@ -3,8 +3,10 @@
     "pages/index/index",
     "pages/category/category",
     "pages/cart/cart",
-    "pages/person/person"
-  ],
+    "pages/categoryList/categoryList",
+    "pages/person/person",
+    "pages/goodsDetail/goodsDetail"
+    ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
@@ -14,7 +16,7 @@
   "tabBar": {
     "position": "bottom",
     "backgroundColor": "#FFFFFF",
-    "selectedColor": "#C24146",
+    "selectedColor": "#ab2b2b",
     "list": [
       {
         "pagePath": "pages/index/index",

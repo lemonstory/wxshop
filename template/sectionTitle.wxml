@@ -1,5 +1,7 @@
 <template name="sectionTitle">
-  <view class="weui-cells__title section-title">
+    <block wx:if="{{title!=''}}">
+<view class="weui-cells__title section-title">
     {{title}}
   </view>
+  </block>
 </template>

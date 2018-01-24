@@ -12,7 +12,7 @@
     <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
       <block wx:for="{{banner}}" wx:key="banner" wx:for-index="idx">
         <swiper-item data-src="{{item.url}}" bindtap="handleBanner" data-index="{{idx}}" data-id="{{item.id}}">
-          <image src="{{item.image}}" class="slide-image" width="750rpx" height="410rpx" />
+           <image src="{{item.image}}" class="slide-image" width="750rpx" height="410rpx" /> 
         </swiper-item>
       </block>
     </swiper>
@@ -30,9 +30,10 @@
       <template is="sectionTitle" data="{{title:sectionTitleItem.title}}" />
     </block>
     <view class="weui-flex row-container page__bd_spacing">
-      <image style="width:710rpx;height:345rpx;box-sizing: border-box;margin-bottom:30rpx;" mode="aspectFill" src="{{recommendImg}}"></image>
-      <block wx:for="{{recommend}}" wx:key="recommendItem" wx:for-index="idx" wx:for-item="recommendItem">
-        <template is="recommend" data="{{index:idx, id: recommendItem.id, title: recommendItem.title,cover: recommendItem.cover,recommendDesc:recommendItem.recommendDesc,favourable:recommendItem.favourable,purchase:recommendItem.purchase,recommendPrice:recommendItem.recommendPrice}}"
+       <image style="width:710rpx;height:345rpx;box-sizing: border-box;margin-bottom:30rpx;" mode="aspectFill" src="{{recommendImg}}"></image> 
+      <block wx:for="{{items}}" wx:key="recommendItem" wx:for-index="idx" wx:for-item="recommendItem">
+        
+        <template is="recommend" data="{{index:idx, id: recommendItem.id, title: recommendItem.name,cover: recommendItem.custom_attributes[3].value,recommendDesc:recommendItem.name,favourable:recommendItem.custom_attributes[2].value,purchase:recommendItem.custom_attributes[2].value,recommendPrice:recommendItem.price}}"
         />
       </block>
     </view>
@@ -46,8 +47,8 @@
     </block>
     <view class="weui-flex row-container page__bd_spacing">
       <image style="width:710rpx;height:345rpx;box-sizing: border-box;margin-bottom:30rpx;" mode="aspectFill" src="{{recommendImg}}"></image>
-      <block wx:for="{{recommend}}" wx:key="recommendItem" wx:for-index="idx" wx:for-item="recommendItem">
-        <template is="recommend" data="{{index:idx, id: recommendItem.id, title: recommendItem.title,cover: recommendItem.cover,recommendDesc:recommendItem.recommendDesc,favourable:recommendItem.favourable,purchase:recommendItem.purchase,recommendPrice:recommendItem.recommendPrice}}"
+      <block wx:for="{{newData}}" wx:key="recommendItem" wx:for-index="idx" wx:for-item="recommendItem">
+        <template is="recommend" data="{{index:idx, id: recommendItem.id, title: recommendItem.name,cover: recommendItem.custom_attributes[3].value,recommendDesc:recommendItem.name,favourable:recommendItem.custom_attributes[2].value,purchase:recommendItem.custom_attributes[2].value,recommendPrice:recommendItem.price}}"
         />
       </block>
     </view>

@@ -17,14 +17,14 @@
     color: #666;
     line-height: 1.8;
 }
-view{
+/* view{
     word-break:break-all; overflow:auto;
-}
-.wxParse-inline{
+} */
+/* .wxParse-inline{
     display: inline;
     margin: 0;
     padding: 0;
-}
+} */
 /*//标题 */
 .wxParse-div{margin: 0;padding: 0;}
 .wxParse-h1{ font-size:2em; margin: .67em 0 }

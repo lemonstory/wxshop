@@ -1,0 +1,11 @@
+<template name="footer">
+  <view class="page__ft page__ft_spacing">
+    <view class="weui-footer">
+      <view class="weui-footer__links" style='display:flex;align-items: center;'>
+      <view style='width:40rpx;height:1px;background:#d9d9d9;'></view>
+        <view href="javascript:void(0);" class="weui-footer__link" style='color:#A7A7A9'>更多内容，敬请期待</view>
+         <view style='width:40rpx;height:1px;background:#d9d9d9;'></view>
+      </view>
+   </view>
+  </view>
+</template>

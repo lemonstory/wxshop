@@ -1,0 +1,20 @@
+<!--pages/person/person.wxml-->
+<import src="../../template/recommend.wxml" />
+<import src="../../template/sectionTitle.wxml" />
+<import src="../../template/footer.wxml" />
+<import src="../../zanui-weapp/dist/tab/index.wxml" />
+
+<template is="zan-tab" data="{{tab: tab, componentId: 'tab'}}"></template>
+
+  <view style="background-color: #FFFFFF;margin-top:20rpx;width:100%;">
+    <block wx:for="{{sectionTitle}}" wx:key="sectionTitle" wx:for-index="idx" wx:for-item="sectionTitleItem">
+      <template is="sectionTitle" data="{{title:sectionTitleItem.title}}" />
+    </block>
+  <view class="weui-flex row-container page__bd_spacing">
+  <block wx:for="{{items}}" wx:key="recommendItem" wx:for-index="idx" wx:for-item="recommendItem"> 
+
+<template is="recommend" data="{{index:idx, id: recommendItem.id, title: recommendItem.name,cover: recommendItem.custom_attributes[3].value,recommendDesc:recommendItem.name,favourable:recommendItem.custom_attributes[2].value,purchase:recommendItem.custom_attributes[2].value,recommendPrice:recommendItem.price}}"/>
+       </block> 
+    </view>
+  </view>
+

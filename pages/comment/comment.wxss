@@ -1,0 +1,139 @@
+.comments{
+    width: 100%;
+    height: auto;
+    background: #fff;
+    margin: 20rpx 0;
+}
+
+.comments .head{
+    position: fixed;
+    left:0;
+    top:0;
+    z-index: 1000;
+    width: 100%;
+    display: flex;   
+    background: #fff;
+    height: 84rpx;
+    border-bottom: 1rpx solid #eee;
+}
+
+.comments .head .item{
+    display: inline-block;
+    height: 82rpx;
+    width: 50%;
+    padding: 0 15rpx;
+    text-align: center;
+}
+
+.comments .head .item .txt{
+    display: inline-block;
+    height: 82rpx;
+    padding: 0 20rpx;
+    line-height: 82rpx;
+    color: #333;
+    font-size: 30rpx;
+    width: 170rpx;
+}
+
+.comments .head .item.active .txt{
+    color: #ab2b2b;
+    border-bottom: 4rpx solid #ab2b2b;
+}
+
+.comment-item{
+  width: 100%;
+  padding:30rpx;
+  box-sizing:border-box;
+  height:auto;
+  border-bottom: 1rpx solid #eee;
+}
+.comments .info {
+  height: auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.comments .user {
+  width: auto;
+  height: 67rpx;
+  line-height: 67rpx;
+  
+}
+
+.comments .user image {
+  width: 67rpx;
+  height: 67rpx;
+  margin-right: 17rpx;
+  border-radius: 50%;
+
+
+}
+.comments .user text {
+  display: inline-block;
+  width: auto;
+  height: 66rpx;
+  overflow: hidden;
+  font-size: 29rpx;
+  line-height: 66rpx;
+}
+.comments .time {
+  display: flex;
+  width: auto;
+  height: 67rpx;
+  line-height: 67rpx;
+  color: #7f7f7f;
+  font-size: 25rpx;
+ 
+}
+.comments .content {
+  width:auto;
+  line-height: 45rpx;
+  font-size: 29rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.comments .imgs {
+  width: 720rpx;
+  height: auto;
+  margin-bottom: 20rpx;
+}
+
+.comments .imgs .img {
+  height: 150rpx;
+  width: 150rpx;
+  margin-right: 28rpx;
+}
+
+.comments .spec {
+  width:auto;
+  line-height: 30rpx;
+  font-size: 24rpx;
+  color: #999;
+  
+}
+
+.comments .customer-service{
+    width: 690rpx;
+    height: auto;
+    overflow: hidden;
+    margin-top: 23rpx;
+    background: rgba(0,0,0,.03);
+    padding: 20rpx;
+    box-sizing: border-box;
+}
+
+
+.comments .customer-service .reply{
+    font-size: 24rpx;
+    color: #333;
+    line-height: 37.5rpx;
+}
+
+.comments .customer-service .content{
+    font-size: 24rpx;
+    color: #999;
+    line-height: 37.5rpx;
+}

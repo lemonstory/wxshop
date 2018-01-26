@@ -60,19 +60,19 @@
 
   <!--用户评价开始  -->
   <view class="comments">
-    <view class="head">
+    <view class="head" bindtap='handleTapUserComment'>
       <view class="comments-title">用户评价({{comment.count > 999 ? '999+' : comment.count}})</view>
       <view class="good-comment">98%好评
         <image class="img" src="../../static/images/address_right.png" background-size="cover"></image>
       </view>
     </view>
-   <view class="comment-item">
+    <view class="comment-item">
       <view class="info">
         <view class="user">
           <image src="{{comment.userSrc}}"></image>
           <text>{{comment.nickname}}</text>
         </view>
-    </view>
+      </view>
       <view class="time">{{comment.add_time}}</view>
       <view class="content">
         {{comment.content}}
@@ -82,33 +82,59 @@
       </view>
       <view class="spec">{{comment.desc}}</view>
     </view>
-</view>
-<!--用户评论结束  -->
-
-</view>
+  </view>
+  <!--用户评论结束  -->
 
 
 
-<!-- </view>
-      </view>
+  <!--导航分类开始  -->
+  <view class="navhead">
+    <view class="item {{ showType == 0 ? 'active' : ''}}" bindtap="handleTapswitchTab">
+      <view class="txt">导航分类</view>
     </view>
-    <view class="goods-attr">
-      <view class="t">商品参数</view>
-      <view class="l">
-        <view class="item" wx:for="{{attribute}}" wx:key="{{item.name}}">
-          <text class="left">{{item.name}}</text>
-          <text class="right">{{item.value}}</text>
+    <view class="item {{ showType == 0 ? '' : 'active'}}" bindtap="handleTapswitchTab">
+      <view class="txt">用户评论</view>
+    </view>
+  </view>
+  <scroll-view class='scroll-item' scroll-x="true">
+    <block wx:for="{{relatedGoods}}" wx:key="item">
+      <view class="weui-flex__item " style="background:#fff;padding:20rpx;width:276rpx;height:auto;box-sizing: border-box;" data-index="{{index}}" data-id="{{id}}" bindtap='handleTapGoodsDetail'>
+        <image style="width:236rpx;height:236rpx;  box-sizing: border-box;" mode="aspectFill" src="{{item.cover}}"></image>
+        <view class="weui-media-box__title" style="width:236rpx; box-sizing: border-box;text-overflow: ellipsis;font-size: 26rpx;display:flex;">
+          <block wx:if="{{item.favourable!=''}}">
+            <view style='width:auto;height:30rpx;padding:0 30rpx;background:#E77A7E;line-height:30rpx;color:#fff; border-radius: 6rpx;font-size:20rpx;margin-right:10rpx'>{{item.favourable}}</view>
+          </block>
+          <block wx:if="{{item.purchase!=''}}">
+            <view style='width:auto;height:30rpx;padding:0 30rpx;background:#E77A7E;line-height:30rpx;color:#fff; border-radius: 6rpx;font-size:20rpx;'>{{item.purchase}}</view>
+          </block>
         </view>
+        <view class="weui-media-box__desc" style="margin-top:10rpx;font-size:24rpx;width:100%; text-overflow: ellipsis; overflow:hidden;  box-sizing: border-box;">{{item.recommendDesc}}</view>
+        <view class="weui-media-box__desc" style="margin-top:10rpx;font-size:24rpx;width:100%; text-overflow: ellipsis; overflow:hidden; box-sizing: border-box;font-weight: bold;color:#ab2b2b">￥{{item.recommendPrice}}</view>
+      </view>
+    </block>
+  </scroll-view>
+  <!--导航分类结束 -->
+
+  <!--商品参数开始 -->
+  <view class="goods-attr">
+    <view class="title">商品参数</view>
+    <view class="l">
+      <view class="item" wx:for="{{attribute}}" wx:key="{{item.name}}">
+        <text class="left">{{item.name}}</text>
+        <text class="right">{{item.value}}</text>
       </view>
     </view>
+  </view>
 
-    <view class="detail">
-      <import src="../../lib/wxParse/wxParse.wxml" />
-      <template is="wxParse" data="{{wxParseData:goodsDetail.nodes}}" />
-    </view>
+  <!--商品参数结束  -->
+
+  <view class="detail">
+    <import src="../../lib/wxParse/wxParse.wxml" />
+    <template is="wxParse" data="{{wxParseData:goodsDetail.nodes}}" />
+  </view>
 
 
-    <view class="common-problem">
+      <!-- <view class="common-problem">
       <view class="h">
         <view class="line"></view>
         <text class="title">常见问题</text>
@@ -124,23 +150,25 @@
           </view>
         </view>
       </view>
-    </view>
+    </view> -->
 
-    <view class="related-goods" wx:if="{{relatedGoods.length > 0}}">
-      <view class="h">
-        <view class="line"></view>
-        <text class="title">大家都在看</text>
-      </view>
-      <view class="b">
-        <view class="item" wx:for="{{relatedGoods}}" wx:key="{{item.id}}">
-          <navigator url="/pages/goods/goods?id={{item.id}}">
-            <image class="img" src="{{item.list_pic_url}}" background-size="cover"></image>
-            <text class="name">{{item.name}}</text>
-            <text class="price">￥{{item.retail_price}}</text>
-          </navigator>
-        </view>
-      </view>
-    </view>
+
+
+
+
+</view>
+
+
+
+<!-- </view>
+ 
+
+  
+
+
+
+
+  
 
   </view>
   <view wx:if="{{openAttr}}" class="attr-pop">

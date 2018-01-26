@@ -17,21 +17,35 @@ Page({
     autoplay: true,
     interval: 5000,
     duration: 1000,
-   
+
     // goods:商品信息
-    goods: { name: '御赐金福零食礼盒福零食礼1.1千克', goods_desc: '玫瑰香葡萄干+玫瑰香葡萄干玫瑰香葡萄干+玫瑰香葡萄干+玫瑰香葡萄干', retail_price:'10000'},
+    goods: { name: '御赐金福零食礼盒福零食礼1.1千克', goods_desc: '玫瑰香葡萄干+玫瑰香葡萄干玫瑰香葡萄干+玫瑰香葡萄干+玫瑰香葡萄干', retail_price: '10000' },
     // brand 优惠活动
     brand: [{ name: '恩恩讷讷恩额额呢' }, { name: '哈哈哈哈哈哈或或或或' }],
     // 用户评论
-    comment: { count: '999', userSrc: '../../image/1.png', nickname: '15735921111', add_time: '2018.01.25  16:45', content: '严选宝贝,呵呵哈哈哈剪辑剪辑军军军军军军军军军军军看呵呵哈哈哈', pic_list: [{ pic_url: '../../image/1.png' }, { pic_url: '../../image/1.png' }, { pic_url: '../../image/1.png'}],desc:'白色外套  2件'},
+    comment: { count: '999', userSrc: '../../image/1.png', nickname: '15735921111', add_time: '2018.01.25  16:45', content: '严选宝贝,呵呵哈哈哈剪辑剪辑军军军军军军军军军军军看呵呵哈哈哈', pic_list: [{ pic_url: '../../image/1.png' }, { pic_url: '../../image/1.png' }, { pic_url: '../../image/1.png' }], desc: '白色外套  2件' },
+
+    // relatedGoods: 评论下面的分类
+
+    relatedGoods: [
+      {cover: '../../image/1.png', favourable: '哈哈', purchase: '额额呢', recommendDesc: '剪辑剪辑军军', recommendPrice: '123' }, 
+     {cover: '../../image/1.png', favourable: '哈哈', purchase: '额额呢', recommendDesc: '剪辑剪辑军军', recommendPrice: '123' }, 
+     {cover: '../../image/1.png', favourable: '哈哈', purchase: '额额呢', recommendDesc: '剪辑剪辑军军', recommendPrice: '123' }, 
+     {cover: '../../image/1.png', favourable: '哈哈', purchase: '额额呢', recommendDesc: '剪辑剪辑军军', recommendPrice: '123'}],
+//  attribute
+    attribute: [{name:'hahhahha',value:'5555522222222222222222222222222222222222222222222222222222222222'},
+      { name: 'hahhahha', value: '5555522222222222222222222222222222222222222222222222222222222222' },
+      { name: 'hahhahha', value: '5555522222222222222222222222222222222222222222222222222222222222' }],
+      // issueList
+    issueList: [{ question: '请选择规格数量', answer: '请选择规格数量' }],
     gallery: [],
-    attribute: [],
-    issueList: [],
-    
-    
+ 
+
+
+
     specificationList: [],
     productList: [],
-    relatedGoods: [],
+
     cartGoodsCount: 0,
     userHasCollect: 0,
     number: 1,
@@ -352,11 +366,26 @@ Page({
     this.setData({
       number: this.data.number + 1
     });
+  },
+
+
+  // 点击用户评论
+  handleTapUserComment: function () {
+    var path = "/pages/comment/comment";
+    wx.navigateTo({
+      url: path
+    })
+  },
+
+  handleTapswitchTab: function () {
+    this.setData({
+      showType: this.data.showType == 1 ? 0 : 1
+    });
   }
 })
 
 
 
 
-     
+
 

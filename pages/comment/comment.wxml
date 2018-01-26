@@ -1,0 +1,34 @@
+<view class="comments">
+  <view class="head">
+    <view class="item {{ showType == 0 ? 'active' : ''}}" bindtap="handleTapswitchTab">
+      <view class="txt">全部({{allCount}})</view>
+    </view>
+    <view class="item {{ showType == 0 ? '' : 'active'}}" bindtap="handleTapswitchTab">
+      <view class="txt">有图({{hasPicCount}})</view>
+    </view>
+  </view>
+
+  <view style='margin-top:86rpx'>
+    <view class="comment-item" wx:for="{{comment}}" wx:key="item">
+      <view class="info">
+        <view class="user">
+          <image src="{{item.userSrc}}"></image>
+          <text>{{item.nickname}}</text>
+        </view>
+      </view>
+      <view class="time">{{item.add_time}}</view>
+      <view class="content">
+        {{item.content}}
+      </view>
+      <view class="imgs">
+        <image class="img" wx:for="{{item.pic_list}}" wx:key="{{item.id}}" src="{{item.pic_url}}"></image>
+      </view>
+      <view class="spec">{{item.desc}}</view>
+
+      <view class="customer-service">
+        <text class="reply">小选回复：</text>
+        <text class="content">{{item.replyContent}}</text>
+      </view>
+    </view>
+  </view>
+</view>

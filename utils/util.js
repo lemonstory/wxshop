@@ -234,6 +234,18 @@ function adminRequestHeader(isAdmin = false) {
   }
   return header;
 }
+/** 
+ * 判断当前数组某项是否为所需
+ */
+function isNeed(array, attributes) {
+  var value = ''
+  for (var i = 0; i < array.length; i++) {
+    if (array[i].attribute_code === attributes) {
+      value = array[i].value;
+    }
+  }
+  return value;
+}
 module.exports = {
   formatTime: formatTime,
   isMobile: isMobile,
@@ -247,7 +259,8 @@ module.exports = {
   getCanlenderData: getCanlenderData,
   isEmptyStr: isEmptyStr,
   isValidID: isValidID,
-  setAdminToken: setAdminToken,
-  getAdminToken: getAdminToken,
-  adminRequestHeader: adminRequestHeader
+  setAdminToken: setAdminToken, // 设置缓存AdminToken
+  getAdminToken: getAdminToken, // 获取缓存
+  adminRequestHeader: adminRequestHeader, // 请求头
+  isNeed // 判断数组某项是否为所需
 }

@@ -3,9 +3,9 @@
   <!--banner轮播图开始  -->
   <view class="banner">
     <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-      <block wx:for="{{banner}}" wx:key="banner" wx:for-index="idx">
-        <swiper-item data-src="{{item.url}}" bindtap="handleBanner" data-index="{{idx}}" data-id="{{item.id}}">
-          <image src="{{item.image}}" class="slide-image" width="750rpx" height="750rpx" />
+      <block wx:for="{{media_gallery_entries}}" wx:key="banner" wx:for-index="idx">
+        <swiper-item data-src="{{requestPath + item.file}}" bindtap="handleBanner" data-index="{{idx}}" data-id="{{item.id}}">
+          <image src="{{requestPath + item.file}}" class="slide-image" width="750rpx" height="750rpx" />
         </swiper-item>
       </block>
     </swiper>
@@ -16,9 +16,9 @@
   <view class="goods-info">
     <view class='goods-box'>
       <view class="goods-info-left">
-        <view class="names">{{goods.name}}</view>
+        <view class="names">{{name}}</view>
         <view class="desc">{{goods.goods_desc}}</view>
-        <view class="price">￥{{goods.retail_price}}</view>
+        <view class="price">￥{{price}}</view>
       </view>
       <view class="goods-info-right">
         <view class="comment-num">999+</view>
@@ -128,6 +128,13 @@
 
   <!--商品参数结束  -->
 
+  <!-- 产品描述开始 -->
+
+  <view class="goods-attr">
+    <!-- <text></text> -->
+    <rich-text nodes="{{description}}"></rich-text>
+  </view>
+  <!-- 产品描述结束 -->
   <view class="detail">
     <import src="../../lib/wxParse/wxParse.wxml" />
     <template is="wxParse" data="{{wxParseData:goodsDetail.nodes}}" />

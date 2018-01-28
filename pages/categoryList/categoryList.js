@@ -2,8 +2,9 @@
 const app = getApp();
 const Toast = require('../../zanui-weapp/dist/toast/index');
 var util = require('../../utils/util.js')
+const Tab = require('../../zanui-weapp/dist/tab/index');
 var constant = require('../../utils/constant.js')
-Page(Object.assign({}, Toast, {
+Page(Object.assign({}, Toast, Tab,{
 
   /**
    * 页面的初始数据
@@ -182,6 +183,7 @@ data: {
     })
   },
 
+
   handleZanTabChange(e) {
     var componentId = e.componentId;
     var selectedId = e.selectedId;
@@ -189,9 +191,11 @@ data: {
       [`${componentId}.selectedId`]: selectedId,
       selectSecondTagId: selectedId,
       selectedId: selectedId,
-     
+      tagalbumlist: [],
+      startrelationid: 0,
+      isNoMore: false,
+      isLoading: true
     });
-
-  },
+},
 
 }))

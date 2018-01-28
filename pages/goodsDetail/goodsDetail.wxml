@@ -17,7 +17,9 @@
     <view class='goods-box'>
       <view class="goods-info-left">
         <view class="names">{{name}}</view>
-        <view class="desc">{{goods.goods_desc}}</view>
+        <view class="desc">
+          <rich-text nodes="{{shortDescription}}"></rich-text>
+        </view>
         <view class="price">￥{{price}}</view>
       </view>
       <view class="goods-info-right">

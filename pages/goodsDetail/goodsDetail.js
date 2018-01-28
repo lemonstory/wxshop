@@ -98,11 +98,14 @@ Page({
       header: util.adminRequestHeader(true),
       success: function (res) {
         console.log('🚀 🚀 🚀 打印商品详情数据')
+        console.log(res.data)
         var description = util.isNeed(res.data.custom_attributes,'description')
+        var shortDescription = util.isNeed(res.data.custom_attributes, 'short_description')
         console.log(description)
         // var html = new HtmlParser(description).nodes
         // console.log(html)
         that.setData({ 'description': description })
+        that.setData({ 'shortDescription': shortDescription })
         that.setData(res.data)
       }
     })

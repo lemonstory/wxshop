@@ -22,11 +22,6 @@ data: {
       height: 45,
 
     },
-
-    items: [
-      { id: 53, name: "顺丰打赏的发顺丰", custom_attributes: [{ value: "顺丰" }, { value: "顺丰打赏" }, { value: "顺丰" }, { value: "https://gd2.alicdn.com/imgextra/i4/403519390/TB2S6_2lAfb_uJjSsrbXXb6bVXa_!!403519390.jpg" }], price: 10 }, { id: 47, name: "白色羽绒服", custom_attributes: [{ value: "白色羽绒服" }, { value: "白色羽绒服" }, { value: "白色" }, { value: "https://gd2.alicdn.com/imgextra/i4/403519390/TB2S6_2lAfb_uJjSsrbXXb6bVXa_!!403519390.jpg" }], price: 50 }, { id: 49, name: "顺丰打赏的发顺丰", custom_attributes: [{ value: "顺丰打赏的发顺丰" }, { value: "顺丰打赏" }, { value: "" }, { value: "https://gd2.alicdn.com/imgextra/i4/403519390/TB2S6_2lAfb_uJjSsrbXXb6bVXa_!!403519390.jpg" }], price: 10 }, { id: 50, name: "顺丰打赏的发顺丰", custom_attributes: [{ value: "顺丰打赏的发顺丰" }, { value: "顺丰打赏的发" }, { value: "顺丰" }, { value: "https://gd2.alicdn.com/imgextra/i4/403519390/TB2S6_2lAfb_uJjSsrbXXb6bVXa_!!403519390.jpg" }], price: 10 }, { id: 34, name: "顺丰打赏的发顺丰", custom_attributes: [{ value: "顺丰打赏的发顺丰" }, { value: "顺丰打赏的发顺丰" }, { value: "顺丰" }, { value: "https://gd2.alicdn.com/imgextra/i4/403519390/TB2S6_2lAfb_uJjSsrbXXb6bVXa_!!403519390.jpg" }], price: 10 }
-    ],
-    
     //页面的初始数据
     'currentTagId': '',
     'selectedId': '',
@@ -34,21 +29,21 @@ data: {
     requestPath: constant.constant.requestPath,
     // 人气推荐参数
     params: {
-      pageSize: 10,
+      // pageSize: constant.constant.pageSize,
+      // currentPage: constant.constant.currentPage
+      pageSize: 6,
       currentPage: 1
     },
-    // 新品推荐参数
-    newParams: {
-      pageSize: 10,
-      currentPage: 1,
-      startTime: new Date
-    },
+    //是否还有更多数据
+    'isNoMore': false,
+    //是否正在加载中
+    'isLoading': false,
   },
 /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.getHomePopData()
   },
 
   /**
@@ -90,7 +85,18 @@ data: {
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+    console.log('页面上拉触底事件的处理函数')
+    // console.log(this.data.isLoading)
+    // console.log(this.data.isNoMore)
+    if (!this.data.isNoMore) {
+      this.data.isLoading = true,
+      this.data.params.currentPage = this.data.params.currentPage + 1,
+      setTimeout(() => {
+        this.getDataMore(this.data.params.currentPage, this.data.params.pageSize);
+      }, 500);
+    } else {
+      this.data.isLoading = false
+    }
   },
 
   /**
@@ -99,6 +105,83 @@ data: {
   onShareAppMessage: function () {
   
   },
+
+  /**
+   * 获取更多数据
+   */
+  getDataMore: function (currentPage, pageSize) {
+    var that = this;
+    var url = constant.constant.domain + constant.constant.path + '/V1/products?searchCriteria[filterGroups][0][filters][0][field]=is_featured&searchCriteria[filterGroups][0][filters][0][value]=1&searchCriteria[filterGroups][0][filters][0][conditionType]=eq&searchCriteria[sortOrders][0][field]=updated_at&searchCriteria[sortOrders][0][direction]=DESC&searchCriteria[pageSize]=' + pageSize + '&searchCriteria[currentPage]=' + currentPage;
+    if (!that.data.isNoMore) {
+      wx.request({
+        url: url,
+        data: {},
+        header: util.adminRequestHeader(true),
+        success: function (res) {
+          wx.hideLoading();
+          var length = res.data.items.length;
+          if (length > 0) {
+            // 加入数据
+            for (var i = 0; i < res.data.items.length; i++) {
+              var img = util.isNeed(res.data.items[i].custom_attributes, 'image')
+              res.data.items[i].img = that.data.requestPath + img
+            }
+            var itemsTemp = that.data.items;
+            Array.prototype.push.apply(itemsTemp, res.data.items);
+            that.data.items = itemsTemp
+            that.setData({
+              'items': that.data.items
+            });
+            // console.log('添加数组成功')
+            // console.log(that.data.items)
+            if (that.data.items.length == that.data.total_count) {
+              that.setData({
+                'isNoMore': true,
+                'isLoading': false
+              })
+            }
+          }
+          else {
+            that.setData({
+              'isNoMore': true,
+              'isLoading': false,
+            });
+          }
+        }
+      })
+    }
+  },
+  /**
+      * 获取人气推荐数据
+      */
+  getHomePopData: function () {
+    console.log("🚀 🚀 🚀 getHomePopData run");
+    var that = this;
+    var url = constant.constant.domain + constant.constant.path + '/V1/products?searchCriteria[filterGroups][0][filters][0][field]=is_featured&searchCriteria[filterGroups][0][filters][0][value]=1&searchCriteria[filterGroups][0][filters][0][conditionType]=eq&searchCriteria[sortOrders][0][field]=updated_at&searchCriteria[sortOrders][0][direction]=DESC&searchCriteria[pageSize]=' + that.data.params.pageSize + '&searchCriteria[currentPage]=' + that.data.params.currentPage;
+    wx.request({
+      url: url,
+      // data: {},
+      header: util.adminRequestHeader(true),
+      success: function (res) {
+        console.log('打印  getHomePopData  返回数据')
+        console.log(res.data)
+        for (var i = 0; i < res.data.items.length; i++) {
+          var img = util.isNeed(res.data.items[i].custom_attributes, 'image')
+          res.data.items[i].img = that.data.requestPath + img
+        }
+        that.setData(res.data)
+      }
+    })
+  },
+
+  // 点击商品详情
+  handleTapGoodsDetail: function (event) {
+    var path = "/pages/goodsDetail/goodsDetail?sku=" + event.currentTarget.dataset.sku;
+    wx.navigateTo({
+      url: path
+    })
+  },
+
   handleZanTabChange(e) {
     var componentId = e.componentId;
     var selectedId = e.selectedId;

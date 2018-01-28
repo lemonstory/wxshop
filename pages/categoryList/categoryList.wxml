@@ -13,7 +13,7 @@
   <view class="weui-flex row-container page__bd_spacing">
   <block wx:for="{{items}}" wx:key="recommendItem" wx:for-index="idx" wx:for-item="recommendItem"> 
 
-<template is="recommend" data="{{index:idx, id: recommendItem.id, title: recommendItem.name,cover: recommendItem.custom_attributes[3].value,recommendDesc:recommendItem.name,favourable:recommendItem.custom_attributes[2].value,purchase:recommendItem.custom_attributes[2].value,recommendPrice:recommendItem.price}}"/>
+<template is="recommend" data="{{index:idx, id: recommendItem.id, title: recommendItem.name,cover: recommendItem.custom_attributes[3].value,favourable:'',purchase:'',recommendPrice:recommendItem.price}}"/>
        </block> 
     </view>
   </view>

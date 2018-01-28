@@ -18,21 +18,21 @@ Page(Object.assign({}, Toast, {
   //   ],
   //   newData: [{ id: 53, name: "顺丰打赏的发顺丰", custom_attributes: [{ value: "顺丰打赏的发顺丰" }, { value: "顺丰打赏的发顺丰" }, { value: "顺丰" }, { value: "https://gd2.alicdn.com/imgextra/i4/403519390/TB2S6_2lAfb_uJjSsrbXXb6bVXa_!!403519390.jpg" }], price: 10 }, { id: 47, name: "白色羽绒服", custom_attributes: [{ value: "白色羽绒服" }, { value: "白色羽绒服" }, { value: "白色羽绒服" }, { value: "https://gd2.alicdn.com/imgextra/i4/403519390/TB2S6_2lAfb_uJjSsrbXXb6bVXa_!!403519390.jpg" }], price: 50 }, { id: 49, name: "顺丰打赏的发顺丰", custom_attributes: [{ value: "顺丰打赏的发顺丰" }, { value: "顺丰打赏的发顺丰" }, { value: "" }, { value: "https://gd2.alicdn.com/imgextra/i4/403519390/TB2S6_2lAfb_uJjSsrbXXb6bVXa_!!403519390.jpg" }], price: 10 }, { id: 50, name: "顺丰打赏的发顺丰", custom_attributes: [{ value: "顺丰打赏的发顺丰" }, { value: "顺丰打赏的发顺丰" }, { value: "顺丰打赏" }, { value: "https://gd2.alicdn.com/imgextra/i4/403519390/TB2S6_2lAfb_uJjSsrbXXb6bVXa_!!403519390.jpg" }], price: 10 }, { id: 34, name: "顺丰打赏的发顺丰", custom_attributes: [{ value: "顺丰打赏的发顺丰" }, { value: "顺丰打赏的发顺丰" }, { value: "顺丰打赏" }, { value: "https://gd2.alicdn.com/imgextra/i4/403519390/TB2S6_2lAfb_uJjSsrbXXb6bVXa_!!403519390.jpg" }], price: 10 }],
     constant: app.constant,
-    inputContent: {},
-    indicatorDots: true,
-    autoplay: true,
-    interval: 5000,
-    duration: 1000,
+    inputContent: constant.constant.inputContent,
+    indicatorDots: constant.constant.indicatorDots,
+    autoplay: constant.constant.autoplay,
+    interval: constant.constant.interval,
+    duration: constant.constant.duration,
     requestPath: constant.constant.requestPath,
     // 人气推荐参数
     params: {
-      pageSize: 10,
-      currentPage: 1
+      pageSize: constant.constant.pageSize,
+      currentPage: constant.constant.currentPage
     },
     // 新品推荐参数
     newParams: {
-      pageSize: 10,
-      currentPage: 1,
+      pageSize: constant.constant.pageSize,
+      currentPage: constant.constant.currentPage,
       startTime: new Date
     }
   },

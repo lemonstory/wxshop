@@ -31,7 +31,7 @@ data: {
     'currentTagId': '',
     'selectedId': '',
     constant: app.constant,
-    requestPath: 'http://dev.magento.com/media/catalog/product/cache/f073062f50e48eb0f0998593e568d857',
+    requestPath: constant.constant.requestPath,
     // 人气推荐参数
     params: {
       pageSize: 10,

@@ -13,11 +13,11 @@ Page({
       { image: '../../image/1.png' },
       { image: '../../image/1.png' }
     ],
-    inputContent: {},
-    indicatorDots: true,
-    autoplay: true,
-    interval: 5000,
-    duration: 1000,
+    inputContent: constant.constant.inputContent,
+    indicatorDots: constant.constant.indicatorDots,
+    autoplay: constant.constant.autoplay,
+    interval: constant.constant.interval,
+    duration: constant.constant.duration,
 
     // goods:商品信息
     goods: { name: '御赐金福零食礼盒福零食礼1.1千克', goods_desc: '玫瑰香葡萄干+玫瑰香葡萄干玫瑰香葡萄干+玫瑰香葡萄干+玫瑰香葡萄干', retail_price: '10000' },

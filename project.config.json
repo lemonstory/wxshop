@@ -32,6 +32,12 @@
 					"name": "详情页",
 					"pathName": "pages/goodsDetail/goodsDetail",
 					"query": "sku=HT05"
+				},
+				{
+					"id": 1,
+					"name": "人气推荐",
+					"pathName": "pages/categoryList/categoryList",
+					"query": ""
 				}
 			]
 		}

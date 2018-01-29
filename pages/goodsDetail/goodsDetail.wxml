@@ -87,8 +87,6 @@
   </view>
   <!--用户评论结束-->
 
-
-
   <!--导航分类开始  -->
   <view class="navhead">
     <view class="item {{ showType == 0 ? 'active' : ''}}" bindtap="handleTapswitchTab">
@@ -186,19 +184,17 @@
         <view class="server_box">
           <view class="server_title">服务</view>
           <view class="server_content">
-          <!--一个循环数开始 -->
+            <!--一个循环数开始 -->
             <view class="title" style='display:flex; align-items: center;font-size:28rpx;margin-top:30rpx'>
               <view class="cicle" style='margin-right:20rpx;'></view>48小时快速退款 </view>
-           <view class="desc" style='font-size:28rpx;color:#999;'>哈哈哈哈啊哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈啊哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈啊哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈</view>
-           <!--一个循环数结束 -->
+            <view class="desc" style='font-size:28rpx;color:#999;'>哈哈哈哈啊哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈啊哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈啊哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈</view>
+            <!--一个循环数结束 -->
 
-                <!--测试循环数据  -->
-                 <view class="title" style='display:flex; align-items: center;font-size:28rpx;margin-top:30rpx'>
+            <!--测试循环数据  -->
+            <view class="title" style='display:flex; align-items: center;font-size:28rpx;margin-top:30rpx'>
               <view class="cicle" style='margin-right:20rpx;'></view>48小时快速退款 </view>
-           <view class="desc" style='font-size:28rpx;color:#999;'>哈哈哈哈啊哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈啊哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈啊哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈</view>
-           <!--测试循环数据  -->
-
-
+            <view class="desc" style='font-size:28rpx;color:#999;'>哈哈哈哈啊哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈啊哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈哈哈哈哈啊哈哈哈啊哈哈哈哈哈哈啊哈哈哈哈哈</view>
+            <!--测试循环数据  -->
           </view>
         </view>
 

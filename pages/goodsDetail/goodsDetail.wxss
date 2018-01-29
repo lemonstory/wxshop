@@ -211,9 +211,7 @@ swiper {
   width: 52rpx;
   height: 52rpx;
   display: flex;
-
 }
-
 .server-box {
   display: flex;
 }
@@ -221,8 +219,6 @@ swiper {
   width:750rpx;
   height:auto;
   background: #fff;
-  
-  
 }
 .server_title{
   width:100%;
@@ -302,7 +298,7 @@ swiper {
   font-size: 29rpx;
   line-height: 66rpx;
 }
-.comments .time {
+.comments .time{
   display: flex;
   width: auto;
   height: 67rpx;
@@ -473,13 +469,11 @@ swiper {
   line-height: 28rpx;
   border-radius: 50%;
 }
-
 .bottom-btn .l.l-cart .icon {
   position: absolute;
   top: 10rpx;
   left: 0;
 }
-
 .bottom-btn .l .icon {
   display: block;
   height: 44rpx;
@@ -507,15 +501,12 @@ swiper {
   text-align: center;
   color: #fff;
 }
-
-
 .attr-pop {
   width: 100%;
   height: 100%;
   padding: 30rpx;
   background: #fff;
- 
-}
+ }
 
 .attr-pop .img-info {
   width: 687.5rpx;
@@ -523,7 +514,6 @@ swiper {
   overflow: hidden;
   margin-bottom: 41.5rpx;
 }
-
 .attr-pop .img {
   float: left;
   height: 177rpx;
@@ -531,14 +521,12 @@ swiper {
   background: #f4f4f4;
   margin-right: 30rpx;
 }
-
 .attr-pop .info {
   float: left;
   height: 177rpx;
   display: flex;
   align-items: center;
 }
-
 .attr-pop .price {
   font-size: 33rpx;
   height: 33rpx;
@@ -546,33 +534,28 @@ swiper {
   margin-bottom: 10rpx;
   color:#ab2b2b;
 }
-
 .attr-pop .attr {
   font-size: 29rpx;
   color: #333;
   height: 40rpx;
   line-height: 40rpx;
 }
-
 .spec-con {
   width: 100%;
   height: auto;
   overflow: hidden;
 }
-
 .spec-con .name {
   height: 32rpx;
   margin-bottom: 22rpx;
   font-size: 29rpx;
   color: #333;
 }
-
 .spec-con .values {
   height: auto;
   margin-bottom: 31.25rpx;
   font-size: 0;
 }
-
 .spec-con .value {
   display: inline-block;
   height: 62rpx;
@@ -585,31 +568,26 @@ swiper {
   font-size: 25rpx;
   color: #333;
 }
-
 .spec-con .value.disable {
   border: 1rpx solid #eee;
   color: #333;
 }
-
 .spec-con .value.selected {
   border: 1rpx solid #b4282d;
   color: #b4282d;
 }
-
 .number-item .selnum {
   width: 322rpx;
   height: 71rpx;
   border: 1rpx solid #eee;
   display: flex;
 }
-
 .number-item .cut {
   width: 93.75rpx;
   height: 100%;
   text-align: center;
   line-height: 65rpx;
 }
-
 .number-item .number {
   flex: 1;
   height: 100%;

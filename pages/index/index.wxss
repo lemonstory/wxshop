@@ -58,16 +58,16 @@ swiper {
 }
 .brand-name{
   position: absolute;
-  top:110rpx;
+  top:35%;
   left:30rpx;
-  font-size: 34rpx;
+  font-size: 40rpx;
   font-weight: bold;
 }
 .brand-price{
   position: absolute;
-  bottom:110rpx;
+  bottom:35%;
   left:30rpx;
-  font-size:34rpx;
+  font-size:38rpx;
   font-weight: bold;
   color:#ab2b2b;
 }

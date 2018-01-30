@@ -273,13 +273,16 @@
   margin: 33rpx 18rpx;
   font-size: 29rpx;
 }
-
-.cart-bottom .checkout {
+ .checkout {
   height: 100rpx;
   width: 210rpx;
   text-align: center;
   line-height: 100rpx;
   font-size: 29rpx;
-  background: #b4282d;
+  /* background: #b4282d; */
+  background: #ccc;
   color: #fff;
+}
+ .selected{
+background:#b4282d; 
 }

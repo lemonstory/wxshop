@@ -21,9 +21,6 @@ data: {
       selectedId:'0',
       scroll: true,
       height: 45,
-
-  
-
     },
     //页面的初始数据
     'currentTagId': '',

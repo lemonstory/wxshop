@@ -21,7 +21,7 @@
       <view class="group-item">
         <view class="goods">
           <view class="item" wx:for="{{cartGoods}}" wx:key="{{item.id}}">
-            <view class="checkbox {{item.checked ? 'checked' : ''}}" bindtap="checkedItem" data-item-index="{{index}}"></view>
+            <view class="checkbox {{item.checked ? 'checked' : ''}}" bindtap="handleTapcheckedItem" data-item-index="{{index}}"></view>
             <view class="cart-goods {{index == 0 ? 'first' : ''}}">
               <image class="img" src="{{item.list_pic_url}}"></image>
               <view class="info">
@@ -31,10 +31,8 @@
                 <view class="desc">
                   {{item.goods_desc}}
                 </view>
-
                 <view class="b">
                   <text class="price">￥{{item.retail_price}}</text>
-
                   <view class="selnum">
                     <view class="cut" bindtap="handleTapcutNumber" data-item-index="{{index}}">-</view>
                     <input value="{{number}}" class="number" disabled="true" type="number" />
@@ -48,9 +46,9 @@
       </view>
     </view>
     <view class="cart-bottom">
-      <view class="checkbox {{checkedAllStatus ? 'checked' : ''}}" bindtap="checkedAll">全选({{cartTotal.checkedGoodsCount}})</view>
+      <view class="checkbox {{checkedAllStatus ? 'checked' : ''}}" bindtap="handleTapcheckedAll">全选({{cartTotal.checkedGoodsCount}})</view>
       <view class="total">{{'￥'+cartTotal.checkedGoodsAmount}}</view>
-      <view class="checkout" bindtap="checkoutOrder">下单</view>
+      <view class="checkout {{checkedAllStatus? 'selected':''}}" bindtap="handleTapcheckoutOrder">下单</view>
     </view>
   </view>
 </view>

@@ -46,7 +46,7 @@
     <view class="weui-flex row-container page__bd_spacing">
       <block wx:for="{{items}}" wx:key="recommendItem" wx:for-index="idx" wx:for-item="recommendItem">
         <view wx:if="{{idx == 0}}" data-index="{{idx}}" data-id="{{recommendItem.id}}" data-sku="{{recommendItem.sku}}" bindtap='handleTapGoodsDetail'>
-          <image class="recommend-img" style="width:710rpx;height:345rpx;box-sizing: border-box;margin-bottom:30rpx;" mode="aspectFit" src="{{recommendItem.img}}">
+          <image class="recommend-img" style="width:710rpx;;box-sizing: border-box;margin-bottom:30rpx;" mode="widthFit" src="{{recommendItem.img}}">
             <view class="brand-name">{{recommendItem.name}}</view>
             <!--大图图片描述  TODO 参数不正确  -->
             <view class="brand-desc">{{recommendItem.desc}}</view>
@@ -76,7 +76,7 @@
     <view class="weui-flex row-container page__bd_spacing">
       <block wx:for="{{newData}}" wx:key="recommendItem" wx:for-index="idx" wx:for-item="recommendItem">
         <view wx:if="{{idx == 0}}" data-index="{{idx}}" data-id="{{recommendItem.id}}" data-sku="{{recommendItem.sku}}" bindtap='handleTapGoodsDetail'>
-          <image class="recommend-img" style="width:710rpx;height:345rpx;box-sizing: border-box;margin-bottom:30rpx;" mode="widthFit" src="{{recommendItem.img}}">
+          <image class="recommend-img" style="width:710rpx;box-sizing: border-box;margin-bottom:30rpx;" mode="widthFit" src="{{recommendItem.img}}">
             <view class="brand-name">{{recommendItem.name}}</view>
             <!--大图图片描述  TODO 参数不正确  -->
             <view class="brand-desc">{{recommendItem.desc}}</view>

@@ -31,7 +31,7 @@
 					"id": 0,
 					"name": "详情页",
 					"pathName": "pages/goodsDetail/goodsDetail",
-					"query": "sku=HT05"
+					"query": "sku=3斤鲜香菇"
 				},
 				{
 					"id": 1,

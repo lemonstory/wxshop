@@ -246,6 +246,22 @@ function isNeed(array, attributes) {
   }
   return value;
 }
+/**
+ * 根据属性id获取属性信息
+ */
+function getAttributes(attributeId) {
+  var valueArr = [];
+  var url = constant.constant.domain + constant.constant.path + '/V1/products/attributes/' + attributeId + '/options';
+  wx.request({
+    url: url,
+    data: {},
+    header: adminRequestHeader(true),
+    success: function (res) {
+      valueArr = res.data
+    }
+  })
+  return valueArr;
+}
 module.exports = {
   formatTime: formatTime,
   isMobile: isMobile,
@@ -262,5 +278,6 @@ module.exports = {
   setAdminToken: setAdminToken, // 设置缓存AdminToken
   getAdminToken: getAdminToken, // 获取缓存
   adminRequestHeader: adminRequestHeader, // 请求头
-  isNeed // 判断数组某项是否为所需
+  isNeed, // 判断数组某项是否为所需
+  getAttributes // 根据属性id获取属性信息
 }

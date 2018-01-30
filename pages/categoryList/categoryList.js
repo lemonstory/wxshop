@@ -11,17 +11,16 @@ Page(Object.assign({}, Toast, Tab,{
    */
 data: {
     tab: {
-      list: [{title:"编辑推荐"},
-      {title:"24小时热销"},
-      { title: "人气周榜" },
-      { title: "热销总榜" },
-      { title: "24小时热销" },
-      { title: "24小时热销" },
+      list: [{title:"编辑推荐",id:'0'},
+        { title: "24小时热销", id: '1'},
+        { title: "人气周榜" ,id: '2' },
+        { title: "热销总榜", id: '3'},
+        { title: "24小时热销", id: '4'},
+        { title: "24小时热销", id: '5'},
     ],
-      selectedId:'',
+      selectedId:'0',
       scroll: true,
       height: 45,
-
     },
     //页面的初始数据
     'currentTagId': '',
@@ -183,7 +182,7 @@ data: {
     })
   },
 
-
+  
   handleZanTabChange(e) {
     var componentId = e.componentId;
     var selectedId = e.selectedId;
@@ -195,7 +194,6 @@ data: {
       startrelationid: 0,
       isNoMore: false,
       isLoading: true
-    });
-},
+    });},
 
 }))

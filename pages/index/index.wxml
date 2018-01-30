@@ -90,5 +90,5 @@
   </view>
   <!--一个循环结束  -->
 
-  <template is="footer" />
+  <template is="footer"/>
 </view>

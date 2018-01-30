@@ -249,18 +249,41 @@ function isNeed(array, attributes) {
 /**
  * 根据属性id获取属性信息
  */
-function getAttributes(attributeId) {
-  var valueArr = [];
+function getAttributes(attributeId,callback) {
   var url = constant.constant.domain + constant.constant.path + '/V1/products/attributes/' + attributeId + '/options';
   wx.request({
     url: url,
     data: {},
     header: adminRequestHeader(true),
     success: function (res) {
-      valueArr = res.data
+      callback(attributeId,res.data);
     }
   })
-  return valueArr;
+}
+/**
+ * 取最小值
+ */
+function isMin(array) {
+  var min = array[0].price
+  for (var i = 1; i < array.length; i++) {
+    if (array[i].price > array[i-1].price) {
+      min = array[i-1].price
+    }
+  }
+  return min;
+}
+/**
+ * 获取商品参数信息
+ */
+function getProParamsInfo (array) {
+  var arr = []
+  var str = 'product_options_'
+  for (var i = 0; i < array.length; i++) {
+    if (array[i].attribute_code.indexOf(str) > -1) {
+      arr.push(array[i])
+    }
+  }
+  return arr;
 }
 module.exports = {
   formatTime: formatTime,
@@ -279,5 +302,7 @@ module.exports = {
   getAdminToken: getAdminToken, // 获取缓存
   adminRequestHeader: adminRequestHeader, // 请求头
   isNeed, // 判断数组某项是否为所需
-  getAttributes // 根据属性id获取属性信息
+  getAttributes, // 根据属性id获取属性信息
+  isMin,  // 判断可配置商品价格大小
+  getProParamsInfo  // 获取商品参数信息
 }

@@ -144,19 +144,19 @@
       <view class="zan-popup__container">
         <view class="attr-pop">
           <view class="img-info">
-            <image class="img" src="../../image/1.png"></image>
+            <image class="img" src="{{img}}"></image>
             <view class="info">
               <view class="content">
-                <view class="price">价格：￥{{goods.retail_price}}</view>
+                <view class="price">价格：￥{{priceDetails}}</view>
                 <view class="attr">请选择规格属性</view>
               </view>
             </view>
           </view>
           <view class="spec-con">
-            <view class="spec-item" wx:for="{{specificationList}}" wx:key="{{item.specification_id}}">
-              <view class="name">{{item.name}}</view>
+            <view class="spec-item" wx:for="{{extension_attributes.configurable_product_options}}" wx:key="{{item.id}}">
+              <view class="name">{{item.label}}</view>
               <view class="values">
-                <view class="value{{vitem.checked ? 'selected' : ''}}" bindtap="handleTapclickSkuValue" wx:for="{{item.valueList}}" wx:for-item="vitem" wx:key="{{vitem.id}}" data-value-id="{{vitem.id}}" data-name-id="{{vitem.specification_id}}">{{vitem.value}}</view>
+                <view class="value{{vitem.checked ? 'selected' : ''}}" bindtap="handleTapclickSkuValue" wx:for="{{item.values}}" wx:for-item="vitem" wx:key="{{vitem.value_index}}" data-value-id="{{vitem.value_index}}" data-name-id="{{item.attribute_id}}">{{vitem.value_label}}</view>
               </view>
             </view>
 

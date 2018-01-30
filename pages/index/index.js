@@ -94,8 +94,6 @@ Page(Object.assign({}, Toast, {
   },
   // 点击商品详情
   handleTapGoodsDetail: function (event) {
-    console.log('打印当前id')
-    console.log(event)
     var path = "/pages/goodsDetail/goodsDetail?sku=" + event.currentTarget.dataset.sku;
     wx.navigateTo({
       url: path

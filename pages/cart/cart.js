@@ -1,65 +1,44 @@
-// pages/cart/cart.js
+var app = getApp();
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-  
+    number:1,
+    //cartGoods购物车中的商品列表
+    cartGoods: [{ list_pic_url: '../../image/1.png', goods_name: '哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈', goods_desc: '恩恩恩恩', retail_price: '2000' }, {list_pic_url: '../../image/1.png', goods_name: '哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈', goods_desc: '恩恩恩恩', retail_price: '2000'}],
+    cartTotal: {
+      "goodsCount": 0,
+      "goodsAmount": 0.00,
+      "checkedGoodsCount": 0,
+      "checkedGoodsAmount": 0.00
+    },
+    isEditCart: true,
+    checkedAllStatus: false,
+    editCartList:[]
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-  
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
+  // 页面初始化 options为页面跳转所带来的参数
+},
   onReady: function () {
-  
+    // 页面渲染完成
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
+    // 页面显示
+   },
   onHide: function () {
-  
+    // 页面隐藏
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
   onUnload: function () {
-  
+    // 页面关闭
+  },
+  // 购物车数量加减事件
+  handleTapcutNumber: function () {
+    this.setData({
+      number: (this.data.number - 1 > 1) ? this.data.number - 1 : 1
+    });
+  },
+  handleTapaddNumber: function () {
+    this.setData({
+      number: this.data.number + 1
+    });
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
 })

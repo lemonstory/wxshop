@@ -1575,8 +1575,8 @@
 
 .zan-popup--bottom .zan-popup__container {
   top: auto;
-  left: auto;
-  bottom: 0;
+  left: 0;
+  bottom: 98rpx;
   transform: translate3d(0, 100%, 0);
 }
 
@@ -1586,7 +1586,7 @@
 
 .zan-popup--top .zan-popup__container {
   top: 0;
-  left: auto;
+  left: 0;
   transform: translate3d(0, -100%, 0);
 }
 

@@ -114,7 +114,7 @@ touchM: function (e) {
     }
   },
 
-  touchE: function (e) {
+touchE: function (e) {
     if (e.changedTouches.length == 1) {
       //手指移动结束后水平位置
       var endX = e.changedTouches[0].clientX;

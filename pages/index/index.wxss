@@ -60,21 +60,21 @@ swiper {
 position: absolute;
 top:35%;
 left:30rpx;
-font-size: 40rpx;
+font-size: 36rpx;
 font-weight: bold;
 }
 .brand-price{
 position: absolute;
-bottom:30%;
+bottom:35%;
 left:30rpx;
-font-size:38rpx;
+font-size:34rpx;
 font-weight: bold;
 color:#ab2b2b;
 }
 .brand-desc{
 position: absolute;
-bottom:42%;
+bottom:45%;
 left:30rpx;
-font-size:32rpx;
+font-size:30rpx;
 }
 

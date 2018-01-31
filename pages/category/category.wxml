@@ -23,10 +23,9 @@
         <text class="line"></text>
       </view>
       <!--右侧分类字体结束-->
-
-
       <view class="bd">
-        <view class="item {{(index+1) % 3 == 0 ? 'last' : ''}}" wx:for="{{currentCategory.subCategoryList}}">       <image class="icon" src="{{item.wap_banner_url}}"></image>
+        <view class="item {{(index+1) % 3 == 0 ? 'last' : ''}}" wx:for="{{currentCategory.subCategoryList}}" wx:key="item">
+          <image class="icon" src="{{item.wap_banner_url}}"></image>
           <text class="txt">{{item.name}}</text>
         </view>
       </view>

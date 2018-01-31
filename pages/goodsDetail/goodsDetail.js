@@ -72,7 +72,6 @@ Page({
       url: path
     })
   },
-
   handleTapswitchTab: function () {
     this.setData({
       showType: this.data.showType == 1 ? 0 : 1
@@ -131,7 +130,7 @@ Page({
     console.log(specValueId)
     console.log(specNameId)
     that.setData({
-
+    
     });
   },
 

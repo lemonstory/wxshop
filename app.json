@@ -6,7 +6,9 @@
     "pages/categoryList/categoryList",
     "pages/person/person",
     "pages/goodsDetail/goodsDetail",
-    "pages/shopping/new-address/new-address"],
+    "pages/shopping/new-address/new-address",
+    "pages/comment/comment"
+  ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",

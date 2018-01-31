@@ -86,10 +86,8 @@ data: {
    */
   onReachBottom: function () {
     console.log('页面上拉触底事件的处理函数')
-    // console.log(this.data.isLoading)
-    // console.log(this.data.isNoMore)
     if (!this.data.isNoMore) {
-      this.data.isLoading = true,
+      this.setData({ isLoading: true})
       this.data.params.currentPage = this.data.params.currentPage + 1,
       setTimeout(() => {
         this.getDataMore(this.data.params.currentPage, this.data.params.pageSize);

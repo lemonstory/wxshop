@@ -207,7 +207,7 @@ function setAdminToken(adminToken) {
       console.warn(res)
     },
     success: function (res) {
-      // console.log('设置成功')
+      console.log('设置成功')
     }
   })
 }

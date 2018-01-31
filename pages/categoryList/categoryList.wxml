@@ -3,7 +3,7 @@
 <import src="../../template/sectionTitle.wxml" />
 <import src="../../template/footer.wxml" />
 <import src="../../zanui-weapp/dist/tab/index.wxml" />
-
+<import src="../../zanui-weapp/dist/loadmore/index.wxml" />
 <!-- <template is="zan-tab" data="{{tab: tab, componentId: 'tab'}}"></template> -->
 <view style="background-color: #FFFFFF;margin-top:20rpx;width:100%;">
   <!-- <block wx:for="{{sectionTitle}}" wx:key="sectionTitle" wx:for-index="idx" wx:for-item="sectionTitleItem">
@@ -16,3 +16,7 @@
     </block>
   </view>
 </view>
+<!-- 引入loadmore -->
+<template is="zan-toast" data="{{ zanToast }}"></template>
+<template is="zan-loadmore" wx:if="{{isLoading}}" data="{{loading: true}}" />
+<template is="zan-loadmore" wx:if="{{isNoMore}}" data="{{nodata: true,nodata_str:'加载完成'}}" />

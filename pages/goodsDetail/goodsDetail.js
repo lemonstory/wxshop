@@ -43,7 +43,13 @@ Page({
 
     //specificationList 底部弹出层中商品属性规格列表
     specificationList: [{ name: '颜色', valueList: [{ value: '黑色' }, { value: '绿色' },] }],
-    requestPath: constant.constant.requestPath
+    requestPath: constant.constant.requestPath,
+    //选中的商品属性
+    selectedProductOptions: {},
+    selectedProductNorm: {},
+    // 选中商品规格数组
+    normArr: [],
+    label: '请选择规格属性'
   },
 
   onLoad: function (options) {
@@ -125,13 +131,23 @@ Page({
     var that = this;
     var specValueId = event.currentTarget.dataset.valueId;
     var specNameId = event.currentTarget.dataset.nameId;
-    // if (typeof that.data.childrenDetails === '') {}
-    // that.getConfigurableProAtNorm(specValueId)
-    console.log(specValueId)
-    console.log(specNameId)
+    var label = event.currentTarget.dataset.label;
+    console.log(label)
+    that.setData({ label: ''})
+    var tempSelectedProductOptions = that.data.selectedProductOptions;
+    var tempSelectedProductNorm = that.data.selectedProductNorm;
+    tempSelectedProductNorm[specNameId] = label;
+    that.getConfigurableProAtNorm(specValueId);
+    tempSelectedProductOptions[specNameId] = specValueId;
+    console.log(that.data.label)
+    var tempLabel = that.data.label
+    var label1 = '已选择' + tempLabel + tempSelectedProductNorm[specNameId]
     that.setData({
-    
+      selectedProductOptions: tempSelectedProductOptions,
+      selectedProductOptions: tempSelectedProductNorm,
+      label: label1
     });
+    console.log(that.data.selectedProductNorm)
   },
 
   // 获取商品详情
@@ -225,20 +241,44 @@ Page({
     // console.log('获取可配置商品当前规格下的详情')
     var that = this
     var childrenDetails = ''
-    for (var i = 0; i < that.data.children.length; i++) {
-      for (var j = 0; j < that.data.children[i].custom_attributes.length; j++) {
-        if (Number(value) === Number(that.data.children[i].custom_attributes[j].value)) {
-          childrenDetails = that.data.children[i]
-          console.log('进来次数')
+    var flag = false
+    // 判断当前对象是否为空
+    if (Object.keys(that.data.selectedProductOptions).length === 0) {
+      for (var i = 0; i < that.data.children.length; i++) {
+        for (var j = 0; j < that.data.children[i].custom_attributes.length; j++) {
+          if (Number(value) === Number(that.data.children[i].custom_attributes[j].value)) {
+            that.data.normArr.push(that.data.children[i])
+            childrenDetails = that.data.children[i]
+          }
+        }
+      }
+    } else {
+      for (var s = 0; s < that.data.normArr.length; s++) {
+        for (var m = 0; m < that.data.normArr[s].custom_attributes.length; m++) {
+          if (Number(value) === Number(that.data.normArr[s].custom_attributes[m].value)) {
+            flag = true
+            childrenDetails = that.data.normArr[s]
+          }
+        }
+      }
+      if (!flag) {
+        that.data.normArr = []
+        for (var i = 0; i < that.data.children.length; i++) {
+          for (var j = 0; j < that.data.children[i].custom_attributes.length; j++) {
+            if (Number(value) === Number(that.data.children[i].custom_attributes[j].value)) {
+              that.data.normArr.push(that.data.children[i])
+              childrenDetails = that.data.children[i]
+            }
+          }
         }
       }
     }
+
     var img = ''
     if (util.isNeed(childrenDetails.custom_attributes, 'image') !== null && util.isNeed(childrenDetails.custom_attributes, 'image') !== '') {
       var img = that.data.requestPath + util.isNeed(childrenDetails.custom_attributes, 'image')
-      console.log('许赞则')
     }
-    that.setData({ childrenDetails: childrenDetails, priceDetails: childrenDetails.price, img: img})
+    that.setData({ childrenDetails: childrenDetails, priceDetails: childrenDetails.price, img: img, })
   }
 })
 

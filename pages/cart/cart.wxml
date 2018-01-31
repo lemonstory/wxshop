@@ -15,33 +15,39 @@
     </view>
   </view>
 
-  <!--购物车中有商品时,显示此页面  -->
+  <!--购物车中有商品时,显示此页面 -->
   <view class="cart-view" wx:if="{{cartGoods.length > 0}}">
     <view class="list">
       <view class="group-item">
         <view class="goods">
           <view class="item" wx:for="{{cartGoods}}" wx:key="{{item.id}}">
-            <view class="checkbox {{item.checked ? 'checked' : ''}}" bindtap="handleTapcheckedItem" data-item-index="{{index}}"></view>
-            <view class="cart-goods {{index == 0 ? 'first' : ''}}">
-              <image class="img" src="{{item.list_pic_url}}"></image>
-              <view class="info">
-                <view class="name">
-                  {{item.goods_name}}
-                </view>
-                <view class="desc">
-                  {{item.goods_desc}}
-                </view>
-                <view class="b">
-                  <text class="price">￥{{item.retail_price}}</text>
-                  <view class="selnum">
-                    <view class="cut" bindtap="handleTapcutNumber" data-item-index="{{index}}">-</view>
-                    <input value="{{number}}" class="number" disabled="true" type="number" />
-                    <view class="add" bindtap="handleTapaddNumber" data-item-index="{{index}}">+</view>
+            <!--左滑删除  -->
+            <view bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" data-index="{{index}}" style="{{item.txtStyle}}" class="inner txt">
+              <view class="checkbox {{item.checked ? 'checked' : ''}}" bindtap="handleTapcheckedItem" data-item-index="{{index}}"></view>
+              <view class="cart-goods {{index == 0 ? 'first' : ''}}">
+                <image class="img" src="{{item.list_pic_url}}"></image>
+                <view class="info">
+                  <view class="name">
+                    {{item.goods_name}}
+                  </view>
+                  <view class="desc">
+                    {{item.goods_desc}}
+                  </view>
+                  <view class="b">
+                    <text class="price">￥{{item.retail_price}}</text>
+                    <view class="selnum">
+                      <view class="cut" bindtap="handleTapcutNumber" data-item-index="{{index}}">-</view>
+                      <input value="{{number}}" class="number" disabled="true" type="number" />
+                      <view class="add" bindtap="handleTapaddNumber" data-item-index="{{index}}">+</view>
+                    </view>
                   </view>
                 </view>
               </view>
             </view>
+               <!--删除按钮  -->
+          <view data-index="{{index}}" bindtap="delItem" class="inner del">删除</view>
           </view>
+       
         </view>
       </view>
     </view>

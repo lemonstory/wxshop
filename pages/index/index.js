@@ -31,12 +31,17 @@ Page(Object.assign({}, Toast, {
       pageSize: constant.constant.pageSize,
       currentPage: constant.constant.currentPage,
       startTime: new Date
-    }
+    },
+    adminToken: ''
   },
 
   onLoad: function () {
-    this.getHomePopData()
-    this.getHomeNewData()
+    if (util.getAdminToken() === '') {
+      this.getAdminToken()
+    } else {
+      this.getHomePopData()
+      this.getHomeNewData()
+    }
   },
 
   onReady: function () {
@@ -108,26 +113,61 @@ Page(Object.assign({}, Toast, {
     })
 
   },
+
+  /**
+   * 获取adminToken
+   */
+  getAdminToken: function () {
+    console.log("🚀 🚀 🚀 getUserToken run");
+    var that = this;
+    var url = constant.constant.domain + constant.constant.path + '/V1/integration/admin/token';
+    wx.request({
+      url: url,
+      data: {
+        username: constant.constant.username,
+        password: constant.constant.password
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json', // 默认值
+      },
+      success: function (res) {
+        that.data.adminToken = res.data
+        that.getHomePopData()
+        that.getHomeNewData()
+        if (!util.isEmptyStr(res.data)) {
+          util.setAdminToken(res.data)
+        }
+      },
+      fail: function (res) {
+        console.error('🚀 🚀 🚀 首页调取adminToken错误')
+      }
+    })
+  },
   /**
      * 获取首页人气推荐数据
      */
   getHomePopData: function () {
 
-    console.log("🚀 🚀 🚀 getHomePopData run");
+    // console.log("🚀 🚀 🚀 getHomePopData run");
     var that = this;
     var url = constant.constant.domain + constant.constant.path + '/V1/products?searchCriteria[filterGroups][0][filters][0][field]=is_featured&searchCriteria[filterGroups][0][filters][0][value]=1&searchCriteria[filterGroups][0][filters][0][conditionType]=eq&searchCriteria[sortOrders][0][field]=updated_at&searchCriteria[sortOrders][0][direction]=DESC&searchCriteria[pageSize]=' + that.data.params.pageSize + '&searchCriteria[currentPage]=' + that.data.params.currentPage;
     wx.request({
       url: url,
-      // data: {},
-      header: util.adminRequestHeader(true),
+      data: {},
+      header: util.adminRequestHeader(that.data.adminToken),
       success: function (res) {
-        console.log('打印  getHomePopData  返回数据')
-        console.log(res.data)
         for (var i = 0; i < res.data.items.length; i++) {
           var img = util.isNeed(res.data.items[i].custom_attributes, 'image')
           res.data.items[i].img = that.data.requestPath + img
+          if (res.data.items[i].type_id === 'configurable') {
+            that.getConfigurableProChlid(res.data.items[i].sku, res.data.items, 'pop')
+          }
         }
         that.setData(res.data)
+      },
+      fail: function (res) {
+        console.error('🚀 🚀 🚀 首页调取人气推荐错误')
       }
     })
   },
@@ -136,22 +176,56 @@ Page(Object.assign({}, Toast, {
      */
   getHomeNewData: function () {
 
-    console.log("🚀 🚀 🚀 getHomeNewData run");
-    console.log(util.adminRequestHeader(true))
+    // console.log("🚀 🚀 🚀 getHomeNewData run");
     var that = this;
     var url = constant.constant.domain + constant.constant.path + '/V1/products?searchCriteria[filterGroups][0][filters][0][field]=news_from_date&searchCriteria[filterGroups][0][filters][0][value]=' + that.data.newParams.startTime + '&searchCriteria[filterGroups][0][filters][0][conditionType]=lteq&searchCriteria[filterGroups][1][filters][0][field]=news_to_date&searchCriteria[filterGroups][1][filters][0][value]=' + that.data.newParams.startTime + '&searchCriteria[filterGroups][1][filters][0][conditionType]=gteq&searchCriteria[sortOrders][0][field]=updated_at&searchCriteria[sortOrders][0][direction]=DESC&searchCriteria[pageSize]=' + that.data.newParams.pageSize + '&searchCriteria[currentPage]=' + that.data.newParams.currentPage;
     wx.request({
       url: url,
       // data: {},
-      header: util.adminRequestHeader(true),
+      header: util.adminRequestHeader(that.data.adminToken),
       success: function (res) {
-        console.log('打印  getHomeNewData  返回数据')
-        console.log(res.data)
         for (var i = 0; i < res.data.items.length; i++) {
           var img = util.isNeed(res.data.items[i].custom_attributes, 'image')
           res.data.items[i].img = that.data.requestPath + img
+          if (res.data.items[i].type_id === 'configurable') {
+            that.getConfigurableProChlid(res.data.items[i].sku, res.data.items, 'new')
+          }
         }
         that.setData({ newData: res.data.items })
+      },
+      fail: function (res) {
+        console.error('🚀 🚀 🚀 首页调取新品推荐错误')
+      }
+    })
+  },
+
+  /**
+   * 获取可配置商品children
+   */
+  getConfigurableProChlid: function (sku, arr, sign) {
+    var that = this
+    var url = constant.constant.domain + constant.constant.path + '/V1/configurable-products/' + sku + '/children';
+    wx.request({
+      url: url,
+      data: {},
+      header: util.adminRequestHeader(),
+      success: function (res) {
+        // 将子产品的最低价格设置为当前可配置商品的价格
+        for (var i = 0; i < arr.length; i++) {
+          if (arr[i].sku === sku) {
+            arr[i].price = util.isMin(res.data)
+            var shortDescription = util.isNeed(arr[i].custom_attributes, 'short_description')
+            arr[i].shortDescription = shortDescription
+          }
+        }
+        if (sign === 'pop') {
+          that.setData({ items: arr })
+        } else if (sign === 'new') {
+          that.setData({ newData: arr })
+        }
+      },
+      fail: function (res) {
+        console.error('🚀 🚀 🚀 首页获取可配置商品children错误')
       }
     })
   }

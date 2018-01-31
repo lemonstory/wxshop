@@ -207,7 +207,7 @@ function setAdminToken(adminToken) {
       console.warn(res)
     },
     success: function (res) {
-      console.log('设置成功')
+      // console.log('设置成功')
     }
   })
 }
@@ -216,24 +216,33 @@ function setAdminToken(adminToken) {
  * 获取adminToken
  */
 function getAdminToken() {
-  var adminToken = ''
-  adminToken = wx.getStorageSync(constant.constant.adminTokenKey)
+  // var adminToken = ''
+  var adminToken = wx.getStorageSync(constant.constant.adminTokenKey)
+  // console.log('请求成功')
   return adminToken;
 }
 /**
  * 设置请求头-->admin
  */
-function adminRequestHeader(isAdmin = false) {
-  var authValue = ''
-  if (isAdmin) {
-    authValue = getAdminToken();
+function adminRequestHeader(token) {
+  var header = '';
+  var adminToken = '';
+  if (isEmptyStr(token)) {
+    //同步获取adminToken
+    adminToken = getAdminToken();
+  }else{
+    adminToken = token;
   }
-  var header = {
-    'Authorization': 'Bearer ' + authValue,
-    'Content-Type': 'application/json', //默认值
+  if (!isEmptyStr(adminToken)) {
+    var header = {
+      'Authorization': 'Bearer ' + adminToken,
+      'Content-Type': 'application/json', //默认值
+    }
   }
   return header;
 }
+
+
 /** 
  * 判断当前数组某项是否为所需
  */
@@ -254,9 +263,12 @@ function getAttributes(attributeId,callback) {
   wx.request({
     url: url,
     data: {},
-    header: adminRequestHeader(true),
+    header: adminRequestHeader(),
     success: function (res) {
       callback(attributeId,res.data);
+    },
+    fail: function (res) {
+      console.error('🚀 🚀 🚀 util获取商品属性错误')
     }
   })
 }

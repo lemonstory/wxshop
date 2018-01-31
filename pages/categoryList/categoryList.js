@@ -85,7 +85,7 @@ data: {
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    console.log('页面上拉触底事件的处理函数')
+    // console.log('页面上拉触底事件的处理函数')
     if (!this.data.isNoMore) {
       this.setData({ isLoading: true})
       this.data.params.currentPage = this.data.params.currentPage + 1,
@@ -114,7 +114,7 @@ data: {
       wx.request({
         url: url,
         data: {},
-        header: util.adminRequestHeader(true),
+        header: util.adminRequestHeader(),
         success: function (res) {
           wx.hideLoading();
           var length = res.data.items.length;
@@ -130,8 +130,6 @@ data: {
             that.setData({
               'items': that.data.items
             });
-            // console.log('添加数组成功')
-            // console.log(that.data.items)
             if (that.data.items.length == that.data.total_count) {
               that.setData({
                 'isNoMore': true,
@@ -145,6 +143,9 @@ data: {
               'isLoading': false,
             });
           }
+        },
+        fail: function (res) {
+          console.error('🚀 🚀 🚀 获取更多数据错误')
         }
       })
     }
@@ -159,19 +160,48 @@ data: {
     wx.request({
       url: url,
       // data: {},
-      header: util.adminRequestHeader(true),
+      header: util.adminRequestHeader(),
       success: function (res) {
-        console.log('打印  getHomePopData  返回数据')
-        console.log(res.data)
         for (var i = 0; i < res.data.items.length; i++) {
           var img = util.isNeed(res.data.items[i].custom_attributes, 'image')
           res.data.items[i].img = that.data.requestPath + img
+          if (res.data.items[i].type_id === 'configurable') {
+            that.getConfigurableProChlid(res.data.items[i].sku, res.data.items)
+          }
         }
         that.setData(res.data)
+      },
+      fail: function (res) {
+        console.error('🚀 🚀 🚀 列表获取人气推荐错误')
       }
     })
   },
-
+  /**
+     * 获取可配置商品children
+     */
+  getConfigurableProChlid: function (sku, arr) {
+    var that = this
+    var url = constant.constant.domain + constant.constant.path + '/V1/configurable-products/' + sku + '/children';
+    wx.request({
+      url: url,
+      data: {},
+      header: util.adminRequestHeader(),
+      success: function (res) {
+        // 将子产品的最低价格设置为当前可配置商品的价格
+        for (var i = 0; i < arr.length; i++) {
+          if (arr[i].sku === sku) {
+            arr[i].price = util.isMin(res.data)
+            var shortDescription = util.isNeed(arr[i].custom_attributes, 'short_description')
+            arr[i].shortDescription = shortDescription
+          }
+        }
+        that.setData({ items: arr })
+      },
+      fail: function (res) {
+        console.error('🚀 🚀 🚀 列表获取可配置商品children错误')
+      }
+    })
+  },
   // 点击商品详情
   handleTapGoodsDetail: function (event) {
     var path = "/pages/goodsDetail/goodsDetail?sku=" + event.currentTarget.dataset.sku;

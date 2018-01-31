@@ -49,7 +49,9 @@
           <image class="recommend-img" style="width:710rpx;;box-sizing: border-box;margin-bottom:30rpx;" mode="widthFit" src="{{recommendItem.img}}">
             <view class="brand-name">{{recommendItem.name}}</view>
             <!--大图图片描述  TODO 参数不正确  -->
-            <view class="brand-desc">{{recommendItem.desc}}</view>
+            <view class="brand-desc">
+              <rich-text nodes="{{recommendItem.shortDescription}}"></rich-text>
+            </view>
             <!--大图图片描述结束  -->
             <view class="brand-price">￥{{recommendItem.price}}</view>
           </image>
@@ -79,7 +81,7 @@
           <image class="recommend-img" style="width:710rpx;box-sizing: border-box;margin-bottom:30rpx;" mode="widthFit" src="{{recommendItem.img}}">
             <view class="brand-name">{{recommendItem.name}}</view>
             <!--大图图片描述  TODO 参数不正确  -->
-            <view class="brand-desc">{{recommendItem.desc}}</view>
+            <view class="brand-desc"><rich-text nodes="{{recommendItem.shortDescription}}"></rich-text></view>
             <!--大图图片描述结束  -->
             <view class="brand-price">￥{{recommendItem.price}}</view>
           </image>
@@ -90,5 +92,5 @@
   </view>
   <!--一个循环结束  -->
 
-  <template is="footer"/>
+  <template is="footer" />
 </view>

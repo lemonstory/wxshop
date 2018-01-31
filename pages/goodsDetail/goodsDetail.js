@@ -136,13 +136,13 @@ Page({
 
   // 获取商品详情
   getGoodsDetails: function (sku) {
-    // console.log(util.adminRequestHeader(true))
+    // console.log(util.adminRequestHeader())
     var that = this;
     var url = constant.constant.domain + constant.constant.path + '/V1/products/' + sku;
     wx.request({
       url: url,
       // data: {},
-      header: util.adminRequestHeader(true),
+      header: util.adminRequestHeader(),
       success: function (res) {
         console.log('🚀 🚀 🚀 打印商品详情数据')
         console.log(res.data)
@@ -155,6 +155,9 @@ Page({
         that.setData({ 'description': description })
         that.setData({ 'shortDescription': shortDescription })
         that.setData(res.data)
+      },
+      fail: function (res) {
+        console.error('🚀 🚀 🚀 获取商品详情错误')
       }
     })
   },
@@ -202,14 +205,15 @@ Page({
     wx.request({
       url: url,
       data: {},
-      header: util.adminRequestHeader(true),
+      header: util.adminRequestHeader(),
       success: function (res) {
-        // console.log('🚀 🚀 🚀 打印可配置商品子数据')
-        // console.log(res.data)
         that.setData({ children: res.data })
         // 将子产品的最低价格设置为当前可配置商品的价格
         that.data.price = util.isMin(res.data)
         that.setData({ price: that.data.price })
+      },
+      fail: function (res) {
+        console.error('🚀 🚀 🚀 详情页获取可配置商品children错误')
       }
     })
   },

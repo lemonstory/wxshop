@@ -7,7 +7,7 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-    this.getAdminToken() 
+    this.getAdminToken()
   },
   onShow: function (options) {
     // Do something when show.
@@ -46,6 +46,9 @@ App({
         if (!util.isEmptyStr(res.data)) {
           util.setAdminToken(res.data)
         }
+      },
+      fail: function (res) {
+        console.error('🚀 🚀 🚀 app.js设置缓存错误')
       }
     })
   }

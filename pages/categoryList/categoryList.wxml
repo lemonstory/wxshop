@@ -4,7 +4,7 @@
 <import src="../../template/footer.wxml" />
 <import src="../../zanui-weapp/dist/tab/index.wxml" />
 <import src="../../zanui-weapp/dist/loadmore/index.wxml" />
-<!-- <template is="zan-tab" data="{{tab: tab, componentId: 'tab'}}"></template> -->
+ <!-- <template is="zan-tab" data="{{tab: tab, componentId: 'tab'}}"></template>  -->
 <view style="background-color: #FFFFFF;margin-top:20rpx;width:100%;">
   <!-- <block wx:for="{{sectionTitle}}" wx:key="sectionTitle" wx:for-index="idx" wx:for-item="sectionTitleItem">
     <template is="sectionTitle" data="{{title:sectionTitleItem.title}}" data-id="{{item.id}}" />

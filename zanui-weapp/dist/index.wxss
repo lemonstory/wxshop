@@ -1576,7 +1576,7 @@
 .zan-popup--bottom .zan-popup__container {
   top: auto;
   left: 0;
-  bottom: 98rpx;
+  bottom: 101rpx;
   transform: translate3d(0, 100%, 0);
 }
 

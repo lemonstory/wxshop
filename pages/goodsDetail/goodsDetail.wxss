@@ -77,6 +77,7 @@ swiper {
   line-height: 36rpx;
   color: #999;
 }
+
 .goods-info .price {
   height: 36rpx;
   font-size: 36rpx;
@@ -84,17 +85,20 @@ swiper {
   color: #ab2b2b;
   font-weight: bold;
 }
+
 .goods-info-right {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
 }
+
 .comment-num {
   font-size: 36rpx;
   color: #ab2b2b;
   font-weight: bold;
 }
+
 .comment-font {
   font-size: 28rpx;
   color: #ab2b2b;
@@ -199,7 +203,8 @@ swiper {
   display: flex;
   align-items: center;
 }
- .cicle {
+
+.cicle {
   width: 8rpx;
   height: 8rpx;
   border-radius: 50%;
@@ -212,35 +217,41 @@ swiper {
   height: 52rpx;
   display: flex;
 }
+
 .server-box {
   display: flex;
 }
-.server_box{
-  width:750rpx;
-  height:auto;
+
+.server_box {
+  width: 750rpx;
+  height: auto;
   background: #fff;
 }
-.server_title{
-  width:100%;
-  height:120rpx;
+
+.server_title {
+  width: 100%;
+  height: 120rpx;
   line-height: 120rpx;
   text-align: center;
- font-size: 30rpx;
-  color:#333;
+  font-size: 30rpx;
+  color: #333;
   border-bottom: 1rpx solid #eee;
 }
-.server_content{
-  width:100%;
-  height:auto;
+
+.server_content {
+  width: 100%;
+  height: auto;
   padding: 30rpx;
-  box-sizing:border-box;
+  box-sizing: border-box;
 }
+
 .comments {
   width: 100%;
   height: auto;
   background: #fff;
   margin: 20rpx 0;
 }
+
 .comments .head {
   height: 100rpx;
   display: flex;
@@ -251,45 +262,53 @@ swiper {
   box-sizing: border-box;
   border-bottom: 1rpx solid #eee;
 }
+
 .comments-title {
   font-size: 28rpx;
   color: #333;
   width: auto;
 }
+
 .comments .good-comment {
   display: flex;
   font-size: 28rpx;
   color: #333;
   align-items: center;
 }
+
 .comments .good-comment image {
   width: 52rpx;
   height: 52rpx;
   display: flex;
 }
+
 .comment-item {
   width: 100%;
   padding: 30rpx;
   box-sizing: border-box;
   height: auto;
 }
+
 .comments .info {
   height: auto;
   width: 100%;
   display: flex;
   align-items: center;
 }
+
 .comments .user {
   width: auto;
   height: 67rpx;
   line-height: 67rpx;
 }
+
 .comments .user image {
   width: 67rpx;
   height: 67rpx;
   margin-right: 17rpx;
   border-radius: 50%;
 }
+
 .comments .user text {
   display: inline-block;
   width: auto;
@@ -298,7 +317,8 @@ swiper {
   font-size: 29rpx;
   line-height: 66rpx;
 }
-.comments .time{
+
+.comments .time {
   display: flex;
   width: auto;
   height: 67rpx;
@@ -306,6 +326,7 @@ swiper {
   color: #7f7f7f;
   font-size: 25rpx;
 }
+
 .comments .content {
   width: auto;
   line-height: 45rpx;
@@ -314,22 +335,26 @@ swiper {
   display: flex;
   flex-wrap: wrap;
 }
+
 .comments .imgs {
   width: 720rpx;
   height: auto;
   margin-bottom: 20rpx;
 }
+
 .comments .imgs .img {
   height: 150rpx;
   width: 150rpx;
   margin-right: 28rpx;
 }
+
 .comments .spec {
   width: auto;
   line-height: 30rpx;
   font-size: 24rpx;
   color: #999;
 }
+
 .navhead {
   width: 100%;
   display: flex;
@@ -337,6 +362,7 @@ swiper {
   height: 84rpx;
   border-bottom: 1rpx solid #eee;
 }
+
 .navhead .item {
   display: inline-block;
   height: 82rpx;
@@ -344,6 +370,7 @@ swiper {
   padding: 0 15rpx;
   text-align: center;
 }
+
 .navhead .item .txt {
   display: inline-block;
   height: 82rpx;
@@ -353,10 +380,12 @@ swiper {
   font-size: 30rpx;
   width: 170rpx;
 }
+
 .navhead .item.active .txt {
   color: #ab2b2b;
   border-bottom: 4rpx solid #ab2b2b;
 }
+
 .scroll-item {
   width: 750rpx;
   background: #fff;
@@ -369,11 +398,13 @@ swiper {
   padding-bottom: 30rpx;
   overflow: scroll;
 }
+
 .weui-flex__item {
   width: 276rpx;
   height: auto;
   display: inline-block;
 }
+
 .goods-attr {
   width: 750rpx;
   height: auto;
@@ -383,6 +414,7 @@ swiper {
   padding: 30rpx;
   box-sizing: border-box;
 }
+
 .goods-attr .title {
   width: 690rpx;
   height: 76rpx;
@@ -390,6 +422,7 @@ swiper {
   font-size: 28rpx;
   border-bottom: 1rpx dashed #eee;
 }
+
 .goods-attr .item {
   width: 690rpx;
   height: 76rpx;
@@ -398,6 +431,7 @@ swiper {
   display: flex;
   border-bottom: 1rpx dashed #eee;
 }
+
 .goods-attr .left {
   width: 134rpx;
   overflow: hidden;
@@ -407,6 +441,7 @@ swiper {
   display: flex;
   flex-wrap: wrap;
 }
+
 .goods-attr .right {
   font-size: 24rpx;
   margin-left: 20rpx;
@@ -422,10 +457,12 @@ swiper {
   height: auto;
   overflow: hidden;
 }
+
 .detail image {
   width: 750rpx;
   display: block;
 }
+
 .bottom-btn {
   position: fixed;
   left: 0;
@@ -436,25 +473,33 @@ swiper {
   display: flex;
   background: #fff;
 }
+
 .bottom-btn .l {
   float: left;
   height: 100rpx;
   width: 100rpx;
-  border: 1px solid #f4f4f4;
+  border: 1rpx solid #eee;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .bottom-btn .l.l-collect {
   border-right: none;
   border-left: none;
   text-align: center;
 }
+
 .bottom-btn .l.l-cart .box {
   position: relative;
   height: 60rpx;
   width: 60rpx;
 }
+
+.bottom-btn .l.l-cart.last {
+  border-left: none;
+}
+
 .bottom-btn .l.l-cart .cart-count {
   height: 28rpx;
   width: 28rpx;
@@ -469,11 +514,13 @@ swiper {
   line-height: 28rpx;
   border-radius: 50%;
 }
+
 .bottom-btn .l.l-cart .icon {
   position: absolute;
-  top: 10rpx;
-  left: 0;
+  top: 8rpx;
+  left: 8rpx;
 }
+
 .bottom-btn .l .icon {
   display: block;
   height: 44rpx;
@@ -487,8 +534,8 @@ swiper {
   flex: 1;
   text-align: center;
   color: #333;
-  border-top: 1px solid #f4f4f4;
-  border-bottom: 1px solid #f4f4f4;
+  border-top: 1rpx solid #eee;
+  border-bottom: 1px solid #eee;
 }
 
 .bottom-btn .r {
@@ -501,12 +548,13 @@ swiper {
   text-align: center;
   color: #fff;
 }
+
 .attr-pop {
   width: 100%;
   height: 100%;
   padding: 30rpx;
   background: #fff;
- }
+}
 
 .attr-pop .img-info {
   width: 687.5rpx;
@@ -514,6 +562,7 @@ swiper {
   overflow: hidden;
   margin-bottom: 41.5rpx;
 }
+
 .attr-pop .img {
   float: left;
   height: 177rpx;
@@ -521,41 +570,48 @@ swiper {
   background: #f4f4f4;
   margin-right: 30rpx;
 }
+
 .attr-pop .info {
   float: left;
   height: 177rpx;
   display: flex;
   align-items: center;
 }
+
 .attr-pop .price {
   font-size: 33rpx;
   height: 33rpx;
   line-height: 33rpx;
   margin-bottom: 10rpx;
-  color:#ab2b2b;
+  color: #ab2b2b;
 }
+
 .attr-pop .attr {
   font-size: 29rpx;
   color: #333;
   height: 40rpx;
   line-height: 40rpx;
 }
+
 .spec-con {
   width: 100%;
   height: auto;
   overflow: hidden;
 }
+
 .spec-con .name {
   height: 32rpx;
   margin-bottom: 22rpx;
   font-size: 29rpx;
   color: #333;
 }
+
 .spec-con .values {
   height: auto;
   margin-bottom: 31.25rpx;
   font-size: 0;
 }
+
 .spec-con .value {
   display: inline-block;
   height: 62rpx;
@@ -568,38 +624,48 @@ swiper {
   font-size: 25rpx;
   color: #333;
 }
+
 .spec-con .value.disable {
   border: 1rpx solid #eee;
   color: #333;
 }
+
 .spec-con .value.selected {
   border: 1rpx solid #b4282d;
   color: #b4282d;
 }
+
 .number-item .selnum {
   width: 322rpx;
   height: 71rpx;
   border: 1rpx solid #eee;
   display: flex;
 }
+
 .number-item .cut {
   width: 93.75rpx;
   height: 100%;
   text-align: center;
-  line-height: 65rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .number-item .number {
   flex: 1;
   height: 100%;
+  display: flex;
+  align-items: center;
   text-align: center;
-  line-height: 68.75rpx;
-  border-left: 1px solid #ccc;
-  border-right: 1px solid #ccc;
-  float: left;
+  justify-content: center;
+  border-left: 1rpx solid #eee;
+  border-right: 1rpx solid #eee;
 }
+
 .number-item .add {
   width: 93.75rpx;
   height: 100%;
-  text-align: center;
-  line-height: 65rpx;
+  justify-content: center;
+  display: flex;
+  align-items: center;
 }

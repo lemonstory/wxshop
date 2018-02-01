@@ -41,7 +41,7 @@
   width: auto;
   padding: 0 15rpx;
   line-height: 50rpx;
-  border: 1rpx solid #eee;
+  border: 1rpx solid #333;
   margin-right: 30rpx;
   color: #333;
   font-size: 30rpx;

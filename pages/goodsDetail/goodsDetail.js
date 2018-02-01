@@ -50,7 +50,8 @@ Page({
     size: 0,
     // 选中商品规格数组
     normArr: [],
-    label: ''
+    label: '',
+    productParameters: []
   },
 
   onLoad: function (options) {
@@ -185,9 +186,9 @@ Page({
         }
         var description = util.isNeed(res.data.custom_attributes, 'description')
         var shortDescription = util.isNeed(res.data.custom_attributes, 'short_description')
-        // console.log(util.getProParamsInfo(res.data.custom_attributes))
-        that.setData({ 'description': description })
-        that.setData({ 'shortDescription': shortDescription })
+        var productParameters = util.getProParamsInfo(res.data.custom_attributes)
+        that.getProductParamters(productParameters)
+        that.setData({ description: description, shortDescription: shortDescription,})
         that.setData(res.data)
       },
       fail: function (res) {
@@ -196,6 +197,32 @@ Page({
     })
   },
 
+  /**
+   * 获取当前商品的商品参数
+   */
+  getProductParamters: function (productParameters) {
+    var that = this;
+    var url = constant.constant.domain + constant.constant.path + `/V1/products/attributes?searchCriteria[filterGroups][0][filters][0][field]=attribute_code&searchCriteria[filterGroups][0][filters][0][value]=%product_options_%&searchCriteria[filterGroups][0][filters][0][conditionType]=like`;
+    wx.request({
+      url: url,
+      // data: {},
+      header: util.adminRequestHeader(),
+      success: function (res) {
+        for (var i = 0; i < res.data.items.length; i++) {
+          for (var j = 0; j < productParameters.length; j++) {
+            if (productParameters[j].attribute_code === res.data.items[i].attribute_code) {
+              productParameters[j].label = res.data.items[i].default_frontend_label
+            }
+          }
+        }
+        that.setData({ productParameters: productParameters})
+      }, 
+      fail: function (res) {
+        console.error('🚀 🚀 🚀 获取商品参数错误')
+        console.error(res)
+      }
+    })
+  },
   /**
      * 回调函数
      */

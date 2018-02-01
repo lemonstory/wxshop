@@ -47,15 +47,16 @@ Page({
     //选中的商品属性
     selectedProductOptions: {},
     selectedProductNorm: {},
+    size: 0,
     // 选中商品规格数组
     normArr: [],
-    label: '请选择规格属性'
+    label: ''
   },
 
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
     this.getGoodsDetails(options.sku)
-    console.log(options)
+    // this.setData({ sku: options.sku})
   },
   onReady: function () {
     // 页面渲染完成
@@ -73,7 +74,7 @@ Page({
   },
   // 点击用户评论
   handleTapUserComment: function () {
-    var path = "/pages/comment/comment";
+    var path = "/pages/comment/comment?sku=" + this.data.sku;
     wx.navigateTo({
       url: path
     })
@@ -89,6 +90,9 @@ Page({
     that.getProductSpecifications()
     this.setData({
       isShowBottomPopup: true,
+      size: 0,
+      label: '',
+      selectedProductOptions: {}
     });
   },
   // 点击服务弹出层交互
@@ -132,24 +136,38 @@ Page({
     var specValueId = event.currentTarget.dataset.valueId;
     var specNameId = event.currentTarget.dataset.nameId;
     var label = event.currentTarget.dataset.label;
-    console.log(label)
-    that.setData({ label: ''})
     var tempSelectedProductOptions = that.data.selectedProductOptions;
-    var tempSelectedProductNorm = that.data.selectedProductNorm;
-    tempSelectedProductNorm[specNameId] = label;
     that.getConfigurableProAtNorm(specValueId);
     tempSelectedProductOptions[specNameId] = specValueId;
-    console.log(that.data.label)
-    var tempLabel = that.data.label
-    var label1 = '已选择' + tempLabel + tempSelectedProductNorm[specNameId]
+    that.displaySelectedProductNorm(tempSelectedProductOptions)
     that.setData({
       selectedProductOptions: tempSelectedProductOptions,
-      selectedProductOptions: tempSelectedProductNorm,
-      label: label1
+      size: Object.keys(that.data.selectedProductOptions).length
     });
-    console.log(that.data.selectedProductNorm)
   },
-
+  /**
+   * 显示选中商品规格
+   */
+  displaySelectedProductNorm: function (tempSelectedProductOptions) {
+    var that = this
+    var label = ''
+    var temp = 0
+    for (var i = 0; i < that.data.extension_attributes.configurable_product_options.length; i++) {
+      if (!util.isEmptyStr(tempSelectedProductOptions[that.data.extension_attributes.configurable_product_options[i].attribute_id])) {
+        for (var j = 0; j < that.data.extension_attributes.configurable_product_options[i].values.length; j++) {
+          if (tempSelectedProductOptions[that.data.extension_attributes.configurable_product_options[i].attribute_id] === that.data.extension_attributes.configurable_product_options[i].values[j].value_index) {
+            if (temp === 0) {
+              label = label + that.data.extension_attributes.configurable_product_options[i].values[j].value_label
+            } else {
+              label = label + ' , ' + that.data.extension_attributes.configurable_product_options[i].values[j].value_label
+            }
+            temp++;
+          }
+        }
+      }
+    }
+    that.setData({ label: label })
+  },
   // 获取商品详情
   getGoodsDetails: function (sku) {
     // console.log(util.adminRequestHeader())
@@ -274,7 +292,7 @@ Page({
       }
     }
 
-    var img = ''
+    var img = that.data.img
     if (util.isNeed(childrenDetails.custom_attributes, 'image') !== null && util.isNeed(childrenDetails.custom_attributes, 'image') !== '') {
       var img = that.data.requestPath + util.isNeed(childrenDetails.custom_attributes, 'image')
     }

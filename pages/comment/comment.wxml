@@ -16,9 +16,9 @@
           <text>{{item.nickname}}</text>
         </view>
       </view>
-      <view class="time">{{item.add_time}}</view>
+      <view class="time">{{item.created_at}}</view>
       <view class="content">
-        {{item.content}}
+        {{item.detail}}
       </view>
       <view class="imgs">
         <image class="img" wx:for="{{item.pic_list}}" wx:key="{{item.id}}" src="{{item.pic_url}}"></image>

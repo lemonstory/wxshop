@@ -148,7 +148,8 @@
             <view class="info">
               <view class="content">
                 <view class="price">价格：￥{{priceDetails}}</view>
-                <view class="attr">{{label}}</view>
+                 <view class="attr" wx:if="{{size === 0}}">请选择规格属性</view>
+                  <view class="attr" wx:else>已选择： {{label}}</view>
               </view>
             </view>
           </view>

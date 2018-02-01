@@ -16,7 +16,18 @@
           <text>{{item.nickname}}</text>
         </view>
       </view>
-      <view class="time">{{item.created_at}}</view>
+      <view class="time">{{item.created_at}}
+      <view style='margin-left:10rpx'>
+      
+      <!--TODO 字符串转换为数字 -->
+        <block wx:for="{{item.rating}}" wx:key="item">
+          <image src='http://image.365zhiding.com/wxapp/20171219/start1.png' style="width:18rpx;height:18rpx;margin-left:10rpx;"></image>
+        </block>
+         <block wx:for="{{5-item.rating}}" wx:key="item">
+          <image src='http://image.365zhiding.com/wxapp/20171219/start2.png' style="width:18rpx;height:18rpx;margin-left:10rpx;"></image>
+        </block> 
+</view>
+      </view>
       <view class="content">
         {{item.detail}}
       </view>

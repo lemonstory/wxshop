@@ -8,7 +8,8 @@
     "pages/goodsDetail/goodsDetail",
     "pages/shopping/new-address/new-address",
     "pages/comment/comment",
-    "pages/shopping/fill-order/fill-order"
+    "pages/shopping/fill-order/fill-order",
+    "pages/search/search"
   ],
   "window": {
     "backgroundTextStyle": "light",

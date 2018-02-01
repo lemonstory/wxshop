@@ -137,11 +137,11 @@ Page({
   handleTapclickSkuValue: function (event) {
     var that = this;
     var specValueId = event.currentTarget.dataset.valueId;
-    console.log(specValueId)
+    // console.log(specValueId)
     var specNameId = event.currentTarget.dataset.nameId;
 
     var label = event.currentTarget.dataset.label;
-    console.log(label)
+    // console.log(label)
     var tempSelectedProductOptions = that.data.selectedProductOptions;
    
     that.getConfigurableProAtNorm(specValueId);
@@ -149,8 +149,7 @@ Page({
     that.displaySelectedProductNorm(tempSelectedProductOptions)
     that.setData({
       selectedProductOptions: tempSelectedProductOptions,
-      size: Object.keys(that.data.selectedProductOptions).length,
-      currentCategoryIndex: specValueId
+      size: Object.keys(that.data.selectedProductOptions).length
     });
   },
   /**
@@ -209,7 +208,8 @@ Page({
    */
   getProductParamters: function (productParameters) {
     var that = this;
-    var url = constant.constant.domain + constant.constant.path + `/V1/products/attributes?searchCriteria[filterGroups][0][filters][0][field]=attribute_code&searchCriteria[filterGroups][0][filters][0][value]=%product_options_%&searchCriteria[filterGroups][0][filters][0][conditionType]=like`;
+    var encoderUrl = encodeURI('/V1/products/attributes?searchCriteria[filterGroups][0][filters][0][field]=attribute_code&searchCriteria[filterGroups][0][filters][0][value]=%product_options_%&searchCriteria[filterGroups][0][filters][0][conditionType]=like')
+    var url = constant.constant.domain + constant.constant.path + encoderUrl;
     wx.request({
       url: url,
       // data: {},

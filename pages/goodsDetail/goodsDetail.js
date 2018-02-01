@@ -9,6 +9,8 @@ Page({
     number: 1,
     // 购物车产品数量
     cartGoodsCount: 0,
+    // 弹出层中当前选中的商品属性id
+    currentCategoryIndex:0,
     banner: [
       { image: '../../image/1.png' },
       { image: '../../image/1.png' },
@@ -135,15 +137,20 @@ Page({
   handleTapclickSkuValue: function (event) {
     var that = this;
     var specValueId = event.currentTarget.dataset.valueId;
+    console.log(specValueId)
     var specNameId = event.currentTarget.dataset.nameId;
+
     var label = event.currentTarget.dataset.label;
+    console.log(label)
     var tempSelectedProductOptions = that.data.selectedProductOptions;
+   
     that.getConfigurableProAtNorm(specValueId);
     tempSelectedProductOptions[specNameId] = specValueId;
     that.displaySelectedProductNorm(tempSelectedProductOptions)
     that.setData({
       selectedProductOptions: tempSelectedProductOptions,
-      size: Object.keys(that.data.selectedProductOptions).length
+      size: Object.keys(that.data.selectedProductOptions).length,
+      currentCategoryIndex: specValueId
     });
   },
   /**

@@ -157,7 +157,7 @@
             <view class="spec-item" wx:for="{{extension_attributes.configurable_product_options}}" wx:key="{{item.id}}">
               <view class="name">{{item.label}}</view>
               <view class="values">
-                <view class="value {{vitem.checked ? 'selected' : ''}}" bindtap="handleTapclickSkuValue" wx:for="{{item.values}}" wx:for-item="vitem" wx:key="{{vitem.value_index}}" data-value-id="{{vitem.value_index}}" data-label="{{vitem.value_label}}" data-name-id="{{item.attribute_id}}">{{vitem.value_label}}</view>
+                <view class="value {{currentCategoryIndex==vitem.value_index? 'selected' : ''}}" bindtap="handleTapclickSkuValue" wx:for="{{item.values}}" wx:for-item="vitem" wx:key="{{vitem.value_index}}" data-value-id="{{vitem.value_index}}" data-label="{{vitem.value_label}}" data-name-id="{{item.attribute_id}}">{{vitem.value_label}}</view>
               </view>
             </view>
 

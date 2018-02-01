@@ -7,7 +7,8 @@
     "pages/person/person",
     "pages/goodsDetail/goodsDetail",
     "pages/shopping/new-address/new-address",
-    "pages/comment/comment"
+    "pages/comment/comment",
+    "pages/shopping/fill-order/fill-order"
   ],
   "window": {
     "backgroundTextStyle": "light",

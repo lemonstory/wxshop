@@ -3,6 +3,7 @@ var util = require('../../utils/util.js');
 var constant = require('../../utils/constant.js')
 Page({
   data: {
+    showMore:1,
     // 用户评论
     comment: [{ count: '999', userSrc: '../../image/1.png', nickname: '15735921111', add_time: '2018.01.25  16:45', content: '严选宝贝,呵呵哈哈哈剪辑剪辑军军军军军军军军军军军看呵呵哈哈哈', pic_list: [{ pic_url: '../../image/1.png' }, { pic_url: '../../image/1.png' }, { pic_url: '../../image/1.png' }], desc: '白色外套  2件', replyContent:'严选宝贝,呵呵哈哈哈剪辑剪辑军军军军军军军军军军军看呵呵哈哈哈'},
       { count: '999', userSrc: '../../image/1.png', nickname: '15735921111', add_time: '2018.01.25  16:45', content: '严选宝贝,呵呵哈哈哈剪辑剪辑军军军军军军军军军军军看呵呵哈哈哈', pic_list: [{ pic_url: '../../image/1.png' }, { pic_url: '../../image/1.png' }, { pic_url: '../../image/1.png' }], desc: '白色外套  2件', replyContent: '严选宝贝,呵呵哈哈哈剪辑剪辑军军军军军军军军军军军看呵呵哈哈哈' }
@@ -50,6 +51,15 @@ Page({
       }
     })
   },
+
+// 点击更多展开项
+  handleTaphowMore:function(){
+    this.setData({
+      showMore:!this.data.showMore
+    });
+  },
+
+// 点击选中效果   TODO
   handleTapswitchTab: function () {
     this.setData({
       showType: this.data.showType == 1 ? 0 :1

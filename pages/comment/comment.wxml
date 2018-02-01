@@ -1,32 +1,66 @@
 <view class="comments">
   <view class="head">
-    <view class="item {{ showType == 0 ? 'active' : ''}}" bindtap="handleTapswitchTab">
-      <view class="txt">全部({{allCount}})</view>
+    <view class="head-top {{showMore==0 ? 'show' : ''}}">
+      <view class="item {{ showType == 0 ? 'active' : ''}}" bindtap="handleTapswitchTab">
+        <view class="txt">全部({{allCount}})</view>
+      </view>
+      <view class="item">
+        <view class="txt">有图({{hasPicCount}})</view>
+      </view>
+      <view class="item">
+        <view class="txt">质量上乘()</view>
+      </view>
+      <view class="item">
+        <view class="txt">很舒服()</view>
+      </view>
+      <view class="item">
+        <view class="txt">性价比高()</view>
+      </view>
+      <view class="item">
+        <view class="txt">漂亮精致()</view>
+      </view>
+      <view class="item">
+        <view class="txt">追评()</view>
+      </view>
+      <view class="item">
+        <view class="txt">追评()</view>
+      </view>
+      <view class="item">
+        <view class="txt">追评()</view>
+      </view>
+      <view class="item">
+        <view class="txt">追评()</view>
+      </view>
     </view>
-    <view class="item {{ showType == 0 ? '' : 'active'}}" bindtap="handleTapswitchTab">
-      <view class="txt">有图({{hasPicCount}})</view>
+    <view class="head-bottom" bindtap='handleTaphowMore'>更多
+               <view class="ul-right">
+                    <image src="http://image.365zhiding.com/wxapp/20171121/shang.png" class="{{showMore==0?'':'rotate'}}"></image>
+               </view>
+    
     </view>
+
   </view>
 
-  <view style='margin-top:86rpx'>
+  <view>
     <view class="comment-item" wx:for="{{comment}}" wx:key="item">
       <view class="info">
         <view class="user">
-          <image src="{{item.userSrc}}"></image>
+          <!--TODO  获取用户头像  判断用户头像是否为默认头像  -->
+          <image src="http://yanxuan.nosdn.127.net/8945ae63d940cc42406c3f67019c5cb6.png"></image>
           <text>{{item.nickname}}</text>
         </view>
       </view>
       <view class="time">{{item.created_at}}
-      <view style='margin-left:10rpx'>
-      
-      <!--TODO 字符串转换为数字 -->
-        <block wx:for="{{item.rating}}" wx:key="item">
-          <image src='http://image.365zhiding.com/wxapp/20171219/start1.png' style="width:18rpx;height:18rpx;margin-left:10rpx;"></image>
-        </block>
-         <block wx:for="{{5-item.rating}}" wx:key="item">
-          <image src='http://image.365zhiding.com/wxapp/20171219/start2.png' style="width:18rpx;height:18rpx;margin-left:10rpx;"></image>
-        </block> 
-</view>
+        <view style='margin-left:10rpx'>
+
+          <!--TODO 字符串转换为数字 -->
+          <block wx:for="{{item.rating}}" wx:key="item">
+            <image src='http://image.365zhiding.com/wxapp/20171219/start1.png' style="width:18rpx;height:18rpx;margin-left:10rpx;"></image>
+          </block>
+          <block wx:for="{{5-item.rating}}" wx:key="item">
+            <image src='http://image.365zhiding.com/wxapp/20171219/start2.png' style="width:18rpx;height:18rpx;margin-left:10rpx;"></image>
+          </block>
+        </view>
       </view>
       <view class="content">
         {{item.detail}}

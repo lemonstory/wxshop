@@ -1,0 +1,85 @@
+/* pages/person/person.wxss */
+
+.container{
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: #FAFAFA;
+    justify-content: flex-start;
+}
+.profile-info{
+    width: 100%;
+    height: 272rpx;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 30rpx;
+    background:#333;
+    box-sizing: border-box;
+}
+
+.profile-info .avatar{
+    height: 148rpx;
+    width: 148rpx;
+    border-radius: 50%;
+}
+
+.profile-info .info{
+    flex: 1;
+    height: 85rpx;
+    padding-left: 30rpx;
+}
+
+.profile-info .name{
+    display: block;
+    height: 45rpx;
+    line-height: 45rpx;
+    color: #fff;
+    font-size: 37.5rpx;
+    margin-bottom: 10rpx;
+}
+
+.profile-info .level{
+    display: block;
+    height: 30rpx;
+    line-height: 30rpx;
+    margin-bottom: 10rpx;
+    color: #7f7f7f;
+    font-size: 30rpx;
+}
+
+.user-menu{
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    background: #fff;
+}
+
+.user-menu .item{
+display: flex;
+width:720rx;
+height:100rpx;
+margin-left:30rpx;
+border-bottom:1rpx solid #eee;
+justify-content:space-between;
+padding-right:30rpx;
+box-sizing: border-box;
+align-items: center;
+}
+.user-menu .txt{
+   font-size: 24rpx;
+    color:#333;
+    display: flex;
+}
+
+.logout{
+    margin-top: 20rpx;
+    height: 100rpx;
+    width: 100%;
+    line-height: 100rpx;
+    text-align: center;
+    background: #fff;
+    color: #333;
+    font-size: 30rpx;
+}

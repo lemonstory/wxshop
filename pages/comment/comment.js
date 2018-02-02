@@ -5,9 +5,9 @@ Page({
   data: {
     showMore:1,
     // 用户评论
-    comment: [{ count: '999', userSrc: '../../image/1.png', nickname: '15735921111', add_time: '2018.01.25  16:45', content: '严选宝贝,呵呵哈哈哈剪辑剪辑军军军军军军军军军军军看呵呵哈哈哈', pic_list: [{ pic_url: '../../image/1.png' }, { pic_url: '../../image/1.png' }, { pic_url: '../../image/1.png' }], desc: '白色外套  2件', replyContent:'严选宝贝,呵呵哈哈哈剪辑剪辑军军军军军军军军军军军看呵呵哈哈哈'},
-      { count: '999', userSrc: '../../image/1.png', nickname: '15735921111', add_time: '2018.01.25  16:45', content: '严选宝贝,呵呵哈哈哈剪辑剪辑军军军军军军军军军军军看呵呵哈哈哈', pic_list: [{ pic_url: '../../image/1.png' }, { pic_url: '../../image/1.png' }, { pic_url: '../../image/1.png' }], desc: '白色外套  2件', replyContent: '严选宝贝,呵呵哈哈哈剪辑剪辑军军军军军军军军军军军看呵呵哈哈哈' }
-    ],
+    // comment: [{ count: '999', userSrc: '../../image/1.png', nickname: '15735921111', add_time: '2018.01.25  16:45', content: '严选宝贝,呵呵哈哈哈剪辑剪辑军军军军军军军军军军军看呵呵哈哈哈', pic_list: [{ pic_url: '../../image/1.png' }, { pic_url: '../../image/1.png' }, { pic_url: '../../image/1.png' }], desc: '白色外套  2件', replyContent:'严选宝贝,呵呵哈哈哈剪辑剪辑军军军军军军军军军军军看呵呵哈哈哈'},
+    //   { count: '999', userSrc: '../../image/1.png', nickname: '15735921111', add_time: '2018.01.25  16:45', content: '严选宝贝,呵呵哈哈哈剪辑剪辑军军军军军军军军军军军看呵呵哈哈哈', pic_list: [{ pic_url: '../../image/1.png' }, { pic_url: '../../image/1.png' }, { pic_url: '../../image/1.png' }], desc: '白色外套  2件', replyContent: '严选宝贝,呵呵哈哈哈剪辑剪辑军军军军军军军军军军军看呵呵哈哈哈' }
+    // ],
     pageSize: constant.constant.pageSize,
     currentPage: constant.constant.currentPage,
     //是否还有更多数据
@@ -68,17 +68,21 @@ Page({
       data: {},
       header: util.adminRequestHeader(),
       success: function (res) {
-        console.log('🚀 🚀 🚀 打印商品评价数据')
-        console.log(res.data)
+        // console.log('🚀 🚀 🚀 打印商品评价数据')
+        // console.log(res.data)
         for (var i = 0; i < res.data.length; i++) {
           res.data[i].ratingNum = Number(res.data[i].rating)
           res.data[i].imgNum = util.getRandom(constant.constant.min, constant.constant.max)
-          // console.log(res.data[i].imgNum)
+          res.data[i].replyNum = 0
+          // 获取店主回复
+          if (res.data[i].detail.indexOf('{{') > -1 && res.data[i].detail.indexOf('}}') > -1) {
+            var reply = res.data[i].detail.match((/{{(\S*)}}/))[1]
+            console.log(reply)
+            res.data[i].detail = res.data[i].detail.replace(res.data[i].detail.match((/{{(\S*)}}/))[0],'')
+            res.data[i].reply = reply
+            res.data[i].replyNum = 1
+          }
         }
-        // for (var j = 0; j < 1000; j++) {
-        //   var imgNum = util.getRandom(constant.constant.min, constant.constant.max)
-        //   console.log(imgNum)
-        // }
         that.setData({ comment: res.data})
       },
       fail: function (res) {
@@ -132,10 +136,6 @@ Page({
       })
     }
   },
-/**
- * 获取更多评论
- */
-
 // 点击更多展开项
   handleTaphowMore:function(){
     this.setData({

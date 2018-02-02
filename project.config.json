@@ -25,7 +25,6 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
 			"current": 0,
 			"list": [
 				{
@@ -44,7 +43,7 @@
 					"id": 2,
 					"name": "评价",
 					"pathName": "pages/comment/comment",
-					"query": "sku=24-MB02"
+					"query": "sku=haha001"
 				}
 			]
 		}

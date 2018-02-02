@@ -194,8 +194,9 @@ Page({
         var shortDescription = util.isNeed(res.data.custom_attributes, 'short_description')
         var productParameters = util.getProParamsInfo(res.data.custom_attributes)
         that.getProductParamters(productParameters)
+        // console.log(description)
         that.operateProductDescription(description)
-        // that.setData({ description: description, shortDescription: shortDescription,})
+        that.setData({ shortDescription: shortDescription,})
         that.setData(res.data)
       },
       fail: function (res) {
@@ -339,28 +340,33 @@ Page({
    */
   operateProductDescription: function (description) {
 
-    var matchArr = description.match(/{{media url=\S*}}/g);
-    console.log(matchArr);
-    if(matchArr.length > 0) {
+    var urlArr = description.match(/{{media url=\S*}}/g);
+    var widthArr = description.match(/width\S*/g);
+    var heightArr = description.match(/height\S*/g);
+    // console.log(urlArr);
+    // console.log(widthArr);
+    // console.log(heightArr);
+    if (urlArr.length > 0) {
       
-      for(var i = 0; i < matchArr.length; i++) {
+      for (var i = 0; i < urlArr.length; i++) {
         
         //https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/1.jpg
-        var tempStr = matchArr[i];
-        console.log(tempStr)
+        var tempStr = urlArr[i];
+        // console.log(tempStr)
         var prefixNum = tempStr.indexOf("url=");
         var prefix = tempStr.substring(2, prefixNum-1);
-        console.log(prefix);
+        // console.log(prefix);
         var suffixNum = tempStr.indexOf("}}");
         // console.log(suffixNum)
         var suffix = tempStr.substring(prefixNum + 5, suffixNum-1)
         // console.log(suffix);
         var str = constant.constant.domain + '/' + prefix + '/' + suffix
-        description = description.replace(matchArr[i], str);
+        description = description.replace(urlArr[i], str);
+        description = description.replace(widthArr[i] + ' ' + heightArr[i], constant.constant.class);
       }
     }
-    // description = "<p><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/1.jpg\" /><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/2.jpg\"/><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/3.jpg\" /><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/4.jpg\"/><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/5.jpg\"/><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/6.jpg\"/><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/7.jpg\"/><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/415106515186995618.jpg\"/><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/676261292891122239.jpg\"/></p>"
-    console.log(description);
+    
+    // console.log(description);
     this.setData({ description: description})
    
   }

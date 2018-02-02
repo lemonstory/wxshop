@@ -22,6 +22,8 @@ var constant = {
   duration: 1000,
   // 评论头像随机
   max: 31,
-  min: 1
+  min: 1,
+  // 转换字符
+  class: 'class="rich-img"'
 }
 module.exports.constant = constant;

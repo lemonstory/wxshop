@@ -1,5 +1,5 @@
 <view class="comments">
-  <view class="head">
+  <!-- <view class="head">
     <view class="head-top {{showMore==0 ? 'show' : ''}}">
       <view class="item {{ showType == 0 ? 'active' : ''}}" bindtap="handleTapswitchTab">
         <view class="txt">全部({{allCount}})</view>
@@ -39,14 +39,15 @@
     
     </view>
 
-  </view>
+  </view> -->
 
   <view>
     <view class="comment-item" wx:for="{{comment}}" wx:key="item">
       <view class="info">
         <view class="user">
           <!--TODO  获取用户头像  判断用户头像是否为默认头像  -->
-          <image src="http://yanxuan.nosdn.127.net/8945ae63d940cc42406c3f67019c5cb6.png"></image>
+           <!-- <image src="http://yanxuan.nosdn.127.net/8945ae63d940cc42406c3f67019c5cb6.png"></image>  -->
+           <image src="../../avatar/{{item.imgNum}}.jpg"></image> 
           <text>{{item.nickname}}</text>
         </view>
       </view>
@@ -54,10 +55,10 @@
         <view style='margin-left:10rpx'>
 
           <!--TODO 字符串转换为数字 -->
-          <block wx:for="{{item.rating}}" wx:key="item">
+          <block wx:for="{{item.ratingNum}}" wx:key="item">
             <image src='http://image.365zhiding.com/wxapp/20171219/start1.png' style="width:18rpx;height:18rpx;margin-left:10rpx;"></image>
           </block>
-          <block wx:for="{{5-item.rating}}" wx:key="item">
+          <block wx:for="{{5-item.ratingNum}}" wx:key="item">
             <image src='http://image.365zhiding.com/wxapp/20171219/start2.png' style="width:18rpx;height:18rpx;margin-left:10rpx;"></image>
           </block>
         </view>
@@ -65,15 +66,18 @@
       <view class="content">
         {{item.detail}}
       </view>
-      <view class="imgs">
-        <image class="img" wx:for="{{item.pic_list}}" wx:key="{{item.id}}" src="{{item.pic_url}}"></image>
-      </view>
-      <view class="spec">{{item.desc}}</view>
 
-      <view class="customer-service">
+      <!-- 暂时不支持 -->
+
+      <!-- <view class="imgs">
+        <image class="img" wx:for="{{item.pic_list}}" wx:key="{{item.id}}" src="{{item.pic_url}}"></image>
+      </view> -->
+      <!-- <view class="spec">{{item.desc}}</view> -->
+
+      <!-- <view class="customer-service">
         <text class="reply">小选回复：</text>
         <text class="content">{{item.replyContent}}</text>
-      </view>
+      </view> -->
     </view>
   </view>
 </view>

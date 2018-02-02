@@ -297,6 +297,14 @@ function getProParamsInfo (array) {
   }
   return arr;
 }
+
+/**
+ * 随机数生成
+ */
+function getRandom (min,max) {
+  var temp = max - min + 1;
+  return Math.floor(Math.random() * temp + min);
+}
 module.exports = {
   formatTime: formatTime,
   isMobile: isMobile,
@@ -316,5 +324,6 @@ module.exports = {
   isNeed, // 判断数组某项是否为所需
   getAttributes, // 根据属性id获取属性信息
   isMin,  // 判断可配置商品价格大小
-  getProParamsInfo  // 获取商品参数信息
+  getProParamsInfo,  // 获取商品参数信息
+  getRandom  // 获取随机数
 }

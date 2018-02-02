@@ -20,5 +20,8 @@ var constant = {
   autoplay: true,
   interval: 5000,
   duration: 1000,
+  // 评论头像随机
+  max: 31,
+  min: 1
 }
 module.exports.constant = constant;

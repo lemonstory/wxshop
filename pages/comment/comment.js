@@ -34,6 +34,7 @@ Page({
   /**
    * 获取评价
    */
+  // TODO 判断当前登录用户是否发表评论
   getProductComment: function (sku) {
     var that = this;
     var url = constant.constant.domain + constant.constant.path + '/V1/gmart/products/' + sku + '/reviews/' + that.data.currentPage + '/' + that.data.pageSize;
@@ -44,6 +45,15 @@ Page({
       success: function (res) {
         console.log('🚀 🚀 🚀 打印商品评价数据')
         console.log(res.data)
+        for (var i = 0; i < res.data.length; i++) {
+          res.data[i].ratingNum = Number(res.data[i].rating)
+          res.data[i].imgNum = util.getRandom(constant.constant.min, constant.constant.max)
+          // console.log(res.data[i].imgNum)
+        }
+        // for (var j = 0; j < 1000; j++) {
+        //   var imgNum = util.getRandom(constant.constant.min, constant.constant.max)
+        //   console.log(imgNum)
+        // }
         that.setData({ comment: res.data})
       },
       fail: function (res) {

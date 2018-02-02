@@ -5,10 +5,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-   position: relative;
-  
- 
+  position: relative;
 }
+
 input{
   width:710rpx;
   height:80rpx;

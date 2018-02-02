@@ -1,86 +1,102 @@
 <!--pages/shopping/fill-order/fill-order.wxml-->
 <view class="container">
-    <view class="address-box">
-        <view class="address-item" bindtap="selectAddress" wx:if="{{checkedAddress.id > 0}}">
-            <view class="l">
-                <text class="name">{{checkedAddress.name}}</text>
-                <text class="default" wx:if="{{checkedAddress.is_default === 1}}">默认</text>
-            </view>
-            <view class="m">
-                <text class="mobile">{{checkedAddress.mobile}}</text>
-                <text class="address">{{checkedAddress.full_region + checkedAddress.address}}</text>
-            </view>
-            <view class="r">
-                <image src="/static/images/address_right.png"></image>
-            </view>
-        </view>
-        <view class="address-item address-empty" bindtap="addAddress" wx:if="{{checkedAddress.id <= 0}}">
-            <view class="m">
-               还没有收货地址，去添加
-            </view>
-            <view class="r">
-                <image src="/static/images/address_right.png"></image>
-            </view>
-        </view>
-    </view>
+  <view class="address-box">
+    <view class="address-item" bindtap="handleTapSelectAddress">
+      <view class="left">
+        <text class="name">哈哈哈哈哈哈</text>
+        <text class="default">默认</text>
+      </view>
+      <view class="middle">
+        <text class="mobile">123456789</text>
+        <text class="address">山西省运城市灞桥区长安区</text>
+      </view>
+      <image src="/static/images/go.png" style='width:14rpx;height:24rpx;display:flex;margin-left:10rpx;margin-top:30rpx;display:flex;'></image>
 
-    <view class="coupon-box">
-        <view class="coupon-item">
-            <view class="l">
-                <text class="name">请选择优惠券</text>
-                <text class="txt">{{couponList.length}}张</text>
-            </view>
-            <view class="r">
-                <image src="/static/images/address_right.png"></image>
-            </view>
-        </view>
     </view>
+  </view>
 
-    <view class="order-box">
-        <view class="order-item">
-            <view class="l">
-                <text class="name">商品合计</text>
-            </view>
-            <view class="r">
-                <text class="txt">￥{{goodsTotalPrice}}</text>
-            </view>
-        </view>
-        <view class="order-item">
-            <view class="l">
-                <text class="name">运费</text>
-            </view>
-            <view class="r">
-                <text class="txt">￥{{freightPrice}}</text>
-            </view>
-        </view>
-        <view class="order-item no-border">
-            <view class="l">
-                <text class="name">优惠券</text>
-            </view>
-            <view class="r">
-                <text class="txt">-￥{{couponPrice}}</text>
-            </view>
-        </view>
+  <!--优惠卷 运费开始  -->
+  <view class="order-box">
+    <view class="order-item">
+      <view class="left">
+        <text class="name">优惠券：未选择</text>
+      </view>
+      <view class="right">
+        <text class="txt"> 0张 </text>
+        <image src="/static/images/go.png" style='width:14rpx;height:24rpx;display:flex;margin-left:10rpx;display:flex;'></image>
+      </view>
     </view>
+    <view class="order-item">
+      <view class="left">
+        <text class="name">商品合计</text>
+      </view>
+      <view class="right">
+        <text class="txt">￥0</text>
+      </view>
+    </view>
+    <view class="order-item no-border">
+      <view class="left">
+        <text class="name">运费</text>
+      </view>
+      <view class="right">
+        <text class="txt">￥20</text>
+      </view>
+    </view>
+  </view>
+  <!--优惠卷 运费结束 -->
 
-    <view class="goods-items">
-        <view class="item" wx:for="{{checkedGoodsList}}" wx:key="{{item.id}}">
-            <view class="img">
-                <image src="{{item.list_pic_url}}"></image>
-            </view>
-            <view class="info">
-                <view class="t">
-                    <text class="name">{{item.goods_name}}</text>
-                    <text class="number">x{{item.number}}</text>
+
+
+  <!--选中的商品列表开始  -->
+  <view class="cart-view">
+    <view class="list">
+      <view class="group-item">
+        <view class="goods">
+          <view class="item {{index == 0 ? 'first' : ''}}" wx:for="{{cartGoods}}" wx:key="{{item.id}}">
+            <view class="cart-goods">
+              <image class="img" src="{{item.list_pic_url}}"></image>
+              <view class="info">
+                <view class="name">
+                  {{item.goods_name}}
                 </view>
-                <view class="m">{{item.goods_specifition_name_value}}</view>
-                <view class="b">￥{{item.retail_price}}</view>
+                <view class="desc">
+                  {{item.goods_desc}}
+                </view>
+                <view class="b">
+                  <text class="price">￥{{item.retail_price}}</text>
+                </view>
+              </view>
             </view>
+            <view class="good-num">×100</view>
+          </view>
+
         </view>
+      </view>
     </view>
 
-    <view class="order-total">
-        <view class="l">实付：￥{{actualPrice}}</view>
-        <view class="r" bindtap="submitOrder">去付款</view>
-    </view>
+
+
+  </view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <view class="order-total">
+    <view class="l">应付：￥</view>
+    <view class="r" bindtap="submitOrder">付款</view>
+  </view>
 </view>

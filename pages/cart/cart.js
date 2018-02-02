@@ -70,7 +70,7 @@ Page({
 
   // 点击下单处理事件
   handleTapcheckoutOrder: function () {
-    var path = "/pages/shopping/new-address/new-address";
+    var path = "/pages/shopping/edit-address/edit-address";
     wx.navigateTo({
       url: path
     })

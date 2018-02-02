@@ -44,10 +44,10 @@
                 </view>
               </view>
             </view>
-               <!--删除按钮  -->
-          <view data-index="{{index}}" bindtap="delItem" class="inner del">删除</view>
+            <!--删除按钮  -->
+            <view data-index="{{index}}" bindtap="delItem" class="inner del">删除</view>
           </view>
-       
+
         </view>
       </view>
     </view>

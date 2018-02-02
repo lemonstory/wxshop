@@ -194,7 +194,8 @@ Page({
         var shortDescription = util.isNeed(res.data.custom_attributes, 'short_description')
         var productParameters = util.getProParamsInfo(res.data.custom_attributes)
         that.getProductParamters(productParameters)
-        that.setData({ description: description, shortDescription: shortDescription,})
+        that.operateProductDescription(description)
+        // that.setData({ description: description, shortDescription: shortDescription,})
         that.setData(res.data)
       },
       fail: function (res) {
@@ -331,6 +332,39 @@ Page({
       var img = that.data.requestPath + util.isNeed(childrenDetails.custom_attributes, 'image')
     }
     that.setData({ childrenDetails: childrenDetails, priceDetails: childrenDetails.price, img: img, })
+  },
+
+  /**
+   * 拼接产品描述
+   */
+  operateProductDescription: function (description) {
+
+    var matchArr = description.match(/{{media url=\S*}}/g);
+    console.log(matchArr);
+    if(matchArr.length > 0) {
+      
+      for(var i = 0; i < matchArr.length; i++) {
+        
+        //https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/1.jpg
+        var tempStr = matchArr[i];
+        console.log(tempStr)
+        var prefixNum = tempStr.indexOf("url=");
+        var prefix = tempStr.substring(2, prefixNum-1);
+        console.log(prefix);
+        var suffixNum = tempStr.indexOf("}}");
+        // console.log(suffixNum)
+        var suffix = tempStr.substring(prefixNum + 5, suffixNum-1)
+        // console.log(suffix);
+        var str = constant.constant.domain + '/' + prefix + '/' + suffix
+        description = description.replace(matchArr[i], str);
+      }
+    }
+
+
+    description = "<p><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/1.jpg\" /><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/2.jpg\"/><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/3.jpg\" /><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/4.jpg\"/><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/5.jpg\"/><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/6.jpg\"/><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/7.jpg\"/><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/415106515186995618.jpg\"/><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/676261292891122239.jpg\"/></p>"
+    console.log(description);
+    this.setData({ description: description})
+   
   }
 })
 

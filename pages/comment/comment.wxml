@@ -1,3 +1,4 @@
+<import src="../../zanui-weapp/dist/loadmore/index.wxml" />
 <view class="comments">
   <!-- <view class="head">
     <view class="head-top {{showMore==0 ? 'show' : ''}}">
@@ -81,3 +82,8 @@
     </view>
   </view>
 </view>
+
+<!-- 引入loadmore -->
+<!-- <template is="zan-toast" data="{{ zanToast }}"></template> -->
+<template is="zan-loadmore" wx:if="{{isLoading}}" data="{{loading: true}}" />
+<template is="zan-loadmore" wx:if="{{isNoMore}}" data="{{nodata: true,nodata_str:'加载完成'}}" />

@@ -1,5 +1,4 @@
 /* pages/cart/cart.wxss */
-@import "../../lib/wxParse/wxParse.wxss";
 
 .container {
   margin-bottom: 100rpx;
@@ -668,4 +667,9 @@ swiper {
   justify-content: center;
   display: flex;
   align-items: center;
+}
+.rich-img{
+  width:100%;
+  height:auto;
+  display:block;
 }

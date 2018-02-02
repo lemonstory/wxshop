@@ -56,10 +56,10 @@
 
           <!--TODO 字符串转换为数字 -->
           <block wx:for="{{item.ratingNum}}" wx:key="item">
-            <image src='http://image.365zhiding.com/wxapp/20171219/start1.png' style="width:18rpx;height:18rpx;margin-left:10rpx;"></image>
+            <image src='http://image.365zhiding.com/wxapp/20171219/start1.png' style="width:20rpx;height:20rpx;margin-left:10rpx;"></image>
           </block>
           <block wx:for="{{5-item.ratingNum}}" wx:key="item">
-            <image src='http://image.365zhiding.com/wxapp/20171219/start2.png' style="width:18rpx;height:18rpx;margin-left:10rpx;"></image>
+            <image src='http://image.365zhiding.com/wxapp/20171219/start2.png' style="width:20rpx;height:20rpx;margin-left:10rpx;"></image>
           </block>
         </view>
       </view>

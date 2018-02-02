@@ -359,9 +359,7 @@ Page({
         description = description.replace(matchArr[i], str);
       }
     }
-
-
-    description = "<p><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/1.jpg\" /><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/2.jpg\"/><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/3.jpg\" /><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/4.jpg\"/><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/5.jpg\"/><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/6.jpg\"/><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/7.jpg\"/><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/415106515186995618.jpg\"/><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/676261292891122239.jpg\"/></p>"
+    // description = "<p><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/1.jpg\" /><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/2.jpg\"/><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/3.jpg\" /><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/4.jpg\"/><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/5.jpg\"/><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/6.jpg\"/><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/7.jpg\"/><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/415106515186995618.jpg\"/><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/676261292891122239.jpg\"/></p>"
     console.log(description);
     this.setData({ description: description})
    

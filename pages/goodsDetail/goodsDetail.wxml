@@ -131,19 +131,8 @@
   <!-- 产品描述开始 -->
   <view style='box-sizing:border-box;'>
     <!-- <text></text> -->
-<<<<<<< .mine
-      <!-- <rich-text nodes="{{description}}"></rich-text>   -->
- 
-     <rich-text nodes="<p><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/1.jpg\" /><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/2.jpg\"/><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/3.jpg\" /><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/4.jpg\"/><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/5.jpg\"/><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/6.jpg\"/><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/7.jpg\"/><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/415106515186995618.jpg\"/><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/676261292891122239.jpg\"/></p>"></rich-text> 
-
-
-=======
-
-      <!-- <rich-text nodes="{{description}}"></rich-text>   -->
-    
-
+   <!-- <rich-text nodes="{{description}}"></rich-text>   -->
       <rich-text class="rich-content" nodes="<p><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/1.jpg\" /><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/2.jpg\"/><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/3.jpg\" /><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/4.jpg\"/><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/5.jpg\"/><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/6.jpg\"/><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/7.jpg\"/><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/415106515186995618.jpg\"/><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/676261292891122239.jpg\"/></p>"></rich-text> 
->>>>>>> .theirs
   </view>
   <!-- 产品描述结束 -->
 

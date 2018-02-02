@@ -26,6 +26,7 @@
 		},
 		"miniprogram": {
 			"current": 0,
+			"current": -1,
 			"list": [
 				{
 					"id": 0,
@@ -44,6 +45,12 @@
 					"name": "评价",
 					"pathName": "pages/comment/comment",
 					"query": "sku=haha001"
+				},
+				{
+					"id": -1,
+					"name": "搜索",
+					"pathName": "pages/search/search",
+					"query": ""
 				}
 			]
 		}

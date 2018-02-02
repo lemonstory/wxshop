@@ -226,7 +226,7 @@
         <image class="icon" src="/static/images/detail_kefu.png"></image>
       </view>
     </view>
-    <view class="l l-cart">
+    <view class="l l-cart last">
       <view class="box">
         <!-- <text class="cart-count">{{cartGoodsCount}}</text>  -->
         <image class="icon" src="/static/images/ic_menu_shoping_nor.png"></image>

@@ -7,7 +7,7 @@
     <view class="search-icon">
       <image src="../../iconimage/search.png"></image>
     </view>
-    <input class="search" style="display:flex; justify-content: center;padding-left:240rpx;" placeholder='搜索商品，共10224件好物' placeholder-style='color:#7F7F7F;font-size:26rpx;'></input>
+    <input class="search" disabled="true" style="display:flex; justify-content: center;padding-left:240rpx;" placeholder='搜索商品，共10224件好物' placeholder-style='color:#7F7F7F;font-size:26rpx;' bindtap='handleTapSearch'></input>
   </view>
   <view class="banner">
     <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">

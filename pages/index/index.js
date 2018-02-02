@@ -106,13 +106,12 @@ Page(Object.assign({}, Toast, {
   },
 
   //处理用户搜索事件
-  bindSearch: function () {
+  handleTapSearch: function () {
     var path = "/pages/search/search";
     wx.navigateTo({
       url: path
     })
-
-  },
+},
 
   /**
    * 获取adminToken

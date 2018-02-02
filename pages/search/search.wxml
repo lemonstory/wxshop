@@ -1,2 +1,23 @@
 <!--pages/search/search.wxml-->
-<text>pages/search/search.wxml</text>
+<view class="container">
+  <view class="search-box">
+    <input class="search" style="display:flex; justify-content: center;padding-left:30rpx;" placeholder='请输入' placeholder-style='color:#7F7F7F;font-size:26rpx;' ></input>
+    <view class="cancle">取消</view>
+  </view>
+  </view>
+
+<!--判断 如果有历史记录时显示-->
+<view class="history">
+<view class="history-top">
+<view>历史记录</view>
+<image src='/static/images/del-address.png' style='width:40rpx;height:40rpx;display:flex;'></image>
+</view>
+<view class="history-bottom">
+<view class="history-item">哈哈哈</view>
+<view class="history-item">哈哈哈</view>
+<view class="history-item">哈哈哈</view>
+
+</view>
+</view>
+
+

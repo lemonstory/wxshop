@@ -1,0 +1,51 @@
+<!--pages/search-detail/search-detail.wxml-->
+<import src="../../template/recommend.wxml" />
+<import src="../../template/sectionTitle.wxml" />
+<import src="../../template/footer.wxml" />
+<import src="../../zanui-weapp/dist/tab/index.wxml" />
+<import src="../../zanui-weapp/dist/loadmore/index.wxml" />
+
+
+<view class="container">
+  <view class="search-box">
+    <input class="search" style="display:flex; justify-content: center;padding-left:30rpx;" placeholder='请输入' placeholder-style='color:#7F7F7F;font-size:26rpx;'>
+
+    <image src='/static/images/clear_input.png' style='width:60rpx;height:60rpx;position:absoulte;right:50rpx;top:100rpx'></image>
+    </input>
+  </view>
+
+<!--判断 如果有搜索结果时显示此页面 -->
+ <view class="head">
+    <view class="item {{ showType == 0 ? 'active' : ''}}" bindtap="handleTapSwitchTab">
+      <view class="txt">综合</view>
+    </view>
+    <view class="item {{ showType == 0 ? '' : 'active'}}" bindtap="handleTapSwitchTab">
+      <view class="txt">价格</view>
+    </view>
+</view>
+
+<!-- <template is="zan-tab" data="{{tab: tab, componentId: 'tab'}}"></template>  -->
+ <view style="background-color: #FFFFFF;margin-top:20rpx;width:100%;">
+<view class="weui-flex row-container page__bd_spacing">
+    <block wx:for="{{items}}" wx:key="recommendItem" wx:for-index="idx" wx:for-item="recommendItem">
+  <template is="recommend" data="{{index:idx, id: recommendItem.id, sku: recommendItem.sku, title: recommendItem.name,cover: recommendItem.img,favourable:'',purchase:'',recommendPrice:recommendItem.price}}"/> 
+    </block>
+  </view>
+</view> 
+<!-- 引入loadmore -->
+<!-- <template is="zan-toast" data="{{ zanToast }}"></template> -->
+ <template is="zan-loadmore" wx:if="{{isLoading}}" data="{{loading: true}}" />
+<template is="zan-loadmore" wx:if="{{isNoMore}}" data="{{nodata: true,nodata_str:'加载完成'}}" />  
+
+
+
+<!--如果没有搜索结果时显示该页面  -->
+ <!-- <view class="search-result-empty">
+    <image class="icon" src="http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/noSearchResult-7572a94f32.png"></image>
+    <text class="text">您寻找的商品还未上架</text>
+  </view> -->
+
+
+
+
+</view>

@@ -47,12 +47,6 @@
 				},
 				{
 					"id": -1,
-					"name": "搜索",
-					"pathName": "pages/search/search",
-					"query": ""
-				},
-				{
-					"id": -1,
 					"name": "个人页",
 					"pathName": "pages/usercenter/index/index",
 					"query": ""

@@ -10,7 +10,8 @@
     "pages/comment/comment",
     "pages/shopping/fill-order/fill-order",
     "pages/search/search",
-    "pages/shopping/address-manager/address-manager"
+    "pages/shopping/address-manager/address-manager",
+    "pages/search-detail/search-detail"
   ],
   "window": {
     "backgroundTextStyle": "light",

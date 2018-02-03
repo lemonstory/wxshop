@@ -288,9 +288,6 @@
 background:#b4282d; 
 }
 
-
-
-
 .inner{
     position: absolute;
     top:0;
@@ -314,6 +311,9 @@ background:#b4282d;
     color: #fff;
     height:162rpx;
     line-height: 162rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
  .remove{

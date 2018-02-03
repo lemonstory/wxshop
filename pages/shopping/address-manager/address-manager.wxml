@@ -1,7 +1,7 @@
 <!--pages/shopping/address-manager/address-manager.wxml-->
 <view class="container">
   <!--判断 如果有地址显示此页面  -->
-   <view class="address-box">
+  <view class="address-box">
     <view class="address-item">
       <view class="left">
         <text class="name">哈哈哈哈哈哈</text>
@@ -11,28 +11,29 @@
         <text class="mobile">123456789</text>
         <text class="address">山西省运城市灞桥区长安区</text>
       </view>
-      <image src="/static/images/go.png" style='width:14rpx;height:24rpx;display:flex;margin-left:10rpx;margin-top:30rpx;display:flex;' bindtap='handleTapEditAddress'></image>
+      <image src="/static/images/edit.png" style='width:32rpx;height:32rpx;display:flex;margin-left:10rpx;margin-top:30rpx;display:flex;'bindtap="handleTapEditAddress"></image>
     </view>
 
-      <view class="address-item">
+    <view class="address-item">
       <view class="left">
         <text class="name">哈哈哈哈哈哈</text>
-        
+
       </view>
       <view class="middle">
         <text class="mobile">123456789</text>
         <text class="address">山西省运城市灞桥区长安区</text>
       </view>
-      <image src="/static/images/go.png" style='width:14rpx;height:24rpx;display:flex;margin-left:10rpx;margin-top:30rpx;display:flex;'></image>
+      <image src="/static/images/edit.png" style='width:32rpx;height:32rpx;display:flex;margin-left:10rpx;margin-top:30rpx;display:flex;' bindtap="handleTapEditAddress"></image>
     </view>
-</view> 
+  </view>
 
-  
-  
-  <!--如果没有地址显示此页面  -->
-   <!-- <view class="empty-view">
+
+
+  <!--如果没有地址显示此页面 -->
+  <!-- <view class="empty-view">
       <image class="icon" src="http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/noAddress-26d570cefa.png"></image>
       <text class="text">收货地址在哪里</text>
     </view>  -->
-  <view class="bottom" bindtap="handleTapEditAddress">新建地址</view>
+  <view class="bottom" bindtap="handleTapEditAddress">
+    <image src="/static/images/add.png" style='width:16rpx;height:16rpx;display:flex;margin-right:20rpx;display:flex;'></image>新建地址</view>
 </view>

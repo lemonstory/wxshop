@@ -11,7 +11,8 @@
     "pages/shopping/fill-order/fill-order",
     "pages/search/search",
     "pages/shopping/address-manager/address-manager",
-    "pages/search-detail/search-detail"
+    "pages/search-detail/search-detail",
+    "pages/auth/login"
   ],
   "window": {
     "backgroundTextStyle": "light",

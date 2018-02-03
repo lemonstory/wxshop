@@ -1,0 +1,19 @@
+<!--pages/auth/login.wxml-->
+<view class="container">
+  <view class="logo">
+    <image src="/image/logo.png" style='width:320rpx;height:120rpx;'></image>
+  </view>
+  <view class="wlogin" bindtap='handleTapCancleAuth'>微信登录</view>
+  <!-- <view class="elogin">邮箱登录</view> -->
+</view>
+
+<!--点击拒绝之后的弹出框 -->
+<view class="hidden-box hide{{showView?'show':''}}"></view>
+<view class="hidden hide{{showView?'show':''}}">
+  <view class="hidden-text1">授权提示</view>
+  <view class="hidden-text2">小程序需要您的授权才</view>
+  <view class="hidden-text3">能正常使用</view>
+  <view class="cancel" bindtap='handleTapCancel'>取消</view>
+  <view class="sure">确定</view>
+</view>
+<!--弹出信息的展示结束-->

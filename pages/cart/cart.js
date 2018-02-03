@@ -3,7 +3,7 @@ Page({
   data: {
     number: 1,
     checkedAllStatus: false,
-    delBtnWidth:180,
+    delBtnWidth:80,
     //cartGoods购物车中的商品列表
     cartGoods: [{ list_pic_url: '../../image/1.png', goods_name: '哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈', goods_desc: '恩恩恩恩', retail_price: '2000' }, { list_pic_url: '../../image/1.png', goods_name: '哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈', goods_desc: '恩恩恩恩', retail_price: '2000' }],
     cartTotal: {

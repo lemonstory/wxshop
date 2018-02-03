@@ -7,8 +7,6 @@
   <!-- <view class="elogin">邮箱登录</view> -->
 </view>
 
-
-
 <!--点击拒绝之后的弹出框 -->
 <view class="hidden-box hide{{showView?'show':''}}"></view>
 <view class="hidden hide{{showView?'show':''}}">

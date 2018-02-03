@@ -1,0 +1,122 @@
+/* pages/auth/login.wxss */
+
+.container {
+  width: 100%;
+  height: 100vh;
+  background: #fff;
+  position: relative;
+}
+
+.logo {
+  position: absolute;
+  top: 210rpx;
+  left: 215rpx;
+}
+
+.wlogin {
+  width: 670rpx;
+  height: 96rpx;
+  border: 1rpx solid #b6a079;
+  position: absolute;
+  bottom: 550rpx;
+  left: 40rpx;
+  line-height: 96rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #b6a079;
+}
+
+.elogin {
+  width: 670rpx;
+  height: 96rpx;
+  border: 1rpx solid #b6a079;
+  position: absolute;
+  bottom: 400rpx;
+  left: 40rpx;
+  line-height: 96rpx;
+  text-align: center;
+  font-size: 28rpx;
+  background: #b6a079;
+  color: #fff;
+}
+
+.hidden-box {
+  width: 750rpx;
+  height: 100vh;
+  position: absolute;
+  background: #000;
+  opacity: 0.4;
+  z-index: 99;
+  top: 0;
+  left: 0;
+}
+
+.hidden {
+  width: 588rpx;
+  height: 372rpx;
+  background: rgba(255, 255, 255, 1);
+  opacity: 0.9;
+  border-radius: 6rpx;
+  position: absolute;
+  top: 28%;
+  z-index: 999;
+  left: 84rpx;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.hidden-text1 {
+  font-size: 42rpx;
+  font-family: PingFang-SC-Regular;
+  color: rgba(0, 0, 0, 1);
+  line-height: 40rpx;
+  position: absolute;
+  top: 50rpx;
+  left: 60rpx;
+  letter-spacing: 5rpx;
+}
+
+.hidden-text2 {
+  font-size: 36rpx;
+  font-family: PingFang-SC-Regular;
+ color: #747474;
+  position: absolute;
+  top: 144rpx;
+  left: 60rpx;
+  letter-spacing: 10rpx;
+}
+
+.hidden-text3 {
+  font-size: 36rpx;
+  font-family: PingFang-SC-Regular;
+  color: #747474;
+  position: absolute;
+  top: 188rpx;
+  left: 60rpx;
+  letter-spacing: 10rpx;
+}
+
+.cancel{
+  font-size: 38rpx;
+  font-family: PingFang-SC-Regular;
+  position: absolute;
+  bottom: 40rpx;
+  right:194rpx;
+  text-align: center;
+  color:#000;
+}
+.sure {
+  font-size: 38rpx;
+  font-family: PingFang-SC-Regular;
+  position: absolute;
+  bottom: 40rpx;
+  right: 40rpx;
+  color: #3EB428
+
+}

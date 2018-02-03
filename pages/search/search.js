@@ -57,5 +57,12 @@ onReady: function () {
    */
 onShareAppMessage: function () {
   
-  }
+  },
+handleTapSearchDetail: function() {
+  var path = "/pages/search-detail/search-detail" 
+  wx.navigateTo({
+    url: path
+  })
+},
+
 })

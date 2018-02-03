@@ -1,23 +1,37 @@
 <!--pages/search/search.wxml-->
 <view class="container">
   <view class="search-box">
-    <input class="search" style="display:flex; justify-content: center;padding-left:30rpx;" placeholder='请输入' placeholder-style='color:#7F7F7F;font-size:26rpx;' ></input>
-    <view class="cancle">取消</view>
+    <input class="search" style="display:flex; justify-content: center;padding-left:30rpx;" placeholder='请输入' placeholder-style='color:#7F7F7F;font-size:26rpx;'>
+
+      <!--判断 如果搜索框内容不为空时  显示此图标-->
+        <!-- <image src='/static/images/clear_input.png' style='width:60rpx;height:60rpx;position:absoulte;right:50rpx;top:100rpx'></image> -->
+
+    </input>
+    <!--判断 如果搜索框内容为空时  取消  -->
+     <!-- <view class="cancle">取消</view>  -->
+    <!--不为空时   搜索  -->
+     <view class="searchl" bindtap='handleTapSearchDetail'>搜索</view> 
+
   </view>
-  </view>
+</view>
 
 <!--判断 如果有历史记录时显示-->
-<view class="history">
-<view class="history-top">
-<view>历史记录</view>
-<image src='/static/images/del-address.png' style='width:40rpx;height:40rpx;display:flex;'></image>
-</view>
-<view class="history-bottom">
-<view class="history-item">哈哈哈</view>
-<view class="history-item">哈哈哈</view>
-<view class="history-item">哈哈哈</view>
+<!-- <view class="history">
+  <view class="history-top">
+    <view>历史记录</view>
+    <image src='/static/images/del-address.png' style='width:40rpx;height:40rpx;display:flex;'></image>
+  </view>
+  <view class="history-bottom">
+    <view class="history-item">哈哈哈</view>
+    <view class="history-item">哈哈哈</view>
+    <view class="history-item">哈哈哈</view>
+  </view>
+</view> -->
 
+<!--判断  按关键字进行模糊查询  输入字时显示  -->
+<view class="keywordList">
+  <view class="keyworditem">哈哈哈哈</view>
+  <view class="keyworditem">哦哦哦</view>
+  <view class="keyworditem">恩恩</view>
 </view>
-</view>
-
 

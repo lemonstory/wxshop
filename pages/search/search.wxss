@@ -18,10 +18,15 @@ input {
   border-radius: 50rpx;
   display: flex;
   box-sizing: border-box;
+
 }
 .cancle{
   font-size: 30rpx;
 }
+.searchl{
+font-size: 30rpx;
+}
+
 .history{
   width: 100%;
   height:auto;
@@ -61,4 +66,22 @@ input {
   color: #333;
   font-size: 30rpx;
   margin-bottom: 30rpx;
+}
+
+.keywordList{
+  width: 100%;
+  height:auto;
+  display: flex;
+  flex-direction: column;
+}
+.keyworditem{
+  width: 100%;
+  height:76rpx;
+  display: flex;
+  flex-direction: row;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  align-items: center;
+  color:#7F7F7F;
+  font-size:28rpx;
 }

@@ -24,6 +24,9 @@ var constant = {
   max: 31,
   min: 1,
   // 转换字符
-  class: 'class="rich-img"'
+  class: 'class="rich-img"',
+  // 用户token
+  userToken: 'Bearer dwmbo73om96qsbh7ynk7ou30okbutmts',
+  quote_id: 13
 }
 module.exports.constant = constant;

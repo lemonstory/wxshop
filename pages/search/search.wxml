@@ -1,7 +1,7 @@
 <!--pages/search/search.wxml-->
 <view class="container">
   <view class="search-box">
-    <input class="search" style="display:flex; justify-content: center;padding-left:30rpx;" placeholder='请输入' placeholder-style='color:#7F7F7F;font-size:26rpx;' ></input>
+    <input class="search" style="display:flex; justify-content: center;padding-left:30rpx;" placeholder='请输入' placeholder-style='color:#7F7F7F;font-size:26rpx;' bindinput="getSearchContent" ></input>
     <view class="cancle">取消</view>
   </view>
   </view>

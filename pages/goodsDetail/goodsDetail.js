@@ -53,7 +53,10 @@ Page({
     // 选中商品规格数组
     normArr: [],
     label: '',
-    productParameters: []
+    productParameters: [],
+    flag:false,
+    // 添加商品到购物车参数
+    productOptionArr: []
   },
 
   onLoad: function (options) {
@@ -90,13 +93,22 @@ Page({
   // 点击添加到购物车弹出层
   handleTapaddToCart: function () {
     var that = this;
-    that.getProductSpecifications()
-    this.setData({
-      isShowBottomPopup: true,
-      size: 0,
-      label: '',
-      selectedProductOptions: {}
-    });
+    var flag = that.data.flag;
+    console.log(flag)
+    if (!flag) {
+      that.getProductSpecifications()
+      flag = true;
+      this.setData({
+        isShowBottomPopup: true,
+        size: 0,
+        label: '',
+        selectedProductOptions: {},
+        flag: flag
+      });
+    } else {
+      console.log('打印')
+    }
+    
   },
   // 点击服务弹出层交互
   handleTapBottomToast: function () {
@@ -111,6 +123,7 @@ Page({
   toggleBottomPopup() {
     this.setData({
       isShowBottomPopup: !this.data.isShowBottomPopup,
+      flag: !this.data.flag
     });
   },
 
@@ -133,7 +146,78 @@ Page({
     });
   },
 
-  //弹出层中商品属性的选择  TODO
+  /**
+   *  添加商品到购物车
+   */
+  addProductToCart: function () {
+    var that = this
+    var url = constant.constant.domain + constant.constant.path + '/V1/carts/mine/items';
+    wx.request({
+      url: url,
+      data: {
+        username: constant.constant.username,
+        password: constant.constant.password
+      },
+      method: 'POST',
+      header: {
+        'content-type': 'application/json', // 默认值
+        'Authorization': constant.constant.userToken
+      },
+      success: function (res) {
+       
+      },
+      fail: function (res) {
+        console.error('🚀 🚀 🚀 添加商品到购物车错误')
+      }
+    })
+  },
+  /**
+   * 获取当前添加购物车商品信息
+   */
+  getProductContent: function () {
+    var that = this
+    var Body = {
+      'cartItem': {
+        'item_id': that.data.id,
+        'sku': that.data.sku,
+        'qty': that.data.number,
+        'name': that.data.name,
+        'price': that.data.priceDetails,
+        'product_type': that.data.type_id,
+        'quote_id': constant.constant.quote_id,     //  当前购物车id
+        'product_option': {
+          'extension_attributes': {
+            'configurable_item_options': that.data.productOptionArr
+          }
+        }  
+      }
+    }
+  },
+
+  /**
+   * 获取要添加到购物车商品的option  // 三条及其以上判断  TODO
+   */
+  getOption: function (id,value) {
+    var that = this
+    var tempProductOptionArr = that.data.productOptionArr
+    var option = {
+      option_id: '',
+      option_value: ''
+    }
+    option.option_id = id;
+    option.option_value = value;
+    if (tempProductOptionArr.length === 0) {
+      tempProductOptionArr.push(option)
+    } else {
+      for (var i = 0; i < tempProductOptionArr.length; i++) {
+        if (id === tempProductOptionArr[i].option_id) {
+          tempProductOptionArr[i].option_value = value
+        }
+      }
+    }
+    that.setData({ productOptionArr: tempProductOptionArr})
+  },
+  //弹出层中商品属性的选择
   handleTapclickSkuValue: function (event) {
     var that = this;
     var specValueId = event.currentTarget.dataset.valueId;
@@ -143,7 +227,7 @@ Page({
     var label = event.currentTarget.dataset.label;
     // console.log(label)
     var tempSelectedProductOptions = that.data.selectedProductOptions;
-   
+    that.getOption(specNameId, specValueId);
     that.getConfigurableProAtNorm(specValueId);
     tempSelectedProductOptions[specNameId] = specValueId;
     that.displaySelectedProductNorm(tempSelectedProductOptions)

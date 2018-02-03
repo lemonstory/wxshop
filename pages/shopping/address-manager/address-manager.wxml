@@ -11,7 +11,7 @@
         <text class="mobile">123456789</text>
         <text class="address">山西省运城市灞桥区长安区</text>
       </view>
-      <image src="/static/images/go.png" style='width:14rpx;height:24rpx;display:flex;margin-left:10rpx;margin-top:30rpx;display:flex;' bindtap='handleTapEditAddress'></image>
+          <image src="/static/images/edit.png" style='width:32rpx;height:32rpx;display:flex;margin-left:10rpx;margin-top:30rpx;display:flex;'></image>
     </view>
 
       <view class="address-item">
@@ -23,7 +23,7 @@
         <text class="mobile">123456789</text>
         <text class="address">山西省运城市灞桥区长安区</text>
       </view>
-      <image src="/static/images/go.png" style='width:14rpx;height:24rpx;display:flex;margin-left:10rpx;margin-top:30rpx;display:flex;'></image>
+              <image src="/static/images/edit.png" style='width:32rpx;height:32rpx;display:flex;margin-left:10rpx;margin-top:30rpx;display:flex;'></image>
     </view>
 </view> 
 
@@ -34,5 +34,5 @@
       <image class="icon" src="http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/noAddress-26d570cefa.png"></image>
       <text class="text">收货地址在哪里</text>
     </view>  -->
-  <view class="bottom" bindtap="handleTapEditAddress">新建地址</view>
+  <view class="bottom" bindtap="handleTapEditAddress">  <image src="/static/images/add.png" style='width:16rpx;height:16rpx;display:flex;margin-right:20rpx;display:flex;'></image>新建地址</view>
 </view>

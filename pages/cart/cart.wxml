@@ -45,7 +45,7 @@
               </view>
             </view>
             <!--删除按钮  -->
-            <view data-index="{{index}}" bindtap="delItem" class="inner del"><image src='/static/images/del-address.png' style='width:40rpx;height:46rpx;display:flex'></image></view>
+            <view data-index="{{index}}" bindtap="delItem" class="inner del"><image src='/static/images/del.png' style='width:40rpx;height:46rpx;display:flex'></image></view>
           </view>
 
         </view>

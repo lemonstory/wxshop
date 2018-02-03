@@ -87,12 +87,11 @@ Page({
    * 获取用户信息
    */
   getUserInfo: function (code) {
-    console.log('sssssssssss')
     var that = this
     wx.getUserInfo({
       success: function (res) {
-        console.log(res.encryptedData)
-        console.log( res.iv)
+        // console.log(res.encryptedData)
+        // console.log( res.iv)
         that.getLoginApi(code, res.encryptedData, res.iv)
         if (this.userInfoReadyCallback) {
           this.userInfoReadyCallback(res)
@@ -111,10 +110,15 @@ Page({
   getLoginApi: function (code, encryptedData, iv) {
     console.log("🚀 🚀 🚀 getLoginApi");
     // var that = this;
-    var url = constant.constant.domain + constant.constant.path + '/V1/wxlogin/' + code + '/' + encryptedData + '/' + iv;
+    var url = constant.constant.domain + constant.constant.path + '/V1/wxlogin/';
     wx.request({
       url: url,
-      data: {},
+      data: {
+        code: code,
+        encryptedData: encryptedData,
+        iv: iv
+      },
+      method: 'POST',
       header: util.adminRequestHeader(),
       success: function (res) {
         console.log('res')

@@ -4,12 +4,13 @@
     "pages/category/category",
     "pages/cart/cart",
     "pages/categoryList/categoryList",
-    "pages/person/person",
+    "pages/usercenter/index/index",
     "pages/goodsDetail/goodsDetail",
-    "pages/shopping/new-address/new-address",
+    "pages/shopping/edit-address/edit-address",
     "pages/comment/comment",
     "pages/shopping/fill-order/fill-order",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/shopping/address-manager/address-manager"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -41,7 +42,7 @@
         "selectedIconPath": "iconimage/6.png"
       },
       {
-        "pagePath": "pages/person/person",
+        "pagePath": "pages/usercenter/index/index",
         "text": "个人",
         "iconPath": "iconimage/7.png",
         "selectedIconPath": "iconimage/8.png"

@@ -1,11 +1,11 @@
-// pages/shopping/fill-order/fill-order.js
+// pages/shopping/address-manager/address-manager.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    cartGoods: [{ list_pic_url: '/image/1.png', goods_name: '哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈', goods_desc: '恩恩恩恩', retail_price: '2000' }, { list_pic_url: '/image/1.png', goods_name: '哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈', goods_desc: '恩恩恩恩', retail_price: '2000' }],
+  
   },
 
   /**
@@ -64,9 +64,9 @@ Page({
   
   },
 
-// 点击选择地址事件：
-  handleTapSelectAddress:function(){
-    var path = "/pages/shopping/address-manager/address-manager";
+// 点击新建地址及编辑图标事件
+  handleTapEditAddress:function(){
+    var path = "/pages/shopping/edit-address/edit-address";
     wx.navigateTo({
       url: path
     })

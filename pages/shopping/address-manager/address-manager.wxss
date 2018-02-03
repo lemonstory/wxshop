@@ -1,0 +1,124 @@
+/* pages/shopping/address-manager/address-manager.wxss */
+ .container{
+  height:100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background: #fff;
+} 
+.address-box {
+  width: 100%;
+  height: 150rpx;
+  background: url('http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/address-bg-bd30f2bfeb.png') 0 0 repeat-x;
+  background-size: 62.5rpx 10.5rpx;
+  margin-bottom: 20rpx;
+  padding-top: 10.5rpx;
+}
+.address-item {
+  display: flex;
+  height: 150rpx;
+  background: #fff;
+  padding: 30rpx;
+  box-sizing: border-box;
+  border-bottom: 1rpx solid #eee;
+}
+.address-item.address-empty {
+  line-height: 75rpx;
+  text-align: center;
+}
+.address-box .left {
+  width: 125rpx;
+  height: 100%;
+}
+/*超出部分掩藏，，TODO超出部分省略号  */
+.address-box .left .name {
+  display:flex;
+  display: -webkit-flex;
+  width: 125rpx;
+  height: 43rpx;
+  line-height: 43rpx;
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 10rpx;
+  overflow: hidden;
+  }
+.address-box .left .default {
+  display: block;
+  width: 62rpx;
+  height: 33rpx;
+  border-radius: 5rpx;
+  border: 1px solid #b4282d;
+  font-size: 20.5rpx;
+  text-align: center;
+  line-height: 33rpx;
+  color: #b4282d;
+  margin-top: 5rpx;
+}
+.address-box .middle {
+  flex: 1;
+  height: 72.25rpx;
+  color: #999;
+}
+.address-box .mobile {
+  display: block;
+  height: 43rpx;
+  line-height: 43rpx;
+  margin-bottom:10rpx;
+  font-size: 28rpx;
+  color: #333;
+}
+.address-box .address {
+  display: block;
+  height: 37.5rpx;
+  line-height: 37.5rpx;
+  font-size: 25rpx;
+  color: #666;
+}
+.address-box .right {
+  width: 52rpx;
+  height: 52rpx;
+  display: flex;
+}
+.address-box .right image {
+  width: 52rpx;
+  height: 52rpx;
+  margin-top: 10rpx;
+}
+
+.empty-view{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ 
+}
+
+.empty-view .icon{
+  height: 248rpx;
+  width: 258rpx;
+  margin-bottom: 10rpx;
+  display: flex;
+  margin-top: 260rpx;
+}
+
+.empty-view .text{
+  width: auto;
+  font-size: 28rpx;
+  line-height: 35rpx;
+  color: #999;
+}
+
+.bottom{
+  width: 690rpx;
+  height:88rpx;
+  border:1rpx solid #b4282d;
+  position: fixed;
+  bottom: 30rpx;
+  left:30rpx;
+  display: flex;
+  align-items: center;
+  color:#b4282d;
+  font-size: 28rpx;
+  justify-content: center;
+}

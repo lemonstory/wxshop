@@ -215,7 +215,7 @@
   <!--页面弹出层交互结束 -->
 
 
-  <!--底部开始  -->
+<!--底部开始  -->
   <view class="bottom-btn">
     <view class="l l-collect">
       <image class="icon" src="/static/images/ic_menu_choice_nor.png"></image>

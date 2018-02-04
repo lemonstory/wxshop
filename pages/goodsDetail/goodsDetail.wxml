@@ -28,7 +28,7 @@
         <view class="comment-more" bindtap='handleTapUserComment'>查看</view>
       </view>
     </view>
-    <!-- 暂时不提供 -->
+    <!-- 暂不提供 -->
     <!-- <view class="brand">
       <view wx:for="{{brand}}" wx:key="brand">{{item.name}}</view>
     </view> -->
@@ -72,7 +72,7 @@
     <view class="comment-item">
       <view class="info">
         <view class="user">
-          <image src="/avatar/{{review.imgNum}}.jpg"></image>
+           <image src="/avatar/{{review.imgNum}}.jpg"></image> 
           <text>{{review.nickname}}</text>
         </view>
       </view>
@@ -88,8 +88,7 @@
     </view>
   </view>
   <!--用户评论结束-->
-
-  <!-- 暂时不提供 -->
+<!-- 暂时不提供 -->
   <!--导航分类开始  -->
   <!-- <view class="navhead">
     <view class="item {{ showType == 0 ? 'active' : ''}}" bindtap="handleTapswitchTab">
@@ -134,8 +133,8 @@
   <!-- 产品描述开始 -->
   <view style='box-sizing:border-box;margin-bottom:102rpx;'>
     <!-- <text></text> -->
-    <rich-text class="rich-content" nodes="{{description}}"></rich-text>
-    <!-- <rich-text class="rich-content" nodes="<p><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/1.jpg\" /><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/2.jpg\"/><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/3.jpg\" /><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/4.jpg\"/><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/5.jpg\"/><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/6.jpg\"/><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/7.jpg\"/><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/415106515186995618.jpg\"/><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/676261292891122239.jpg\"/></p>"></rich-text>  -->
+    <rich-text class="rich-content" nodes="{{description}}"></rich-text>   
+      <!-- <rich-text class="rich-content" nodes="<p><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/1.jpg\" /><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/2.jpg\"/><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/3.jpg\" /><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/4.jpg\"/><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/5.jpg\"/><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/6.jpg\"/><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/7.jpg\"/><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/415106515186995618.jpg\"/><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/676261292891122239.jpg\"/></p>"></rich-text>  -->
   </view>
   <!-- 产品描述结束 -->
 
@@ -218,7 +217,7 @@
   <!--页面弹出层交互结束 -->
 
 
-  <!--底部开始  -->
+<!--底部开始  -->
   <view class="bottom-btn">
     <view class="l l-collect">
       <image class="icon" src="/static/images/ic_menu_choice_nor.png"></image>
@@ -230,12 +229,12 @@
     </view>
     <view class="l l-cart last">
       <view class="box">
-        <!-- <text class="cart-count">{{cartGoodsCount}}</text>  -->
+         <text class="{{cartGoodsCount > 0 ? 'cart-count' : ''}}">{{cartGoodsCount > 0 ? cartGoodsCount : ''}}</text>  
         <image class="icon" src="/static/images/ic_menu_shoping_nor.png"></image>
       </view>
     </view>
-    <view class="c" bindtap="handleTapaddToCart">立即购买</view>
-    <view class="r" bindtap="handleTapaddToCart">加入购物车</view>
+    <view class="c" bindtap="handleTapaddToCart" data-param="payNow">立即购买</view>
+    <view class="r" bindtap="handleTapaddToCart" data-param="addCart">加入购物车</view>
   </view>
   <!--底部结束 -->
 </view>

@@ -28,7 +28,7 @@ var constant = {
   // 本地头像总数
   avatarNum: 31,
   // 用户token
-  userToken: 'Bearer dwmbo73om96qsbh7ynk7ou30okbutmts',
+  userToken: 'Bearer nkn38uwtvde51wiv168b8xng958fg36i',
   quote_id: 13
 }
 module.exports.constant = constant;

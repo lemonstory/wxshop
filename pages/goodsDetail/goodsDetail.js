@@ -280,7 +280,8 @@ Page({
         that.getProductParamters(productParameters)
         // console.log(description)
         that.operateProductDescription(description)
-        that.setData({ shortDescription: shortDescription,})
+        that.setData({ shortDescription: shortDescription})
+        that.getCommentSum(res.data.extension_attributes.review)
         that.setData(res.data)
       },
       fail: function (res) {
@@ -453,7 +454,23 @@ Page({
     // console.log(description);
     this.setData({ description: description})
    
+  },
+
+/**
+ * 获取评论推荐以及评论总数
+ */
+getCommentSum: function (review) {
+   var that = this
+  if (util.isEmptyStr(review.customer_id)) {
+    review.imgNum = util.getRemainder(Number(review.review_id))
+  } else {
+    review.imgNum = util.getRemainder(Number(review.customer_id))
   }
+  var temp = (Number(review.avg) * 100)
+  review.avgStr = util.toDecimal(temp)
+  console.log(review.avgStr)
+  that.setData({review: review})
+}
 })
 
 

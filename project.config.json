@@ -31,7 +31,7 @@
 					"id": 0,
 					"name": "详情页",
 					"pathName": "pages/goodsDetail/goodsDetail",
-					"query": "sku=YM01"
+					"query": "sku=24-MB02"
 				},
 				{
 					"id": 1,
@@ -43,7 +43,7 @@
 					"id": 2,
 					"name": "评价",
 					"pathName": "pages/comment/comment",
-					"query": "sku=haha001"
+					"query": "sku=24-MB02"
 				},
 				{
 					"id": -1,

@@ -72,7 +72,12 @@ Page({
         // console.log(res.data)
         for (var i = 0; i < res.data.length; i++) {
           res.data[i].ratingNum = Number(res.data[i].rating)
-          res.data[i].imgNum = util.getRandom(constant.constant.min, constant.constant.max)
+          //获取评论头像
+          if (util.isEmptyStr(res.data[i].customer_id)) {
+            res.data[i].imgNum = util.getRemainder(Number(res.data[i].review_id))
+          } else {
+            res.data[i].imgNum = util.getRemainder(Number(res.data[i].customer_id))
+          }
           res.data[i].replyNum = 0
           // 获取店主回复
           if (res.data[i].detail.indexOf('{{') > -1 && res.data[i].detail.indexOf('}}') > -1) {
@@ -108,7 +113,21 @@ Page({
             // 加入数据
             for (var i = 0; i < res.data.length; i++) {
               res.data[i].ratingNum = Number(res.data[i].rating)
-              res.data[i].imgNum = util.getRandom(constant.constant.min, constant.constant.max)
+              //获取评论头像
+              if (util.isEmptyStr(res.data[i].customer_id)) {
+                res.data[i].imgNum = util.getRemainder(Number(res.data[i].review_id))
+              } else {
+                res.data[i].imgNum = util.getRemainder(Number(res.data[i].customer_id))
+              }
+              res.data[i].replyNum = 0
+              // 获取店主回复
+              if (res.data[i].detail.indexOf('{{') > -1 && res.data[i].detail.indexOf('}}') > -1) {
+                var reply = res.data[i].detail.match((/{{(\S*)}}/))[1]
+                console.log(reply)
+                res.data[i].detail = res.data[i].detail.replace(res.data[i].detail.match((/{{(\S*)}}/))[0], '')
+                res.data[i].reply = reply
+                res.data[i].replyNum = 1
+              }
             }
             var commentTemp = that.data.comment;
             Array.prototype.push.apply(commentTemp, res.data);

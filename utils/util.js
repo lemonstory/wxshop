@@ -305,6 +305,26 @@ function getRandom (min,max) {
   var temp = max - min + 1;
   return Math.floor(Math.random() * temp + min);
 }
+
+/**
+ * 取余
+ */
+function getRemainder (num) {
+  var result = num % (constant.constant.avatarNum)
+  return result
+}
+
+/**
+ * 四舍五入小数
+ */
+function toDecimal(num) {
+  var result = parseFloat(num);
+  if (isNaN(result)) {
+    return;
+  }
+  result = Math.round(num * 100) / 100;
+  return result;
+}  
 module.exports = {
   formatTime: formatTime,
   isMobile: isMobile,
@@ -325,5 +345,7 @@ module.exports = {
   getAttributes, // 根据属性id获取属性信息
   isMin,  // 判断可配置商品价格大小
   getProParamsInfo,  // 获取商品参数信息
-  getRandom  // 获取随机数
+  getRandom,  // 获取随机数
+  getRemainder,  // 取余
+  toDecimal // 四舍五入小数
 }

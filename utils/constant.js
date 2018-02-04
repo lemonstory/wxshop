@@ -25,6 +25,8 @@ var constant = {
   min: 1,
   // 转换字符
   class: 'class="rich-img"',
+  // 本地头像总数
+  avatarNum: 31,
   // 用户token
   userToken: 'Bearer dwmbo73om96qsbh7ynk7ou30okbutmts',
   quote_id: 13

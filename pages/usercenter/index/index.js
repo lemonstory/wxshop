@@ -7,14 +7,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    /** 头像 */
+    imgNum: 0,
+    name: '未登录',
+    level: '点击登录账号'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.login()
+    // this.login()
+    if (util.isEmptyStr(util.getToken(constant.constant.userTokenKey))) {
+      console.log('未登录')
+    } else {
+      console.log('已登录')
+    }
   },
 
   /**
@@ -67,67 +75,12 @@ Page({
   },
 
   /**
-   * 用户登录
+   * 点击账号登陆
    */
-  login: function () {
-    var that = this
-    wx.login({
-      success: res => {
-        console.log(res)
-        that.getUserInfo(res.code)
-      },
-      fail: function (res) {
-        console.error('调取微信登陆错误')
-        console.error(res)
-      }
-    })
-  },
-
-  /**
-   * 获取用户信息
-   */
-  getUserInfo: function (code) {
-    var that = this
-    wx.getUserInfo({
-      success: function (res) {
-        // console.log(res.encryptedData)
-        // console.log( res.iv)
-        that.getLoginApi(code, res.encryptedData, res.iv)
-        if (this.userInfoReadyCallback) {
-          this.userInfoReadyCallback(res)
-        }
-      },
-      fail: function (res) {
-        console.error('获取用户信息失败')
-        console.error(res)
-      }
-    })
-  },
-
-  /**
-   * 调取后台登陆接口
-   */
-  getLoginApi: function (code, encryptedData, iv) {
-    console.log("🚀 🚀 🚀 getLoginApi");
-    // var that = this;
-    var url = constant.constant.domain + constant.constant.path + '/V1/wxlogin/';
-    wx.request({
-      url: url,
-      data: {
-        code: code,
-        encryptedData: encryptedData,
-        iv: iv
-      },
-      method: 'POST',
-      header: util.adminRequestHeader(),
-      success: function (res) {
-        console.log('res')
-        console.log(res)
-      },
-      fail: function (res) {
-        console.error('🚀 🚀 🚀 个人页调取getLoginApi错误')
-        console.error(res)
-      }
+  handleTapUserLogin: function () {
+    var path = "/pages/auth/login";
+    wx.navigateTo({
+      url: path
     })
   }
 })

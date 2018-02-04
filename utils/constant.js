@@ -7,7 +7,7 @@ var constant = {
   "username": "admin",
   "password": "xnm2015,",
   // adminToken-->key
-  "adminTokenKey":'adminTokenKey',
+  adminTokenKey:'adminTokenKey',
   // 图片请求路径
   "requestPath": "https://shop.xiaoningmeng.net/media/catalog/product/cache/926507dc7f93631a094422215b778fe0",
   // 请求pageSize
@@ -27,6 +27,7 @@ var constant = {
   class: 'class="rich-img"',
   // 本地头像总数
   avatarNum: 31,
+  userTokenKey: 'userTokenKey',
   // 用户token
   userToken: 'Bearer nkn38uwtvde51wiv168b8xng958fg36i',
   quote_id: 13

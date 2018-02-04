@@ -36,7 +36,7 @@ Page(Object.assign({}, Toast, {
   },
 
   onLoad: function () {
-    if (util.getAdminToken() === '') {
+    if (util.getToken(constant.constant.adminTokenKey) === '') {
       this.getAdminToken()
     } else {
       this.getHomePopData()
@@ -135,7 +135,7 @@ Page(Object.assign({}, Toast, {
         that.getHomePopData()
         that.getHomeNewData()
         if (!util.isEmptyStr(res.data)) {
-          util.setAdminToken(res.data)
+          util.setToken(constant.constant.adminTokenKey, res.data)
         }
       },
       fail: function (res) {

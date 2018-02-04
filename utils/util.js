@@ -194,16 +194,16 @@ function isValidID(ID) {
 };
 
 /**
- * 设置adminToken本地缓存
+ * 设置Token本地缓存
  */
-function setAdminToken(adminToken) {
+function setToken(key,adminToken) {
 
   //写入本地存储
   wx.setStorage({
-    key: constant.constant.adminTokenKey,
+    key: key,
     data: adminToken,
     fail: function (res) {
-      console.warn("setAdminToken Fail");
+      console.warn("setToken Fail");
       console.warn(res)
     },
     success: function (res) {
@@ -213,13 +213,13 @@ function setAdminToken(adminToken) {
 }
 
 /**
- * 获取adminToken
+ * 获取Token
  */
-function getAdminToken() {
+function getToken(key) {
   // var adminToken = ''
-  var adminToken = wx.getStorageSync(constant.constant.adminTokenKey)
+  var Token = wx.getStorageSync(key)
   // console.log('请求成功')
-  return adminToken;
+  return Token;
 }
 /**
  * 设置请求头-->admin
@@ -229,7 +229,8 @@ function adminRequestHeader(token) {
   var adminToken = '';
   if (isEmptyStr(token)) {
     //同步获取adminToken
-    adminToken = getAdminToken();
+    // console.log(constant.constant.adminTokenKey)
+    adminToken = getToken(constant.constant.adminTokenKey);
   }else{
     adminToken = token;
   }
@@ -338,8 +339,8 @@ module.exports = {
   getCanlenderData: getCanlenderData,
   isEmptyStr: isEmptyStr,
   isValidID: isValidID,
-  setAdminToken: setAdminToken, // 设置缓存AdminToken
-  getAdminToken: getAdminToken, // 获取缓存
+  setToken: setToken, // 设置缓存AdminToken
+  getToken: getToken, // 获取缓存
   adminRequestHeader: adminRequestHeader, // 请求头
   isNeed, // 判断数组某项是否为所需
   getAttributes, // 根据属性id获取属性信息

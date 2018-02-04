@@ -1,10 +1,10 @@
 <!--pages/person/person.wxml-->
 <view class="container">
   <view class="profile-info">
-    <image class="avatar" src="/avatar/17.jpg"></image>
+    <image class="avatar" src="/avatar/{{imgNum}}.jpg"></image>
     <view class="info">
-      <text class="name">默写这幸福</text>
-      <text class="level">普通用户</text>
+      <text class="name">{{name}}</text>
+      <text class="level" bindtap='handleTapUserLogin'>{{level}}</text>
     </view>
   </view>
 

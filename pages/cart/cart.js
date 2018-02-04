@@ -1,4 +1,6 @@
 var app = getApp();
+var util = require('../../utils/util.js')
+var constant = require('../../utils/constant.js')
 Page({
   data: {
     number: 1,
@@ -20,6 +22,11 @@ Page({
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
+    if (util.isEmptyStr(util.getToken(constant.constant.userTokenKey))) {
+      console.log('未登录')
+    } else {
+      console.log('已登录')
+    }
   },
   onReady: function () {
     // 页面渲染完成

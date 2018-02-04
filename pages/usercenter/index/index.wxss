@@ -18,7 +18,6 @@
     background:#333;
     box-sizing: border-box;
 }
-
 .profile-info .avatar{
     height: 148rpx;
     width: 148rpx;

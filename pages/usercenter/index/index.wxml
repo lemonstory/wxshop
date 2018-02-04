@@ -9,7 +9,7 @@
   </view>
 
   <view class="user-menu" style='margin-top:20rpx;'>
-    <navigator url="/pages/ucenter/order/order">
+    <navigator url="/pages/usercenter/order/order">
       <view class="item">
         <view style='display:flex'>
           <image src="/static/images/order.png" style='width:30rpx;height:30rpx;display:flex;margin-right:10rpx;'></image>

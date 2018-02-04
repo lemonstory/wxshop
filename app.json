@@ -12,7 +12,9 @@
     "pages/search/search",
     "pages/shopping/address-manager/address-manager",
     "pages/search-detail/search-detail",
-    "pages/auth/login"
+    "pages/auth/login",
+    "pages/usercenter/order/order",
+    "pages/usercenter/order-detail/order-detail"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -8,7 +8,7 @@ Page({
     delBtnWidth:80,
     //cartGoods购物车中的商品列表
     cartGoods: [{ list_pic_url: '../../image/1.png', goods_name: '哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈', goods_desc: '恩恩恩恩', retail_price: '2000' }, { list_pic_url: '../../image/1.png', goods_name: '哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈', goods_desc: '恩恩恩恩', retail_price: '2000' }],
-    cartTotal: {
+    cartTotal: { 
       "goodsCount": 0,
       "goodsAmount": 0.00,
       // checkedGoodsCount 购物车中全选数量
@@ -22,17 +22,17 @@ Page({
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
-    if (util.isEmptyStr(util.getToken(constant.constant.userTokenKey))) {
-      console.log('未登录')
-    } else {
-      console.log('已登录')
-    }
   },
   onReady: function () {
     // 页面渲染完成
   },
   onShow: function () {
     // 页面显示
+    if (util.isEmptyStr(util.getToken(constant.constant.userTokenKey))) {
+      console.log('未登录')
+    } else {
+      console.log('已登录')
+    }
   },
   onHide: function () {
     // 页面隐藏

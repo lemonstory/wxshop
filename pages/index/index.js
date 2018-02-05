@@ -8,9 +8,9 @@ var constant = require('../../utils/constant.js')
 Page(Object.assign({}, Toast, {
   data: {
     banner: [
-      { image: '../../image/1.png' },
-      { image: '../../image/1.png' },
-      { image: '../../image/1.png' }
+      { image: '../../image/2.png' },
+      { image: '../../image/3.png' },
+      // { image: '../../image/1.png' }
     ],
     recommendImg: "../../image/1.png",
     sectionTitle: [{ title: '人气推荐' }, { title: '新品推荐' }],

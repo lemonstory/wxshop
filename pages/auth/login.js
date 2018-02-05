@@ -79,13 +79,44 @@ Page({
     var that = this;
     that.setData({
       showView: false
+    });
+    // 返回上一层
+    wx.navigateBack({
+      delta: 1
     })
   },
-
+  /**
+   * 点击确认之后触发事件
+   */
+  handleTapConfirm: function () {
+    var that = this
+    if (wx.openSetting) {
+      wx.openSetting({
+        success: function (res) {
+          // console.log('调取设置授权')
+          // console.log(res);
+          if (res.authSetting['scope.userInfo']) {
+            that.setData({
+              showView: false
+            })
+            that.handleTapWXlogin()
+          } else {
+            that.handleTapCancleAuth()
+          }
+        },
+        fail: function (res) {
+          console.error('调取设置授权错误')
+          console.error(res)
+        }
+      })
+    } else {
+      console.log('不支持 wx.openSetting');
+    } 
+  },
 /**
  * 用户授权登陆
  */
-  login: function () {
+  handleTapWXlogin: function () {
     var that = this
     wx.login({
       success: res => {
@@ -100,7 +131,7 @@ Page({
   },
 
   /**
-   * 获取用户信息
+   * 微信获取用户信息
    */
   getUserInfo: function (code) {
     var that = this
@@ -114,8 +145,9 @@ Page({
         }
       },
       fail: function (res) {
-        console.error('获取用户信息失败')
-        console.error(res)
+        console.log('微信获取用户信息失败')
+        console.log(res)
+        that.handleTapCancleAuth()
       }
     })
   },
@@ -125,7 +157,7 @@ Page({
    */
   getLoginApi: function (code, encryptedData, iv) {
     console.log("🚀 🚀 🚀 getLoginApi");
-    // var that = this;
+    var that = this;
     var url = constant.constant.domain + constant.constant.path + '/V1/wxlogin/';
     wx.request({
       url: url,
@@ -139,7 +171,9 @@ Page({
       success: function (res) {
         if (res.statusCode === 200) {
           util.setToken(constant.constant.userTokenKey,res.data)
-        }
+          that.getUserCartInfo(res.data)
+          that.getCustomerInfo(res.data)        
+          }
       },
       fail: function (res) {
         console.error('🚀 🚀 🚀 登陆页调取getLoginApi错误')
@@ -147,10 +181,36 @@ Page({
       }
     })
   },
+
   /**
-   * 获取当前用户购物车信息
+   * 后台获取客户信息
+   */
+  getCustomerInfo: function (token) {
+    var that = this
+    var url = constant.constant.domain + constant.constant.path + '/V1/customers/me';
+    wx.request({
+      url: url,
+      data: {},
+      header: {
+        'content-type': 'application/json', // 默认值
+        'Authorization': 'Bearer ' + token
+      },
+      success: function (res) {
+        if (res.statusCode === 200) {
+          util.setToken(constant.constant.userInfoKey, res.data)
+          that.handleTapCancel()
+        }
+      },
+      fail: function (res) {
+        console.error('🚀 🚀 🚀 后台获取客户信息成功错误')
+      }
+    }) 
+  },
+  /**
+   * 获取当前用户购物车信息  //TODO  404
    */
   getUserCartInfo: function (userToken) {
+    console.log(userToken)
     var that = this
     var url = constant.constant.domain + constant.constant.path + '/V1/carts/mine';
     wx.request({
@@ -158,16 +218,18 @@ Page({
       data: {},
       header: {
         'content-type': 'application/json', // 默认值
-        'Authorization': constant.constant.userToken
+        'Authorization': 'Bearer ' + userToken
       },
       success: function (res) {
+        console.log('获取购物车信息')
+        console.log(res)
         if (res.statusCode === 200) {
-          that.data.cartGoodsCount = Number(res.data.items_qty)
-          that.setData({ cartGoodsCount: that.data.cartGoodsCount })
+          var quote_id = Number(res.data.items_qty)
+          util.setToken(constant.constant.quote_id, quote_id)
         }
       },
       fail: function (res) {
-        console.error('🚀 🚀 🚀 获取当前用户购物车信息错误')
+        console.error('🚀 🚀 🚀 获取购物车信息错误')
       }
     })
   }

@@ -10,19 +10,24 @@ Page({
     /** 头像 */
     imgNum: 0,
     name: '未登录',
-    level: '点击登录账号'
+    level: '点击登录账号',
+    /** 是否跳转登录 */
+    isJumpToLogin: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // this.login()
-    if (util.isEmptyStr(util.getToken(constant.constant.userTokenKey))) {
-      console.log('未登录')
-    } else {
-      console.log('已登录')
-    }
+    // console.log('sdasdasdasd')
+    // // this.login()
+    // if (util.isEmptyStr(util.getToken(constant.constant.userTokenKey))) {
+    //   console.log('未登录')
+    //   this.setData({ isJumpToLogin: true})
+    // } else {
+    //   this.setData({ isJumpToLogin: false })
+    //   console.log('已登录')
+    // }
   },
 
   /**
@@ -36,7 +41,18 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    if (util.isEmptyStr(util.getToken(constant.constant.userTokenKey))) {
+      // console.log('未登录')
+      this.setData({ isJumpToLogin: true })
+    } else {
+      if (!util.isEmptyStr(util.getToken(constant.constant.userInfoKey))) {
+        var name = util.getToken(constant.constant.userInfoKey).firstname
+        var level = constant.constant.level
+        this.setData({ isJumpToLogin: false, name: name, level: level })
+      } else {
+        this.setData({ isJumpToLogin: true })
+      }
+    }
   },
 
   /**

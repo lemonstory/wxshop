@@ -3,7 +3,7 @@
   <view class="logo">
     <image src="/image/logo.png" style='width:320rpx;height:120rpx;'></image>
   </view>
-  <view class="wlogin" bindtap='handleTapCancleAuth'>微信登录</view>
+  <view class="wlogin" bindtap='handleTapWXlogin'>微信登录</view>
   <!-- <view class="elogin">邮箱登录</view> -->
 </view>
 
@@ -14,6 +14,6 @@
   <view class="hidden-text2">小程序需要您的授权才</view>
   <view class="hidden-text3">能正常使用</view>
   <view class="cancel" bindtap='handleTapCancel'>取消</view>
-  <view class="sure">确定</view>
+  <view class="sure" bindtap='handleTapConfirm'>确定</view>
 </view>
 <!--弹出信息的展示结束-->

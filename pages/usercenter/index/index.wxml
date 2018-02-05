@@ -1,10 +1,11 @@
 <!--pages/person/person.wxml-->
 <view class="container">
-  <view class="profile-info">
+<!-- {{ isShowBottomPopup ? 'zan-popup--show' : ''}} -->
+  <view class="profile-info"  bindtap="{{isJumpToLogin ? 'handleTapUserLogin' : ''}}">
     <image class="avatar" src="/avatar/{{imgNum}}.jpg"></image>
     <view class="info">
       <text class="name">{{name}}</text>
-      <text class="level" bindtap='handleTapUserLogin'>{{level}}</text>
+      <text class="level">{{level}}</text>
     </view>
   </view>
 

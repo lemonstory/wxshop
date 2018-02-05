@@ -14,7 +14,7 @@
       <text>去添加点什么吧</text>
     </view>
   </view>
-  
+
   <!-- 跳转登录开始 -->
   <view wx:if='{{isJumpToLogin}}'>
     <button bindtap="handleTapUserLogin">点击登录</button>
@@ -22,7 +22,7 @@
   <!-- 跳转登录结束 -->
 
   <!--购物车中有商品时,显示此页面 -->
-  <view class="cart-view" wx:if="{{cartGoods.length > 0 && !isJumpToLogin}}">
+  <view class="cart-view" wx:if="{{cartGoods.length > 0 && !isJumpToLogin}}" style="margin-bottom:200rpx;">
     <view class="list">
       <view class="group-item">
         <view class="goods">
@@ -59,10 +59,27 @@
         </view>
       </view>
     </view>
-    <view class="cart-bottom">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     <view class="cart-bottom">
       <view class="checkbox {{checkedAllStatus ? 'checked' : ''}}" bindtap="handleTapcheckedAll">全选({{cartTotal.checkedGoodsCount}})</view>
       <view class="total">{{'￥'+cartTotal.checkedGoodsAmount}}</view>
       <view class="checkout {{checkedAllStatus? 'selected':''}}" bindtap="handleTapcheckoutOrder">下单</view>
     </view>
   </view>
+
 </view>

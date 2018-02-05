@@ -67,8 +67,8 @@ box-sizing: border-box;
 align-items: center;
 }
 .user-menu .txt{
-   font-size: 24rpx;
-    color:#333;
+   font-size: 30rpx;
+    color:#666;
     display: flex;
 }
 

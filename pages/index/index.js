@@ -227,5 +227,7 @@ Page(Object.assign({}, Toast, {
         console.error('🚀 🚀 🚀 首页获取可配置商品children错误')
       }
     })
-  }
+  },
+
+
 }));

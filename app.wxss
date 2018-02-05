@@ -15,8 +15,7 @@
 }
 
 .page__ft {
-  padding-top: 10px;
-  padding-bottom: 40px;
+ padding-bottom: 43rpx;
   text-align: center;
 }
 .title {

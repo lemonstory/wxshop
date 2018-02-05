@@ -588,6 +588,7 @@ icon {
 }
 .weui-footer__links {
   font-size: 0;
+ 
 }
 .weui-footer__link {
   display: inline-block;

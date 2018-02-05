@@ -70,9 +70,10 @@
     </view> 
 
  <view class="cart-bottom">
-      <view class="checkbox {{checkedAllStatus ? 'checked' : ''}}" bindtap="handleTapcheckedAll">全选({{cartTotal.checkedGoodsCount}})</view>
-      <view class="total">{{'￥'+cartTotal.checkedGoodsAmount}}</view>
-      <view class="checkout {{isCheckedNum > 0 ? 'selected':''}}" bindtap="handleTapcheckoutOrder">下单</view>
+      <view class="checkbox {{checkedAllStatus ? 'checked' : ''}}" bindtap="handleTapcheckedAll" wx:if='{{isCheckedNum===0}}'>全选</view>
+      <view class="checkbox {{checkedAllStatus ? 'checked' : ''}}" bindtap="handleTapcheckedAll" wx:else>已选 ({{isCheckedNum}})</view>
+      <view class="total">{{'￥'+price}}</view>
+      <view class="checkout {{isCheckedNum > 0 ? 'selected':''}}" bindtap="handleTapcheckoutOrder">下 单</view>
     </view>
   </view> 
 

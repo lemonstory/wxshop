@@ -46,7 +46,7 @@
                     {{item.name}}
                   </view>
                   <view class="desc">
-                    {{item.sku}}
+                    {{item.description}}
                   </view>
                   <view class="b">
                     <text class="price">￥{{item.price}}</text>

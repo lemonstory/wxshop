@@ -336,6 +336,22 @@ Page({
           for (var i = 0; i < res.data.items.length; i++) {
             res.data.items[i].checked = true
             price = price + Number(res.data.items[i].qty) * Number(res.data.items[i].price)
+            var description = ''
+            if (res.data.items[i].product_type === 'configurable') {
+              // console.log(JSON.parse(res.data.items[i].extension_attributes.options[0]))
+              for (var j = 0; j < res.data.items[i].extension_attributes.options.length; j++) {
+                if (util.isEmptyStr(res.data.items[i].extension_attributes.options[i+1])) {
+                  description = description + JSON.parse(res.data.items[i].extension_attributes.options[j]).option_label
+                } else {
+                  if (util.isEmptyStr(description)) {
+                    description = description + JSON.parse(res.data.items[i].extension_attributes.options[j]).option_label
+                  } else {
+                    description = description + ' ; ' + JSON.parse(res.data.items[i].extension_attributes.options[j]).option_label
+                  }
+                }
+              }
+            }
+            res.data.items[i].description = description
           }
           // 获取用户购物车列表
           that.setData({ cartGoods: res.data.items, isCheckedNum: res.data.items.length, price: price})

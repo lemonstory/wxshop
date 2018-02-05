@@ -27,7 +27,6 @@ Page({
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
-    this.loadingTap()
   },
   onReady: function () {
     // 页面渲染完成
@@ -39,6 +38,7 @@ Page({
       this.setData({ isJumpToLogin: true })
     } else {
       this.setData({ isJumpToLogin: false })
+      this.loadingTap()
       console.log('已登录')
       this.getUserCartInfo(util.getToken(constant.constant.userTokenKey))
     }

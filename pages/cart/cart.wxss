@@ -1,7 +1,7 @@
 .container {
   width: 100%;
-  overflow: hidden;
-  height: 100vh;
+  background: #fff; 
+  height: auto;
   display: flex;
   justify-content: flex-start;
 }
@@ -14,6 +14,7 @@
   align-items: center;
   box-sizing: border-box;
   justify-content: space-between;
+  background: #FAFAFA;
 }
 .cicle {
   width: 10rpx;

@@ -65,18 +65,30 @@
   <view class="comments">
     <view class="head" bindtap='handleTapUserComment'>
       <view class="comments-title">用户评价({{review.total > 999 ? '999+' : review.total}})</view>
-      <view class="good-comment">{{review.avgStr}}%  好评
+      <view class="good-comment">{{review.avgStr}}% 好评
         <image class="img" src="../../static/images/address_right.png" background-size="cover"></image>
       </view>
     </view>
     <view class="comment-item">
       <view class="info">
         <view class="user">
-           <image src="/avatar/{{review.imgNum}}.jpg"></image> 
+          <image src="/avatar/{{review.imgNum}}.jpg"></image>
           <text>{{review.nickname}}</text>
         </view>
       </view>
-      <view class="time">{{review.created_at}}</view>
+
+      <view style='display:flex;align-items: center;'>
+        <view class="time">{{review.created_at}}</view>
+        <view style='margin-left:10rpx'>
+          <!--TODO 字符串转换为数字 -->
+          <block wx:for="{{review.rating}}" wx:key="item">
+            <image src='http://image.365zhiding.com/wxapp/20171219/start1.png' style="width:20rpx;height:20rpx;margin-left:10rpx;"></image>
+          </block>
+          <block wx:for="{{5-review.rating}}" wx:key="item">
+            <image src='http://image.365zhiding.com/wxapp/20171219/start2.png' style="width:20rpx;height:20rpx;margin-left:10rpx;"></image>
+          </block>
+        </view>
+      </view>
       <view class="content">
         {{review.detail}}
       </view>
@@ -88,7 +100,7 @@
     </view>
   </view>
   <!--用户评论结束-->
-<!-- 暂时不提供 -->
+  <!-- 暂时不提供 -->
   <!--导航分类开始  -->
   <!-- <view class="navhead">
     <view class="item {{ showType == 0 ? 'active' : ''}}" bindtap="handleTapswitchTab">
@@ -133,8 +145,8 @@
   <!-- 产品描述开始 -->
   <view style='box-sizing:border-box;margin-bottom:102rpx;'>
     <!-- <text></text> -->
-    <rich-text class="rich-content" nodes="{{description}}"></rich-text>   
-      <!-- <rich-text class="rich-content" nodes="<p><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/1.jpg\" /><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/2.jpg\"/><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/3.jpg\" /><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/4.jpg\"/><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/5.jpg\"/><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/6.jpg\"/><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/7.jpg\"/><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/415106515186995618.jpg\"/><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/676261292891122239.jpg\"/></p>"></rich-text>  -->
+    <rich-text class="rich-content" nodes="{{description}}"></rich-text>
+    <!-- <rich-text class="rich-content" nodes="<p><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/1.jpg\" /><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/2.jpg\"/><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/3.jpg\" /><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/4.jpg\"/><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/5.jpg\"/><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/6.jpg\"/><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/7.jpg\"/><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/415106515186995618.jpg\"/><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/676261292891122239.jpg\"/></p>"></rich-text>  -->
   </view>
   <!-- 产品描述结束 -->
 
@@ -217,7 +229,7 @@
   <!--页面弹出层交互结束 -->
 
 
-<!--底部开始  -->
+  <!--底部开始  -->
   <view class="bottom-btn">
     <view class="l l-collect">
       <image class="icon" src="/static/images/ic_menu_choice_nor.png"></image>
@@ -229,7 +241,7 @@
     </view>
     <view class="l l-cart last">
       <view class="box">
-         <text class="{{cartGoodsCount > 0 ? 'cart-count' : ''}}">{{cartGoodsCount > 0 ? cartGoodsCount : ''}}</text>  
+        <text class="{{cartGoodsCount > 0 ? 'cart-count' : ''}}">{{cartGoodsCount > 0 ? cartGoodsCount : ''}}</text>
         <image class="icon" src="/static/images/ic_menu_shoping_nor.png"></image>
       </view>
     </view>

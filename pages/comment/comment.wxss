@@ -71,7 +71,9 @@
 .comments .user {
   width: auto;
   height: 67rpx;
-  line-height: 67rpx;
+  display: flex;
+  align-items: center;
+
 }
 
 .comments .user image {
@@ -82,13 +84,9 @@
 }
 
 .comments .user text {
-  display: inline-block;
   width: auto;
-  height: 66rpx;
-  overflow: hidden;
   font-size: 29rpx;
-  line-height: 66rpx;
-}
+ }
 
 .comments .time {
   display: flex;
@@ -97,6 +95,7 @@
   line-height: 67rpx;
   color: #7f7f7f;
   font-size: 25rpx;
+ 
 }
 
 .comments .content {

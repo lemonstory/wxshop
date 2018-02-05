@@ -13,7 +13,7 @@
     <navigator url="/pages/usercenter/order/order">
       <view class="item">
         <view style='display:flex'>
-          <image src="/static/images/order.png" style='width:30rpx;height:30rpx;display:flex;margin-right:10rpx;'></image>
+          <image src="/static/images/order.png" style='width:38rpx;height:38rpx;display:flex;margin-right:20rpx;' mode='aspectFit'></image>
           <view class="txt">我的订单 </view>
         </view>
         <view>
@@ -25,7 +25,7 @@
      
       <view class="item">
         <view style='display:flex'>
-          <image src="/static/images/tuihuo.png" style='width:30rpx;height:30rpx;display:flex;margin-right:10rpx;'></image>
+          <image src="/static/images/tuihuo.png" style='width:38rpx;height:38rpx;display:flex;margin-right:20rpx;' mode='aspectFit'></image>
           <view class="txt">退货/售后 </view>
         </view>
         <view>
@@ -37,7 +37,7 @@
  
       <view class="item">
         <view style='display:flex'>
-          <image src="/static/images/youhui.png" style='width:30rpx;height:30rpx;display:flex;margin-right:10rpx;'></image>
+          <image src="/static/images/youhui.png" style='width:38rpx;height:38rpx;display:flex;margin-right:20rpx;' mode='aspectFit'></image>
           <view class="txt">优惠劵 </view>
         </view>
         <view>
@@ -48,7 +48,7 @@
 
       <view class="item">
         <view style='display:flex'>
-          <image src="/static/images/address.png" style='width:30rpx;height:30rpx;display:flex;margin-right:10rpx;'></image>
+          <image src="/static/images/address.png" style='width:38rpx;height:38rpx;display:flex;margin-right:20rpx;' mode="aspectFit"></image>
           <view class="txt">地址管理 </view>
         </view>
         <view>
@@ -58,7 +58,7 @@
 
       <view class="item" style='border-bottom:none'>
         <view style='display:flex'>
-          <image src="/static/images/kefu.png" style='width:30rpx;height:30rpx;display:flex;margin-right:10rpx;'></image>
+          <image src="/static/images/kefu.png" style='width:38rpx;height:38rpx;display:flex;margin-right:20rpx;' mode="aspectFit"></image>
           <view class="txt">联系客服 </view>
         </view>
         <view>

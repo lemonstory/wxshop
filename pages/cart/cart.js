@@ -69,6 +69,7 @@ Page({
     for (var i = 0; i < that.data.cartGoods.length; i++) {
       if (event.currentTarget.dataset.item_id === that.data.cartGoods[i].item_id) {
         that.data.cartGoods[i].qty = number
+        that.exitCartGoodsCount(that.data.cartGoods[i], util.getToken(constant.constant.userTokenKey))
       }
       if (that.data.cartGoods[i].checked) {
         price = price + Number(that.data.cartGoods[i].qty) * Number(that.data.cartGoods[i].price)
@@ -84,6 +85,7 @@ Page({
       if (event.currentTarget.dataset.item_id === that.data.cartGoods[i].item_id) {
         var temp = ((that.data.cartGoods[i].qty - 1 > 1) ? (that.data.cartGoods[i].qty - 1) : 1)
         that.data.cartGoods[i].qty = temp
+        that.exitCartGoodsCount(that.data.cartGoods[i], util.getToken(constant.constant.userTokenKey))
       }
       if (that.data.cartGoods[i].checked) {
         price = price + Number(that.data.cartGoods[i].qty) * Number(that.data.cartGoods[i].price)
@@ -98,6 +100,7 @@ Page({
       if (event.currentTarget.dataset.item_id === that.data.cartGoods[i].item_id) {
         var temp = that.data.cartGoods[i].qty + 1
         that.data.cartGoods[i].qty = temp
+        that.exitCartGoodsCount(that.data.cartGoods[i], util.getToken(constant.constant.userTokenKey))
       }
       if (that.data.cartGoods[i].checked) {
         price = price + Number(that.data.cartGoods[i].qty) * Number(that.data.cartGoods[i].price)
@@ -365,6 +368,43 @@ Page({
       },
       fail: function (res) {
         console.error('🚀 🚀 🚀 获取购物车信息错误')
+      }
+    })
+  },
+
+  /**
+   * 修改购物车商品数量
+   */
+  exitCartGoodsCount: function (item,token) {
+    var that = this
+    // 测试token
+    token = constant.constant.userToken
+    var Body = {
+      cartItem: {
+        item_id: item.item_id,
+        qty: item.qty,
+        name: item.name,
+        product_type: item.product_type,
+        quote_id: item.quote_id
+      }
+    }
+    var url = constant.constant.domain + constant.constant.path + '/V1/carts/mine/items';
+    wx.request({
+      url: url,
+      data: Body,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json', // 默认值
+        'Authorization': 'Bearer ' + token
+      },
+      success: function (res) {
+        if (res.statusCode === 200) {
+          console.log('修改购物车商品数量正确')
+        }
+      },
+      fail: function (res) {
+        console.error('🚀 🚀 🚀 修改购物车商品数量错误')
+        console.error(res)
       }
     })
   }

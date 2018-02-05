@@ -31,7 +31,8 @@ var constant = {
   userInfoKey: 'userInfoKey',
   level: '普通用户',
   // 用户token
-  userToken: 'Bearer nkn38uwtvde51wiv168b8xng958fg36i',
-  quote_id: 'quote_id'
+  userToken: '8y8enng647e99v7ysevy1mj9pfr0bc2v',
+  quote_id: 'quote_id', // 购物车id
+  qty: 'qty'   // 购物车商品数量
 }
 module.exports.constant = constant;

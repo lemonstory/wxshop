@@ -5,10 +5,10 @@ Page({
   data: {
     number: 1,
     checkedAllStatus: false,
-    delBtnWidth:80,
+    delBtnWidth: 80,
     //cartGoods购物车中的商品列表
     cartGoods: [{ list_pic_url: '../../image/1.png', goods_name: '哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈', goods_desc: '恩恩恩恩', retail_price: '2000' }, { list_pic_url: '../../image/1.png', goods_name: '哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈', goods_desc: '恩恩恩恩', retail_price: '2000' }],
-    cartTotal: { 
+    cartTotal: {
       "goodsCount": 0,
       "goodsAmount": 0.00,
       // checkedGoodsCount 购物车中全选数量
@@ -18,6 +18,8 @@ Page({
     },
 
     checkedAllStatus: false,
+    /** 是否跳转登录 */
+    isJumpToLogin: false
 
   },
   onLoad: function (options) {
@@ -30,8 +32,11 @@ Page({
     // 页面显示
     if (util.isEmptyStr(util.getToken(constant.constant.userTokenKey))) {
       console.log('未登录')
+      this.setData({ isJumpToLogin: true })
     } else {
+      this.setData({ isJumpToLogin: false })
       console.log('已登录')
+      this.getUserCartInfo(util.getToken(constant.constant.userTokenKey))
     }
   },
   onHide: function () {
@@ -83,8 +88,8 @@ Page({
     })
   },
 
-// 左滑删除触发事件
-touchS: function (e) {
+  // 左滑删除触发事件
+  touchS: function (e) {
     if (e.touches.length == 1) {
       this.setData({
         //设置触摸起始点水平方向位置
@@ -93,7 +98,7 @@ touchS: function (e) {
     }
   },
 
-touchM: function (e) {
+  touchM: function (e) {
     if (e.touches.length == 1) {
       //手指移动时水平方向位置
       var moveX = e.touches[0].clientX;
@@ -121,7 +126,7 @@ touchM: function (e) {
     }
   },
 
-touchE: function (e) {
+  touchE: function (e) {
     if (e.changedTouches.length == 1) {
       //手指移动结束后水平位置
       var endX = e.changedTouches[0].clientX;
@@ -132,21 +137,21 @@ touchE: function (e) {
       var txtStyle = disX > delBtnWidth / 2 ? "left:-" + delBtnWidth + "px" : "left:0px";
       //获取手指触摸的是哪一项
       var index = e.currentTarget.dataset.index;
-      
-      
+
+
       // cartGoods为测试数据列表  TODO
       var list = this.data.cartGoods;
       list[index].txtStyle = txtStyle;
       //更新列表的状态
-     
+
       this.setData({
-       
+
         // cartGoods为测试数据列表  TODO
         'cartGoods': list
       });
     }
   },
-//获取元素自适应后的实际宽度
+  //获取元素自适应后的实际宽度
   getEleWidth: function (w) {
     var real = 0;
     try {
@@ -160,7 +165,7 @@ touchE: function (e) {
       // Do something when catch error
     }
   },
-initEleWidth: function () {
+  initEleWidth: function () {
     var delBtnWidth = this.getEleWidth(this.data.delBtnWidth);
     this.setData({
       delBtnWidth: delBtnWidth
@@ -171,6 +176,47 @@ initEleWidth: function () {
   delItem: function (e) {
     //获取列表中要删除项的下标
     var index = e.target.dataset.index;
- }
+  },
 
+  /**
+    * 点击账号登陆
+    */
+  handleTapUserLogin: function () {
+    var path = "/pages/auth/login";
+    wx.navigateTo({
+      url: path
+    })
+  },
+
+  /**
+   * 查询购物车信息
+   */
+  getUserCartInfo: function (token) {
+    // 测试token
+    token = constant.constant.userToken
+    var that = this
+    var url = constant.constant.domain + constant.constant.path + '/V1/carts/mine';
+    wx.request({
+      url: url,
+      data: {},
+      header: {
+        'content-type': 'application/json', // 默认值
+        'Authorization': 'Bearer ' + token
+      },
+      success: function (res) {
+        if (res.statusCode === 200) {
+          // 设置购物车id缓存  + 购物车商品数量
+          var quote_id = Number(res.data.id)
+          util.setToken(constant.constant.quote_id, quote_id)
+          var qty = Number(res.data.items_qty)
+          util.setToken(constant.constant.qty, qty)
+          // 获取用户购物车列表
+          that.setData({ cartGoods: res.data.items})
+        }
+      },
+      fail: function (res) {
+        console.error('🚀 🚀 🚀 获取购物车信息错误')
+      }
+    })
+  }
 })

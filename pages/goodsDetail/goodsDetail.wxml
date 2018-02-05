@@ -65,7 +65,7 @@
   <view class="comments">
     <view class="head" bindtap='handleTapUserComment'>
       <view class="comments-title">用户评价({{review.total > 999 ? '999+' : review.total}})</view>
-      <view class="good-comment">{{review.avgStr}}%好评
+      <view class="good-comment">{{review.avgStr}}%  好评
         <image class="img" src="../../static/images/address_right.png" background-size="cover"></image>
       </view>
     </view>

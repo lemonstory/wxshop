@@ -210,7 +210,9 @@ Page({
    * 获取当前用户购物车信息  //TODO  404
    */
   getUserCartInfo: function (userToken) {
-    console.log(userToken)
+    // console.log(userToken)
+    // 测试token
+    userToken = constant.constant.userToken
     var that = this
     var url = constant.constant.domain + constant.constant.path + '/V1/carts/mine';
     wx.request({
@@ -221,11 +223,14 @@ Page({
         'Authorization': 'Bearer ' + userToken
       },
       success: function (res) {
-        console.log('获取购物车信息')
-        console.log(res)
+        // console.log('获取购物车信息')
+        // console.log(res)
         if (res.statusCode === 200) {
-          var quote_id = Number(res.data.items_qty)
+          // 设置购物车id缓存  + 购物车商品数量
+          var quote_id = Number(res.data.id)
           util.setToken(constant.constant.quote_id, quote_id)
+          var qty = Number(res.data.items_qty)
+          util.setToken(constant.constant.qty, qty)
         }
       },
       fail: function (res) {

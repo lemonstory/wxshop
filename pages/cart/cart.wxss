@@ -3,8 +3,7 @@
   height: 100vh;
   display: flex;
   justify-content: flex-start;
-  overflow: scroll;
- }
+}
 .service-policy {
   width: 750rpx;
   height: 80rpx;
@@ -60,7 +59,7 @@
 .cart-view {
   width: 100%;
   height: auto;
-  overflow: hidden;
+  overflow: scroll;
 }
 .cart-view .list {
   height: auto;
@@ -244,6 +243,7 @@
   width: 100%;
   background: #fff;
   display: flex;
+  z-index: 999;
 }
 
 .cart-bottom .checkbox {

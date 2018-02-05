@@ -3,7 +3,7 @@
   height: 100vh;
   display: flex;
   justify-content: flex-start;
-  overflow: hidden;
+  overflow: scroll;
  }
 .service-policy {
   width: 750rpx;

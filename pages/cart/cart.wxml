@@ -1,4 +1,7 @@
-<view class="container">
+<loading hidden="{{loadingHidden}}">
+ 加载中...
+</loading>
+<view class="container" wx:if='{{isShow}}'>
   <view class="service-policy">
     <view class="item">
       <view class="cicle"></view>30天无忧退货</view>
@@ -29,7 +32,7 @@
           <view class="item" wx:for="{{cartGoods}}" wx:key="{{item.id}}">
             <!--左滑删除  -->
             <view bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" data-index="{{index}}" style="{{item.txtStyle}}" class="inner txt">
-              <view class="checkbox {{item.checked ? 'checked' : ''}}" bindtap="handleTapcheckedItem" data-item-index="{{index}}"></view>
+              <view class="checkbox {{item.checked ? 'checked' : ''}}" bindtap="handleTapcheckedItem" data-item_id="{{item.item_id}}"></view>
               <view class="cart-goods {{index == 0 ? 'first' : ''}}">
                 <image class="img" src="{{item.extension_attributes.image_url}}"></image>
                 <view class="info">
@@ -43,7 +46,7 @@
                     <text class="price">￥{{item.price}}</text>
                     <view class="selnum">
                       <view class="cut" bindtap="handleTapcutNumber" data-item_id="{{item.item_id}}" >-</view>
-                      <input value="{{item.qty}}" class="number"  type="number" bindinput='getInputNum'/>
+                      <input value="{{item.qty}}" data-item_id="{{item.item_id}}" class="number"  type="number" bindinput='getInputNum' />
                       <view class="add" bindtap="handleTapaddNumber" data-item_id="{{item.item_id}}">+</view>
                     </view>
                   </view>
@@ -78,7 +81,7 @@
      <view class="cart-bottom">
       <view class="checkbox {{checkedAllStatus ? 'checked' : ''}}" bindtap="handleTapcheckedAll">全选({{cartTotal.checkedGoodsCount}})</view>
       <view class="total">{{'￥'+cartTotal.checkedGoodsAmount}}</view>
-      <view class="checkout {{checkedAllStatus? 'selected':''}}" bindtap="handleTapcheckoutOrder">下单</view>
+      <view class="checkout {{isCheckedNum > 0 ? 'selected':''}}" bindtap="handleTapcheckoutOrder">下单</view>
     </view>
   </view>
 

@@ -4,10 +4,10 @@ var constant = require('../../utils/constant.js')
 Page({
   data: {
     number: 1,
-    checkedAllStatus: false,
+    // checkedAllStatus: false,
     delBtnWidth: 80,
     //cartGoods购物车中的商品列表
-    cartGoods: [{ extension_attributes: { image_url: '../../image/1.png' }, name: '哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈', sku: '恩恩恩恩', price: '2000', qty: 4, item_id: 2 }, { extension_attributes: { image_url: '../../image/1.png' }, name: '哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈', sku: '恩恩恩恩', price: '2000', qty: 2, item_id: 1 }, { extension_attributes: { image_url: '../../image/1.png' }, name: '哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈', sku: '恩恩恩恩', price: '2000', qty: 1, item_id: 3}],
+    // cartGoods: [{ extension_attributes: { image_url: '../../image/1.png' }, name: '哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈', sku: '恩恩恩恩', price: '2000', qty: 4, item_id: 2, checked: true }, { extension_attributes: { image_url: '../../image/1.png' }, name: '哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈', sku: '恩恩恩恩', price: '2000', qty: 2, item_id: 1, checked: true }, { extension_attributes: { image_url: '../../image/1.png' }, name: '哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈', sku: '恩恩恩恩', price: '2000', qty: 1, item_id: 3, checked: true }],
     cartTotal: {
       "goodsCount": 0,
       "goodsAmount": 0.00,
@@ -17,13 +17,17 @@ Page({
       "checkedGoodsAmount": 0.00
     },
 
-    checkedAllStatus: false,
+    checkedAllStatus: true,
     /** 是否跳转登录 */
-    isJumpToLogin: false
-
+    isJumpToLogin: false,
+    /** 选中产品数量 */
+    isCheckedNum: 0,
+    loadingHidden: true,
+    isShow: false
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
+    this.loadingTap()
   },
   onReady: function () {
     // 页面渲染完成
@@ -45,56 +49,125 @@ Page({
   onUnload: function () {
     // 页面关闭
   },
+  // loading
+  loadingTap: function () {
+    this.setData({
+      loadingHidden: false
+    });
+  },
   /**
    * 获取输入框值
    */
   getInputNum: function (event) {
-    console.log('input')
-    console.log(event.detail.value)
-    var number = event.detail.value
-    return number;
-  },
-  // 购物车数量加减事件 TODO
-  handleTapcutNumber: function (event) {
-    // this.setData({
-    //   number: (this.data.number - 1 > 1) ? this.data.number - 1 : 1
-    // });
-    console.log(event)
     var that = this
-    // var num = that.getInputNum(event)
-    console.log(num)
+    var number = event.detail.value
     for (var i = 0; i < that.data.cartGoods.length; i++) {
       if (event.currentTarget.dataset.item_id === that.data.cartGoods[i].item_id) {
-
+        that.data.cartGoods[i].qty = number
       }
     }
+    that.setData({ cartGoods: that.data.cartGoods })
+  },
+  // 购物车数量加减事件
+  handleTapcutNumber: function (event) {
+    var that = this
+    for (var i = 0; i < that.data.cartGoods.length; i++) {
+      if (event.currentTarget.dataset.item_id === that.data.cartGoods[i].item_id) {
+        var temp = ((that.data.cartGoods[i].qty - 1 > 1) ? (that.data.cartGoods[i].qty - 1) : 1)
+        that.data.cartGoods[i].qty = temp
+      }
+    }
+    that.setData({ cartGoods: that.data.cartGoods })
   },
   handleTapaddNumber: function (event) {
-    this.setData({
-      number: this.data.number + 1
-    });
+    var that = this
+    for (var i = 0; i < that.data.cartGoods.length; i++) {
+      if (event.currentTarget.dataset.item_id === that.data.cartGoods[i].item_id) {
+        var temp = that.data.cartGoods[i].qty + 1
+        that.data.cartGoods[i].qty = temp
+      }
+    }
+    that.setData({ cartGoods: that.data.cartGoods })
   },
   // 点击商品选中状态事件
   handleTapcheckedItem: function (event) {
+    console.log(event)
     var itemIndex = event.target.dataset.itemIndex;
     var that = this;
-    //编辑状态
-    var tmpCartData = this.data.cartGoods.map(function (element, index, array) {
-      if (index == itemIndex) {
-        element.checked = !element.checked;
+    // 编辑状态
+    // var tmpCartData = this.data.cartGoods.map(function (element, index, array) {
+    //   if (index == itemIndex) {
+    //     element.checked = !element.checked;
+    //   }
+    //   return element;
+    // });
+    for (var i = 0; i < that.data.cartGoods.length; i++) {
+      if (event.currentTarget.dataset.item_id === that.data.cartGoods[i].item_id) {
+        that.data.cartGoods[i].checked = !that.data.cartGoods[i].checked
+        if (that.data.cartGoods[i].checked) {
+          if (that.data.isCheckedNum < that.data.cartGoods.length) {
+            that.data.isCheckedNum++
+          }
+        } else {
+          if (that.data.isCheckedNum > 0) {
+            that.data.isCheckedNum--
+          }
+        }
       }
-      return element;
-    });
+    }
+    if (that.data.isCheckedNum < that.data.cartGoods.length) {
+      that.data.checkedAllStatus = false
+    } else {
+      that.data.checkedAllStatus = true
+    }
     that.setData({
-      cartGoods: tmpCartData
+      cartGoods: that.data.cartGoods,
+      isCheckedNum: that.data.isCheckedNum,
+      checkedAllStatus: that.data.checkedAllStatus
     });
   },
 
   // 点击全选事件
   handleTapcheckedAll: function () {
     var that = this;
+    var isCheckNum = 0
+    for (var i = 0; i < that.data.cartGoods.length; i++) {
+      if (that.data.cartGoods[i].checked) {
+        isCheckNum++
+      }
+    }
+    if (isCheckNum === 0) {
+      for (var s = 0; s < that.data.cartGoods.length; s++) {
+        if (that.data.cartGoods[s].checked === that.data.checkedAllStatus) {
+          that.data.cartGoods[s].checked = !that.data.cartGoods[s].checked
+        }
+      }
+      // that.data.checkedAllStatus = false
+    } else if (isCheckNum < that.data.cartGoods.length) {
+      for (var j = 0; j < that.data.cartGoods.length; j++) {
+        if (!that.data.cartGoods[j].checked) {
+          that.data.cartGoods[j].checked = !that.data.cartGoods[j].checked
+        }
+      }
+      // that.data.checkedAllStatus = false
+    } else {
+      for (var z = 0; z < that.data.cartGoods.length; z++) {
+        if (that.data.cartGoods[z].checked === that.data.checkedAllStatus) {
+          that.data.cartGoods[z].checked = !that.data.cartGoods[z].checked
+        }
+      }
+      // that.data.checkedAllStatus = false
+    }
+    var isCheckedNum = 0
+    for (var m = 0; m < that.data.cartGoods.length; m++) {
+      if (that.data.cartGoods[m].checked) {
+        isCheckedNum++
+      }
+    }
     that.setData({
-      checkedAllStatus: !this.data.checkedAllStatus,
+      checkedAllStatus: !that.data.checkedAllStatus,
+      cartGoods: that.data.cartGoods,
+      isCheckedNum: isCheckedNum
     })
   },
 
@@ -228,8 +301,17 @@ Page({
           util.setToken(constant.constant.quote_id, quote_id)
           var qty = Number(res.data.items_qty)
           util.setToken(constant.constant.qty, qty)
+          for (var i = 0; i < res.data.items.length; i++) {
+            res.data.items[i].checked = true
+          }
           // 获取用户购物车列表
-          that.setData({ cartGoods: res.data.items})
+          that.setData({ cartGoods: res.data.items, isCheckedNum: res.data.items.length })
+          // 显示界面
+          that.setData({
+            loadingHidden: true,
+            isShow: true
+          });
+          // console.log(res.data.items)
         }
       },
       fail: function (res) {

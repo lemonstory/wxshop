@@ -3,6 +3,8 @@
  display: flex;
  justify-content: flex-start; 
  height:100vh;
+ width:100%;
+ overflow: hidden;
 }
 .order-info{
     padding-top: 25rpx;

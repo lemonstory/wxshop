@@ -2,7 +2,9 @@
 <import src="/zanui-weapp/dist/tab/index.wxml" />
 <view class="container">
   <template is="zan-tab" data="{{tab: tab, componentId: 'tab'}}"></template>
-  <view class="order" bindtap='handleTapOrderDetail'>
+
+  <!--如果有订单显示此页面  -->
+ <view class="order" bindtap='handleTapOrderDetail'>
     <view class="head">
       订单编号：123456799
     </view>
@@ -34,10 +36,7 @@
 
 
 
-
-
-
-  <view class="order" bindtap='handleTapOrderDetail'>
+<view class="order" bindtap='handleTapOrderDetail'>
     <view class="head">
       订单编号：123456799
     </view>
@@ -56,7 +55,16 @@
         </view>
       </view>
     </view>
-  </view>
+  </view> 
+
+
+<!--如果没有订单显示此网页  -->
+   <!-- <view class="empty-view">
+      <image class="icon" src="/static/images/noorder.png"></image>
+      <text class="text">还没有任何订单呢</text>
+    </view>   -->
+
+
 
 
 </view>

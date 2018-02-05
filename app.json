@@ -14,7 +14,9 @@
     "pages/search-detail/search-detail",
     "pages/auth/login",
     "pages/usercenter/order/order",
-    "pages/usercenter/order-detail/order-detail"
+    "pages/usercenter/order-detail/order-detail",
+    "pages/pay-result/pay-result",
+    "pages/post-comment/post-comment"
   ],
   "window": {
     "backgroundTextStyle": "light",

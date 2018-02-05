@@ -108,3 +108,28 @@
   color: #b4282d;
 
 }
+
+.empty-view{
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ 
+}
+
+.empty-view .icon{
+  height: 248rpx;
+  width: 210rpx;
+  margin-bottom: 10rpx;
+  display: flex;
+  margin-top: 260rpx;
+}
+
+.empty-view .text{
+  width: auto;
+  font-size: 28rpx;
+  line-height: 35rpx;
+  color: #999;
+}
+

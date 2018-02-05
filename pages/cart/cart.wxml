@@ -42,9 +42,9 @@
                   <view class="b">
                     <text class="price">￥{{item.price}}</text>
                     <view class="selnum">
-                      <view class="cut" bindtap="handleTapcutNumber" data-item-index="{{index}}">-</view>
-                      <input value="{{item.qty}}" class="number" disabled="true" type="number" />
-                      <view class="add" bindtap="handleTapaddNumber" data-item-index="{{index}}">+</view>
+                      <view class="cut" bindtap="handleTapcutNumber" data-item_id="{{item.item_id}}" >-</view>
+                      <input value="{{item.qty}}" class="number"  type="number" bindinput='getInputNum'/>
+                      <view class="add" bindtap="handleTapaddNumber" data-item_id="{{item.item_id}}">+</view>
                     </view>
                   </view>
                 </view>

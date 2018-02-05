@@ -1,5 +1,8 @@
 <!--pages/cart/cart.wxml-->
-<view class="container">
+<loading hidden="{{loadingHidden}}">
+ 加载中...
+</loading>
+<view class="container" wx:if='{{isShow}}'>
   <!--banner轮播图开始  -->
   <view class="banner">
     <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">

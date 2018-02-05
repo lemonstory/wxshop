@@ -59,11 +59,14 @@ Page({
     productOptionArr: [],
     review: {
       imgNum: 0
-    }
+    },
+    loadingHidden: true,
+    isShow: false
   },
 
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
+    this.loadingTap()
     this.getGoodsDetails(options.sku)
     // this.setData({ sku: options.sku})
   },
@@ -80,6 +83,20 @@ Page({
   },
   onUnload: function () {
     // 页面关闭
+  },
+  // loading
+  loadingTap: function () {
+    this.setData({
+      loadingHidden: false
+    });
+    // var that = this;
+    // setTimeout(function () {
+    //   that.setData({
+    //     loadingHidden: true,
+    //     isShow: true
+    //   });
+    //   that.update();
+    // }, 3000);
   },
   // 点击用户评论
   handleTapUserComment: function () {
@@ -308,6 +325,11 @@ Page({
         that.setData({ shortDescription: shortDescription })
         that.getCommentSum(res.data.extension_attributes.review)
         that.setData(res.data)
+        // 显示界面
+        that.setData({
+          loadingHidden: true,
+          isShow: true
+        });
       },
       fail: function (res) {
         console.error('🚀 🚀 🚀 获取商品详情错误')

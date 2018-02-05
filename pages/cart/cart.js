@@ -7,7 +7,7 @@ Page({
     checkedAllStatus: false,
     delBtnWidth: 80,
     //cartGoods购物车中的商品列表
-    cartGoods: [{ list_pic_url: '../../image/1.png', goods_name: '哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈', goods_desc: '恩恩恩恩', retail_price: '2000' }, { list_pic_url: '../../image/1.png', goods_name: '哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈', goods_desc: '恩恩恩恩', retail_price: '2000' }],
+    cartGoods: [{ extension_attributes: { image_url: '../../image/1.png' }, name: '哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈', sku: '恩恩恩恩', price: '2000', qty: 4, item_id: 2 }, { extension_attributes: { image_url: '../../image/1.png' }, name: '哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈', sku: '恩恩恩恩', price: '2000', qty: 2, item_id: 1 }, { extension_attributes: { image_url: '../../image/1.png' }, name: '哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈', sku: '恩恩恩恩', price: '2000', qty: 1, item_id: 3}],
     cartTotal: {
       "goodsCount": 0,
       "goodsAmount": 0.00,
@@ -45,13 +45,31 @@ Page({
   onUnload: function () {
     // 页面关闭
   },
-  // 购物车数量加减事件 TODO
-  handleTapcutNumber: function () {
-    this.setData({
-      number: (this.data.number - 1 > 1) ? this.data.number - 1 : 1
-    });
+  /**
+   * 获取输入框值
+   */
+  getInputNum: function (event) {
+    console.log('input')
+    console.log(event.detail.value)
+    var number = event.detail.value
+    return number;
   },
-  handleTapaddNumber: function () {
+  // 购物车数量加减事件 TODO
+  handleTapcutNumber: function (event) {
+    // this.setData({
+    //   number: (this.data.number - 1 > 1) ? this.data.number - 1 : 1
+    // });
+    console.log(event)
+    var that = this
+    // var num = that.getInputNum(event)
+    console.log(num)
+    for (var i = 0; i < that.data.cartGoods.length; i++) {
+      if (event.currentTarget.dataset.item_id === that.data.cartGoods[i].item_id) {
+
+      }
+    }
+  },
+  handleTapaddNumber: function (event) {
     this.setData({
       number: this.data.number + 1
     });

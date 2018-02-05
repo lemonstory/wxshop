@@ -328,3 +328,35 @@ background:#b4282d;
     justify-content: center;  
     align-items: center;  
 }   
+.unlogin-box{
+  width:100%;
+  height:100vh;
+  background: #fff;
+  position: relative;
+ }
+
+.logo {
+  position: absolute;
+  top: 300rpx;
+  left: 215rpx;
+}
+.text{
+  position: absolute;
+  top:580rpx;
+  left: 350rpx;
+  right:0;
+  font-size: 26rpx;
+}
+.login {
+  width: 670rpx;
+  height: 96rpx;
+  border: 1rpx solid #b6a079;
+  position: absolute;
+  bottom: 260rpx;
+  left: 40rpx;
+  line-height: 96rpx;
+  text-align: center;
+  font-size: 28rpx;
+  background: #b6a079;
+  color: #fff;
+}

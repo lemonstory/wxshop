@@ -1,34 +1,43 @@
 <view class="container">
-  <view class="service-policy">
+  <view class="service-policy" wx:if="{{!isJumpToLogin}}">
     <view class="item">
       <view class="cicle"></view>30天无忧退货</view>
     <view class="item">
       <view class="cicle"></view>48小时快速退款</view>
     <view class="item">
       <view class="cicle"></view>满88元免邮费</view>
-  </view>
+  </view> 
   <!--判断 购物车中没有商品时 显示此页面  -->
-  <view class="no-cart" wx:if="{{cartGoods.length <= 0 && !isJumpToLogin}}">
+   <view class="no-cart" wx:if="{{cartGoods.length <= 0 && !isJumpToLogin}}">
     <view class="content">
       <image src="http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/noCart-a8fe3f12e5.png" />
       <text>去添加点什么吧</text>
     </view>
-  </view>
+  </view> 
 
   <!-- 跳转登录开始 -->
-  <view wx:if='{{isJumpToLogin}}'>
-    <button bindtap="handleTapUserLogin">点击登录</button>
+   <view wx:if='{{isJumpToLogin}}'> 
+    <!-- <button bindtap="handleTapUserLogin">点击登录</button> -->
+   <view class="unlogin-box">
+  <view class="logo">
+  <!--TODO切换图片  -->
+    <image src="/image/logo.png" style='width:320rpx;height:220rpx;' mode='aspectFit'></image>
   </view>
+  <view class="text">未登录</view>
+  <view class="login" bindtap='handleTapUserLogin'>登录</view>
+  </view>
+
+   </view> 
   <!-- 跳转登录结束 -->
 
   <!--购物车中有商品时,显示此页面 -->
-  <view class="cart-view" wx:if="{{cartGoods.length > 0 && !isJumpToLogin}}" style="margin-bottom:200rpx;">
+   <view class="cart-view" wx:if="{{cartGoods.length > 0 && !isJumpToLogin}}" style="margin-bottom:200rpx;">
     <view class="list">
       <view class="group-item">
         <view class="goods">
-          <view class="item" wx:for="{{cartGoods}}" wx:key="{{item.id}}">
+          <view class="item" wx:for="{{cartGoods}}" wx:key="{{item.id}}"> 
             <!--左滑删除  -->
-            <view bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" data-index="{{index}}" style="{{item.txtStyle}}" class="inner txt">
+             <view bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" data-index="{{index}}" style="{{item.txtStyle}}" class="inner txt">
               <view class="checkbox {{item.checked ? 'checked' : ''}}" bindtap="handleTapcheckedItem" data-item-index="{{index}}"></view>
               <view class="cart-goods {{index == 0 ? 'first' : ''}}">
                 <image class="img" src="{{item.extension_attributes.image_url}}"></image>
@@ -49,37 +58,23 @@
                   </view>
                 </view>
               </view>
-            </view>
+            </view> 
             <!--删除按钮  -->
-            <view data-index="{{index}}" bindtap="delItem" class="inner del">
+             <view data-index="{{index}}" bindtap="delItem" class="inner del">
               <image src='/static/images/del.png' style='width:40rpx;height:46rpx;display:flex'></image>
             </view>
           </view>
 
         </view>
       </view>
-    </view>
+    </view> 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-     <view class="cart-bottom">
+ <view class="cart-bottom">
       <view class="checkbox {{checkedAllStatus ? 'checked' : ''}}" bindtap="handleTapcheckedAll">全选({{cartTotal.checkedGoodsCount}})</view>
       <view class="total">{{'￥'+cartTotal.checkedGoodsAmount}}</view>
       <view class="checkout {{checkedAllStatus? 'selected':''}}" bindtap="handleTapcheckoutOrder">下单</view>
     </view>
-  </view>
+  </view> 
+
 
 </view>

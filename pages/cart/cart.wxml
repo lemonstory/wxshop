@@ -71,7 +71,7 @@
 
  <view class="cart-bottom">
       <view class="checkbox {{checkedAllStatus ? 'checked' : ''}}" bindtap="handleTapcheckedAll">全选({{cartTotal.checkedGoodsCount}})</view>
-      <view class="total">{{'￥'+cartTotal.checkedGoodsAmount}}</view>
+      <view class="total">{{'￥'+price}}</view>
       <view class="checkout {{isCheckedNum > 0 ? 'selected':''}}" bindtap="handleTapcheckoutOrder">下单</view>
     </view>
   </view> 

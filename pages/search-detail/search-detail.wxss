@@ -8,6 +8,7 @@
   box-sizing: border-box;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 input {
   width: 710rpx;
@@ -18,6 +19,7 @@ input {
   border-radius: 50rpx;
   display: flex;
   box-sizing: border-box;
+  
 
 }
 .head{

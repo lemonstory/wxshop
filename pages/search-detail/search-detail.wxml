@@ -9,9 +9,9 @@
 <view class="container">
   <view class="search-box">
     <input class="search" style="display:flex; justify-content: center;padding-left:30rpx;" placeholder='请输入' placeholder-style='color:#7F7F7F;font-size:26rpx;'>
+     <!-- <image src='/static/images/close.png' style='margin-top:15rpx;margin-right:20rpx;'></image>   -->
+  </input>
 
-    <image src='/static/images/clear_input.png' style='width:60rpx;height:60rpx;position:absoulte;right:50rpx;top:100rpx'></image>
-    </input>
   </view>
 
 <!--判断 如果有搜索结果时显示此页面 -->

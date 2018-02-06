@@ -21,7 +21,7 @@
    <view class="unlogin-box">
   <view class="logo">
   <!--TODO切换图片  -->
-    <image src="/image/logo.png" style='width:320rpx;height:220rpx;' mode='aspectFit'></image>
+    <image src="/static/images/shopping.png" style='width:320rpx;height:220rpx;' mode='aspectFit'></image>
   </view>
   <view class="text">未登录</view>
   <view class="login" bindtap='handleTapUserLogin'>登录</view>

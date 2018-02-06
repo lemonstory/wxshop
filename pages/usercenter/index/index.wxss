@@ -8,15 +8,16 @@
     justify-content: flex-start;
 }
 .profile-info{
-    width: 100%;
+    width: 750rpx;
     height: 272rpx;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: flex-start;
     padding: 0 30rpx;
-    background:#333;
     box-sizing: border-box;
+    background: url(http://image.365zhiding.com/wxapp/20180206/bg.png) 100% 100%;
+
 }
 .profile-info .avatar{
     height: 148rpx;

@@ -396,6 +396,7 @@ Page({
       },
       fail: function (res) {
         console.error('🚀 🚀 🚀 获取购物车信息错误')
+        console.error(res)
       },
       complete: function (res) {
         wx.hideNavigationBarLoading()

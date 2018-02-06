@@ -1,39 +1,29 @@
 <!--pages/shopping/address-manager/address-manager.wxml-->
-<view class="container">
+<view class="container" wx:if='{{isShow}}'>
   <!--判断 如果有地址显示此页面  -->
-  <view class="address-box">
-    <view class="address-item">
-      <view class="left">
-        <text class="name">哈哈哈哈哈哈</text>
-        <text class="default">默认</text>
+  <view class="address-box" wx:if='{{addressNum > 0}}'>
+    <block wx:for="{{addressList}}" wx:key="{{item.id}}">
+      <view class="address-item">
+        <view class="left">
+          <text class="name">{{item.name}}</text>
+          <text class="default" wx:if='{{item.default_shipping}}'>默认</text>
+        </view>
+        <view class="middle">
+          <text class="mobile">{{item.telephoneStr}}</text>
+          <text class="address">{{item.address}}</text>
+        </view>
+        <image src="/static/images/edit.png" style='width:32rpx;height:32rpx;display:flex;margin-left:10rpx;margin-top:30rpx;display:flex;' bindtap="handleTapEditAddress" data-id="{{item.id}}"></image>
       </view>
-      <view class="middle">
-        <text class="mobile">123456789</text>
-        <text class="address">山西省运城市灞桥区长安区</text>
-      </view>
-      <image src="/static/images/edit.png" style='width:32rpx;height:32rpx;display:flex;margin-left:10rpx;margin-top:30rpx;display:flex;'bindtap="handleTapEditAddress"></image>
-    </view>
-
-    <view class="address-item">
-      <view class="left">
-        <text class="name">哈哈哈哈哈哈</text>
-
-      </view>
-      <view class="middle">
-        <text class="mobile">123456789</text>
-        <text class="address">山西省运城市灞桥区长安区</text>
-      </view>
-      <image src="/static/images/edit.png" style='width:32rpx;height:32rpx;display:flex;margin-left:10rpx;margin-top:30rpx;display:flex;' bindtap="handleTapEditAddress"></image>
-    </view>
+      </block>
   </view>
 
 
 
   <!--如果没有地址显示此页面 -->
-  <!-- <view class="empty-view">
-      <image class="icon" src="http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/noAddress-26d570cefa.png"></image>
-      <text class="text">收货地址在哪里</text>
-    </view>  -->
-  <view class="bottom" bindtap="handleTapEditAddress">
+  <view class="empty-view" wx:else>
+    <image class="icon" src="http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/noAddress-26d570cefa.png"></image>
+    <text class="text">收货地址在哪里</text>
+  </view>
+  <view class="bottom" bindtap="handleTapEditAddress" data-id="">
     <image src="/static/images/add.png" style='width:16rpx;height:16rpx;display:flex;margin-right:20rpx;display:flex;'></image>新建地址</view>
 </view>

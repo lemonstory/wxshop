@@ -204,6 +204,7 @@ Page({
       },
       fail: function (res) {
         console.error('🚀 🚀 🚀 后台获取客户信息成功错误')
+        console.error(res)
       },
       complete: function (res) {
         wx.hideNavigationBarLoading()
@@ -239,6 +240,7 @@ Page({
       },
       fail: function (res) {
         console.error('🚀 🚀 🚀 获取购物车信息错误')
+        console.error(res)
       }
     })
   }

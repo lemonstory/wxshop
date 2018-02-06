@@ -13,7 +13,7 @@
   <view class="banner">
     <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
       <block wx:for="{{banner}}" wx:key="banner" wx:for-index="idx">
-        <swiper-item data-src="{{item.url}}" bindtap="handleBanner" data-index="{{idx}}" data-id="{{item.id}}">
+        <swiper-item data-src="{{item.url}}" bindtap="handleBanner" data-index="{{idx}}" data-id="{{item.id}}" data-sku="{{item.sku}}" bindtap='handleTapGoodsDetail'>
           <image src="{{item.image}}" class="slide-image" width="750rpx" height="410rpx" />
         </swiper-item>
       </block>

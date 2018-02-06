@@ -1,7 +1,7 @@
 <!--pages/person/person.wxml-->
 <view class="container">
-<!-- {{ isShowBottomPopup ? 'zan-popup--show' : ''}} -->
-  <view class="profile-info"  bindtap="{{isJumpToLogin ? 'handleTapUserLogin' : ''}}">
+  <!-- {{ isShowBottomPopup ? 'zan-popup--show' : ''}} -->
+  <view class="profile-info" bindtap="{{isJumpToLogin ? 'handleTapUserLogin' : ''}}">
     <image class="avatar" src="/avatar/{{imgNum}}.jpg"></image>
     <view class="info">
       <text class="name">{{name}}</text>
@@ -10,8 +10,8 @@
   </view>
 
   <view class="user-menu" style='margin-top:20rpx;'>
-    <navigator url="/pages/usercenter/order/order">
-      <view class="item">
+    <!-- <navigator url="/pages/usercenter/order/order"> -->
+      <view class="item" bindtap='handleTapToMyOrder'>
         <view style='display:flex'>
           <image src="/static/images/order.png" style='width:38rpx;height:38rpx;display:flex;margin-right:20rpx;' mode='aspectFit'></image>
           <view class="txt">我的订单 </view>
@@ -20,22 +20,22 @@
           <image src="/static/images/go.png" style='width:14rpx;height:24rpx;display:flex;'></image>
         </view>
       </view>
-    </navigator>
+    <!-- </navigator> -->
 
-     
-      <view class="item">
-        <view style='display:flex'>
-          <image src="/static/images/tuihuo.png" style='width:38rpx;height:38rpx;display:flex;margin-right:20rpx;' mode='aspectFit'></image>
-          <view class="txt">退货/售后 </view>
-        </view>
-        <view>
-          <image src="/static/images/go.png" style='width:14rpx;height:24rpx;display:flex;'></image>
-        </view>
+
+    <view class="item">
+      <view style='display:flex'>
+        <image src="/static/images/tuihuo.png" style='width:38rpx;height:38rpx;display:flex;margin-right:20rpx;' mode='aspectFit'></image>
+        <view class="txt">退货/售后 </view>
       </view>
-    
-      <!-- 暂不提供 -->
- 
-      <!-- <view class="item">
+      <view>
+        <image src="/static/images/go.png" style='width:14rpx;height:24rpx;display:flex;'></image>
+      </view>
+    </view>
+
+    <!-- 暂不提供 -->
+
+    <!-- <view class="item">
         <view style='display:flex'>
           <image src="/static/images/youhui.png" style='width:38rpx;height:38rpx;display:flex;margin-right:20rpx;' mode='aspectFit'></image>
           <view class="txt">优惠劵 </view>
@@ -45,8 +45,8 @@
         </view>
       </view> -->
 
-
-      <view class="item">
+    <!-- <navigator url="/pages/shopping/address-manager/address-manager"> -->
+      <view class="item" bindtap='handleTapToAderssManager'>
         <view style='display:flex'>
           <image src="/static/images/address.png" style='width:38rpx;height:38rpx;display:flex;margin-right:20rpx;' mode="aspectFit"></image>
           <view class="txt">地址管理 </view>
@@ -55,16 +55,18 @@
           <image src="/static/images/go.png" style='width:14rpx;height:24rpx;display:flex;'></image>
         </view>
       </view>
+    <!-- </navigator> -->
 
-      <view class="item" style='border-bottom:none'>
-        <view style='display:flex'>
-          <image src="/static/images/kefu.png" style='width:38rpx;height:38rpx;display:flex;margin-right:20rpx;' mode="aspectFit"></image>
-          <view class="txt">联系客服 </view>
-        </view>
-        <view>
-          <image src="/static/images/go.png" style='width:14rpx;height:24rpx;display:flex;'></image>
-        </view>
+
+    <view class="item" style='border-bottom:none'>
+      <view style='display:flex'>
+        <image src="/static/images/kefu.png" style='width:38rpx;height:38rpx;display:flex;margin-right:20rpx;' mode="aspectFit"></image>
+        <view class="txt">联系客服 </view>
       </view>
+      <view>
+        <image src="/static/images/go.png" style='width:14rpx;height:24rpx;display:flex;'></image>
+      </view>
+    </view>
 
   </view>
 

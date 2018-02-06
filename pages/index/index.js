@@ -8,8 +8,8 @@ var constant = require('../../utils/constant.js')
 Page(Object.assign({}, Toast, {
   data: {
     banner: [
-      { image: '../../image/2.png' },
-      { image: '../../image/3.png' },
+      { image: '../../image/2.png', sku: 'HTR01'},
+      { image: '../../image/3.png', sku: 'YM01'},
       // { image: '../../image/1.png' }
     ],
     recommendImg: "../../image/1.png",
@@ -142,6 +142,7 @@ Page(Object.assign({}, Toast, {
       },
       fail: function (res) {
         console.error('🚀 🚀 🚀 首页调取adminToken错误')
+        console.error(res)
       },
       complete: function (res) {
         wx.hideNavigationBarLoading()
@@ -173,6 +174,7 @@ Page(Object.assign({}, Toast, {
       },
       fail: function (res) {
         console.error('🚀 🚀 🚀 首页调取人气推荐错误')
+        console.error(res)
       },
       complete: function (res) {
         wx.hideNavigationBarLoading()
@@ -204,6 +206,7 @@ Page(Object.assign({}, Toast, {
       },
       fail: function (res) {
         console.error('🚀 🚀 🚀 首页调取新品推荐错误')
+        console.error(res)
       },
       complete: function (res) {
         wx.hideNavigationBarLoading()
@@ -239,7 +242,7 @@ Page(Object.assign({}, Toast, {
       },
       fail: function (res) {
         console.error('🚀 🚀 🚀 首页获取可配置商品children错误')
-        console.log(res)
+        console.error(res)
       },
       complete: function (res) {
         wx.hideNavigationBarLoading()

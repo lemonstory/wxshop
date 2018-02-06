@@ -118,6 +118,7 @@ Page({
       },
       fail: function (res) {
         console.error('🚀 🚀 🚀 获取商品评价错误')
+        console.error(res)
       },
       complete: function (res) {
         wx.hideNavigationBarLoading()
@@ -203,6 +204,7 @@ Page({
         },
         fail: function (res) {
           console.error('🚀 🚀 🚀 获取更多评论错误')
+          console.error(res)
         },
         complete: function (res) {
           wx.hideNavigationBarLoading()

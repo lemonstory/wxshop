@@ -38,6 +38,7 @@ data: {
     'isNoMore': false,
     //是否正在加载中
     'isLoading': false,
+    isShow: false
   },
 /**
    * 生命周期函数--监听页面加载
@@ -152,6 +153,7 @@ data: {
         },
         fail: function (res) {
           console.error('🚀 🚀 🚀 获取更多数据错误')
+          console.error(res)
         },
         complete: function (res) {
           wx.hideNavigationBarLoading()
@@ -182,9 +184,11 @@ data: {
       },
       fail: function (res) {
         console.error('🚀 🚀 🚀 列表获取人气推荐错误')
+        console.error(res)
       },
       complete: function (res) {
         wx.hideNavigationBarLoading()
+        that.setData({ isShow: true})
       }
     })
   },
@@ -211,6 +215,7 @@ data: {
       },
       fail: function (res) {
         console.error('🚀 🚀 🚀 列表获取可配置商品children错误')
+        console.error(res)
       }
     })
   },

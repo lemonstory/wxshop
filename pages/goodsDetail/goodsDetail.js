@@ -265,6 +265,7 @@ Page({
     // console.log(label)
     var tempSelectedProductOptions = that.data.selectedProductOptions;
     // console.log(typeof specNameId)
+    // 购物车属性添加
     that.getOption(specNameId, specValueId);
     that.getConfigurableProAtNorm(specValueId);
     tempSelectedProductOptions[specNameId] = specValueId;
@@ -324,6 +325,7 @@ Page({
       },
       fail: function (res) {
         console.error('🚀 🚀 🚀 获取商品详情错误')
+        console.error(res)
       },
       complete: function(res) {
         wx.hideNavigationBarLoading()
@@ -411,6 +413,7 @@ Page({
       },
       fail: function (res) {
         console.error('🚀 🚀 🚀 详情页获取可配置商品children错误')
+        console.error(res)
       }
     })
   },
@@ -555,6 +558,7 @@ Page({
       },
       fail: function (res) {
         console.error('🚀 🚀 🚀 获取当前用户购物车信息错误')
+        console.error(res)
       }
     })
   },

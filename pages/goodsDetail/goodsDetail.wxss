@@ -17,6 +17,7 @@
 .banner swiper swiper-item image {
   width: 750rpx;
   height: 750rpx;
+  
 }
 
 swiper {
@@ -159,13 +160,11 @@ swiper {
   font-size: 30rpx;
   color: #333;
 }
-
 .section-nav .img {
   display: flex;
   width: 52rpx;
   height: 52rpx;
 }
-
 .server {
   width: 750rpx;
   height: 108rpx;
@@ -176,7 +175,6 @@ swiper {
   padding: 0 30rpx;
   box-sizing: border-box;
 }
-
 .server-title {
   width: auto;
   height: 108rpx;

@@ -1,6 +1,7 @@
 //app.js
 var constant = require('utils/constant.js')
 var util = require('utils/util.js')
+// var login = require('pages/auth/login.js')
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -9,6 +10,9 @@ App({
     wx.setStorageSync('logs', logs)
     // console.log(util.getToken(constant.constant.adminTokenKey))
     this.getAdminToken()
+    if (!util.isEmptyStr(util.getToken(constant.constant.userTokenKey))) {
+      this.handleTapWXlogin()
+    }
   },
   onShow: function (options) {
     // Do something when show.
@@ -52,35 +56,130 @@ App({
         console.error('🚀 🚀 🚀 app.js设置缓存错误')
       }
     })
-  }
-  //   // 登录
-  //   wx.login({
-  //     success: res => {
-  //       // 发送 res.code 到后台换取 openId, sessionKey, unionId
-  //     }
-  //   })
-  //   // 获取用户信息
-  //   wx.getSetting({
-  //     success: res => {
-  //       if (res.authSetting['scope.userInfo']) {
-  //         // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-  //         wx.getUserInfo({
-  //           success: res => {
-  //             // 可以将 res 发送给后台解码出 unionId
-  //             this.globalData.userInfo = res.userInfo
+  },
+  /**
+ * 用户授权登陆
+ */
+  handleTapWXlogin: function () {
+    var that = this
+    wx.login({
+      success: res => {
+        console.log(res)
+        that.getUserInfo(res.code)
+      },
+      fail: function (res) {
+        console.error('调取微信登陆错误')
+        console.error(res)
+      }
+    })
+  },
 
-  //             // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-  //             // 所以此处加入 callback 以防止这种情况
-  //             if (this.userInfoReadyCallback) {
-  //               this.userInfoReadyCallback(res)
-  //             }
-  //           }
-  //         })
-  //       }
-  //     }
-  //   })
-  // },
-  // globalData: {
-  //   userInfo: null
-  // }
+  /**
+   * 微信获取用户信息
+   */
+  getUserInfo: function (code) {
+    var that = this
+    wx.getUserInfo({
+      success: function (res) {
+        // console.log(res.encryptedData)
+        // console.log( res.iv)
+        that.getLoginApi(code, res.encryptedData, res.iv)
+        if (this.userInfoReadyCallback) {
+          this.userInfoReadyCallback(res)
+        }
+      },
+      fail: function (res) {
+        console.log('微信获取用户信息失败')
+        console.log(res)
+        that.handleTapCancleAuth()
+      }
+    })
+  },
+
+  /**
+   * 调取后台登陆接口
+   */
+  getLoginApi: function (code, encryptedData, iv) {
+    console.log("🚀 🚀 🚀 getLoginApi");
+    var that = this;
+    var url = constant.constant.domain + constant.constant.path + '/V1/wxlogin/';
+    wx.request({
+      url: url,
+      data: {
+        code: code,
+        encryptedData: encryptedData,
+        iv: iv
+      },
+      method: 'POST',
+      header: util.adminRequestHeader(),
+      success: function (res) {
+        if (res.statusCode === 200) {
+          util.setToken(constant.constant.userTokenKey, res.data)
+          that.getUserCartInfo(res.data)
+          that.getCustomerInfo(res.data)
+        }
+      },
+      fail: function (res) {
+        console.error('🚀 🚀 🚀 登陆页调取getLoginApi错误')
+        console.error(res)
+      }
+    })
+  },
+
+  /**
+   * 后台获取客户信息
+   */
+  getCustomerInfo: function (token) {
+    var that = this
+    var url = constant.constant.domain + constant.constant.path + '/V1/customers/me';
+    wx.request({
+      url: url,
+      data: {},
+      header: {
+        'content-type': 'application/json', // 默认值
+        'Authorization': 'Bearer ' + token
+      },
+      success: function (res) {
+        if (res.statusCode === 200) {
+          util.setToken(constant.constant.userInfoKey, res.data)
+        }
+      },
+      fail: function (res) {
+        console.error('🚀 🚀 🚀 后台获取客户信息成功错误')
+      }
+    })
+  },
+  /**
+   * 获取当前用户购物车信息  //TODO  404
+   */
+  getUserCartInfo: function (userToken) {
+    // console.log(userToken)
+    // 测试token
+    userToken = constant.constant.userToken
+    var that = this
+    var url = constant.constant.domain + constant.constant.path + '/V1/carts/mine';
+    wx.request({
+      url: url,
+      data: {},
+      header: {
+        'content-type': 'application/json', // 默认值
+        'Authorization': 'Bearer ' + userToken
+      },
+      success: function (res) {
+        // console.log('获取购物车信息')
+        // console.log(res)
+        if (res.statusCode === 200) {
+          // 设置购物车id缓存  + 购物车商品数量
+          var quote_id = Number(res.data.id)
+          util.setToken(constant.constant.quote_id, quote_id)
+          var qty = Number(res.data.items_qty)
+          util.setToken(constant.constant.qty, qty)
+        }
+      },
+      fail: function (res) {
+        console.error('🚀 🚀 🚀 获取购物车信息错误')
+      }
+    })
+  }
+  
 })

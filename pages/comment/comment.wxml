@@ -49,7 +49,7 @@
           <!--TODO  获取用户头像  判断用户头像是否为默认头像  -->
           <!-- <image src="http://yanxuan.nosdn.127.net/8945ae63d940cc42406c3f67019c5cb6.png"></image>  -->
           <image src="/avatar/{{item.imgNum}}.jpg"></image>
-          <text>{{item.nickname}}</text>
+          <text>{{item.nicknameStr}}</text>
         </view>
       </view>
       <view class="time">{{item.created_at}}

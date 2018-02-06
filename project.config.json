@@ -43,7 +43,7 @@
 					"id": 2,
 					"name": "评价",
 					"pathName": "pages/comment/comment",
-					"query": "sku=24-MB02"
+					"query": "sku=HTR01&total=20"
 				},
 				{
 					"id": -1,

@@ -86,7 +86,7 @@ Page({
   },
   // 点击用户评论
   handleTapUserComment: function () {
-    var path = "/pages/comment/comment?sku=" + this.data.sku;
+    var path = "/pages/comment/comment?sku=" + this.data.sku + '&total=' + this.data.review.total;
     wx.navigateTo({
       url: path
     })
@@ -505,6 +505,28 @@ Page({
     } else {
       review.imgNum = util.getRemainder(Number(review.customer_id))
     }
+    var nickname = review.nickname
+    var arr = nickname.match(/./g)
+    // console.log(arr)
+    var nicknameStr = ''
+    if (arr.length <= 2) {
+      if (util.isEmptyStr(arr[0])) {
+        nicknameStr = arr[1] + '****'
+      } else if (arr[0] === ' ') {
+        nicknameStr = arr[1] + '****'
+      } else {
+        nicknameStr = arr[0] + '****'
+      }
+    } else {
+      if (util.isEmptyStr(arr[0])) {
+        nicknameStr = arr[1] + '****' + arr[arr.length - 1]
+      } else if (arr[0] === ' ') {
+        nicknameStr = arr[1] + '****' + arr[arr.length - 1]
+      } else {
+        nicknameStr = arr[0] + '****' + arr[arr.length - 1]
+      }
+    }
+    review.nicknameStr = nicknameStr
     var temp = (Number(review.avg) * 100)
     review.avgStr = util.toDecimal(temp)
     // console.log(review.avgStr)

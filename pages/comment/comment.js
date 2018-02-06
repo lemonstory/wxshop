@@ -17,8 +17,10 @@ Page({
 },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
+    // console.log(options)
+    wx.showNavigationBarLoading()
     this.getProductComment(options.sku)
-    this.setData({ sku: options.sku})
+    this.setData({ sku: options.sku,total: options.total})
   },
   onReady: function () {
     // 页面渲染完成
@@ -71,6 +73,30 @@ Page({
         // console.log('🚀 🚀 🚀 打印商品评价数据')
         // console.log(res.data)
         for (var i = 0; i < res.data.length; i++) {
+          // 名称加*
+          var nickname = res.data[i].nickname
+          var arr = nickname.match(/./g)
+          // console.log(arr)
+          var nicknameStr = ''
+          if (arr.length <=2) {
+            if (util.isEmptyStr(arr[0])) {
+              nicknameStr = arr[1] + '****'
+            } else if (arr[0] === ' ') {
+              nicknameStr = arr[1] + '****'
+            } else {
+              nicknameStr = arr[0] + '****'
+            }
+          } else {
+            if (util.isEmptyStr(arr[0])) {
+              nicknameStr = arr[1] + '****' + arr[arr.length-1]
+            } else if (arr[0] === ' ') {
+              nicknameStr = arr[1] + '****' + arr[arr.length - 1]
+            } else {
+              nicknameStr = arr[0] + '****' + arr[arr.length - 1]
+            }
+          }
+          res.data[i].nicknameStr = nicknameStr
+          // console.log(nicknameStr)
           res.data[i].ratingNum = Number(res.data[i].rating)
           //获取评论头像
           if (util.isEmptyStr(res.data[i].customer_id)) {
@@ -92,6 +118,9 @@ Page({
       },
       fail: function (res) {
         console.error('🚀 🚀 🚀 获取商品评价错误')
+      },
+      complete: function (res) {
+        wx.hideNavigationBarLoading()
       }
     })
   },
@@ -113,6 +142,29 @@ Page({
             // 加入数据
             for (var i = 0; i < res.data.length; i++) {
               res.data[i].ratingNum = Number(res.data[i].rating)
+              // 名称加*
+              var nickname = res.data[i].nickname
+              var arr = nickname.match(/./g)
+              // console.log(arr)
+              var nicknameStr = ''
+              if (arr.length <= 2) {
+                if (util.isEmptyStr(arr[0])) {
+                  nicknameStr = arr[1] + '****'
+                } else if (arr[0] === ' ') {
+                  nicknameStr = arr[1] + '****'
+                } else {
+                  nicknameStr = arr[0] + '****'
+                }
+              } else {
+                if (util.isEmptyStr(arr[0])) {
+                  nicknameStr = arr[1] + '****' + arr[arr.length - 1]
+                } else if (arr[0] === ' ') {
+                  nicknameStr = arr[1] + '****' + arr[arr.length - 1]
+                } else {
+                  nicknameStr = arr[0] + '****' + arr[arr.length - 1]
+                }
+              }
+              res.data[i].nicknameStr = nicknameStr
               //获取评论头像
               if (util.isEmptyStr(res.data[i].customer_id)) {
                 res.data[i].imgNum = util.getRemainder(Number(res.data[i].review_id))
@@ -135,12 +187,12 @@ Page({
             that.setData({
               'comment': that.data.comment
             });
-            // if (that.data.comment.length == that.data.total_count) {
-            //   that.setData({
-            //     'isNoMore': true,
-            //     'isLoading': false
-            //   })
-            // }
+            if (that.data.comment.length == Number(that.data.total)) {
+              that.setData({
+                'isNoMore': true,
+                'isLoading': false
+              })
+            }
           }
           else {
             that.setData({
@@ -151,6 +203,9 @@ Page({
         },
         fail: function (res) {
           console.error('🚀 🚀 🚀 获取更多评论错误')
+        },
+        complete: function (res) {
+          wx.hideNavigationBarLoading()
         }
       })
     }

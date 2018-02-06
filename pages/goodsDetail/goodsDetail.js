@@ -144,7 +144,7 @@ Page({
   // 点击服务弹出层交互
   handleTapBottomToast: function () {
     var that = this;
-    console.log('1111111111111');
+    // console.log('1111111111111');
     that.setData({
       isShowBottomToast: true,
     });

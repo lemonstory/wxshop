@@ -23,16 +23,17 @@ Page(Object.assign({}, Toast, {
     requestPath: constant.constant.requestPath,
     // 人气推荐参数
     params: {
-      pageSize: constant.constant.pageSize,
+      pageSize: constant.constant.pageSize + 1,
       currentPage: constant.constant.currentPage
     },
     // 新品推荐参数
     newParams: {
-      pageSize: constant.constant.pageSize,
+      pageSize: constant.constant.pageSize + 1,
       currentPage: constant.constant.currentPage,
       startTime: new Date
     },
-    adminToken: ''
+    adminToken: '',
+    isShow: false
   },
 
   onLoad: function () {
@@ -112,7 +113,7 @@ Page(Object.assign({}, Toast, {
     wx.navigateTo({
       url: path
     })
-},
+  },
 
   /**
    * 获取adminToken
@@ -144,6 +145,7 @@ Page(Object.assign({}, Toast, {
       },
       complete: function (res) {
         wx.hideNavigationBarLoading()
+        // that.setData({ isShow: true})
       }
     })
   },
@@ -174,6 +176,7 @@ Page(Object.assign({}, Toast, {
       },
       complete: function (res) {
         wx.hideNavigationBarLoading()
+        that.setData({ isShow: true })
       }
     })
   },
@@ -204,6 +207,7 @@ Page(Object.assign({}, Toast, {
       },
       complete: function (res) {
         wx.hideNavigationBarLoading()
+        that.setData({ isShow: true })
       }
     })
   },
@@ -235,9 +239,11 @@ Page(Object.assign({}, Toast, {
       },
       fail: function (res) {
         console.error('🚀 🚀 🚀 首页获取可配置商品children错误')
+        console.log(res)
       },
       complete: function (res) {
         wx.hideNavigationBarLoading()
+        that.setData({ isShow: true })
       }
     })
   },

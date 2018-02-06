@@ -122,6 +122,7 @@ Page({
       success: res => {
         console.log(res)
         that.getUserInfo(res.code)
+        wx.showNavigationBarLoading()
       },
       fail: function (res) {
         console.error('调取微信登陆错误')
@@ -203,6 +204,9 @@ Page({
       },
       fail: function (res) {
         console.error('🚀 🚀 🚀 后台获取客户信息成功错误')
+      },
+      complete: function (res) {
+        wx.hideNavigationBarLoading()
       }
     }) 
   },

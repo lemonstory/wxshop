@@ -5,7 +5,7 @@
     <view class="item">
       <view class="cicle"></view>48小时快速退款</view>
     <view class="item">
-      <view class="cicle"></view>满88元免邮费</view>
+      <view class="cicle"></view>包邮政策</view>
   </view> 
   <!--判断 购物车中没有商品时 显示此页面  -->
    <view class="no-cart" wx:if="{{cartGoods.length <= 0 && !isJumpToLogin}}">
@@ -26,7 +26,6 @@
   <view class="text">未登录</view>
   <view class="login" bindtap='handleTapUserLogin'>登录</view>
   </view>
-
    </block> 
   <!-- 跳转登录结束 -->
 

@@ -2,12 +2,13 @@
 <import src="../../template/recommend.wxml" />
 <import src="../../template/sectionTitle.wxml" />
 <import src="../../template/footer.wxml" />
-<view class="container">
+<view class="container" wx:if='{{isShow}}'>
   <view class="search-box">
     <view class="search-icon">
       <image src="../../iconimage/search.png"></image>
     </view>
-    <input class="search" disabled="true" style="display:flex; justify-content: center;padding-left:240rpx;" placeholder='搜索商品，共10224件好物' placeholder-style='color:#7F7F7F;font-size:26rpx;' bindtap='handleTapSearch'></input>
+    <!-- 搜索暂不支持   handleTapSearch -->
+    <input class="search" disabled="true" style="display:flex; justify-content: center;padding-left:240rpx;" placeholder='搜索商品，共11种土特产' placeholder-style='color:#7F7F7F;font-size:26rpx;' bindtap=''></input>
   </view>
   <view class="banner">
     <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
@@ -23,15 +24,15 @@
   <view class="tab-title">
     <view style='display:flex;align-items: center;'>
       <image src="../../iconimage/checked.png" style='width:24rpx;height:24rpx;display:flex;margin-right:10rpx;'></image>
-      <view>网易自营品牌</view>
+      <view>秦岭原生原味</view>
     </view>
     <view style='display:flex;align-items: center;'>
       <image src="../../iconimage/checked.png" style='width:24rpx;height:24rpx;display:flex;margin-right:10rpx;'></image>
-      <view>30天无忧退款</view>
+      <view>30天无忧退货</view>
     </view>
     <view style='display:flex;align-items: center;'>
       <image src="../../iconimage/checked.png" style='width:24rpx;height:24rpx;display:flex;margin-right:10rpx;'></image>
-      <view>48小时快递退款</view>
+      <view>48小时快速退款</view>
     </view>
   </view>
 

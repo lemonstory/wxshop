@@ -52,9 +52,9 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 4,
 					"name": "搜索",
-					"pathName": "pages/search/search",
+					"pathName": "pages/search-detail/search-detail",
 					"query": ""
 				},
 				{
@@ -67,6 +67,12 @@
 					"id": -1,
 					"name": "登录",
 					"pathName": "pages/auth/login",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "发布评论",
+					"pathName": "pages/post-comment/post-comment",
 					"query": ""
 				}
 			]

@@ -43,6 +43,7 @@ data: {
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showNavigationBarLoading()
     this.getHomePopData()
   },
 
@@ -151,6 +152,9 @@ data: {
         },
         fail: function (res) {
           console.error('🚀 🚀 🚀 获取更多数据错误')
+        },
+        complete: function (res) {
+          wx.hideNavigationBarLoading()
         }
       })
     }
@@ -178,6 +182,9 @@ data: {
       },
       fail: function (res) {
         console.error('🚀 🚀 🚀 列表获取人气推荐错误')
+      },
+      complete: function (res) {
+        wx.hideNavigationBarLoading()
       }
     })
   },

@@ -22,9 +22,9 @@ Page({
     isJumpToLogin: false,
     /** 选中产品数量 */
     isCheckedNum: 0,
-    loadingHidden: true,
     isShow: false,
-    price: 0
+    price: 0,
+    order: '下 单'
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
@@ -39,7 +39,7 @@ Page({
       this.setData({ isJumpToLogin: true })
     } else {
       this.setData({ isJumpToLogin: false })
-      this.loadingTap()
+      wx.showNavigationBarLoading()
       console.log('已登录')
       this.getUserCartInfo(util.getToken(constant.constant.userTokenKey))
     }
@@ -50,22 +50,20 @@ Page({
   onUnload: function () {
     // 页面关闭
   },
-  // loading
-  loadingTap: function () {
-    this.setData({
-      loadingHidden: false
-    });
-  },
   /**
    * 获取输入框值
    */
   getInputNum: function (event) {
     var that = this
     var number = event.detail.value
-    if (util.isEmptyStr(number) && Number(number) === 0) {
+    if (util.isEmptyStr(number)) {
       number = 1
     }
-    var price =0
+    if (Number(number) === 0) {
+      number = 1
+    }
+    var price = 0
+    var qty = 0
     for (var i = 0; i < that.data.cartGoods.length; i++) {
       if (event.currentTarget.dataset.item_id === that.data.cartGoods[i].item_id) {
         that.data.cartGoods[i].qty = number
@@ -74,13 +72,16 @@ Page({
       if (that.data.cartGoods[i].checked) {
         price = price + Number(that.data.cartGoods[i].qty) * Number(that.data.cartGoods[i].price)
       }
+      qty = qty + Number(that.data.cartGoods[i].qty)
     }
-    that.setData({ cartGoods: that.data.cartGoods,price: price })
+    util.setToken(constant.constant.qty, qty)
+    that.setData({ cartGoods: that.data.cartGoods, price: price })
   },
   // 购物车数量加减事件
   handleTapcutNumber: function (event) {
     var that = this
     var price = 0
+    var qty = 0
     for (var i = 0; i < that.data.cartGoods.length; i++) {
       if (event.currentTarget.dataset.item_id === that.data.cartGoods[i].item_id) {
         var temp = ((that.data.cartGoods[i].qty - 1 > 1) ? (that.data.cartGoods[i].qty - 1) : 1)
@@ -90,12 +91,15 @@ Page({
       if (that.data.cartGoods[i].checked) {
         price = price + Number(that.data.cartGoods[i].qty) * Number(that.data.cartGoods[i].price)
       }
+      qty = qty + Number(that.data.cartGoods[i].qty)
     }
-    that.setData({ cartGoods: that.data.cartGoods,price:price })
+    util.setToken(constant.constant.qty, qty)
+    that.setData({ cartGoods: that.data.cartGoods, price: price })
   },
   handleTapaddNumber: function (event) {
     var that = this
     var price = 0
+    var qty = 0
     for (var i = 0; i < that.data.cartGoods.length; i++) {
       if (event.currentTarget.dataset.item_id === that.data.cartGoods[i].item_id) {
         var temp = that.data.cartGoods[i].qty + 1
@@ -105,8 +109,10 @@ Page({
       if (that.data.cartGoods[i].checked) {
         price = price + Number(that.data.cartGoods[i].qty) * Number(that.data.cartGoods[i].price)
       }
+      qty = qty + Number(that.data.cartGoods[i].qty)
     }
-    that.setData({ cartGoods: that.data.cartGoods,price:price })
+    util.setToken(constant.constant.qty, qty)
+    that.setData({ cartGoods: that.data.cartGoods, price: price })
   },
   // 点击商品选中状态事件
   handleTapcheckedItem: function (event) {
@@ -242,8 +248,18 @@ Page({
       }
       //获取手指触摸的是哪一项
       var index = e.currentTarget.dataset.index;
+      var item_id = e.currentTarget.dataset.item_id;
       var list = this.data.cartGoods;
-      list[index]['txtStyle'] = txtStyle;
+      // list[index]['txtStyle'] = txtStyle;
+      // console.log(txtStyle)
+      // 控制显示一个删除
+      for (var i = 0; i < list.length; i++) {
+        if (item_id === list[i].item_id) {
+          list[i]['txtStyle'] = txtStyle;
+        } else {
+          list[i]['txtStyle'] = 0 + 'px';
+        }
+      }
       //更新列表的状态
       this.setData({
         'cartGoods': list
@@ -299,8 +315,26 @@ Page({
 
   //点击删除按钮事件 TODO
   delItem: function (e) {
-    //获取列表中要删除项的下标
-    var index = e.target.dataset.index;
+    //获取列表中要删除项的item_id
+    var that = this
+    var item_id = e.target.dataset.item_id;
+    var list = that.data.cartGoods
+    var isCheckedNum = that.data.isCheckedNum
+    var price = that.data.price
+    for (var i = 0; i < list.length; i++) {
+      if (item_id === list[i].item_id) {
+        var qty = util.getToken(constant.constant.qty)
+        qty = qty - Number(list[i].qty)
+        price = Number(price) - Number(list[i].qty) * Number(list[i].price)
+        list.splice(i, 1)
+        isCheckedNum = isCheckedNum - 1
+        // 删除购物车商品
+        that.deleteCartGoods(item_id, util.getToken(constant.constant.userTokenKey))
+        // 本地购物车产品数量缓存
+        util.setToken(constant.constant.qty, qty)
+      }
+    }
+    that.setData({ cartGoods: list, isCheckedNum: isCheckedNum, price: price })
   },
 
   /**
@@ -343,7 +377,7 @@ Page({
             if (res.data.items[i].product_type === 'configurable') {
               // console.log(JSON.parse(res.data.items[i].extension_attributes.options[0]))
               for (var j = 0; j < res.data.items[i].extension_attributes.options.length; j++) {
-                if (util.isEmptyStr(res.data.items[i].extension_attributes.options[i+1])) {
+                if (util.isEmptyStr(res.data.items[i].extension_attributes.options[i + 1])) {
                   description = description + JSON.parse(res.data.items[i].extension_attributes.options[j]).option_label
                 } else {
                   if (util.isEmptyStr(description)) {
@@ -357,17 +391,14 @@ Page({
             res.data.items[i].description = description
           }
           // 获取用户购物车列表
-          that.setData({ cartGoods: res.data.items, isCheckedNum: res.data.items.length, price: price})
-          // 显示界面
-          that.setData({
-            loadingHidden: true,
-            isShow: true
-          });
-          // console.log(res.data.items)
+          that.setData({ cartGoods: res.data.items, isCheckedNum: res.data.items.length, price: price })
         }
       },
       fail: function (res) {
         console.error('🚀 🚀 🚀 获取购物车信息错误')
+      },
+      complete: function (res) {
+        wx.hideNavigationBarLoading()
       }
     })
   },
@@ -375,7 +406,7 @@ Page({
   /**
    * 修改购物车商品数量
    */
-  exitCartGoodsCount: function (item,token) {
+  exitCartGoodsCount: function (item, token) {
     var that = this
     // 测试token
     token = constant.constant.userToken
@@ -399,11 +430,39 @@ Page({
       },
       success: function (res) {
         if (res.statusCode === 200) {
-          console.log('修改购物车商品数量正确')
+          // console.log('修改购物车商品数量正确')
         }
       },
       fail: function (res) {
         console.error('🚀 🚀 🚀 修改购物车商品数量错误')
+        console.error(res)
+      }
+    })
+  },
+
+  /**
+   * 删除购物车商品
+   */
+  deleteCartGoods: function (item_id, token) {
+    var that = this
+    // 测试token
+    token = constant.constant.userToken
+    var url = constant.constant.domain + constant.constant.path + '/V1/carts/mine/items/' + item_id;
+    wx.request({
+      url: url,
+      data: {},
+      method: 'DELETE',
+      header: {
+        'content-type': 'application/json', // 默认值
+        'Authorization': 'Bearer ' + token
+      },
+      success: function (res) {
+        if (res.statusCode === 200) {
+          // console.log('删除购物车商品正确')
+        }
+      },
+      fail: function (res) {
+        console.error('🚀 🚀 🚀 删除购物车商品错误')
         console.error(res)
       }
     })

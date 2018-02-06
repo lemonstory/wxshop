@@ -36,6 +36,7 @@ Page(Object.assign({}, Toast, {
   },
 
   onLoad: function () {
+    wx.showNavigationBarLoading()
     if (util.getToken(constant.constant.adminTokenKey) === '') {
       this.getAdminToken()
     } else {
@@ -140,6 +141,9 @@ Page(Object.assign({}, Toast, {
       },
       fail: function (res) {
         console.error('🚀 🚀 🚀 首页调取adminToken错误')
+      },
+      complete: function (res) {
+        wx.hideNavigationBarLoading()
       }
     })
   },
@@ -167,6 +171,9 @@ Page(Object.assign({}, Toast, {
       },
       fail: function (res) {
         console.error('🚀 🚀 🚀 首页调取人气推荐错误')
+      },
+      complete: function (res) {
+        wx.hideNavigationBarLoading()
       }
     })
   },
@@ -194,6 +201,9 @@ Page(Object.assign({}, Toast, {
       },
       fail: function (res) {
         console.error('🚀 🚀 🚀 首页调取新品推荐错误')
+      },
+      complete: function (res) {
+        wx.hideNavigationBarLoading()
       }
     })
   },
@@ -225,9 +235,11 @@ Page(Object.assign({}, Toast, {
       },
       fail: function (res) {
         console.error('🚀 🚀 🚀 首页获取可配置商品children错误')
+      },
+      complete: function (res) {
+        wx.hideNavigationBarLoading()
       }
     })
   },
-
 
 }));

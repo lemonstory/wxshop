@@ -60,15 +60,15 @@ Page({
     review: {
       imgNum: 0
     },
-    loadingHidden: true,
     isShow: false
   },
 
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
-    this.loadingTap()
     this.getGoodsDetails(options.sku)
     // this.setData({ sku: options.sku})
+    wx.showNavigationBarLoading()
+    this.setData({ cartGoodsCount: util.getToken(constant.constant.qty)})
   },
   onReady: function () {
     // 页面渲染完成
@@ -83,20 +83,6 @@ Page({
   },
   onUnload: function () {
     // 页面关闭
-  },
-  // loading
-  loadingTap: function () {
-    this.setData({
-      loadingHidden: false
-    });
-    // var that = this;
-    // setTimeout(function () {
-    //   that.setData({
-    //     loadingHidden: true,
-    //     isShow: true
-    //   });
-    //   that.update();
-    // }, 3000);
   },
   // 点击用户评论
   handleTapUserComment: function () {
@@ -115,7 +101,7 @@ Page({
     var that = this;
     var flag = that.data.flag;
     if (!flag) {
-      that.getUserCartInfo()
+      // that.getUserCartInfo()
       that.getProductSpecifications()
       flag = true;
       this.setData({
@@ -126,22 +112,30 @@ Page({
         flag: flag
       });
     } else {
-      // console.log('打印')
-      // console.log(typeof that.data.extension_attributes.configurable_product_options)
-      if (typeof that.data.extension_attributes.configurable_product_options === 'undefined') {
-        if (event.currentTarget.dataset.param === 'payNow') {
-          console.log('立即购买')
-        }
-        if (event.currentTarget.dataset.param === 'addCart') {
-          that.addProductToCart()
-        }
+      if (util.isEmptyStr(util.getToken(constant.constant.userTokenKey))) {
+        that.handleTapUserLogin()
       } else {
-        if (Object.keys(that.data.selectedProductOptions).length === that.data.extension_attributes.configurable_product_options.length) {
+        if (typeof that.data.extension_attributes.configurable_product_options === 'undefined') {
           if (event.currentTarget.dataset.param === 'payNow') {
-            console.log('立即购买')
+            // console.log('立即购买')
+            that.handleTapToAdressDetails()
           }
           if (event.currentTarget.dataset.param === 'addCart') {
+            var cartGoodsCount = that.data.cartGoodsCount + Number(that.data.number)
+            that.setData({ cartGoodsCount: cartGoodsCount })
             that.addProductToCart()
+          }
+        } else {
+          if (Object.keys(that.data.selectedProductOptions).length === that.data.extension_attributes.configurable_product_options.length) {
+            if (event.currentTarget.dataset.param === 'payNow') {
+              // console.log('立即购买')
+              that.handleTapToAdressDetails()
+            }
+            if (event.currentTarget.dataset.param === 'addCart') {
+              var cartGoodsCount = that.data.cartGoodsCount + Number(that.data.number)
+              that.setData({ cartGoodsCount: cartGoodsCount })
+              that.addProductToCart()
+            }
           }
         }
       }
@@ -188,6 +182,9 @@ Page({
    */
   addProductToCart: function () {
     var that = this
+    // 测试Token
+    var token = constant.constant.userToken
+    // var token = util.getToken(constant.constant.userTokenKey)
     var url = constant.constant.domain + constant.constant.path + '/V1/carts/mine/items';
     wx.request({
       url: url,
@@ -195,17 +192,16 @@ Page({
       method: 'POST',
       header: {
         'content-type': 'application/json', // 默认值
-        'Authorization': constant.constant.userToken
+        'Authorization': 'Bearer ' + token
       },
       success: function (res) {
         if (res.statusCode === 200) {
-          that.getUserCartInfo()
-          console.log('添加购物车成功')
-          console.log(res)
+          util.setToken(constant.constant.qty, that.data.cartGoodsCount)
         }
       },
       fail: function (res) {
         console.error('🚀 🚀 🚀 添加商品到购物车错误')
+        console.error(res)
       }
     })
   },
@@ -221,7 +217,7 @@ Page({
         'name': that.data.name,
         'price': that.data.priceDetails,
         'product_type': that.data.type_id,
-        'quote_id': constant.constant.quote_id,     //  当前购物车id
+        'quote_id': util.getToken(constant.constant.quote_id),     //  当前购物车id
         'product_option': {
           'extension_attributes': {
             'configurable_item_options': that.data.productOptionArr
@@ -268,7 +264,7 @@ Page({
     var label = event.currentTarget.dataset.label;
     // console.log(label)
     var tempSelectedProductOptions = that.data.selectedProductOptions;
-    console.log(typeof specNameId)
+    // console.log(typeof specNameId)
     that.getOption(specNameId, specValueId);
     that.getConfigurableProAtNorm(specValueId);
     tempSelectedProductOptions[specNameId] = specValueId;
@@ -325,14 +321,13 @@ Page({
         that.setData({ shortDescription: shortDescription })
         that.getCommentSum(res.data.extension_attributes.review)
         that.setData(res.data)
-        // 显示界面
-        that.setData({
-          loadingHidden: true,
-          isShow: true
-        });
       },
       fail: function (res) {
         console.error('🚀 🚀 🚀 获取商品详情错误')
+      },
+      complete: function(res) {
+        wx.hideNavigationBarLoading()
+        that.setData({ isShow: true})
       }
     })
   },
@@ -513,6 +508,7 @@ Page({
     var temp = (Number(review.avg) * 100)
     review.avgStr = util.toDecimal(temp)
     // console.log(review.avgStr)
+    review.ratingNum = Number(review.rating)
     that.setData({ review: review })
   },
 
@@ -539,7 +535,44 @@ Page({
         console.error('🚀 🚀 🚀 获取当前用户购物车信息错误')
       }
     })
-  }
+  },
+  /**
+   * 点击跳转到首页
+   */
+  handleTapaddToHome: function () {
+    var path = "/pages/index/index";
+    wx.switchTab({
+      url: path
+    })
+  },
+  /**
+   * 点击跳转到购物车
+   */
+  handleTapaddToUserCart: function () {
+    console.log('ssss')
+    var path = "/pages/cart/cart";
+    wx.switchTab({
+      url: path
+    })
+  },
+  /**
+   * 跳转到登录页
+   */
+  handleTapUserLogin: function () {
+    var path = "/pages/auth/login";
+    wx.navigateTo({
+      url: path
+    })
+  },
+  /**
+  * 跳转到地址详情页
+  */
+  handleTapToAdressDetails: function () {
+    var path = "/pages/shopping/edit-address/edit-address";
+    wx.navigateTo({
+      url: path
+    })
+  },
 })
 
 

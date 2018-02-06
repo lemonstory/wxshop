@@ -28,6 +28,7 @@ Page({
     //   this.setData({ isJumpToLogin: false })
     //   console.log('已登录')
     // }
+    wx.showNavigationBarLoading()
   },
 
   /**
@@ -49,6 +50,7 @@ Page({
         var name = util.getToken(constant.constant.userInfoKey).firstname
         var level = constant.constant.level
         this.setData({ isJumpToLogin: false, name: name, level: level })
+        wx.hideNavigationBarLoading()
       } else {
         this.setData({ isJumpToLogin: true })
       }

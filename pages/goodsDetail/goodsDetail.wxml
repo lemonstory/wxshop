@@ -1,7 +1,4 @@
 <!--pages/cart/cart.wxml-->
-<loading hidden="{{loadingHidden}}">
- 加载中...
-</loading>
 <view class="container" wx:if='{{isShow}}'>
   <!--banner轮播图开始  -->
   <view class="banner">
@@ -84,10 +81,10 @@
         <view class="time">{{review.created_at}}</view>
         <view style='margin-left:10rpx'>
           <!--TODO 字符串转换为数字 -->
-          <block wx:for="{{review.rating}}" wx:key="item">
+          <block wx:for="{{review.ratingNum}}" wx:key="item">
             <image src='http://image.365zhiding.com/wxapp/20171219/start1.png' style="width:20rpx;height:20rpx;margin-left:10rpx;"></image>
           </block>
-          <block wx:for="{{5-review.rating}}" wx:key="item">
+          <block wx:for="{{5-review.ratingNum}}" wx:key="item">
             <image src='http://image.365zhiding.com/wxapp/20171219/start2.png' style="width:20rpx;height:20rpx;margin-left:10rpx;"></image>
           </block>
         </view>
@@ -148,8 +145,12 @@
   <!-- 产品描述开始 -->
   <view style='box-sizing:border-box;margin-bottom:102rpx;'>
     <!-- <text></text> -->
-    <rich-text class="rich-content" nodes="{{description}}"></rich-text>
-    <!-- <rich-text class="rich-content" nodes="<p><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/1.jpg\" /><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/2.jpg\"/><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/3.jpg\" /><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/4.jpg\"/><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/5.jpg\"/><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/6.jpg\"/><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/7.jpg\"/><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/415106515186995618.jpg\"/><img class='rich-img' src=\"https://shop.xiaoningmeng.net/media/wysiwyg/676261292891122239.jpg\"/></p>"></rich-text>  -->
+     <!-- <rich-text class="rich-content" nodes="{{description}}"></rich-text>  -->
+     
+     <!-- 异常 -->
+      <rich-text class="rich-content" nodes="<p><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/hetao/1.jpg\" class=\"rich-img\" /><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/hetao/2.jpg\" class=\"rich-img\" /><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/hetao/3.jpg\" class=\"rich-img\" /><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/hetao/4.jpg\" class=\"rich-img\" /><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/hetao/5.jpg\" class=\"rich-img\" /><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/hetao/6.jpg\" class=\"rich-img\" /><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/hetao/7.jpg\" class=\"rich-img\" /><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/hetao/8.jpg\" class=\"rich-img\" /><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/hetao/9.jpg\" class=\"rich-img\" /><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/hetao/10.jpg\" class=\"rich-img\" /><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/hetao/11.jpg\" class=\"rich-img\" /><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/file_1.png\" /><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/415106515186995618.jpg\" class=\"rich-img\" /><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/_A_.jpg\" class=\"rich-img\" /></p>"></rich-text>   
+    <!-- 正常 -->
+      <!-- <rich-text class="rich-content" nodes="<p><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/chao/1.jpg\" class=\"rich-img\" /><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/chao/2.jpg\" class=\"rich-img\" /><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/chao/3.jpg\" class=\"rich-img\" /><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/chao/4.jpg\" class=\"rich-img\" /><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/chao/5.jpg\" class=\"rich-img\" /><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/chao/6.jpg\" class=\"rich-img\" /><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/chao/7.jpg\" class=\"rich-img\" /><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/chao/8.jpg\" class=\"rich-img\" /><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/chao/9.jpg\" class=\"rich-img\" /><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/chao/10.jpg\" class=\"rich-img\" /><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/chao/11.jpg\" class=\"rich-img\" /><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/chao/12.jpg\" class=\"rich-img\" /><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/chao/13.jpg\" class=\"rich-img\" /><img src=\"https://shop.xiaoningmeng.net/media/wysiwyg/415106515186995618.jpg\" class=\"rich-img\" /></p>"></rich-text>    -->
   </view>
   <!-- 产品描述结束 -->
 
@@ -234,15 +235,15 @@
 
   <!--底部开始  -->
   <view class="bottom-btn">
-    <view class="l l-collect">
+    <view class="l l-collect" bindtap='handleTapaddToHome'>
       <image class="icon" src="/static/images/ic_menu_choice_nor.png"></image>
     </view>
-    <view class="l l-cart">
+    <view class="l l-cart" bindtap='handleTapaddToCustomerService'>
       <view class="box">
         <image class="icon" src="/static/images/detail_kefu.png"></image>
       </view>
     </view>
-    <view class="l l-cart last">
+    <view class="l l-cart last" bindtap='handleTapaddToUserCart'>
       <view class="box">
         <text class="{{cartGoodsCount > 0 ? 'cart-count' : ''}}">{{cartGoodsCount > 0 ? cartGoodsCount : ''}}</text>
         <image class="icon" src="/static/images/ic_menu_shoping_nor.png"></image>

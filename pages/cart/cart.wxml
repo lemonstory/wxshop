@@ -37,7 +37,7 @@
         <view class="goods">
           <view class="item" wx:for="{{cartGoods}}" wx:key="{{item.id}}"> 
             <!--左滑删除  -->
-             <view bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" data-index="{{index}}" style="{{item.txtStyle}}" class="inner txt">
+             <view bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" data-item_id="{{item.item_id}}" data-index="{{index}}" style="{{item.txtStyle}}" class="inner txt">
               <view class="checkbox {{item.checked ? 'checked' : ''}}" bindtap="handleTapcheckedItem" data-item_id="{{item.item_id}}"></view>
               <view class="cart-goods {{index == 0 ? 'first' : ''}}">
                 <image class="img" src="{{item.extension_attributes.image_url}}"></image>
@@ -52,7 +52,7 @@
                     <text class="price">￥{{item.price}}</text>
                     <view class="selnum">
                       <view class="cut" bindtap="handleTapcutNumber" data-item_id="{{item.item_id}}">-</view>
-                      <input value="{{item.qty}}" data-item_id="{{item.item_id}}" class="number" type="number" bindinput='getInputNum' />
+                      <input value="{{item.qty}}" data-item_id="{{item.item_id}}" class="number" type="number" bindblur='getInputNum' />
                       <view class="add" bindtap="handleTapaddNumber" data-item_id="{{item.item_id}}">+</view>
                     </view>
                   </view>
@@ -60,7 +60,7 @@
               </view>
             </view> 
             <!--删除按钮  -->
-             <view data-index="{{index}}" bindtap="delItem" class="inner del">
+             <view data-index="{{index}}" data-item_id="{{item.item_id}}" bindtap="delItem" class="inner del">
               <image src='/static/images/del.png' style='width:40rpx;height:46rpx;display:flex'></image>
             </view>
           </view>
@@ -73,7 +73,7 @@
       <view class="checkbox {{checkedAllStatus ? 'checked' : ''}}" bindtap="handleTapcheckedAll" wx:if='{{isCheckedNum===0}}'>全选</view>
       <view class="checkbox {{checkedAllStatus ? 'checked' : ''}}" bindtap="handleTapcheckedAll" wx:else>已选 ({{isCheckedNum}})</view>
       <view class="total">{{'￥'+price}}</view>
-      <view class="checkout {{isCheckedNum > 0 ? 'selected':''}}" bindtap="handleTapcheckoutOrder">下 单</view>
+      <view class="checkout {{isCheckedNum > 0 ? 'selected':''}}" bindtap="handleTapcheckoutOrder">{{order}}</view>
     </view>
   </view> 
 

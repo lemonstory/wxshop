@@ -31,7 +31,7 @@
 					"id": 0,
 					"name": "详情页",
 					"pathName": "pages/goodsDetail/goodsDetail",
-					"query": "sku=hao001"
+					"query": "sku=HTR01"
 				},
 				{
 					"id": 1,

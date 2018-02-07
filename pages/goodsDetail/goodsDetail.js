@@ -469,34 +469,22 @@ Page({
    * 拼接产品描述
    */
   operateProductDescription: function (description) {
-    console.log(description)
     var urlArr = description.match(/{{media url=\S*}}/g);
-    var widthArr = description.match(/width\S*/g);
-    var heightArr = description.match(/height\S*/g);
-    console.log(urlArr)
-    console.log(widthArr)
     if (urlArr.length > 0) {
-
+      var descriptionStr = '<p>'
       for (var i = 0; i < urlArr.length; i++) {
 
         //https://shop.xiaoningmeng.net/media/wysiwyg/HEIZHU/1.jpg
         var tempStr = urlArr[i];
-        // console.log(tempStr)
         var prefixNum = tempStr.indexOf("url=");
         var prefix = tempStr.substring(2, prefixNum - 1);
-        // console.log(prefix);
         var suffixNum = tempStr.indexOf("}}");
-        // console.log(suffixNum)
         var suffix = tempStr.substring(prefixNum + 5, suffixNum - 1)
-        // console.log(suffix);
-        var str = constant.constant.domain + '/' + prefix + '/' + suffix
-        description = description.replace(urlArr[i], str);
-        description = description.replace(widthArr[i] + ' ' + heightArr[i], constant.constant.class);
+        descriptionStr = descriptionStr + '<img src="https://shop.xiaoningmeng.net/media/' + suffix + '"' + constant.constant.class
       }
+      descriptionStr = descriptionStr + '</p>'
     }
-
-    // console.log(description);
-    this.setData({ description: description })
+    this.setData({ description: descriptionStr })
 
   },
 

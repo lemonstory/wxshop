@@ -68,7 +68,7 @@ Page({
     this.getGoodsDetails(options.sku)
     // this.setData({ sku: options.sku})
     wx.showNavigationBarLoading()
-    this.setData({ cartGoodsCount: util.getToken(constant.constant.qty)})
+    this.setData({ cartGoodsCount: util.getToken(constant.constant.qty), indexNum: Number(options.index)})
   },
   onReady: function () {
     // 页面渲染完成
@@ -312,6 +312,17 @@ Page({
         console.log(res.data)
         if (res.data.type_id === 'configurable') {
           that.getConfigurableProChlid(sku)
+        }
+        for (var i = 0; i < res.data.media_gallery_entries.length; i++) {
+          var temp = 0;
+          for (var j = 0; j < res.data.media_gallery_entries[i].types.length; j++) {
+            if ('image_banner' === res.data.media_gallery_entries[i].types[j]) {
+              temp++
+            }
+          }
+          if (temp > 0) {
+            res.data.media_gallery_entries.splice(i, 1)
+          }
         }
         var description = util.isNeed(res.data.custom_attributes, 'description')
         var shortDescription = util.isNeed(res.data.custom_attributes, 'short_description')

@@ -164,9 +164,12 @@ Page(Object.assign({}, Toast, {
       data: {},
       header: util.adminRequestHeader(that.data.adminToken),
       success: function (res) {
+        console.log(res.data)
         for (var i = 0; i < res.data.items.length; i++) {
           var img = util.isNeed(res.data.items[i].custom_attributes, 'image')
           res.data.items[i].img = that.data.requestPath + img
+          var imgBanner = util.isNeed(res.data.items[i].custom_attributes, 'image_banner')
+          res.data.items[i].imgBanner = that.data.requestPath + imgBanner
           if (res.data.items[i].type_id === 'configurable') {
             that.getConfigurableProChlid(res.data.items[i].sku, res.data.items, 'pop')
           }
@@ -199,6 +202,8 @@ Page(Object.assign({}, Toast, {
         for (var i = 0; i < res.data.items.length; i++) {
           var img = util.isNeed(res.data.items[i].custom_attributes, 'image')
           res.data.items[i].img = that.data.requestPath + img
+          var imgBanner = util.isNeed(res.data.items[i].custom_attributes, 'image_banner')
+          res.data.items[i].imgBanner = that.data.requestPath + imgBanner
           if (res.data.items[i].type_id === 'configurable') {
             that.getConfigurableProChlid(res.data.items[i].sku, res.data.items, 'new')
           }

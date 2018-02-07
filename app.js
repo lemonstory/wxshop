@@ -16,8 +16,8 @@ App({
   },
   onShow: function (options) {
     // Do something when show.
-    console.log(constant.constant.domain);
-    console.log("App onShow run");
+    // console.log(constant.constant.domain);
+    // console.log("App onShow run");
     // this.getUserToken()
   },
   onHide: function () {
@@ -33,7 +33,7 @@ App({
   constant: constant.constant,
   // 获取访问令牌
   getAdminToken: function () {
-    console.log("🚀 🚀 🚀 getUserToken run");
+    // console.log("🚀 🚀 🚀 getUserToken run");
     var that = this;
     var url = constant.constant.domain + constant.constant.path + '/V1/integration/admin/token';
     wx.request({
@@ -54,6 +54,7 @@ App({
       },
       fail: function (res) {
         console.error('🚀 🚀 🚀 app.js设置缓存错误')
+        console.error(res)
       }
     })
   },
@@ -64,7 +65,7 @@ App({
     var that = this
     wx.login({
       success: res => {
-        console.log(res)
+        // console.log(res)
         that.getUserInfo(res.code)
       },
       fail: function (res) {
@@ -100,7 +101,7 @@ App({
    * 调取后台登陆接口
    */
   getLoginApi: function (code, encryptedData, iv) {
-    console.log("🚀 🚀 🚀 getLoginApi");
+    // console.log("🚀 🚀 🚀 getLoginApi");
     var that = this;
     var url = constant.constant.domain + constant.constant.path + '/V1/wxlogin/';
     wx.request({

@@ -106,19 +106,27 @@ Page({
   * 点击跳转地址管理
   */
   handleTapToAderssManager: function () {
-    var path = "/pages/shopping/address-manager/address-manager";
-    wx.navigateTo({
-      url: path
-    })
+    if (util.isEmptyStr(util.getToken(constant.constant.userTokenKey))) {
+      this.handleTapUserLogin()
+    } else {
+      var path = "/pages/shopping/address-manager/address-manager";
+      wx.navigateTo({
+        url: path
+      })
+    }
   },
 
   /**
   * 点击跳转我的订单
   */
   handleTapToMyOrder: function () {
-    var path = "/pages/usercenter/order/order";
-    wx.navigateTo({
-      url: path
-    })
+    if (util.isEmptyStr(util.getToken(constant.constant.userTokenKey))) {
+      this.handleTapUserLogin()
+    } else {
+      var path = "/pages/usercenter/order/order";
+      wx.navigateTo({
+        url: path
+      })
+    }
   },
 })

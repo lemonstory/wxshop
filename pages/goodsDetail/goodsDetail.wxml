@@ -22,10 +22,10 @@
         </view>
         <view class="price">￥{{price}}</view>
       </view>
-      <view class="goods-info-right">
+      <view class="goods-info-right" bindtap='handleTapUserComment'>
         <view class="comment-num">{{review.total > 999 ? '999+' : review.total}}</view>
         <view class="comment-font">用户评价</view>
-        <view class="comment-more" bindtap='handleTapUserComment'>查看</view>
+        <view class="comment-more">查看</view>
       </view>
     </view>
     <!-- 暂不提供 -->
@@ -82,10 +82,10 @@
         <view style='margin-left:10rpx'>
           <!--TODO 字符串转换为数字 -->
           <block wx:for="{{review.ratingNum}}" wx:key="item">
-            <image src='/static/images/smallselect.png' style="width:24rpx;height:24rpx;margin-left:15rpx;"></image>
+            <image src='http://image.365zhiding.com/wxapp/20171219/start1.png' style="width:22rpx;height:22rpx;margin-left:10rpx;"></image>
           </block>
           <block wx:for="{{5-review.ratingNum}}" wx:key="item">
-            <image src='/static/images/smallunselect.png' style="width:24rpx;height:24rpx;margin-left:15rpx;"></image>
+            <image src='http://image.365zhiding.com/wxapp/20171219/start2.png' style="width:22rpx;height:22rpx;margin-left:10rpx;"></image>
           </block>
         </view>
       </view>
@@ -214,7 +214,7 @@
             <!--测试循环数据  -->
             <view class="title" style='display:flex; align-items: center;font-size:28rpx;margin-top:30rpx'>
               <view class="cicle" style='margin-right:20rpx;'></view>部分地区无法配送</view>
-            <view class="desc" style='font-size:28rpx;color:#999;'>由于肉、菜类食品是新鲜采制，不便长距离运输和储存，故肉类、鲜香菇（直采）产品只针对陕西省内客户（陕西省内地区隔天到货，请收货后尽快烹食）；肉、菜类食品请本人及时签收，如遇涨袋、异味请勿烹食；一旦发货除质量问题之外都不支持退款退货。</view>
+            <view class="desc" style='font-size:28rpx;color:#999;'>由于肉、菜类食品是新鲜采制，不便长距离运输和储存，故肉类、鲜香菇（直采）产品只针对陕西省内客户，陕西省内地区隔天到货。肉、菜类食品请及时签收。</view>
           </view>
         </view>
 

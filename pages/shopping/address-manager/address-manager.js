@@ -29,7 +29,7 @@ Page({
    */
   onShow: function () {
     if (util.isEmptyStr(util.getToken(constant.constant.userTokenKey))) {
-      console.log('未登录')
+      // console.log('未登录')
       this.handleTapUserLogin()
     } else {
       wx.showNavigationBarLoading()
@@ -89,8 +89,8 @@ Page({
       },
       success: function (res) {
         if (res.statusCode === 200) {
-          // console.log(res.data)
-          // console.log('获取用户地址信息正确')
+          console.log(res.data)
+          console.log('获取用户地址信息正确')
           var list = res.data.addresses
           for (var i = 0; i < list.length; i++) {
             var address = list[i].region.region + list[i].city
@@ -103,6 +103,7 @@ Page({
             list[i].telephoneStr = list[i].telephone.replace(telephoneStr,'****')
           }
           that.setData({ addressList: list, addressNum: res.data.addresses.length})
+          util.setToken(constant.constant.userAddressKey, res.data)
         }
       },
       fail: function (res) {

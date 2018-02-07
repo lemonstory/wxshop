@@ -24,6 +24,6 @@
     <image class="icon" src="http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/noAddress-26d570cefa.png"></image>
     <text class="text">收货地址在哪里</text>
   </view>
-  <view class="bottom" bindtap="handleTapEditAddress" data-id="">
+  <view class="bottom" bindtap="handleTapEditAddress" data-id="0">
     <image src="/static/images/add.png" style='width:16rpx;height:16rpx;display:flex;margin-right:20rpx;display:flex;'></image>新建地址</view>
 </view>

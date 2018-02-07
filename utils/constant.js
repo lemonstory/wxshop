@@ -29,9 +29,10 @@ var constant = {
   avatarNum: 31,
   userTokenKey: 'userTokenKey',
   userInfoKey: 'userInfoKey',
+  userAddressKey: 'userAddressKey',
   level: '普通用户',
   // 用户token
-  userToken: 'umfjedw3sdbciq7l5xsa61vu4l4cpgoo',
+  userToken: '472p4dttw3g1f66xd1i91ccki6oi91rb',
   quote_id: 'quote_id', // 购物车id
   qty: 'qty'   // 购物车商品数量
 }

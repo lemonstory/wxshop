@@ -31,7 +31,7 @@ var constant = {
   userInfoKey: 'userInfoKey',
   level: '普通用户',
   // 用户token
-  userToken: 'ji4je5h1kdhubmfd6frfnjx7vq7igmqk',
+  userToken: 'umfjedw3sdbciq7l5xsa61vu4l4cpgoo',
   quote_id: 'quote_id', // 购物车id
   qty: 'qty'   // 购物车商品数量
 }

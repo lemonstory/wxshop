@@ -469,10 +469,12 @@ Page({
    * 拼接产品描述
    */
   operateProductDescription: function (description) {
-
+    console.log(description)
     var urlArr = description.match(/{{media url=\S*}}/g);
     var widthArr = description.match(/width\S*/g);
     var heightArr = description.match(/height\S*/g);
+    console.log(urlArr)
+    console.log(widthArr)
     if (urlArr.length > 0) {
 
       for (var i = 0; i < urlArr.length; i++) {

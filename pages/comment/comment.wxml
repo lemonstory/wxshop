@@ -57,10 +57,10 @@
 
           <!--TODO 字符串转换为数字 -->
           <block wx:for="{{item.ratingNum}}" wx:key="item">
-            <image src='/static/images/smallselect.png' style="width:22rpx;height:22rpx;margin-left:10rpx;"></image>
+            <image src='/static/images/smallselect.png' style="width:24rpx;height:24rpx;margin-left:15rpx;"></image>
           </block>
           <block wx:for="{{5-item.ratingNum}}" wx:key="item">
-            <image src='/static/images/smallunselect.png' style="width:22rpx;height:22rpx;margin-left:10rpx;"></image>
+            <image src='/static/images/smallunselect.png' style="width:24rpx;height:24rpx;margin-left:15rpx;"></image>
           </block>
         </view>
       </view>

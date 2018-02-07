@@ -11,15 +11,15 @@
 
   <view class="user-menu" style='margin-top:20rpx;'>
     <!-- <navigator url="/pages/usercenter/order/order"> -->
-      <view class="item" bindtap='handleTapToMyOrder'>
-        <view style='display:flex'>
-          <image src="/static/images/order.png" style='width:38rpx;height:38rpx;display:flex;margin-right:20rpx;' mode='aspectFit'></image>
-          <view class="txt">我的订单 </view>
-        </view>
-        <view>
-          <image src="/static/images/go.png" style='width:14rpx;height:24rpx;display:flex;'></image>
-        </view>
+    <view class="item" bindtap='handleTapToMyOrder'>
+      <view style='display:flex'>
+        <image src="/static/images/order.png" style='width:38rpx;height:38rpx;display:flex;margin-right:20rpx;' mode='aspectFit'></image>
+        <view class="txt">我的订单 </view>
       </view>
+      <view>
+        <image src="/static/images/go.png" style='width:14rpx;height:24rpx;display:flex;'></image>
+      </view>
+    </view>
     <!-- </navigator> -->
 
 
@@ -46,26 +46,28 @@
       </view> -->
 
     <!-- <navigator url="/pages/shopping/address-manager/address-manager"> -->
-      <view class="item" bindtap='handleTapToAderssManager'>
-        <view style='display:flex'>
-          <image src="/static/images/address.png" style='width:38rpx;height:38rpx;display:flex;margin-right:20rpx;' mode="aspectFit"></image>
-          <view class="txt">地址管理 </view>
-        </view>
-        <view>
-          <image src="/static/images/go.png" style='width:14rpx;height:24rpx;display:flex;'></image>
-        </view>
+    <view class="item" bindtap='handleTapToAderssManager'>
+      <view style='display:flex'>
+        <image src="/static/images/address.png" style='width:38rpx;height:38rpx;display:flex;margin-right:20rpx;' mode="aspectFit"></image>
+        <view class="txt">地址管理 </view>
       </view>
+      <view>
+        <image src="/static/images/go.png" style='width:14rpx;height:24rpx;display:flex;'></image>
+      </view>
+    </view>
     <!-- </navigator> -->
 
-
-    <view class="item" style='border-bottom:none'>
-      <view style='display:flex'>
+<!--客服会话功能   暂且注释  -->
+     <!-- <button open-type="contact" style='display:flex;width:720rx;height:100rpx;justify-content:space-between;padding-right:30rpx;box-sizing: border-box;align-items: center;background:#fff; postion:static'> -->
+      <view class="item" style='border-bottom:none'>
+      <view style='display:flex;align-items:center;'>
         <image src="/static/images/kefu.png" style='width:38rpx;height:38rpx;display:flex;margin-right:20rpx;' mode="aspectFit"></image>
         <view class="txt">联系客服 </view>
       </view>
       <view>
         <image src="/static/images/go.png" style='width:14rpx;height:24rpx;display:flex;'></image>
       </view>
+    <!-- </button>  -->
     </view>
 
   </view>

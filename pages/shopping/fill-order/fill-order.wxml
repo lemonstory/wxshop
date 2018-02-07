@@ -1,102 +1,95 @@
 <!--pages/shopping/fill-order/fill-order.wxml-->
 <view class="container">
-  <view class="address-box">
-    <view class="address-item" bindtap="handleTapSelectAddress">
-      <view class="left">
-        <text class="name">哈哈哈哈哈哈</text>
-        <text class="default">默认</text>
-      </view>
-      <view class="middle">
-        <text class="mobile">123456789</text>
-        <text class="address">山西省运城市灞桥区长安区</text>
-      </view>
-      <image src="/static/images/go.png" style='width:14rpx;height:24rpx;display:flex;margin-left:10rpx;margin-top:30rpx;display:flex;'></image>
-
-    </view>
-  </view>
-
-  <!--优惠卷 运费开始  -->
-  <view class="order-box">
-    <view class="order-item">
-      <view class="left">
-        <text class="name">优惠券：未选择</text>
-      </view>
-      <view class="right">
-        <text class="txt"> 0张 </text>
-        <image src="/static/images/go.png" style='width:14rpx;height:24rpx;display:flex;margin-left:10rpx;display:flex;'></image>
-      </view>
-    </view>
-    <view class="order-item">
-      <view class="left">
-        <text class="name">商品合计</text>
-      </view>
-      <view class="right">
-        <text class="txt">￥0</text>
-      </view>
-    </view>
-    <view class="order-item no-border">
-      <view class="left">
-        <text class="name">运费</text>
-      </view>
-      <view class="right">
-        <text class="txt">￥20</text>
-      </view>
-    </view>
-  </view>
-  <!--优惠卷 运费结束 -->
-
-
-
-  <!--选中的商品列表开始  -->
-  <view class="cart-view">
-    <view class="list">
-      <view class="group-item">
-        <view class="goods">
-          <view class="item {{index == 0 ? 'first' : ''}}" wx:for="{{cartGoods}}" wx:key="{{item.id}}">
-            <view class="cart-goods">
-              <image class="img" src="{{item.list_pic_url}}"></image>
-              <view class="info">
-                <view class="name">
-                  {{item.goods_name}}
-                </view>
-                <view class="desc">
-                  {{item.goods_desc}}
-                </view>
-                <view class="b">
-                  <text class="price">￥{{item.retail_price}}</text>
-                </view>
-              </view>
+    <view class="address-box">
+        <view class="address-item" bindtap="handleTapSelectAddress">
+            <view class="left">
+                <text class="name">哈哈哈哈哈哈</text>
+                <text class="default">默认</text>
             </view>
-            <view class="good-num">×100</view>
-          </view>
+            <view class="middle">
+                <text class="mobile">123456789</text>
+                <text class="address">山西省运城市灞桥区长安区</text>
+            </view>
+            <image src="/static/images/go.png" style='width:14rpx;height:24rpx;display:flex;margin-left:10rpx;margin-top:30rpx;display:flex;'></image>
 
         </view>
-      </view>
     </view>
 
+    <!--优惠卷 运费开始  -->
+    <view class="order-box">
+        <view class="order-item">
+            <view class="left">
+                <text class="name">优惠券：未选择</text>
+            </view>
+            <view class="right">
+                <text class="txt"> 0张 </text>
+                <image src="/static/images/go.png" style='width:14rpx;height:24rpx;display:flex;margin-left:10rpx;display:flex;'></image>
+            </view>
+        </view>
+        <view class="order-item">
+            <view class="left">
+                <text class="name">商品合计</text>
+            </view>
+            <view class="right">
+                <text class="txt">￥0</text>
+            </view>
+        </view>
+        <view class="order-item no-border">
+            <view class="left">
+                <text class="name">运费</text>
+            </view>
+            <view class="right">
+                <text class="txt">￥20</text>
+            </view>
+        </view>
+    </view>
+    <!--优惠卷 运费结束 -->
 
 
-  </view>
 
+    <!--选中的商品列表开始  -->
+    <view class="cart-view">
+        <view class="list">
+            <view class="group-item">
+                <view class="goods">
+                    <view class="item {{index == 0 ? 'first' : ''}}" wx:for="{{cartGoods}}" wx:key="{{item.id}}">
+                        <view class="cart-goods">
+                            <image class="img" src="{{item.list_pic_url}}"></image>
+                            <view class="info">
+                                <view class="name">
+                                    {{item.goods_name}}
+                                </view>
+                                <view class="desc">
+                                    {{item.goods_desc}}
+                                </view>
+                                <view class="b">
+                                    <text class="price">￥{{item.retail_price}}</text>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="good-num">×100</view>
+                    </view>
 
+                </view>
+            </view>
+        </view>
 
+        <!--协议开始  -->
+        <view class="contract-box">
+            <view style='width:90rpx;height:90rpx;display:flex; align-items: center;justify-content: center;' bindtap='handleTapIsSelected'>
+                <image src='{{isSelect? selected:unSelected}}' style='display:flex;height:36rpx;width:36rpx;'></image>
+            </view>
+            <view style='display:flex'>
+                <view style='color:#999'>我同意</view>
+                <view>《灞源味道平台服务协议》</view>
+            </view>
+        </view>
+        <!--协议结束  -->
+</view>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <view class="order-total">
-    <view class="l">应付：￥</view>
-    <view class="r" bindtap="submitOrder">付款</view>
-  </view>
+<!--底部开始  -->
+<view class="order-total">
+        <view class="l">应付：￥</view>
+        <view class="r {{isSelect? '':'nopoint'}}" bindtap="handleTapSubmitOrder">付款</view>
+    </view>
 </view>

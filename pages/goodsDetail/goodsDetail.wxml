@@ -82,10 +82,10 @@
         <view style='margin-left:10rpx'>
           <!--TODO 字符串转换为数字 -->
           <block wx:for="{{review.ratingNum}}" wx:key="item">
-            <image src='http://image.365zhiding.com/wxapp/20171219/start1.png' style="width:22rpx;height:22rpx;margin-left:10rpx;"></image>
+            <image src='/static/images/smallselect.png' style="width:24rpx;height:24rpx;margin-left:15rpx;"></image>
           </block>
           <block wx:for="{{5-review.ratingNum}}" wx:key="item">
-            <image src='http://image.365zhiding.com/wxapp/20171219/start2.png' style="width:22rpx;height:22rpx;margin-left:10rpx;"></image>
+            <image src='/static/images/smallunselect.png' style="width:24rpx;height:24rpx;margin-left:15rpx;"></image>
           </block>
         </view>
       </view>

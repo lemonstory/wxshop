@@ -107,6 +107,7 @@ Page({
   */
   handleTapToAderssManager: function () {
     var path = "/pages/shopping/address-manager/address-manager";
+    console.log(1111111111)
     wx.navigateTo({
       url: path
     })

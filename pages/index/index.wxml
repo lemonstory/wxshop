@@ -82,7 +82,9 @@
           <image class="recommend-img" style="width:710rpx;box-sizing: border-box;margin-bottom:30rpx;" mode="widthFit" src="{{recommendItem.img}}">
             <view class="brand-name">{{recommendItem.name}}</view>
             <!--大图图片描述  TODO 参数不正确  -->
-            <view class="brand-desc"><rich-text nodes="{{recommendItem.shortDescription}}"></rich-text></view>
+            <view class="brand-desc">
+              <rich-text nodes="{{recommendItem.shortDescription}}"></rich-text>
+            </view>
             <!--大图图片描述结束  -->
             <view class="brand-price">￥{{recommendItem.price}}</view>
           </image>
@@ -92,6 +94,38 @@
     </view>
   </view>
   <!--一个循环结束  -->
-
-  <template is="footer" />
+<template is="footer" />
 </view>
+
+
+<!--点击底部的弹出框-->
+<view class="hidden-box hide{{showView?'show':''}}" bindtap='bindTapCancle'></view>
+<view class="hidden hide{{showView?'show':''}}">
+  <view class="hidden-text1">西安行方思远网络科技有限公司</view>
+  <view class="hidden-text2">
+    <view class='suojin'> 是国内最前沿的互联网科技公司，掌握最新的互联网开发技术及最优的互联网解决方案。</view>
+    <view class='suojin'>公司致力于开发最优秀的微信小程序，协同线上线下商户，共享微信时代的流量红利！</view>
+    <view class='suojin'>您可以通过以下几种方式联系到我们：</view>
+  </view>
+  <view class="hidden-tell">
+    <image src='/static/images/call.png' style='width:37rpx;height:37rpx;display:flex;margin-right:20rpx;'></image>
+    <view>18600024911</view>
+  </view>
+
+  <view class="hidden-tell hidden-tell1">
+    <image src='/static/images/msg.png' style='width:37rpx;height:37rpx;display:flex;margin-right:20rpx;'></image>
+    <view>gaoyong@xiaoningmeng.net</view>
+  </view>
+
+  <view class="hidden-tell hidden-tell2">
+    <image src='/static/images/weixin.png' style='width:37rpx;height:37rpx;display:flex;margin-right:20rpx;'></image>
+    <view>gaoyong</view>
+  </view>
+
+  <view class="hidden-tell hidden-tell3">
+    <image src='/static/images/qq.png' style='width:37rpx;height:37rpx;display:flex;margin-right:20rpx;'></image>
+    <view>272443654</view>
+  </view>
+
+</view>
+<!--弹出信息的展示结束-->

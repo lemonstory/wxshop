@@ -7,9 +7,10 @@ var constant = require('../../utils/constant.js')
 
 Page(Object.assign({}, Toast, {
   data: {
+    showView: false,
     banner: [
-      { image: '../../image/2.png', sku: 'HTR01'},
-      { image: '../../image/3.png', sku: 'YM01'},
+      { image: '../../image/2.png', sku: 'HTR01' },
+      { image: '../../image/3.png', sku: 'YM01' },
       // { image: '../../image/1.png' }
     ],
     recommendImg: "../../image/1.png",
@@ -251,4 +252,17 @@ Page(Object.assign({}, Toast, {
     })
   },
 
+  // 点击底部触发事件
+  handTapMoreMessage: function () {
+    var that = this;
+    that.setData({
+      showView: true
+    })
+  },
+  bindTapCancle:function(){
+    var that = this;
+    that.setData({
+      showView:false
+    })
+  }
 }));

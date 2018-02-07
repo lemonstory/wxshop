@@ -17,6 +17,7 @@
 .banner swiper swiper-item image {
   width: 750rpx;
   height: 750rpx;
+  
 }
 
 swiper {
@@ -159,13 +160,11 @@ swiper {
   font-size: 30rpx;
   color: #333;
 }
-
 .section-nav .img {
   display: flex;
   width: 52rpx;
   height: 52rpx;
 }
-
 .server {
   width: 750rpx;
   height: 108rpx;
@@ -176,7 +175,6 @@ swiper {
   padding: 0 30rpx;
   box-sizing: border-box;
 }
-
 .server-title {
   width: auto;
   height: 108rpx;
@@ -622,24 +620,20 @@ swiper {
   font-size: 25rpx;
   color: #333;
 }
-
 .spec-con .value.disable {
   border: 1rpx solid #eee;
   color: #333;
 }
-
 .spec-con .value.selected {
   border: 1rpx solid #b4282d;
   color: #b4282d;
 }
-
 .number-item .selnum {
   width: 322rpx;
   height: 71rpx;
   border: 1rpx solid #eee;
   display: flex;
 }
-
 .number-item .cut {
   width: 93.75rpx;
   height: 100%;
@@ -648,7 +642,6 @@ swiper {
   align-items: center;
   justify-content: center;
 }
-
 .number-item .number {
   flex: 1;
   height: 100%;
@@ -659,7 +652,6 @@ swiper {
   border-left: 1rpx solid #eee;
   border-right: 1rpx solid #eee;
 }
-
 .number-item .add {
   width: 93.75rpx;
   height: 100%;
@@ -667,8 +659,8 @@ swiper {
   display: flex;
   align-items: center;
 }
-.rich-img{
-  width:100%;
-  height:auto;
-  display:flex;
-}
+ .rich-img{
+   width:100%;
+   height:auto;
+   display:block; 
+}  

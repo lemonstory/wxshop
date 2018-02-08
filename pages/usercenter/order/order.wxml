@@ -5,29 +5,31 @@
 
   <!--如果有订单显示此页面  -->
   <view wx:if='{{orderNum > 0}}'>
-  <block wx:for="{{orders}}" wx:key="" >
+  <block wx:for="{{orders}}" wx:key="{{item.increment_id}}" >
     <view class="order" bindtap='handleTapOrderDetail'>
       <view class="head">
-        订单编号：123456799
+        订单编号：{{item.increment_id}}
       </view>
       <view class="goods">
-        <view class="img">
-          <image src="/image/1.png"></image>
-        </view>
+        <block wx:for="{{item.imgArr}}" wx:key="imgItem" wx:for-index="idx" wx:for-item="imgItem">
+          <view class="img">
+            <image src="{{imgItem}}"></image>
+          </view>
+        </block>
         <view class="info">
           <view class="name">
-            <view>哈哈哈哈哈哈哈</view>
+            <view></view>
             <view>包裹1</view>
           </view>
           <view class="number">
-            <view>嗯嗯嗯</view>
+            <view></view>
             <view style='color:#ab2b2b'>已取消</view>
           </view>
         </view>
       </view>
       <view class="item-c">
         <view class="l">应付：
-          <text class="cost">￥111111111</text>
+          <text class="cost">￥ {{item.grand_total}}</text>
         </view>
         <view class="r">
           <view class="btn">取消订单</view>

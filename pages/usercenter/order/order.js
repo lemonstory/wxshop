@@ -122,9 +122,26 @@ Page(Object.assign({}, Toast, Tab, {
       },
       success: function (res) {
         if (res.statusCode === 200) {
-          console.log(res.data)
-          console.log('获取用户订单列表成功')
-          that.setData({ orders: res.data.items, orderNum: res.data.items.length})
+          var orderList = res.data.items
+          for (var i = 0; i < orderList.length; i++) {
+            // 设置订单显示图片
+            var imgArr = []
+            var items = orderList[i].extension_attributes.shipping_assignments[0].items
+            var order_simple_name = ''
+            for (var j = 0; j < items.length; j++) {
+              if (items[j].product_type === 'simple') {
+                imgArr.push(items[j].extension_attributes.image_url)
+              }
+            }
+            // 添加商品名称  TODO
+            // for (var k = 0; k < orderList[i].items.length; k++) {
+            //   if (orderList[i].items[k].product_type === 'simple') {
+            //     orderList[i].order_simple_name = orderList[i].items[k].parent_item.name
+            //   }
+            // }
+            orderList[i].imgArr = imgArr
+          }
+          that.setData({ orders: orderList, orderNum: orderList.length})
         }
       },
       fail: function (res) {

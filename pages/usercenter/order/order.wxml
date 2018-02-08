@@ -6,7 +6,7 @@
   <!--如果有订单显示此页面  -->
   <view wx:if='{{orderNum > 0}}'>
   <block wx:for="{{orders}}" wx:key="{{item.increment_id}}" >
-    <view class="order" bindtap='handleTapOrderDetail'>
+    <view class="order" bindtap='handleTapOrderDetail' data-entity_id='{{item.entity_id}}'>
       <view class="head">
         订单编号：{{item.increment_id}}
       </view>
@@ -29,7 +29,7 @@
       </view>
       <view class="item-c">
         <view class="l">应付：
-          <text class="cost">￥ {{item.grand_total}}</text>
+          <text class="cost">￥ {{item.total_due}}</text>
         </view>
         <view class="r">
           <view class="btn">取消订单</view>

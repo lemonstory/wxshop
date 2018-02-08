@@ -32,7 +32,7 @@ var constant = {
   userAddressKey: 'userAddressKey',
   level: '普通用户',
   // 用户token
-  userToken: 'ak2vw1y1qrx1ta5yvunetfo6eetrp5pt',
+  userToken: 'hbgflc33plxu2uvdyv0qhqfd9607dbp0',
   quote_id: 'quote_id', // 购物车id
   qty: 'qty'   // 购物车商品数量
 }

@@ -1,11 +1,11 @@
 <!--pages/usercenter/order-detail/order-detail.wxml-->
-<view class="container">
+<view class="container" wx:if='{{isShow}}'>
   <view class="order-info">
-    <view class="item-a">下单时间：2018-02-03 23:00:28</view>
-    <view class="item-b">订单编号：123456789</view>
+    <view class="item-a">下单时间：{{order.created_at}}</view>
+    <view class="item-b">订单编号：{{order.increment_id}}</view>
     <view class="item-c">
       <view class="l">实付：
-        <text class="cost">￥111111111</text>
+        <text class="cost">￥{{order.total_due}}</text>
       </view>
       <view class="r">
         <view class="btn">取消订单</view>
@@ -21,46 +21,31 @@
     </view>
     <view class="goods">
     <!--一个商品信息开始  -->
+    <block wx:for="{{order.goods}}" wx:key="{{item.item_id}}">
       <view class="item">
         <view class="img">
-          <image src="/image/1.png"></image>
+          <image src="{{item.img_url}}"></image>
         </view>
         <view class="info">
           <view class="t">
-            <text class="name">哈哈哈哈</text>
-            <text class="number">x3</text>
+            <text class="name">{{item.name}}</text>
+            <text class="number">x{{item.qty}}</text>
           </view>
-          <view class="attr">噢噢噢噢哦哦哦</view>
-          <view class="price">￥1111111</view>
+          <view class="attr"></view>
+          <view class="price">￥{{item.price}}</view>
         </view>
       </view>
-      <!--另一个商品信息开始  -->
-        <view class="item">
-        <view class="img">
-          <image src="/image/1.png"></image>
-        </view>
-        <view class="info">
-          <view class="t">
-            <text class="name">哈哈哈哈</text>
-            <text class="number">x3</text>
-          </view>
-          <view class="attr">噢噢噢噢哦哦哦</view>
-          <view class="price">￥1111111</view>
-        </view>
-      </view>
-      <!--商品信息循环结束  -->
-
-
+      </block>
     </view>
   </view>
 
   <view class="order-bottom">
     <view class="address">
       <view class="t">
-        <text class="name">宁同学</text>
-        <text class="mobile">157359211111</text>
+        <text class="name">{{order.user_address.name}}</text>
+        <text class="mobile">{{order.user_address.telephone}}</text>
       </view>
-      <view class="b">山西省运城市山西省运城市</view>
+      <view class="b">{{order.user_address.address}}</view>
     </view>
     <view class="total">
     <view class="t">
@@ -69,16 +54,16 @@
       </view>
       <view class="t">
         <text class="label">商品合计：</text>
-        <text class="txt">￥111111</text>
+        <text class="txt">￥{{order.subtotal}}</text>
       </view>
       <view class="t">
         <text class="label">运费：</text>
-        <text class="txt">￥10</text>
+        <text class="txt">{{order.shipping_amount > 0 ? '￥'+ order.shipping_amount:'包邮'}}</text>
       </view>
     </view>
     <view class="pay-fee">
       <text class="label">实付：</text>
-      <text class="txt">￥11111</text>
+      <text class="txt">￥{{order.total_due}}</text>
     </view>
   </view>
 </view>

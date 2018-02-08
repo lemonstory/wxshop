@@ -1,18 +1,21 @@
 // pages/usercenter/order-detail/order-detail.js
+var util = require('../../../utils/util.js')
+var constant = require('../../../utils/constant.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    isShow:false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    wx.showNavigationBarLoading()
+    this.getOrderDetails(options.id)
   },
 
   /**
@@ -62,5 +65,57 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+
+  /**
+   * 获取订单详情
+   */
+  getOrderDetails: function (id) {
+    var that = this
+    var token = util.getToken(constant.constant.adminTokenKey)
+    var url = constant.constant.domain + constant.constant.path + '/V1/orders/' + id;
+    wx.request({
+      url: url,
+      data: {},
+      header: {
+        'content-type': 'application/json', // 默认值
+        'Authorization': 'Bearer ' + token
+      },
+      success: function (res) {
+        if (res.statusCode === 200) {
+          console.log(res.data)
+          var tempOrder = res.data.extension_attributes.shipping_assignments[0]
+          // 设置商品信息
+          var goods = []
+          for (var i = 0; i < tempOrder.items.length; i++) {
+            var good = {}
+            if (tempOrder.items[i].product_type === 'simple') {
+              good.img_url = tempOrder.items[i].extension_attributes.image_url
+              good.name = tempOrder.items[i].parent_item.name
+              good.price = tempOrder.items[i].parent_item.price
+              good.qty = tempOrder.items[i].parent_item.qty_ordered
+              good.item_id = tempOrder.items[i].parent_item.item_id
+              goods.push(good)
+            }
+          }
+          // 设置地址信息
+          var user_address = {}
+          user_address.name = tempOrder.shipping.address.firstname + tempOrder.shipping.address.lastname
+          user_address.address = tempOrder.shipping.address.region + tempOrder.shipping.address.city + tempOrder.shipping.address.street[0] + tempOrder.shipping.address.street[1]
+          user_address.telephone = tempOrder.shipping.address.telephone
+          res.data.user_address = user_address
+          res.data.goods = goods
+          that.setData({ order: res.data})
+        }
+      },
+      fail: function (res) {
+        console.error('🚀 🚀 🚀 获取用户订单列表错误')
+        console.error(res)
+      },
+      complete: function (res) {
+        wx.hideNavigationBarLoading()
+        that.setData({ isShow: true })
+      }
+    })
   }
 })

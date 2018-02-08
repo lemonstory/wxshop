@@ -103,9 +103,9 @@
 <view class="hidden hide{{showView?'show':''}}">
   <view class="hidden-text1">西安行方思远网络科技有限公司</view>
   <view class="hidden-text2">
-    <view class='suojin'> 是国内最前沿的互联网科技公司，掌握最新的互联网开发技术及最优的互联网解决方案。</view>
-    <view class='suojin'>公司致力于开发最优秀的微信小程序，协同线上线下商户，共享微信时代的流量红利！</view>
-    <view class='suojin'>您可以通过以下几种方式联系到我们：</view>
+    <view class='suojin'>国内最前沿的互联网科技公司，掌握最新的互联网开发技术及最优的互联网解决方案。</view>
+    <view class='suojin'>致力于开发最优秀的微信小程序，协助线上线下商户，共享微信时代的流量红利！</view>
+    <view class='suojin'>通过以下方式联系我们：</view>
   </view>
   <view class="hidden-tell">
     <image src='/static/images/call.png' style='width:37rpx;height:37rpx;display:flex;margin-right:20rpx;'></image>

@@ -237,6 +237,9 @@ Page({
           var qty = Number(res.data.items_qty)
           util.setToken(constant.constant.qty, qty)
         }
+        if (res.statusCode === 404) {
+          util.createNewCart(userToken)
+        }
       },
       fail: function (res) {
         console.error('🚀 🚀 🚀 获取购物车信息错误')

@@ -1,14 +1,14 @@
 <!--pages/shopping/fill-order/fill-order.wxml-->
-<view class="container">
+<view class="container" wx:if='{{isShow}}'>
     <view class="address-box">
         <view class="address-item" bindtap="handleTapSelectAddress">
             <view class="left">
-                <text class="name">哈哈哈哈哈哈</text>
+                <text class="name">{{address.name}}</text>
                 <text class="default">默认</text>
             </view>
             <view class="middle">
-                <text class="mobile">123456789</text>
-                <text class="address">山西省运城市灞桥区长安区</text>
+                <text class="mobile">{{address.mobile}}</text>
+                <text class="address">{{address.addressDetails}}</text>
             </view>
             <image src="/static/images/go.png" style='width:14rpx;height:24rpx;display:flex;margin-left:10rpx;margin-top:30rpx;display:flex;'></image>
 
@@ -54,20 +54,20 @@
                 <view class="goods">
                     <view class="item {{index == 0 ? 'first' : ''}}" wx:for="{{cartGoods}}" wx:key="{{item.id}}">
                         <view class="cart-goods">
-                            <image class="img" src="{{item.list_pic_url}}"></image>
+                            <image class="img" src="{{item.extension_attributes.image_url}}"></image>
                             <view class="info">
                                 <view class="name">
-                                    {{item.goods_name}}
+                                    {{item.name}}
                                 </view>
                                 <view class="desc">
-                                    {{item.goods_desc}}
+                                    {{item.description}}
                                 </view>
                                 <view class="b">
-                                    <text class="price">￥{{item.retail_price}}</text>
+                                    <text class="price">￥{{item.price}}</text>
                                 </view>
                             </view>
                         </view>
-                        <view class="good-num">×100</view>
+                        <view class="good-num">×{{item.qty}}</view>
                     </view>
 
                 </view>

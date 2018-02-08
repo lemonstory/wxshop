@@ -164,7 +164,7 @@ Page(Object.assign({}, Toast, {
       data: {},
       header: util.adminRequestHeader(that.data.adminToken),
       success: function (res) {
-        console.log(res.data)
+        // console.log(res.data)
         for (var i = 0; i < res.data.items.length; i++) {
           var img = util.isNeed(res.data.items[i].custom_attributes, 'image')
           res.data.items[i].img = that.data.requestPath + img

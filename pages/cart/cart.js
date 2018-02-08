@@ -35,12 +35,12 @@ Page({
   onShow: function () {
     // 页面显示
     if (util.isEmptyStr(util.getToken(constant.constant.userTokenKey))) {
-      console.log('未登录')
+      // console.log('未登录')
       this.setData({ isJumpToLogin: true })
     } else {
       this.setData({ isJumpToLogin: false })
       wx.showNavigationBarLoading()
-      console.log('已登录')
+      // console.log('已登录')
       this.getUserCartInfo(util.getToken(constant.constant.userTokenKey))
     }
   },
@@ -213,20 +213,10 @@ Page({
 
   // 点击下单处理事件
   handleTapcheckoutOrder: function () {
-    // var temp = util.getToken(constant.constant.userInfoKey).addresses
-    // 测试数据
-    var temp = util.getToken(constant.constant.userAddressKey).addresses
-    if (temp.length === 0) {
-      var path = "/pages/shopping/edit-address/edit-address?id=0";
+    var path = "/pages/shopping/fill-order/fill-order";
       wx.navigateTo({
         url: path
       })
-    } else {
-      var path = "/pages/shopping/address-manager/address-manager";
-      wx.navigateTo({
-        url: path
-      })
-    }
   },
 
   // 左滑删除触发事件
@@ -403,6 +393,9 @@ Page({
           // 获取用户购物车列表
           that.setData({ cartGoods: res.data.items, isCheckedNum: res.data.items.length, price: price })
         }
+        if (res.statusCode === 404) {
+          that.createNewCart(token)
+        }
       },
       fail: function (res) {
         console.error('🚀 🚀 🚀 获取购物车信息错误')
@@ -474,6 +467,35 @@ Page({
       },
       fail: function (res) {
         console.error('🚀 🚀 🚀 删除购物车商品错误')
+        console.error(res)
+      }
+    })
+  },
+
+  /**
+   * 创建新购物车
+   */
+  createNewCart: function (token) {
+    var that = this
+    // 测试token
+    token = constant.constant.userToken
+    var url = constant.constant.domain + constant.constant.path + '/V1/carts/mine';
+    wx.request({
+      url: url,
+      data: {},
+      method: 'POST',
+      header: {
+        'content-type': 'application/json', // 默认值
+        'Authorization': 'Bearer ' + token
+      },
+      success: function (res) {
+        console.log(res.data)
+        if (res.statusCode === 200) {
+          console.log('新建购物车商品正确')
+        }
+      },
+      fail: function (res) {
+        console.error('🚀 🚀 🚀 新建购物车商品错误')
         console.error(res)
       }
     })

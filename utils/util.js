@@ -344,6 +344,37 @@ function arrSort(tepm) {
     return tempA - tempB;
   }
 }
+
+/**
+ * 新建购物车
+ */
+function createNewCart(token) {
+  var that = this
+  var url = constant.constant.domain + constant.constant.path + '/V1/carts/mine';
+  wx.request({
+    url: url,
+    data: {},
+    method: 'POST',
+    header: {
+      'content-type': 'application/json', // 默认值
+      'Authorization': 'Bearer ' + token
+    },
+    success: function (res) {
+      // console.log(res.data)
+      if (res.statusCode === 200) {
+        // 设置购物车id缓存  + 购物车商品数量
+        var quote_id = Number(res.data)
+        setToken(constant.constant.quote_id, quote_id)
+        var qty = Number(res.data.items_qty)
+        setToken(constant.constant.qty, 0)
+      }
+    },
+    fail: function (res) {
+      console.error('🚀 🚀 🚀 新建购物车错误')
+      console.error(res)
+    }
+  })
+}
 module.exports = {
   formatTime: formatTime,
   isMobile: isMobile,
@@ -360,12 +391,13 @@ module.exports = {
   setToken: setToken, // 设置缓存AdminToken
   getToken: getToken, // 获取缓存
   adminRequestHeader: adminRequestHeader, // 请求头
-  isNeed, // 判断数组某项是否为所需
-  getAttributes, // 根据属性id获取属性信息
-  isMin,  // 判断可配置商品价格大小
-  getProParamsInfo,  // 获取商品参数信息
-  getRandom,  // 获取随机数
-  getRemainder,  // 取余
-  toDecimal, // 四舍五入小数
-  arrSort
+  isNeed: isNeed, // 判断数组某项是否为所需
+  getAttributes: getAttributes, // 根据属性id获取属性信息
+  isMin: isMin,  // 判断可配置商品价格大小
+  getProParamsInfo: getProParamsInfo,  // 获取商品参数信息
+  getRandom: getRandom,  // 获取随机数
+  getRemainder: getRemainder,  // 取余
+  toDecimal: toDecimal, // 四舍五入小数
+  arrSort: arrSort,  // 数组排序
+  createNewCart: createNewCart  // 新建购物车
 }

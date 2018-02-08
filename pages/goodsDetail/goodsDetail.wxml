@@ -50,7 +50,7 @@
         <view class="desc">
           <view class="cicle"></view>48小时快速退款</view>
         <view class="desc">
-          <view class="cicle"></view>包邮政策</view>
+          <view class="cicle"></view>全场包邮</view>
         <!-- <view class="desc">
           <view class="cicle"></view>秦岭原生原味</view> -->
         <view class="desc">
@@ -209,8 +209,8 @@
 
             <!--测试循环数据  -->
             <view class="title" style='display:flex; align-items: center;font-size:28rpx;margin-top:30rpx'>
-              <view class="cicle" style='margin-right:20rpx;'></view>包邮政策</view>
-            <view class="desc" style='font-size:28rpx;color:#999;'>除新疆、西藏、海南和内蒙古等偏远地区，平台所售商品全部包邮。新疆、西藏、海南和内蒙古地区的客户请提前跟客服联系，确认运费后再拍</view>
+              <view class="cicle" style='margin-right:20rpx;'></view>全场包邮</view>
+            <view class="desc" style='font-size:28rpx;color:#999;'>平台所售商品全部包邮（目前仅配送中国大陆地区）。</view>
             <!--测试循环数据  -->
             <view class="title" style='display:flex; align-items: center;font-size:28rpx;margin-top:30rpx'>
               <view class="cicle" style='margin-right:20rpx;'></view>部分地区无法配送</view>

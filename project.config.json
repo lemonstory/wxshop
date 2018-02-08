@@ -92,6 +92,12 @@
 					"name": "订单详情",
 					"pathName": "pages/usercenter/order-detail/order-detail",
 					"query": "id=4"
+				},
+				{
+					"id": -1,
+					"name": "填写订单",
+					"pathName": "pages/shopping/fill-order/fill-order",
+					"query": ""
 				}
 			]
 		}

@@ -42,9 +42,9 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-      // var userInfo = util.getToken(constant.constant.userInfoKey).addresses
+      var userInfo = util.getToken(constant.constant.userInfoKey).addresses
       // 测试
-      var userInfo = util.getToken(constant.constant.userAddressKey).addresses
+      // var userInfo = util.getToken(constant.constant.userAddressKey).addresses
       if (userInfo.length === 0) {
         var path = "/pages/shopping/edit-address/edit-address?id=0";
         wx.navigateTo({
@@ -114,9 +114,9 @@ Page({
      */
     fillUserOrder: function () {
       var that = this
-      // var userInfo = util.getToken(constant.constant.userInfoKey).addresses
+      var userInfo = util.getToken(constant.constant.userInfoKey).addresses
       // 测试
-      var userInfo = util.getToken(constant.constant.userAddressKey).addresses
+      // var userInfo = util.getToken(constant.constant.userAddressKey).addresses
       var address = {}
       var temp = true
       for (var i = 0; i < userInfo.length; i++) {
@@ -165,7 +165,7 @@ Page({
       }
       var billingAddress = {}
       var address = that.data.address
-      var userInfo = util.getToken(constant.constant.userAddressKey).addresses
+      var userInfo = util.getToken(constant.constant.userInfoKey).addresses
       for (var i = 0; i < userInfo.length;i++ ) {
         if (address.id === userInfo[i].id) {
           billingAddress.customerAddressId = userInfo[i].id
@@ -195,7 +195,7 @@ Page({
       var Body = that.getPayBody()
       console.log(Body)
       // 测试token
-      var token = constant.constant.userToken
+      var token = util.getToken(constant.constant.userTokenKey)
       var url = constant.constant.domain + constant.constant.path + '/V1/carts/mine/payment-information';
       wx.request({
         url: url,
@@ -243,7 +243,7 @@ Page({
       console.log('打印订单支付body')
       console.log(Body)
       // 测试token
-      var token = constant.constant.userToken
+      var token = util.getToken(constant.constant.userTokenKey)
       var url = constant.constant.domain + constant.constant.path + '/V1/mobileshop/wxpay';
       wx.request({
         url: url,
@@ -264,9 +264,6 @@ Page({
           console.error(res)
         },
         complete: function (res) {
-          // console.log('complete')
-          // wx.hideNavigationBarLoading()
-          // that.setData({ isShow: true })
         }
       })
     },
@@ -275,8 +272,8 @@ Page({
      * 调用微信支付
      */
     transferWXPay: function (body) {
-      console.log('微信支付')
-      console.log(body)
+      // console.log('微信支付')
+      // console.log(body)
       wx.requestPayment({
         timeStamp: body.timeStamp.toString(),
         nonceStr: body.nonceStr,

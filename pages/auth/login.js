@@ -174,6 +174,8 @@ Page({
           util.setToken(constant.constant.userTokenKey,res.data)
           that.getUserCartInfo(res.data)
           that.getCustomerInfo(res.data)        
+          }else{
+            console.log(res)
           }
       },
       fail: function (res) {
@@ -217,7 +219,7 @@ Page({
   getUserCartInfo: function (userToken) {
     // console.log(userToken)
     // 测试token
-    userToken = constant.constant.userToken
+    // userToken = constant.constant.userToken
     var that = this
     var url = constant.constant.domain + constant.constant.path + '/V1/carts/mine';
     wx.request({

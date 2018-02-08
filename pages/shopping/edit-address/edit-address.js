@@ -136,7 +136,7 @@ Page({
   getUserAdressInfo: function (id) {
     var that = this
     var address = {}
-    var addressList = util.getToken(constant.constant.userAddressKey).addresses
+    var addressList = util.getToken(constant.constant.userInfoKey).addresses
     for (var i = 0; i < addressList.length; i++) {
       if (Number(id) === Number(addressList[i].id)) {
         address.name = addressList[i].firstname + addressList[i].lastname
@@ -225,9 +225,9 @@ Page({
   handleTapSaveAddress: function (event) {
     var that = this
     var Body = that.exitPutData(event)
-    // var token = util.getToken(constant.constant.userTokenKey)
+    var token = util.getToken(constant.constant.userTokenKey)
     // 测试token
-    var token = constant.constant.userToken
+    // var token = constant.constant.userToken
     var url = constant.constant.domain + constant.constant.path + '/V1/customers/me';
     wx.request({
       url: url,
@@ -262,7 +262,7 @@ Page({
     var Body = {
       customer:{}
     }
-    var customer = util.getToken(constant.constant.userAddressKey)
+    var customer = util.getToken(constant.constant.userInfoKey)
     // Body.customer = customer
     // var userInfo = util.getToken(constant.constant.userInfoKey)
     console.log(that.data.address)
@@ -323,7 +323,7 @@ Page({
       }
     }
     Body.customer = customer
-    util.setToken(constant.constant.userAddressKey, customer)
+    util.setToken(constant.constant.userInfoKey, customer)
     return Body
   },
 

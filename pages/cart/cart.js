@@ -352,7 +352,7 @@ Page({
    */
   getUserCartInfo: function (token) {
     // 测试token
-    token = constant.constant.userToken
+    token = util.getToken(constant.constant.userTokenKey)
     var that = this
     var url = constant.constant.domain + constant.constant.path + '/V1/carts/mine';
     wx.request({
@@ -413,7 +413,7 @@ Page({
   exitCartGoodsCount: function (item, token) {
     var that = this
     // 测试token
-    token = constant.constant.userToken
+    token = util.getToken(constant.constant.userTokenKey)
     var Body = {
       cartItem: {
         item_id: item.item_id,
@@ -450,7 +450,7 @@ Page({
   deleteCartGoods: function (item_id, token) {
     var that = this
     // 测试token
-    token = constant.constant.userToken
+    token = util.getToken(constant.constant.userTokenKey)
     var url = constant.constant.domain + constant.constant.path + '/V1/carts/mine/items/' + item_id;
     wx.request({
       url: url,
@@ -478,7 +478,7 @@ Page({
   createNewCart: function (token) {
     var that = this
     // 测试token
-    token = constant.constant.userToken
+    token = util.getToken(constant.constant.userTokenKey)
     var url = constant.constant.domain + constant.constant.path + '/V1/carts/mine';
     wx.request({
       url: url,

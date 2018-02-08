@@ -156,7 +156,7 @@ App({
   getUserCartInfo: function (userToken) {
     // console.log(userToken)
     // 测试token
-    userToken = constant.constant.userToken
+    // userToken = constant.constant.userToken
     var that = this
     var url = constant.constant.domain + constant.constant.path + '/V1/carts/mine';
     wx.request({

@@ -183,8 +183,8 @@ Page({
   addProductToCart: function () {
     var that = this
     // 测试Token
-    var token = constant.constant.userToken
-    // var token = util.getToken(constant.constant.userTokenKey)
+    // var token = constant.constant.userToken
+    var token = util.getToken(constant.constant.userTokenKey)
     var url = constant.constant.domain + constant.constant.path + '/V1/carts/mine/items';
     wx.request({
       url: url,
@@ -544,12 +544,13 @@ Page({
   getUserCartInfo: function () {
     var that = this
     var url = constant.constant.domain + constant.constant.path + '/V1/carts/mine';
+    var token = util.getToken(constant.constant.userTokenKey)
     wx.request({
       url: url,
       data: {},
       header: {
         'content-type': 'application/json', // 默认值
-        'Authorization': constant.constant.userToken
+        'Authorization': token
       },
       success: function (res) {
         if (res.statusCode === 200) {

@@ -78,7 +78,7 @@ Page({
   getUserAdressInfo: function (token) {
     var that = this
     // 测试token
-    token = constant.constant.userToken
+    // token = constant.constant.userToken
     var url = constant.constant.domain + constant.constant.path + '/V1/customers/me';
     wx.request({
       url: url,
@@ -89,7 +89,7 @@ Page({
       },
       success: function (res) {
         if (res.statusCode === 200) {
-          util.setToken(constant.constant.userAddressKey, res.data)
+          util.setToken(constant.constant.userInfoKey, res.data)
           // console.log(res.data)
           // console.log('获取用户地址信息正确')
           var list = res.data.addresses

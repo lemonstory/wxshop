@@ -157,9 +157,10 @@ Page({
    * 调取后台登陆接口
    */
   getLoginApi: function (code, encryptedData, iv) {
+    
     console.log("🚀 🚀 🚀 getLoginApi");
     var that = this;
-    var url = constant.constant.domain + constant.constant.path + '/V1/wxlogin/';
+    var url = constant.constant.domain + constant.constant.path + '/V1/wxlogin';
     wx.request({
       url: url,
       data: {
@@ -169,17 +170,18 @@ Page({
       },
       method: 'POST',
       header: util.adminRequestHeader(),
+      
       success: function (res) {
-        if (res.statusCode === 200) {
+
+        if (res.statusCode == 200) {
           util.setToken(constant.constant.userTokenKey,res.data)
           that.getUserCartInfo(res.data)
           that.getCustomerInfo(res.data)        
           }else{
-            console.log(res)
+            console.error(res)
           }
       },
       fail: function (res) {
-        console.error('🚀 🚀 🚀 登陆页调取getLoginApi错误')
         console.error(res)
       }
     })
@@ -199,6 +201,7 @@ Page({
         'Authorization': 'Bearer ' + token
       },
       success: function (res) {
+
         if (res.statusCode === 200) {
           util.setToken(constant.constant.userInfoKey, res.data)
           that.handleTapCancel()

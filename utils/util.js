@@ -165,6 +165,13 @@ function isEmptyStr(str) {
   return false;
 };
 
+function isEmptyObject(e) {
+  var t;
+  for (t in e)
+    return !1;
+  return !0
+}
+
 /**
  * 验证身份证
  */
@@ -387,6 +394,7 @@ module.exports = {
   sortBy: sortBy,
   getCanlenderData: getCanlenderData,
   isEmptyStr: isEmptyStr,
+  isEmptyObject: isEmptyObject,
   isValidID: isValidID,
   setToken: setToken, // 设置缓存AdminToken
   getToken: getToken, // 获取缓存

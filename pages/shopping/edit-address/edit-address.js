@@ -89,12 +89,12 @@ Page({
     })
   },
   // 点击保存按钮事件
-  handleTapSaveAddress: function () {
+  // handleTapSaveAddress: function () {
     // var path = "/pages/shopping/fill-order/fill-order";
     // wx.navigateTo({
     //   url: path
     // })
-  },
+  // },
   /**
   * 地址选择框的隐藏和显示
   */
@@ -323,7 +323,7 @@ Page({
       }
     }
     Body.customer = customer
-    console.log(Body)
+    util.setToken(constant.constant.userAddressKey, customer)
     return Body
   },
 

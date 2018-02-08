@@ -26,8 +26,9 @@ Page({
       var pages = getCurrentPages();
       var prevPage = pages[pages.length - 2];  //上一个页面
       var prevPageData = prevPage.data.cartGoods;
+      var price = prevPage.data.price;
       console.log(prevPageData)
-      that.setData({ cartGoods: prevPageData})
+      that.setData({ cartGoods: prevPageData, price: price})
     },
 
     /**
@@ -128,6 +129,7 @@ Page({
             addressDetails = addressDetails + userInfo[i].street[j]
           }
           address.addressDetails = userInfo[i].region.region + userInfo[i].city + addressDetails
+          address.id = userInfo[i].id
           temp = false
         }
       }
@@ -141,9 +143,150 @@ Page({
           addressDetails = addressDetails + userInfo[0].street[j]
         }
         address.addressDetails = userInfo[0].region.region + userInfo[0].city + addressDetails
+        address.id = userInfo[0].id
       }
       wx.hideNavigationBarLoading()
       // that.setData({ isShow: true })
       that.setData({ address: address, isShow:true})
     },
+
+    /**
+     * 获取支付订单的Body
+     */
+    getPayBody: function () {
+      var that = this
+      var Body = {
+        cartId: util.getToken(constant.constant.quote_id),
+        paymentMethod: {
+          method: 'wxpay',
+          po_number: null,
+          additional_data:null
+        }
+      }
+      var billingAddress = {}
+      var address = that.data.address
+      var userInfo = util.getToken(constant.constant.userAddressKey).addresses
+      for (var i = 0; i < userInfo.length;i++ ) {
+        if (address.id === userInfo[i].id) {
+          billingAddress.customerAddressId = userInfo[i].id
+          billingAddress.countryId = userInfo[i].country_id
+          billingAddress.regionCode = userInfo[i].region.region_code
+          billingAddress.region = userInfo[i].region.region
+          billingAddress.customerId = userInfo[i].customer_id
+          billingAddress.street = userInfo[i].street
+          billingAddress.telephone = userInfo[i].telephone
+          billingAddress.postcode = userInfo[i].postcode
+          billingAddress.city = userInfo[i].city
+          billingAddress.firstname = userInfo[i].firstname
+          billingAddress.lastname = userInfo[i].lastname
+          billingAddress.extensionAttributes = { checkoutFields:{}}
+          billingAddress.saveInAddressBook = null
+        }
+      }
+      Body.billingAddress = billingAddress
+      // console.log(Body)
+      return Body
+    },
+    /**
+     * 下订单
+     */
+    handleTapSubmitOrder: function () {
+      var that = this
+      var Body = that.getPayBody()
+      console.log(Body)
+      // 测试token
+      var token = constant.constant.userToken
+      var url = constant.constant.domain + constant.constant.path + '/V1/carts/mine/payment-information';
+      wx.request({
+        url: url,
+        data: Body,
+        method: 'POST',
+        header: {
+          'content-type': 'application/json', // 默认值
+          'Authorization': 'Bearer ' + token
+        },
+        success: function (res) {
+          if (res.statusCode === 200) {
+           that.orderPay(res.data)
+          }
+        },
+        fail: function (res) {
+          console.error('🚀 🚀 🚀 下单错误')
+          console.error(res)
+        },
+        complete: function (res) {
+          // console.log('complete')
+          // wx.hideNavigationBarLoading()
+          // that.setData({ isShow: true })
+        }
+      })
+    },
+
+    /**
+     * 订单支付
+     */
+    orderPay: function (orderNo) {
+      // orderNo = 111112
+      var that = this
+      var email = util.getToken(constant.constant.userInfoKey).email
+      var temp = email.indexOf('@')
+      var open_id = email.substring(0,temp)
+      var Body = {
+        openId: open_id,
+        productId: 2,
+        orderNo: orderNo,
+        body:'灞源味道',
+        // totalFee: Number(that.data.price)*100,
+        totalFee:1,
+        detail:''
+      }
+      console.log('打印订单支付body')
+      console.log(Body)
+      // 测试token
+      var token = constant.constant.userToken
+      var url = constant.constant.domain + constant.constant.path + '/V1/mobileshop/wxpay';
+      wx.request({
+        url: url,
+        data: Body,
+        method: 'POST',
+        header: {
+          'content-type': 'application/json', // 默认值
+          'Authorization': 'Bearer ' + token
+        },
+        success: function (res) {
+          if (res.statusCode === 200) {
+            var arr = res.data
+            that.transferWXPay(arr[0].data)
+          }
+        },
+        fail: function (res) {
+          console.error('🚀 🚀 🚀 订单支付错误')
+          console.error(res)
+        },
+        complete: function (res) {
+          // console.log('complete')
+          // wx.hideNavigationBarLoading()
+          // that.setData({ isShow: true })
+        }
+      })
+    },
+
+    /**
+     * 调用微信支付
+     */
+    transferWXPay: function (body) {
+      console.log('微信支付')
+      console.log(body)
+      wx.requestPayment({
+        timeStamp: body.timeStamp.toString(),
+        nonceStr: body.nonceStr,
+        package: body.package,
+        signType: body.signType,
+        paySign: body.paySign,
+        success: function (res) {
+          console.log('WXP')
+          console.log(res)
+        }
+      })
+    }
 })

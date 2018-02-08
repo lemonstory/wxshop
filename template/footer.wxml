@@ -7,6 +7,6 @@
         <view style='width:40rpx;height:1px;background:#d9d9d9;'></view>
       </view>
     </view>
-     <view style='font-size:28rpx;font-family:MicrosoftYaHei;color:#b4282d;margin-top:20rpx'>👉西安行方思远网络科技有限公司提供技术支持</view>
+     <view style='font-size:28rpx;font-family:MicrosoftYaHei;color:#1e86de;margin-top:20rpx'>👉西安行方思远网络科技有限公司提供技术支持</view>
   </view>
 </template>

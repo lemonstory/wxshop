@@ -79,7 +79,9 @@ swiper {
   font-size: 34rpx;
   font-weight: bold;
   color: #ab2b2b;
+ 
 }
+
 
 .brand-desc {
   position: absolute;

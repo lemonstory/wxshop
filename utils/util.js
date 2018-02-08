@@ -196,7 +196,7 @@ function isValidID(ID) {
 /**
  * 设置Token本地缓存
  */
-function setToken(key,adminToken) {
+function setToken(key, adminToken) {
 
   //写入本地存储
   wx.setStorage({
@@ -231,7 +231,7 @@ function adminRequestHeader(token) {
     //同步获取adminToken
     // console.log(constant.constant.adminTokenKey)
     adminToken = getToken(constant.constant.adminTokenKey);
-  }else{
+  } else {
     adminToken = token;
   }
   if (!isEmptyStr(adminToken)) {
@@ -259,14 +259,14 @@ function isNeed(array, attributes) {
 /**
  * 根据属性id获取属性信息
  */
-function getAttributes(attributeId,callback) {
+function getAttributes(attributeId, callback) {
   var url = constant.constant.domain + constant.constant.path + '/V1/products/attributes/' + attributeId + '/options';
   wx.request({
     url: url,
     data: {},
     header: adminRequestHeader(),
     success: function (res) {
-      callback(attributeId,res.data);
+      callback(attributeId, res.data);
     },
     fail: function (res) {
       console.error('🚀 🚀 🚀 util获取商品属性错误')
@@ -279,8 +279,8 @@ function getAttributes(attributeId,callback) {
 function isMin(array) {
   var min = array[0].price
   for (var i = 1; i < array.length; i++) {
-    if (array[i].price > array[i-1].price) {
-      min = array[i-1].price
+    if (array[i].price > array[i - 1].price) {
+      min = array[i - 1].price
     }
   }
   return min;
@@ -288,7 +288,7 @@ function isMin(array) {
 /**
  * 获取商品参数信息
  */
-function getProParamsInfo (array) {
+function getProParamsInfo(array) {
   var arr = []
   var str = 'product_options_'
   for (var i = 0; i < array.length; i++) {
@@ -302,7 +302,7 @@ function getProParamsInfo (array) {
 /**
  * 随机数生成
  */
-function getRandom (min,max) {
+function getRandom(min, max) {
   var temp = max - min + 1;
   return Math.floor(Math.random() * temp + min);
 }
@@ -310,7 +310,7 @@ function getRandom (min,max) {
 /**
  * 取余
  */
-function getRemainder (num) {
+function getRemainder(num) {
   var result = num % (constant.constant.avatarNum)
   return result
 }
@@ -325,7 +325,25 @@ function toDecimal(num) {
   }
   result = Math.round(num * 100) / 100;
   return result;
-}  
+}
+
+/**
+ * 数组排序
+ */
+function arrSort(tepm) {
+  return function (a, b) {
+    var tempA = 1;
+    var tempB = 1;
+    if (!isEmptyStr(a[tepm])) {
+      tempA = 0
+    }
+    if (!isEmptyStr(b[tepm])) {
+      tempB = 0
+    }
+    // console.log(tempA - tempB)
+    return tempA - tempB;
+  }
+}
 module.exports = {
   formatTime: formatTime,
   isMobile: isMobile,
@@ -348,5 +366,6 @@ module.exports = {
   getProParamsInfo,  // 获取商品参数信息
   getRandom,  // 获取随机数
   getRemainder,  // 取余
-  toDecimal // 四舍五入小数
+  toDecimal, // 四舍五入小数
+  arrSort
 }

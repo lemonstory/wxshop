@@ -19,7 +19,7 @@
         </view>
     </view>
  <view class="btns">
-        <button class="save" bindtap="handleTapSaveAddress">保存</button>
+        <button class="save" bindtap="handleTapSaveAddress" data-id='{{address.id}}'>保存</button>
     </view>
 </view>
 

@@ -89,7 +89,8 @@ Page({
       },
       success: function (res) {
         if (res.statusCode === 200) {
-          console.log(res.data)
+          util.setToken(constant.constant.userAddressKey, res.data)
+          // console.log(res.data)
           console.log('获取用户地址信息正确')
           var list = res.data.addresses
           for (var i = 0; i < list.length; i++) {
@@ -102,8 +103,9 @@ Page({
             var telephoneStr = list[i].telephone.substring(3,7)
             list[i].telephoneStr = list[i].telephone.replace(telephoneStr,'****')
           }
+          list.sort(util.arrSort('default_shipping'))
+          console.log(list)
           that.setData({ addressList: list, addressNum: res.data.addresses.length})
-          util.setToken(constant.constant.userAddressKey, res.data)
         }
       },
       fail: function (res) {

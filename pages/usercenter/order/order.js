@@ -34,7 +34,7 @@ Page(Object.assign({}, Toast, Tab, Dialog,{
   onLoad: function (options) {
 
     var that = this;
-    this.getUserOrderList(that.data.tab.selectedId);
+    
   },
 
   /**
@@ -49,7 +49,8 @@ Page(Object.assign({}, Toast, Tab, Dialog,{
    */
   onShow: function () {
 
-    
+    var that = this;
+    that.getUserOrderList(that.data.tab.selectedId,true);    
   },
 
   /**
@@ -197,11 +198,8 @@ Page(Object.assign({}, Toast, Tab, Dialog,{
    */
   handleTapOrderCanceled: function (event) {
 
-
-
     console.log(event.currentTarget.dataset);
     var that = this;
-
     this.showZanDialog({
       content: '是否取消此订单?',
       showCancel: true,
@@ -239,7 +237,7 @@ Page(Object.assign({}, Toast, Tab, Dialog,{
         fail: function (res) {
           console.error(res)
         },
-        
+
         complete: function (res) {
           wx.hideNavigationBarLoading()
         }

@@ -5,23 +5,26 @@ var util = require('../../../utils/util.js')
 const Tab = require('../../../zanui-weapp/dist/tab/index');
 var constant = require('../../../utils/constant.js')
 Page(Object.assign({}, Toast, Tab, {
+
   data: {
     tab: {
-      list: [{ title: "全部", id: '0' },
-      { title: "待付款", id: '1' },
-      { title: "待发货", id: '2' },
-      { title: "已发货", id: '3' },
-      { title: "待评价", id: '4' },
+      list: [{ title: "全部", id: 'all' },
+        { title: "待付款", id: 'pending_payment' },
+        { title: "待发货", id: 'pending_send_courier' },
+        { title: "已发货", id: 'pending_receive_courier' },
+        { title: "待评价", id: 'pending_review' },
       ],
-      selectedId: '0',
+      selectedId: 'all',
       scroll: true,
       height: 45,
     },
     //页面的初始数据
     'currentTagId': '',
-    'selectedId': '',
-    isShow:false,
-    orderNum: 0
+    isShow: false,
+    orderNum: 0,
+
+    //TODO:测试
+    customer_id: 2,
   },
 
   /**
@@ -29,6 +32,8 @@ Page(Object.assign({}, Toast, Tab, {
    */
   onLoad: function (options) {
 
+    var that = this;
+    this.getUserOrderList(that.data.tab.selectedId);
   },
 
   /**
@@ -42,8 +47,8 @@ Page(Object.assign({}, Toast, Tab, {
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    wx.showNavigationBarLoading()
-    this.getUserOrderList()
+
+    
   },
 
   /**
@@ -53,9 +58,9 @@ Page(Object.assign({}, Toast, Tab, {
 
   },
 
-/**
-   * 生命周期函数--监听页面卸载
-   */
+  /**
+     * 生命周期函数--监听页面卸载
+     */
   onUnload: function () {
 
   },
@@ -82,22 +87,23 @@ Page(Object.assign({}, Toast, Tab, {
   },
 
   handleZanTabChange(e) {
+
     var componentId = e.componentId;
     var selectedId = e.selectedId;
     this.setData({
       [`${componentId}.selectedId`]: selectedId,
-      selectSecondTagId: selectedId,
-      selectedId: selectedId,
       startrelationid: 0,
       isNoMore: false,
       isLoading: true
     });
+
+    this.getUserOrderList(selectedId);
   },
 
   /**
    * 查看订单详情
    */
-  handleTapOrderDetail:function(event){
+  handleTapOrderDetail: function (event) {
     // console.log(event)
     var path = "/pages/usercenter/order-detail/order-detail?id=" + event.currentTarget.dataset.entity_id;
     wx.navigateTo({
@@ -108,13 +114,36 @@ Page(Object.assign({}, Toast, Tab, {
   /**
    * 获取我的订单
    */
-  getUserOrderList: function () {
+  getUserOrderList: function (selectedId) {
+
     var that = this
+    wx.showNavigationBarLoading();
+    that.setData(
+      {
+        orders: [], 
+        orderNum: 0,
+        isShow: false
+      });
     var token = util.getToken(constant.constant.adminTokenKey)
+    
+    //TODO:测试
+    var customer_id = this.data.customer_id;
+
+    var defaultSearchCriteria = 'searchCriteria[filterGroups][0][filters][0][field]=customer_id&searchCriteria[filterGroups][0][filters][0][value]=' + customer_id + '&searchCriteria[filterGroups][0][filters][0][conditionType]=eq';
+    var searchCriteria = '';
+
+    if (selectedId == 'all') {
+
+      searchCriteria = defaultSearchCriteria;
+    } else {
+
+      searchCriteria = defaultSearchCriteria + '&searchCriteria[filterGroups][1][filters][0][field]=status&searchCriteria[filterGroups][1][filters][0][value]=' + selectedId+'&searchCriteria[filterGroups][1][filters][0][conditionType]=eq';
+    }
+
+    console.log(searchCriteria);
+
     // var customer_id = util.getToken(constant.constant.userInfoKey).id
-    // 测试customer_id
-    var customer_id = 2
-    var url = constant.constant.domain + constant.constant.path + '/V1/orders?searchCriteria[filterGroups][0][filters][0][field]=customer_id&searchCriteria[filterGroups][0][filters][0][value]=' + customer_id +'&searchCriteria[filterGroups][0][filters][0][conditionType]=eq'; 
+    var url = constant.constant.domain + constant.constant.path + '/V1/orders?' + searchCriteria;
     wx.request({
       url: url,
       data: {},
@@ -143,7 +172,7 @@ Page(Object.assign({}, Toast, Tab, {
             // }
             orderList[i].imgArr = imgArr
           }
-          that.setData({ orders: orderList, orderNum: orderList.length})
+          that.setData({ orders: orderList, orderNum: orderList.length })
         }
       },
       fail: function (res) {

@@ -7,8 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isShow: false,
-    isJumpToEditAddress: false
+    isShow: false
   },
 
   /**
@@ -16,14 +15,6 @@ Page({
    */
   onLoad: function (options) {
   //  console.log(options)
-    if (util.isEmptyStr(util.getToken(constant.constant.userTokenKey))) {
-      // console.log('未登录')
-      this.handleTapUserLogin()
-    } else {
-      wx.showNavigationBarLoading()
-        this.getUserAdressInfo(util.getToken(constant.constant.userTokenKey),options)
-      // console.log('已登录')
-    }
   },
 
   /**
@@ -37,7 +28,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function (options) {
-   
+    if (util.isEmptyStr(util.getToken(constant.constant.userTokenKey))) {
+      // console.log('未登录')
+      this.handleTapUserLogin()
+    } else {
+      wx.showNavigationBarLoading()
+      this.getUserAdressInfo(util.getToken(constant.constant.userTokenKey))
+      // console.log('已登录')
+    }
   },
 
   /**
@@ -77,7 +75,7 @@ Page({
   /**
    * 获取用户地址信息
    */
-  getUserAdressInfo: function (token,options) {
+  getUserAdressInfo: function (token) {
     var that = this
     // 测试token
     token = constant.constant.userToken
@@ -107,16 +105,7 @@ Page({
           }
           list.sort(util.arrSort('default_shipping'))
           // console.log(list)
-          if (!util.isEmptyStr(options.sign)) {
-            if (res.data.addresses.length === 0) {
-              var path = "/pages/shopping/edit-address/edit-address?id=0";
-              wx.navigateTo({
-                url: path
-              })
-            }
-          }
-          
-          that.setData({ addressList: list, addressNum: res.data.addresses.length, isJumpToEditAddress: that.data.isJumpToEditAddress})
+          that.setData({ addressList: list, addressNum: res.data.addresses.length})
         }
       },
       fail: function (res) {

@@ -35,12 +35,12 @@ Page({
   onShow: function () {
     // 页面显示
     if (util.isEmptyStr(util.getToken(constant.constant.userTokenKey))) {
-      // console.log('未登录')
+      console.log('未登录')
       this.setData({ isJumpToLogin: true })
     } else {
       this.setData({ isJumpToLogin: false })
       wx.showNavigationBarLoading()
-      // console.log('已登录')
+      console.log('已登录')
       this.getUserCartInfo(util.getToken(constant.constant.userTokenKey))
     }
   },
@@ -213,10 +213,20 @@ Page({
 
   // 点击下单处理事件
   handleTapcheckoutOrder: function () {
-    var path = "/pages/shopping/address-manager/address-manager?sign=add";
-    wx.navigateTo({
-      url: path
-    })
+    // var temp = util.getToken(constant.constant.userInfoKey).addresses
+    // 测试数据
+    var temp = util.getToken(constant.constant.userAddressKey).addresses
+    if (temp.length === 0) {
+      var path = "/pages/shopping/edit-address/edit-address?id=0";
+      wx.navigateTo({
+        url: path
+      })
+    } else {
+      var path = "/pages/shopping/address-manager/address-manager";
+      wx.navigateTo({
+        url: path
+      })
+    }
   },
 
   // 左滑删除触发事件

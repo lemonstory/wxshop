@@ -1,5 +1,7 @@
 <!--pages/usercenter/order/order.wxml-->
 <import src="/zanui-weapp/dist/tab/index.wxml" />
+<import src="/zanui-weapp/dist/dialog/index.wxml" />
+<import src="/zanui-weapp/dist/toast/index.wxml" />
 <template is="zan-tab" data="{{tab: tab, componentId: 'tab'}}"></template>
 <view class="container" wx:if='{{isShow}}'>
   <!--如果有订单显示此页面  -->
@@ -22,7 +24,11 @@
             </view>
             <view class="number">
               <view></view>
-              <view style='color:#ab2b2b'>已取消</view>
+              <view style='color:#ab2b2b' wx:if="{{item.status == 'canceled'}}">已取消</view>
+              <view style='color:#ab2b2b' wx:if="{{item.status == 'pending_payment'}}">待付款</view>
+              <view style='color:#ab2b2b' wx:if="{{item.status == 'pending_send_courier'}}">待发货</view>
+              <view style='color:#ab2b2b' wx:if="{{item.status == 'pending_receive_courier'}}">已发货</view>
+              <view style='color:#3d9a68' wx:if="{{item.status == 'complete'}}">交易成功</view>
             </view>
           </view>
         </view>
@@ -31,8 +37,8 @@
             <text class="cost">￥ {{item.total_due}}</text>
           </view>
           <view class="r">
-            <view class="btn">取消订单</view>
-            <view class="btn active">去付款</view>
+            <view class="btn" wx:if="{{item.status == 'pending_payment'}}" catchtap='handleTapOrderCanceled' data-entity_id='{{item.entity_id}}' data-increment_id='{{item.increment_id}}'>取消订单</view>
+            <view class="btn active" wx:if="{{item.status == 'pending_payment'}}">去付款</view>
           </view>
         </view>
       </view>
@@ -46,25 +52,7 @@
   </view>
 
 
-  <!-- <view class="order" bindtap='handleTapOrderDetail'>
-    <view class="head">
-      订单编号：123456799
-    </view>
-    <view class="goods">
-      <view class="img">
-        <image src="/image/1.png"></image>
-      </view>
-      <view class="info">
-        <view class="name">
-          <view>哈哈哈哈哈哈哈</view>
-          <view>包裹1</view>
-        </view>
-        <view class="number">
-          <view>嗯嗯嗯</view>
-          <view style='color:#ab2b2b'>已取消</view>
-        </view>
-      </view>
-    </view>
-  </view>  -->
+  <template is="zan-dialog" data="{{ zanDialog }}"></template>
+  <template is="zan-toast" data="{{ zanToast }}"></template>
 
 </view>

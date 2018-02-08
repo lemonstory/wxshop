@@ -4,7 +4,8 @@ const Toast = require('../../../zanui-weapp/dist/toast/index');
 var util = require('../../../utils/util.js')
 const Tab = require('../../../zanui-weapp/dist/tab/index');
 var constant = require('../../../utils/constant.js')
-Page(Object.assign({}, Toast, Tab, {
+const { Dialog, extend } = require('../../../zanui-weapp/dist/index');
+Page(Object.assign({}, Toast, Tab, Dialog,{
 
   data: {
     tab: {
@@ -97,7 +98,7 @@ Page(Object.assign({}, Toast, Tab, {
       isLoading: true
     });
 
-    this.getUserOrderList(selectedId);
+    this.getUserOrderList(selectedId,true);
   },
 
   /**
@@ -114,16 +115,18 @@ Page(Object.assign({}, Toast, Tab, {
   /**
    * 获取我的订单
    */
-  getUserOrderList: function (selectedId) {
+  getUserOrderList: function (selectedId,isClear=false) {
 
     var that = this
     wx.showNavigationBarLoading();
-    that.setData(
-      {
-        orders: [], 
-        orderNum: 0,
-        isShow: false
-      });
+    if (isClear) {
+      that.setData(
+        {
+          orders: [],
+          orderNum: 0,
+          isShow: false
+        });
+    }
     var token = util.getToken(constant.constant.adminTokenKey)
     
     //TODO:测试
@@ -185,5 +188,68 @@ Page(Object.assign({}, Toast, Tab, {
         that.setData({ isShow: true })
       }
     })
+  },
+
+
+  /**
+   * 
+   * 取消订单
+   */
+  handleTapOrderCanceled: function (event) {
+
+
+
+    console.log(event.currentTarget.dataset);
+    var that = this;
+
+    this.showZanDialog({
+      content: '是否取消此订单?',
+      showCancel: true,
+      cancelText: '否',
+      showConfirm: true,
+      confirmColor: '#ab2b2b',
+      confirmText: '是',
+    }).then(() => {
+      wx.showNavigationBarLoading();
+      var url = constant.constant.domain + constant.constant.path + '/V1/orders';
+
+      //TODO 测试token
+      var token = util.getToken(constant.constant.adminTokenKey)
+
+      wx.request({
+        url: url,
+        data: {
+          "entity": {
+            "entity_id": event.currentTarget.dataset.entity_id,           //订单id
+            "status": "canceled",                                         //订单状态(见顶部 订单状态 说明)
+            "increment_id": event.currentTarget.dataset.increment_id      //订单编号
+          }
+        },
+        method: 'POST',
+        header: {
+          'content-type': 'application/json',
+          'Authorization': 'Bearer ' + token
+        },
+
+        success: function (res) {
+          that.showZanToast('订单已取消');
+          that.getUserOrderList(that.data.tab.selectedId);
+        },
+
+        fail: function (res) {
+          console.error(res)
+        },
+        
+        complete: function (res) {
+          wx.hideNavigationBarLoading()
+        }
+      })
+    }).catch(() => {
+      //console.log('=== dialog ===', 'type: cancel');
+    });
   }
+
+
+
+
 }))

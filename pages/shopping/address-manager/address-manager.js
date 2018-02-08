@@ -7,14 +7,23 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isShow: false
+    isShow: false,
+    isJumpToEditAddress: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+  //  console.log(options)
+    if (util.isEmptyStr(util.getToken(constant.constant.userTokenKey))) {
+      // console.log('未登录')
+      this.handleTapUserLogin()
+    } else {
+      wx.showNavigationBarLoading()
+        this.getUserAdressInfo(util.getToken(constant.constant.userTokenKey),options)
+      // console.log('已登录')
+    }
   },
 
   /**
@@ -27,15 +36,8 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    if (util.isEmptyStr(util.getToken(constant.constant.userTokenKey))) {
-      // console.log('未登录')
-      this.handleTapUserLogin()
-    } else {
-      wx.showNavigationBarLoading()
-      this.getUserAdressInfo(util.getToken(constant.constant.userTokenKey))
-      // console.log('已登录')
-    }
+  onShow: function (options) {
+   
   },
 
   /**
@@ -75,7 +77,7 @@ Page({
   /**
    * 获取用户地址信息
    */
-  getUserAdressInfo: function (token) {
+  getUserAdressInfo: function (token,options) {
     var that = this
     // 测试token
     token = constant.constant.userToken
@@ -91,7 +93,7 @@ Page({
         if (res.statusCode === 200) {
           util.setToken(constant.constant.userAddressKey, res.data)
           // console.log(res.data)
-          console.log('获取用户地址信息正确')
+          // console.log('获取用户地址信息正确')
           var list = res.data.addresses
           for (var i = 0; i < list.length; i++) {
             var address = list[i].region.region + list[i].city
@@ -104,8 +106,17 @@ Page({
             list[i].telephoneStr = list[i].telephone.replace(telephoneStr,'****')
           }
           list.sort(util.arrSort('default_shipping'))
-          console.log(list)
-          that.setData({ addressList: list, addressNum: res.data.addresses.length})
+          // console.log(list)
+          if (!util.isEmptyStr(options.sign)) {
+            if (res.data.addresses.length === 0) {
+              var path = "/pages/shopping/edit-address/edit-address?id=0";
+              wx.navigateTo({
+                url: path
+              })
+            }
+          }
+          
+          that.setData({ addressList: list, addressNum: res.data.addresses.length, isJumpToEditAddress: that.data.isJumpToEditAddress})
         }
       },
       fail: function (res) {

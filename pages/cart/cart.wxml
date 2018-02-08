@@ -37,7 +37,8 @@
           <view class="item" wx:for="{{cartGoods}}" wx:key="{{item.id}}"> 
             <!--左滑删除  -->
              <view bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" data-item_id="{{item.item_id}}" data-index="{{index}}" style="{{item.txtStyle}}" class="inner txt">
-              <view class="checkbox {{item.checked ? 'checked' : ''}}" bindtap="handleTapcheckedItem" data-item_id="{{item.item_id}}"></view>
+             <!-- 暂不提供部分选择   bindtap="handleTapcheckedItem"-->
+              <view class="checkbox {{item.checked ? 'checked' : ''}}" data-item_id="{{item.item_id}}"></view>
               <view class="cart-goods {{index == 0 ? 'first' : ''}}">
                 <image class="img" src="{{item.extension_attributes.image_url}}"></image>
                 <view class="info">

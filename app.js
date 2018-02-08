@@ -22,7 +22,7 @@ App({
   },
   onHide: function () {
     // Do something when hide.
-    console.log("App onHide run");
+    // console.log("App onHide run");
   },
   onError: function (msg) {
     console.log("App onHide run");

@@ -20,6 +20,8 @@ Page(Object.assign({}, Toast, Tab, {
     //页面的初始数据
     'currentTagId': '',
     'selectedId': '',
+    isShow:false,
+    orderNum: 0
   },
 
   /**
@@ -40,7 +42,8 @@ Page(Object.assign({}, Toast, Tab, {
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    wx.showNavigationBarLoading()
+    this.getUserOrderList()
   },
 
   /**
@@ -91,10 +94,48 @@ Page(Object.assign({}, Toast, Tab, {
     });
   },
 
+  /**
+   * 查看订单详情
+   */
   handleTapOrderDetail:function(){
     var path = "/pages/usercenter/order-detail/order-detail";
     wx.navigateTo({
       url: path
+    })
+  },
+
+  /**
+   * 获取我的订单
+   */
+  getUserOrderList: function () {
+    var that = this
+    var token = util.getToken(constant.constant.adminTokenKey)
+    // 测试token
+    // var token = constant.constant.userToken
+    var url = constant.constant.domain + constant.constant.path + '/V1/orders?searchCriteria[filterGroups][0][filters][0][field]=customer_id&searchCriteria[filterGroups][0][filters][0][value]=2&searchCriteria[filterGroups][0][filters][0][conditionType]=eq'; 
+    wx.request({
+      url: url,
+      data: {},
+      header: {
+        'content-type': 'application/json', // 默认值
+        'Authorization': 'Bearer ' + token
+      },
+      success: function (res) {
+        if (res.statusCode === 200) {
+          console.log(res.data)
+          console.log('获取用户订单列表成功')
+          that.setData({ orders: res.data.items, orderNum: res.data.items.length})
+        }
+      },
+      fail: function (res) {
+        console.error('🚀 🚀 🚀 获取用户订单列表错误')
+        console.error(res)
+      },
+      complete: function (res) {
+        console.log('complete')
+        wx.hideNavigationBarLoading()
+        that.setData({ isShow: true })
+      }
     })
   }
 }))

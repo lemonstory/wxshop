@@ -16,9 +16,6 @@
       </view>
       </block>
   </view>
-
-
-
   <!--如果没有地址显示此页面 -->
   <view class="empty-view" wx:else>
     <image class="icon" src="http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/noAddress-26d570cefa.png"></image>

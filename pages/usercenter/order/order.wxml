@@ -1,42 +1,45 @@
 <!--pages/usercenter/order/order.wxml-->
 <import src="/zanui-weapp/dist/tab/index.wxml" />
-<view class="container">
+<view class="container" wx:if='{{isShow}}'>
   <template is="zan-tab" data="{{tab: tab, componentId: 'tab'}}"></template>
 
   <!--如果有订单显示此页面  -->
- <view class="order" bindtap='handleTapOrderDetail'>
-    <view class="head">
-      订单编号：123456799
-    </view>
-    <view class="goods">
-      <view class="img">
-        <image src="/image/1.png"></image>
+  <view wx:if='{{orderNum > 0}}'>
+  <block wx:for="{{orders}}" wx:key="" >
+    <view class="order" bindtap='handleTapOrderDetail'>
+      <view class="head">
+        订单编号：123456799
       </view>
-      <view class="info">
-        <view class="name">
-          <view>哈哈哈哈哈哈哈</view>
-          <view>包裹1</view>
+      <view class="goods">
+        <view class="img">
+          <image src="/image/1.png"></image>
         </view>
-        <view class="number">
-          <view>嗯嗯嗯</view>
-          <view style='color:#ab2b2b'>已取消</view>
+        <view class="info">
+          <view class="name">
+            <view>哈哈哈哈哈哈哈</view>
+            <view>包裹1</view>
+          </view>
+          <view class="number">
+            <view>嗯嗯嗯</view>
+            <view style='color:#ab2b2b'>已取消</view>
+          </view>
+        </view>
+      </view>
+      <view class="item-c">
+        <view class="l">应付：
+          <text class="cost">￥111111111</text>
+        </view>
+        <view class="r">
+          <view class="btn">取消订单</view>
+          <view class="btn active">去付款</view>
         </view>
       </view>
     </view>
-    <view class="item-c">
-      <view class="l">应付：
-        <text class="cost">￥111111111</text>
-      </view>
-      <view class="r">
-        <view class="btn">取消订单</view>
-        <view class="btn active">去付款</view>
-      </view>
-    </view>
+  </block>
 </view>
 
 
-
-<view class="order" bindtap='handleTapOrderDetail'>
+  <!-- <view class="order" bindtap='handleTapOrderDetail'>
     <view class="head">
       订单编号：123456799
     </view>
@@ -55,14 +58,14 @@
         </view>
       </view>
     </view>
-  </view> 
+  </view>  -->
 
 
-<!--如果没有订单显示此网页  -->
-   <!-- <view class="empty-view">
-      <image class="icon" src="/static/images/noorder.png"></image>
-      <text class="text">还没有任何订单呢</text>
-    </view>   -->
+  <!--如果没有订单显示此网页  -->
+  <view class="empty-view" wx:else>
+    <image class="icon" src="/static/images/noorder.png"></image>
+    <text class="text">还没有任何订单呢</text>
+  </view>
 
 
 

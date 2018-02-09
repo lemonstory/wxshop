@@ -1,19 +1,21 @@
 /* pages/pay-result/pay-result.wxss */
 .container {
-  height: 100%;
+  height: 100vh;
+ justify-content: flex-start;
  }
 
 .pay-result {
   background: #fff;
   width:100%;
   margin-top: 1rpx;
-}
+  height: auto;
+  padding: 90rpx 0;
 
+}
 .pay-result .msg {
   text-align: center;
-  margin: 100rpx auto;
   color: #2bab25;
-  font-size: 36rpx;
+  font-size: 42rpx;
 }
 
 .pay-result .btns {
@@ -31,6 +33,7 @@
   border: 1rpx solid #333;
   color: #333;
   border-radius: 5rpx;
+  font-size: 28rpx;
 }
 
 .pay-result .error .msg {
@@ -44,7 +47,7 @@
 }
 
 .pay-result .error .tips .p {
-  font-size: 24rpx;
+  font-size: 28rpx;
   line-height: 42rpx;
   text-align: center;
 }
@@ -52,4 +55,16 @@
 .pay-result .error .tips .p {
   line-height: 42rpx;
   text-align: center;
+}
+.usermsg{
+    width: 100%;
+    height:145rpx;
+    background: #fff;
+    margin-top: 20rpx;
+    padding: 20rpx 30rpx;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+ 
 }

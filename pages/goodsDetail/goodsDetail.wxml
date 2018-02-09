@@ -233,7 +233,7 @@
     </view>
     <view class="l l-cart" bindtap='handleTapaddToCustomerService'>
       <view class="box">
-        <image class="icon" src="/static/images/detail_kefu.png"></image>
+      <contact-button type="default-light" size="27" session-from="weapp"><image class="icon" src="/static/images/detail_kefu.png"></image></contact-button>
       </view>
     </view>
     <view class="l l-cart last" bindtap='handleTapaddToUserCart'>

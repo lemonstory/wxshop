@@ -1,7 +1,8 @@
 // pages/person/person.js
 var util = require('../../../utils/util.js');
 var constant = require('../../../utils/constant.js')
-Page({
+const Toast = require('../../../zanui-weapp/dist/toast/index');
+Page(Object.assign({}, Toast, {
 
   /**
    * 页面的初始数据
@@ -130,4 +131,13 @@ Page({
       })
     }
   },
-})
+
+  /**
+   * 退货/售后
+   */
+  handTapOutService:function() {
+
+    var that = this;
+    that.showZanToast('请联系客服沟通退货/售后事宜');
+  }
+}))

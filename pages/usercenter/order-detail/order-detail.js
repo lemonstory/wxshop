@@ -93,6 +93,14 @@ Page(Object.assign({}, Toast, Dialog, {
           var goods = []
           for (var i = 0; i < tempOrder.items.length; i++) {
             var good = {}
+            if (tempOrder.items[i].product_type === 'virtual') {
+              good.img_url = tempOrder.items[i].extension_attributes.image_url
+              good.name = tempOrder.items[i].parent_item.name
+              good.price = tempOrder.items[i].parent_item.price
+              good.qty = tempOrder.items[i].parent_item.qty_ordered
+              good.item_id = tempOrder.items[i].parent_item.item_id
+              goods.push(good)
+            }
             if (tempOrder.items[i].product_type === 'simple') {
               good.img_url = tempOrder.items[i].extension_attributes.image_url
               good.name = tempOrder.items[i].parent_item.name

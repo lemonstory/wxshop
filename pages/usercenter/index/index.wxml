@@ -1,4 +1,5 @@
 <!--pages/person/person.wxml-->
+<import src="/zanui-weapp/dist/toast/index.wxml" />
 <view class="container">
   <!-- {{ isShowBottomPopup ? 'zan-popup--show' : ''}} -->
   <view class="profile-info" bindtap="{{isJumpToLogin ? 'handleTapUserLogin' : ''}}">
@@ -23,8 +24,8 @@
     <!-- </navigator> -->
 
 
-    <view class="item">
-      <view style='display:flex'>
+    <view class="item" bindtap='handTapOutService'>
+      <view style='display:flex' >
         <image src="/static/images/tuihuo.png" style='width:38rpx;height:38rpx;display:flex;margin-right:20rpx;' mode='aspectFit'></image>
         <view class="txt">退货/售后 </view>
       </view>
@@ -63,6 +64,16 @@
       <view style='display:flex;align-items:center;'>
         <image src="/static/images/kefu.png" style='width:38rpx;height:38rpx;display:flex;margin-right:20rpx;' mode="aspectFit"></image>
         <view class="txt">联系客服 </view>
+         <contact-button type="default-light" size="20" session-from="weapp"></contact-button>
+        <contact-button type="default-light" size="20" session-from="weapp"></contact-button>
+        <contact-button type="default-light" size="20" session-from="weapp"></contact-button>
+        <contact-button type="default-light" size="20" session-from="weapp"></contact-button>
+        <contact-button type="default-light" size="20" session-from="weapp"></contact-button>
+        <contact-button type="default-light" size="20" session-from="weapp"></contact-button>
+        <contact-button type="default-light" size="20" session-from="weapp"></contact-button>
+        <contact-button type="default-light" size="20" session-from="weapp"></contact-button>
+        <contact-button type="default-light" size="20" session-from="weapp"></contact-button>
+        <contact-button type="default-light" size="20" session-from="weapp"></contact-button>
       </view>
       <view>
         <image src="/static/images/go.png" style='width:14rpx;height:24rpx;display:flex;'></image>
@@ -73,4 +84,5 @@
   </view>
 
   <!-- <view class="logout" bindtap="exitLogin">退出登录</view> -->
+  <template is="zan-toast" data="{{ zanToast }}"></template>
 </view>

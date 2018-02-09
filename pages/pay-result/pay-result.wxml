@@ -1,14 +1,14 @@
 <!--pages/pay-result/pay-result.wxml-->
-<view class="container">
+<view class="container" wx:if='{{isShow}}'>
   <view class="pay-result">
-    <view class="success" wx:if="{{status == true}}">
+    <view class="success" wx:if="{{status}}">
       <view class="msg">付款成功</view>
       <view class="btns">
         <navigator class="btn" url="/pages/usercenter/order/order" open-type="redirect">查看订单</navigator>
         <navigator class="btn" url="/pages/index/index" open-type="switchTab">继续逛</navigator>
       </view>
     </view>
-    <view class="error" wx:if="{{status != true}}">
+    <view class="error" wx:if="{{!status}}">
       <view class="msg">付款失败</view>
       <view class="tips">
         <view class="p">请在 <text class="time" style='color:#b4282d;'>1小时</text> 内完成付款</view>

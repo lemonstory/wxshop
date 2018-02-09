@@ -118,7 +118,10 @@ Page({
         if (typeof that.data.extension_attributes.configurable_product_options === 'undefined') {
           if (event.currentTarget.dataset.param === 'payNow') {
             // console.log('立即购买')
-            that.handleTapToAdressDetails()
+            // that.handleTapToAdressDetails()
+            var cartGoodsCount = that.data.cartGoodsCount + Number(that.data.number)
+            that.setData({ cartGoodsCount: cartGoodsCount })
+            that.addProductToCart()
           }
           if (event.currentTarget.dataset.param === 'addCart') {
             var cartGoodsCount = that.data.cartGoodsCount + Number(that.data.number)
@@ -129,7 +132,10 @@ Page({
           if (Object.keys(that.data.selectedProductOptions).length === that.data.extension_attributes.configurable_product_options.length) {
             if (event.currentTarget.dataset.param === 'payNow') {
               // console.log('立即购买')
-              that.handleTapToAdressDetails()
+              // that.handleTapToAdressDetails()
+              var cartGoodsCount = that.data.cartGoodsCount + Number(that.data.number)
+              that.setData({ cartGoodsCount: cartGoodsCount })
+              that.addProductToCart()
             }
             if (event.currentTarget.dataset.param === 'addCart') {
               var cartGoodsCount = that.data.cartGoodsCount + Number(that.data.number)

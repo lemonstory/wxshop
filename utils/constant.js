@@ -30,6 +30,7 @@ var constant = {
   userTokenKey: 'userTokenKey',
   userInfoKey: 'userInfoKey',
   userAddressKey: 'userAddressKey',
+  payParams: 'payParams',
   level: '普通用户',
   // 用户token
   userToken: '6qig7ehmngvw18p5j58vvwcdxycrpnmy',

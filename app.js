@@ -103,7 +103,7 @@ App({
   getLoginApi: function (code, encryptedData, iv) {
     // console.log("🚀 🚀 🚀 getLoginApi");
     var that = this;
-    var url = constant.constant.domain + constant.constant.path + '/V1/wxlogin/';
+    var url = constant.constant.domain + constant.constant.path + '/V1/wxlogin';
     wx.request({
       url: url,
       data: {

@@ -269,5 +269,13 @@ Page(Object.assign({}, Toast, {
     that.setData({
       showView:false
     })
+  },
+  /**
+   * 拨打电话
+   */
+  handleTapMakeCall: function () {
+    wx.makePhoneCall({
+      phoneNumber: '18600024911'
+    })
   }
 }));

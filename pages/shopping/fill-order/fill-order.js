@@ -208,6 +208,7 @@ Page({
         success: function (res) {
           if (res.statusCode === 200) {
            that.orderPay(res.data)
+           that.setData({ orderNo: res.data})
           }
         },
         fail: function (res) {
@@ -236,8 +237,8 @@ Page({
         productId: 2,
         orderNo: orderNo,
         body:'灞源味道',
-        // totalFee: Number(that.data.price)*100,
-        totalFee:1,
+        totalFee: Number(that.data.price)*100,
+        // totalFee:1,
         detail:''
       }
       console.log('打印订单支付body')
@@ -257,6 +258,8 @@ Page({
           if (res.statusCode === 200) {
             var arr = res.data
             that.transferWXPay(arr[0].data)
+            util.setToken(constant.constant.payParams, arr[0].data)
+            util.setToken(constant.constant.qty, 0)
           }
         },
         fail: function (res) {
@@ -274,6 +277,7 @@ Page({
     transferWXPay: function (body) {
       // console.log('微信支付')
       // console.log(body)
+      var that = this
       wx.requestPayment({
         timeStamp: body.timeStamp.toString(),
         nonceStr: body.nonceStr,
@@ -281,8 +285,68 @@ Page({
         signType: body.signType,
         paySign: body.paySign,
         success: function (res) {
-          console.log('WXP')
+          // console.log('success')
+          var temp = res.errMsg
+          var num = temp.indexOf(':')
+          var sign = temp.substring(num + 1)
+          that.changeOrderStatus(sign)
+        },
+        fail: function (res) {
+          // console.log('error')
+          var temp = res.errMsg
+          var num = temp.indexOf(':')
+          var sign = temp.substring(num + 1)
+          that.payResultTransfer(sign)
+        }
+      })
+    },
+
+    /**
+     * 支付成功回调
+     */
+    payResultTransfer: function (sign) {
+      // console.log(sign)
+      var path = "/pages/pay-result/pay-result?sign=" + sign;
+      wx.navigateTo({
+        url: path
+      })
+    },
+
+    /**
+     * 修改订单状态
+     */
+    changeOrderStatus: function (sign) {
+      var that = this
+      var token = util.getToken(constant.constant.adminTokenKey)
+      var Body = {
+        entity:{
+          entity_id: that.data.orderNo,
+          status: 'pending_send_courier',
+          increment_id: ''
+        }
+      }
+      var url = constant.constant.domain + constant.constant.path + '/V1/orders';
+      wx.request({
+        url: url,
+        data: Body,
+        method: 'POST',
+        header: {
+          'content-type': 'application/json', // 默认值
+          'Authorization': 'Bearer ' + token
+        },
+        success: function (res) {
+          console.log('修改状态')
           console.log(res)
+          that.payResultTransfer(sign)
+          if (res.statusCode === 200) {
+          
+          }
+        },
+        fail: function (res) {
+          console.error('🚀 🚀 🚀 修改订单状态错误')
+          console.error(res)
+        },
+        complete: function (res) {
         }
       })
     }

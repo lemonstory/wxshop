@@ -1,18 +1,24 @@
 // pages/pay-result/pay-result.js
+var util = require('../../utils/util.js')
+var constant = require('../../utils/constant.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    // status:true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    if (options.sign === 'ok') {
+      this.setData({ status: true, isShow: true })
+    } else {
+      this.setData({ status: false,isShow:true })
+    }
   },
 
   /**
@@ -62,5 +68,25 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+
+  /**
+   * 重新付款
+   */
+  payOrder: function () {
+    var body = util.getToken(constant.constant.payParams)
+    wx.requestPayment({
+      timeStamp: body.timeStamp.toString(),
+      nonceStr: body.nonceStr,
+      package: body.package,
+      signType: body.signType,
+      paySign: body.paySign,
+      success: function (res) {
+        
+      },
+      fail: function (res) {
+        
+      }
+    })
   }
 })

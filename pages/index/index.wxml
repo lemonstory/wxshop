@@ -4,10 +4,10 @@
 <import src="../../template/footer.wxml" />
 <view class="container" wx:if='{{isShow}}'>
   <view class="search-box">
-    <view class="search-icon">
+     <view class="search-icon">
       <image src="../../iconimage/search.png"></image>
-    </view>
-    <!-- 搜索暂不支持   handleTapSearch -->
+    </view> 
+     <!-- 搜索暂不支持   handleTapSearch  -->
     <input class="search" disabled="true" style="display:flex; justify-content: center;padding-left:240rpx;" placeholder='搜索商品，共11种土特产' placeholder-style='color:#7F7F7F;font-size:26rpx;' bindtap=''></input>
   </view>
   <view class="banner">
@@ -101,28 +101,28 @@
 <!--点击底部的弹出框-->
 <view class="hidden-box hide{{showView?'show':''}}" bindtap='bindTapCancle'></view>
 <view class="hidden hide{{showView?'show':''}}">
-  <view class="hidden-text1">西安行方思远网络科技有限公司</view>
+  <view class="hidden-text1" style='font-weight:bold;'>西安行方思远网络科技有限公司</view>
   <view class="hidden-text2">
-    <view class='suojin'>国内最前沿的互联网科技公司，掌握最新的互联网开发技术及最优的互联网解决方案。</view>
-    <view class='suojin'>致力于开发最优秀的微信小程序，协助线上线下商户，共享微信时代的流量红利！</view>
-    <view class='suojin'>通过以下方式联系我们：</view>
+    <view class='suojin'>● 国内最前沿的互联网科技公司，掌握最新的互联网开发技术及最优的互联网解决方案。</view>
+    <view class='suojin'>● 致力于开发最优秀的微信小程序，协助线上线下商户，共享微信时代的流量红利！</view>
+    <view class='suojin'>● 通过以下方式联系我们：</view>
   </view>
-  <view class="hidden-tell">
+  <view class="hidden-tell" bindtap='handleTapMakeCall'>
     <image src='/static/images/call.png' style='width:37rpx;height:37rpx;display:flex;margin-right:20rpx;'></image>
     <view>18600024911</view>
   </view>
 
   <view class="hidden-tell hidden-tell1">
     <image src='/static/images/msg.png' style='width:37rpx;height:37rpx;display:flex;margin-right:20rpx;'></image>
-    <view>gaoyong@xiaoningmeng.net</view>
+    <view>help@xiaoningmeng.net</view>
   </view>
 
-  <view class="hidden-tell hidden-tell2">
+  <!-- <view class="hidden-tell hidden-tell2">
     <image src='/static/images/weixin.png' style='width:37rpx;height:37rpx;display:flex;margin-right:20rpx;'></image>
     <view>gaoyong</view>
-  </view>
+  </view> -->
 
-  <view class="hidden-tell hidden-tell3">
+  <view class="hidden-tell hidden-tell2">
     <image src='/static/images/qq.png' style='width:37rpx;height:37rpx;display:flex;margin-right:20rpx;'></image>
     <view>272443654</view>
   </view>

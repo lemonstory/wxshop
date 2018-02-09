@@ -131,7 +131,7 @@ Page(Object.assign({}, Toast, Tab, Dialog,{
     var token = util.getToken(constant.constant.adminTokenKey)
     
     //TODO:测试
-    var customer_id = this.data.customer_id;
+    var customer_id = util.getToken(constant.constant.userInfoKey).id;
 
     var defaultSearchCriteria = 'searchCriteria[filterGroups][0][filters][0][field]=customer_id&searchCriteria[filterGroups][0][filters][0][value]=' + customer_id + '&searchCriteria[filterGroups][0][filters][0][conditionType]=eq';
     var searchCriteria = '';
@@ -164,16 +164,22 @@ Page(Object.assign({}, Toast, Tab, Dialog,{
             var items = orderList[i].extension_attributes.shipping_assignments[0].items
             var order_simple_name = ''
             for (var j = 0; j < items.length; j++) {
+              if (items[j].product_type === 'virtual') {
+                imgArr.push(items[j].extension_attributes.image_url)
+              }
               if (items[j].product_type === 'simple') {
                 imgArr.push(items[j].extension_attributes.image_url)
               }
             }
             // 添加商品名称  TODO
-            // for (var k = 0; k < orderList[i].items.length; k++) {
-            //   if (orderList[i].items[k].product_type === 'simple') {
-            //     orderList[i].order_simple_name = orderList[i].items[k].parent_item.name
-            //   }
-            // }
+            for (var k = 0; k < orderList[i].items.length; k++) {
+              if (orderList[i].items[k].product_type === 'simple') {
+                orderList[i].order_simple_name = orderList[i].items[k].parent_item.name
+              }
+              if (orderList[i].items[k].product_type === 'virtual') {
+                orderList[i].order_simple_name = orderList[i].items[k].parent_item.name
+              }
+            }
             orderList[i].imgArr = imgArr
           }
           that.setData({ orders: orderList, orderNum: orderList.length })

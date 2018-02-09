@@ -98,6 +98,12 @@
 					"name": "填写订单",
 					"pathName": "pages/shopping/fill-order/fill-order",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "支付成功回调",
+					"pathName": "pages/pay-result/pay-result",
+					"query": ""
 				}
 			]
 		}

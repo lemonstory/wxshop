@@ -1,0 +1,10 @@
+/* pages/contract/contract.wxss */
+.content{
+    width:100%;
+    height:auto;
+    padding: 30rpx;
+    box-sizing: border-box;
+    font-size: 28rpx;
+    line-height: 62rpx;
+ 
+}

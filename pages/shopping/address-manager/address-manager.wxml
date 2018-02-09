@@ -5,7 +5,7 @@
     <block wx:for="{{addressList}}" wx:key="{{item.id}}">
       <view class="address-item">
         <view class="left">
-          <text class="name">{{item.name}}</text>
+          <view class="name">{{item.name}}</view>
           <text class="default" wx:if='{{item.default_shipping}}'>默认</text>
         </view>
         <view class="middle">

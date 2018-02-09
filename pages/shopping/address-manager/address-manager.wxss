@@ -33,15 +33,17 @@
 /*超出部分掩藏，，TODO超出部分省略号  */
 .address-box .left .name {
   display:flex;
-  display: -webkit-flex;
-  width: 125rpx;
+  flex-direction: row;
+  overflow: hidden;
+ text-overflow: ellipsis; 
+  white-space: nowrap;
+  width: 122rpx;
   height: 43rpx;
-  line-height: 43rpx;
+  align-items: center;
   font-size: 28rpx;
   color: #333;
   margin-bottom: 10rpx;
-  overflow: hidden;
-  }
+ }
 .address-box .left .default {
   display: block;
   width: 62rpx;

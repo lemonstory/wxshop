@@ -28,14 +28,14 @@
 
 
     <view class="hidden-box" wx:if="{{isAddressPickShow}}"></view>
-    <view wx:if="{{isAddressPickShow}}" style="width:100%; height: 300px; background:#fff;position:fixed;bottom:0">
+    <view wx:if="{{isAddressPickShow}}" style="width:100%; height: 320px; background:#fff;position:fixed;bottom:0">
 
         <view style='display:flex; justify-content: space-between;padding-left:30rpx;padding-right: 30rpx;box-sizing: border-box;font-size:28rpx;font-family:PingFang-SC-Regular;color:rgba(51,51,51,1);line-height:100rpx;height:100rpx;'>
             <view catchtap='handelAddressDis'> 取消</view>
             <view catchtap='handelAddressCommit'>完成</view>
         </view>
         <!-- <view class="address" style='font-size:32rpx;font-family:PingFang-SC-Regular;color:rgba(51,51,51,1);'>{{address.province.id!=0?address.province.name:value1Defult}} - {{address.city.id!=0?address.city.name:value2Defult}} - {{address.district.id!=0?address.district.name:value3Defult}}</view> -->
-        <picker-view indicator-style="height:40px;" style="width:100%;height:240px; text-align:center; z-index:999;>" value="{{value}}" bindchange="handleSelectChange">
+        <picker-view indicator-style="height:40px;" style="width:100%;height:140px; text-align:center; z-index:999;>" value="{{value}}" bindchange="handleSelectChange">
             <picker-view-column>
                 <view wx:for="{{provinces}}" style="line-height: 40px;font-size:30rpx;font-family:PingFang-SC-Regular;color:rgba(51,51,51,1);" wx:key="{{item.id}}">{{item.name}}</view>
             </picker-view-column>

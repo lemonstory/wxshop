@@ -1,42 +1,42 @@
 <!--pages/person/person.wxml-->
 <import src="/zanui-weapp/dist/toast/index.wxml" />
 <view class="container">
-  <!-- {{ isShowBottomPopup ? 'zan-popup--show' : ''}} -->
-  <view class="profile-info" bindtap="{{isJumpToLogin ? 'handleTapUserLogin' : ''}}">
-    <image class="avatar" src="/avatar/{{imgNum}}.jpg"></image>
-    <view class="info">
-      <text class="name">{{name}}</text>
-      <text class="level">{{level}}</text>
-    </view>
-  </view>
-
-  <view class="user-menu" style='margin-top:20rpx;'>
-    <!-- <navigator url="/pages/usercenter/order/order"> -->
-    <view class="item" bindtap='handleTapToMyOrder'>
-      <view style='display:flex'>
-        <image src="/static/images/order.png" style='width:38rpx;height:38rpx;display:flex;margin-right:20rpx;' mode='aspectFit'></image>
-        <view class="txt">我的订单 </view>
-      </view>
-      <view>
-        <image src="/static/images/go.png" style='width:14rpx;height:24rpx;display:flex;'></image>
-      </view>
-    </view>
-    <!-- </navigator> -->
-
-
-    <view class="item" bindtap='handTapOutService'>
-      <view style='display:flex' >
-        <image src="/static/images/tuihuo.png" style='width:38rpx;height:38rpx;display:flex;margin-right:20rpx;' mode='aspectFit'></image>
-        <view class="txt">退货/售后 </view>
-      </view>
-      <view>
-        <image src="/static/images/go.png" style='width:14rpx;height:24rpx;display:flex;'></image>
-      </view>
+    <!-- {{ isShowBottomPopup ? 'zan-popup--show' : ''}} -->
+    <view class="profile-info" bindtap="{{isJumpToLogin ? 'handleTapUserLogin' : ''}}">
+        <image class="avatar" src="/avatar/{{imgNum}}.jpg"></image>
+        <view class="info">
+            <text class="name">{{name}}</text>
+            <text class="level">{{level}}</text>
+        </view>
     </view>
 
-    <!-- 暂不提供 -->
+    <view class="user-menu" style='margin-top:20rpx;'>
+        <!-- <navigator url="/pages/usercenter/order/order"> -->
+        <view class="item" bindtap='handleTapToMyOrder'>
+            <view style='display:flex'>
+                <image src="/static/images/order.png" style='width:38rpx;height:38rpx;display:flex;margin-right:20rpx;' mode='aspectFit'></image>
+                <view class="txt">我的订单 </view>
+            </view>
+            <view>
+                <image src="/static/images/go.png" style='width:14rpx;height:24rpx;display:flex;'></image>
+            </view>
+        </view>
+        <!-- </navigator> -->
 
-    <!-- <view class="item">
+
+        <view class="item" bindtap='handTapOutService'>
+            <view style='display:flex'>
+                <image src="/static/images/tuihuo.png" style='width:38rpx;height:38rpx;display:flex;margin-right:20rpx;' mode='aspectFit'></image>
+                <view class="txt">退货/售后 </view>
+            </view>
+            <view>
+                <image src="/static/images/go.png" style='width:14rpx;height:24rpx;display:flex;'></image>
+            </view>
+        </view>
+
+        <!-- 暂不提供 -->
+
+        <!-- <view class="item">
         <view style='display:flex'>
           <image src="/static/images/youhui.png" style='width:38rpx;height:38rpx;display:flex;margin-right:20rpx;' mode='aspectFit'></image>
           <view class="txt">优惠劵 </view>
@@ -46,43 +46,54 @@
         </view>
       </view> -->
 
-    <!-- <navigator url="/pages/shopping/address-manager/address-manager"> -->
-    <view class="item" bindtap='handleTapToAderssManager'>
-      <view style='display:flex'>
-        <image src="/static/images/address.png" style='width:38rpx;height:38rpx;display:flex;margin-right:20rpx;' mode="aspectFit"></image>
-        <view class="txt">地址管理 </view>
-      </view>
-      <view>
-        <image src="/static/images/go.png" style='width:14rpx;height:24rpx;display:flex;'></image>
-      </view>
+        <!-- <navigator url="/pages/shopping/address-manager/address-manager"> -->
+        <view class="item" bindtap='handleTapToAderssManager'>
+            <view style='display:flex'>
+                <image src="/static/images/address.png" style='width:38rpx;height:38rpx;display:flex;margin-right:20rpx;' mode="aspectFit"></image>
+                <view class="txt">地址管理 </view>
+            </view>
+            <view>
+                <image src="/static/images/go.png" style='width:14rpx;height:24rpx;display:flex;'></image>
+            </view>
+        </view>
+        <!-- </navigator> -->
+
+        <!--客服会话功能   暂且注释  -->
+        <!-- <button open-type="contact" style='display:flex;width:720rx;height:100rpx;justify-content:space-between;padding-right:30rpx;box-sizing: border-box;align-items: center;background:#fff; postion:static'> -->
+        <view class="item" style='border-bottom:none'>
+            <view style='display:flex;align-items:center;position:relative;'>
+                <image src="/static/images/kefu.png" style='width:38rpx;height:38rpx;display:flex;margin-right:20rpx;' mode="aspectFit"></image>
+                <view class="txt">联系客服 </view>
+                <contact-button type="default-light" size="27" session-from="weapp" style='position:absolute;top:10rpx;left:0rpx;opacity:0'></contact-button>
+                <contact-button type="default-light" size="27" session-from="weapp" style='position:absolute;top:10rpx;left:30rpx;opacity:0'></contact-button>
+                <contact-button type="default-light" size="27" session-from="weapp" style='position:absolute;top:10rpx;left:60rpx;opacity:0'></contact-button>
+                <contact-button type="default-light" size="27" session-from="weapp" style='position:absolute;top:10rpx;left:90rpx;opacity:0'></contact-button>
+                <contact-button type="default-light" size="27" session-from="weapp" style='position:absolute;top:10rpx;left:120rpx;opacity:0'></contact-button>
+                <contact-button type="default-light" size="27" session-from="weapp" style='position:absolute;top:10rpx;left:150rpx;opacity:0'></contact-button>
+                <contact-button type="default-light" size="27" session-from="weapp" style='position:absolute;top:10rpx;left:180rpx;opacity:0'></contact-button>
+                <contact-button type="default-light" size="27" session-from="weapp" style='position:absolute;top:10rpx;left:210rpx;opacity:0'></contact-button>
+                <contact-button type="default-light" size="27" session-from="weapp" style='position:absolute;top:10rpx;left:240rpx;opacity:0'></contact-button>
+                <contact-button type="default-light" size="27" session-from="weapp" style='position:absolute;top:10rpx;left:290rpx;opacity:0'></contact-button>
+                <contact-button type="default-light" size="27" session-from="weapp" style='position:absolute;top:10rpx;left:320rpx;opacity:0'></contact-button>
+                <contact-button type="default-light" size="27" session-from="weapp" style='position:absolute;top:10rpx;left:380rpx;opacity:0'></contact-button>
+                <contact-button type="default-light" size="27" session-from="weapp" style='position:absolute;top:10rpx;left:420rpx;opacity:0'></contact-button>
+                <contact-button type="default-light" size="27" session-from="weapp" style='position:absolute;top:10rpx;left:470rpx;opacity:0'></contact-button>
+                <contact-button type="default-light" size="27" session-from="weapp" style='position:absolute;top:10rpx;left:520rpx;opacity:0'></contact-button>
+                <contact-button type="default-light" size="27" session-from="weapp" style='position:absolute;top:10rpx;left:580rpx;opacity:0'></contact-button>
+                <contact-button type="default-light" size="27" session-from="weapp" style='position:absolute;top:10rpx;left:620rpx;opacity:0'></contact-button>
+                <contact-button type="default-light" size="27" session-from="weapp" style='position:absolute;top:10rpx;left:680rpx;opacity:0'></contact-button>
+                <contact-button type="default-light" size="27" session-from="weapp" style='position:absolute;top:10rpx;left:710rpx;opacity:0'></contact-button>
+                <contact-button type="default-light" size="27" session-from="weapp" style='position:absolute;top:10rpx;left:740rpx;opacity:0'></contact-button>
+                <contact-button type="default-light" size="27" session-from="weapp" style='position:absolute;top:10rpx;left:640rpx;opacity:0'></contact-button>
+            </view>
+            <view>
+                <image src="/static/images/go.png" style='width:14rpx;height:24rpx;display:flex;'></image>
+            </view>
+            <!-- </button>  -->
+        </view>
+
     </view>
-    <!-- </navigator> -->
 
-<!--客服会话功能   暂且注释  -->
-     <!-- <button open-type="contact" style='display:flex;width:720rx;height:100rpx;justify-content:space-between;padding-right:30rpx;box-sizing: border-box;align-items: center;background:#fff; postion:static'> -->
-      <view class="item" style='border-bottom:none'>
-      <view style='display:flex;align-items:center;'>
-        <image src="/static/images/kefu.png" style='width:38rpx;height:38rpx;display:flex;margin-right:20rpx;' mode="aspectFit"></image>
-        <view class="txt">联系客服 </view>
-         <contact-button type="default-light" size="20" session-from="weapp"></contact-button>
-        <contact-button type="default-light" size="20" session-from="weapp"></contact-button>
-        <contact-button type="default-light" size="20" session-from="weapp"></contact-button>
-        <contact-button type="default-light" size="20" session-from="weapp"></contact-button>
-        <contact-button type="default-light" size="20" session-from="weapp"></contact-button>
-        <contact-button type="default-light" size="20" session-from="weapp"></contact-button>
-        <contact-button type="default-light" size="20" session-from="weapp"></contact-button>
-        <contact-button type="default-light" size="20" session-from="weapp"></contact-button>
-        <contact-button type="default-light" size="20" session-from="weapp"></contact-button>
-        <contact-button type="default-light" size="20" session-from="weapp"></contact-button>
-      </view>
-      <view>
-        <image src="/static/images/go.png" style='width:14rpx;height:24rpx;display:flex;'></image>
-      </view>
-    <!-- </button>  -->
-    </view>
-
-  </view>
-
-  <!-- <view class="logout" bindtap="exitLogin">退出登录</view> -->
-  <template is="zan-toast" data="{{ zanToast }}"></template>
+    <!-- <view class="logout" bindtap="exitLogin">退出登录</view> -->
+    <template is="zan-toast" data="{{ zanToast }}"></template>
 </view>

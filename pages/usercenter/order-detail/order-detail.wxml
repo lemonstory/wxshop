@@ -79,8 +79,21 @@
     <view style='display:flex;'>
       <view style="color:#999">服务时间：</view>9:00-22:00</view>
     <view style='display:flex;justify-content: space-between;'>
-      <view style='width:330rpx;height:70rpx;border:1rpx solid #333;display: flex;align-items: center;justify-content: center;'>
-        <contact-button type="default-light" size="20" session-from="weapp"></contact-button>
+            <view style='width:330rpx;height:70rpx;border:1rpx solid #333;display: flex;align-items: center;justify-content: center; position: relative;'>
+                <contact-button type="default-light" size="27" session-from="weapp" style='position:absolute;top:10rpx;left:0;opacity:0'></contact-button>
+                <contact-button type="default-light" size="27" session-from="weapp" style='position:absolute;top:10rpx;left:20rpx;opacity:0'></contact-button>
+                <contact-button type="default-light" size="27" session-from="weapp" style='position:absolute;top:10rpx;left:40rpx;opacity:0'></contact-button>
+                <contact-button type="default-light" size="27" session-from="weapp" style='position:absolute;top:10rpx;left:60rpx;opacity:0'></contact-button>
+                <contact-button type="default-light" size="27" session-from="weapp" style='position:absolute;top:10rpx;left:80rpx;opacity:0'></contact-button>
+                <contact-button type="default-light" size="27" session-from="weapp" style='position:absolute;top:10rpx;left:100rpx;opacity:0'></contact-button>
+                 <contact-button type="default-light" size="27" session-from="weapp" style='position:absolute;top:10rpx;left:140rpx;opacity:0'></contact-button>
+                  <contact-button type="default-light" size="27" session-from="weapp" style='position:absolute;top:10rpx;left:180rpx;opacity:0'></contact-button>
+                   <contact-button type="default-light" size="27" session-from="weapp" style='position:absolute;top:10rpx;left:220rpx;opacity:0'></contact-button>
+                    <contact-button type="default-light" size="27" session-from="weapp" style='position:absolute;top:10rpx;left:280rpx;opacity:0'></contact-button>
+                     <contact-button type="default-light" size="27" session-from="weapp" style='position:absolute;top:10rpx;left:260rpx;opacity:0'></contact-button>
+
+
+
         <image src="/static/images/detail_kefu.png" style='width:38rpx;height:38rpx;margin-right:10rpx;display:flex'></image>在线客服
         <contact-button type="default-light" size="20" session-from="weapp"></contact-button>
       </view>

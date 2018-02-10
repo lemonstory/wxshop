@@ -177,6 +177,7 @@
     height: auto;
     overflow: hidden;
     background: #fff;
+   
 }
 
 .order-bottom .address{
@@ -189,6 +190,7 @@
     height: 35rpx;
     line-height: 35rpx;
     margin-bottom: 7.5rpx;
+    
 }
 
 .order-bottom .address .name{

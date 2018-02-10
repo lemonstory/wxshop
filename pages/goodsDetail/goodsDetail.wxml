@@ -211,7 +211,7 @@
             <view class="title" style='display:flex; align-items: center;font-size:28rpx;margin-top:30rpx'>
               <view class="cicle" style='margin-right:20rpx;'></view>全场包邮</view>
             <view class="desc" style='font-size:28rpx;color:#999;'>平台所售商品全部包邮（目前仅配送中国大陆地区）。</view>
-            <!--测试循环数据  -->
+            <!--测试循环数据-->
             <view class="title" style='display:flex; align-items: center;font-size:28rpx;margin-top:30rpx'>
               <view class="cicle" style='margin-right:20rpx;'></view>部分地区无法配送</view>
             <view class="desc" style='font-size:28rpx;color:#999;'>由于肉、菜类食品是新鲜采制，不便长距离运输和储存，故肉类、鲜香菇（直采）产品只针对陕西省内客户，陕西省内地区隔天到货。肉、菜类食品请及时签收。</view>
@@ -231,9 +231,13 @@
     <view class="l l-collect" bindtap='handleTapaddToHome'>
       <image class="icon" src="/static/images/ic_menu_choice_nor.png"></image>
     </view>
-    <view class="l l-cart" bindtap='handleTapaddToCustomerService'>
+    <view class="l l-cart" bindtap='handleTapaddToCustomerService' style='position:relative;'>
+     <contact-button type="default-light" size="27" session-from="weapp" style='position:absolute;top:10rpx;left:0rpx;opacity:0'></contact-button>
+      <contact-button type="default-light" size="27" session-from="weapp" style='position:absolute;top:10rpx;left:20rpx;opacity:0'></contact-button>
+       <contact-button type="default-light" size="27" session-from="weapp" style='position:absolute;top:10rpx;left:40rpx;opacity:0'></contact-button>
+        <contact-button type="default-light" size="27" session-from="weapp" style='position:absolute;top:40rpx;left:50rpx;opacity:0'></contact-button>
       <view class="box">
-      <contact-button type="default-light" size="27" session-from="weapp"><image class="icon" src="/static/images/detail_kefu.png"></image></contact-button>
+      <image class="icon" src="/static/images/detail_kefu.png"></image>
       </view>
     </view>
     <view class="l l-cart last" bindtap='handleTapaddToUserCart'>

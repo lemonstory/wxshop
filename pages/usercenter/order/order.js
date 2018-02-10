@@ -270,10 +270,12 @@ Page(Object.assign({}, Toast, Tab, Dialog,{
     var email = util.getToken(constant.constant.userInfoKey).email
     var temp = email.indexOf('@')
     var open_id = email.substring(0, temp)
+    var orderNoStr = util.changeOrderNo(orderNo)
+    console.log(orderNoStr)
     var Body = {
       openId: open_id,
       productId: 2,
-      orderNo: orderNo,
+      orderNo: orderNoStr,
       body: '灞源味道',
       totalFee: price,
       // totalFee:1,
@@ -291,9 +293,11 @@ Page(Object.assign({}, Toast, Tab, Dialog,{
         'Authorization': 'Bearer ' + token
       },
       success: function (res) {
+        console.log('列表付款')
+        console.log(res)
         if (res.statusCode === 200) {
           var arr = res.data
-          that.transferWXPay(arr[0].data)
+          that.transferWXPay(arr[0].data,token,orderNo,orderNoStr)
           util.setToken(constant.constant.payParams, arr[0].data)
           util.setToken(constant.constant.qty, 0)
         }
@@ -310,7 +314,7 @@ Page(Object.assign({}, Toast, Tab, Dialog,{
   /**
    * 调用微信支付
    */
-  transferWXPay: function (body) {
+  transferWXPay: function (body, token, orderNo, orderNoStr) {
     var that = this
     wx.requestPayment({
       timeStamp: body.timeStamp.toString(),
@@ -319,10 +323,11 @@ Page(Object.assign({}, Toast, Tab, Dialog,{
       signType: body.signType,
       paySign: body.paySign,
       success: function (res) {
-        that.changeOrderStatus()
+        that.changeOrderStatus(orderNoStr)
       },
       fail: function (res) {
         console.log('支付失败')
+        // util.orderClose(token, orderNo)
       }
     })
   },
@@ -341,12 +346,13 @@ Page(Object.assign({}, Toast, Tab, Dialog,{
   /**
    * 修改订单状态
    */
-  changeOrderStatus: function (sign) {
+  changeOrderStatus: function (orderNoStr) {
     var that = this
     var token = util.getToken(constant.constant.adminTokenKey)
+    var orderNo = Number(orderNoStr.substring(9))
     var Body = {
       entity: {
-        entity_id: that.data.orderNo,
+        entity_id: orderNo,
         status: 'pending_send_courier',
         increment_id: ''
       }

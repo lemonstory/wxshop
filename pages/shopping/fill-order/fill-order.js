@@ -241,8 +241,8 @@ Page({
         // totalFee:1,
         detail:''
       }
-      // console.log('打印订单支付body')
-      // console.log(Body)
+      console.log('打印订单支付body')
+      console.log(Body)
       // 测试token
       var token = util.getToken(constant.constant.userTokenKey)
       var url = constant.constant.domain + constant.constant.path + '/V1/mobileshop/wxpay';
@@ -257,7 +257,7 @@ Page({
         success: function (res) {
           if (res.statusCode === 200) {
             var arr = res.data
-            that.transferWXPay(arr[0].data)
+            that.transferWXPay(arr[0].data,token, orderNo)
             util.setToken(constant.constant.payParams, arr[0].data)
             util.setToken(constant.constant.qty, 0)
           }
@@ -274,7 +274,7 @@ Page({
     /**
      * 调用微信支付
      */
-    transferWXPay: function (body) {
+    transferWXPay: function (body, token, orderNo) {
       // console.log('微信支付')
       // console.log(body)
       var that = this
@@ -297,6 +297,7 @@ Page({
           var num = temp.indexOf(':')
           var sign = temp.substring(num + 1)
           that.payResultTransfer(sign)
+          // util.orderClose(token, orderNo)
         }
       })
     },

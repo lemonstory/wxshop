@@ -1,7 +1,7 @@
 /* pages/shopping/fill-order/fill-order.wxss */
 
 .container {
-    height: 100vh;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;

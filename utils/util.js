@@ -382,6 +382,54 @@ function createNewCart(token) {
     }
   })
 }
+
+/**
+ * 关闭订单
+ */
+function orderClose(token, orderNo) {
+  var that = this
+  var url = constant.constant.domain + constant.constant.path + '/V1/mobileshop/wxpay/closeorder/' + orderNo ;
+  wx.request({
+    url: url,
+    data: {},
+    header: {
+      'content-type': 'application/json', // 默认值
+      'Authorization': 'Bearer ' + token
+    },
+    success: function (res) {
+      // console.log(res.data)
+      if (res.statusCode === 200) {
+       console.log('订单关闭成功')
+      //  handleTapSubmitOrder()
+      }
+    },
+    fail: function (res) {
+      console.error('🚀 🚀 🚀 订单关闭错误')
+      console.error(res)
+    }
+  })
+}
+
+/**
+ * 转换订单编号
+ */
+function changeOrderNo(orderNo) {
+  var date = new Date()
+  var year = date.getFullYear()
+  var month = date.getMonth() + 1
+  var day = date.getDate()
+  var hour = date.getHours()
+  var minutes = date.getMinutes()
+  var seconds = date.getSeconds()
+  if (month < 10) {
+    month = '0' +month
+  }
+  if (day < 10) {
+    day = '0' + day
+  }
+  var orderNoStr = 'R' +year + month + day + orderNo
+  return orderNoStr
+}
 module.exports = {
   formatTime: formatTime,
   isMobile: isMobile,
@@ -407,5 +455,7 @@ module.exports = {
   getRemainder: getRemainder,  // 取余
   toDecimal: toDecimal, // 四舍五入小数
   arrSort: arrSort,  // 数组排序
-  createNewCart: createNewCart  // 新建购物车
+  createNewCart: createNewCart,  // 新建购物车
+  orderClose: orderClose,  // 关闭订单
+  changeOrderNo: changeOrderNo //改变订单编号
 }

@@ -251,9 +251,126 @@ Page(Object.assign({}, Toast, Tab, Dialog,{
     }).catch(() => {
       //console.log('=== dialog ===', 'type: cancel');
     });
+  },
+
+/**
+ * 去支付
+ */
+  handleTapOrderPay: function (event) {
+    var orderNo = event.currentTarget.dataset.entity_id
+    var price = Number(event.currentTarget.dataset.price) * 100
+    this.orderPay(orderNo, price)
+  },
+  /**
+      * 订单支付
+      */
+  orderPay: function (orderNo,price) {
+    // orderNo = 111112
+    var that = this
+    var email = util.getToken(constant.constant.userInfoKey).email
+    var temp = email.indexOf('@')
+    var open_id = email.substring(0, temp)
+    var Body = {
+      openId: open_id,
+      productId: 2,
+      orderNo: orderNo,
+      body: '灞源味道',
+      totalFee: price,
+      // totalFee:1,
+      detail: ''
+    }
+    console.log(Body)
+    var token = util.getToken(constant.constant.userTokenKey)
+    var url = constant.constant.domain + constant.constant.path + '/V1/mobileshop/wxpay';
+    wx.request({
+      url: url,
+      data: Body,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json', // 默认值
+        'Authorization': 'Bearer ' + token
+      },
+      success: function (res) {
+        if (res.statusCode === 200) {
+          var arr = res.data
+          that.transferWXPay(arr[0].data)
+          util.setToken(constant.constant.payParams, arr[0].data)
+          util.setToken(constant.constant.qty, 0)
+        }
+      },
+      fail: function (res) {
+        console.error('🚀 🚀 🚀 订单支付错误')
+        console.error(res)
+      },
+      complete: function (res) {
+      }
+    })
+  },
+
+  /**
+   * 调用微信支付
+   */
+  transferWXPay: function (body) {
+    var that = this
+    wx.requestPayment({
+      timeStamp: body.timeStamp.toString(),
+      nonceStr: body.nonceStr,
+      package: body.package,
+      signType: body.signType,
+      paySign: body.paySign,
+      success: function (res) {
+        that.changeOrderStatus()
+      },
+      fail: function (res) {
+        console.log('支付失败')
+      }
+    })
+  },
+
+  /**
+   * 支付完成回调
+   */
+  payResultTransfer: function (sign) {
+    // console.log(sign)
+    var path = "/pages/pay-result/pay-result?sign=" + sign;
+    wx.navigateTo({
+      url: path
+    })
+  },
+
+  /**
+   * 修改订单状态
+   */
+  changeOrderStatus: function (sign) {
+    var that = this
+    var token = util.getToken(constant.constant.adminTokenKey)
+    var Body = {
+      entity: {
+        entity_id: that.data.orderNo,
+        status: 'pending_send_courier',
+        increment_id: ''
+      }
+    }
+    var url = constant.constant.domain + constant.constant.path + '/V1/orders';
+    wx.request({
+      url: url,
+      data: Body,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json', // 默认值
+        'Authorization': 'Bearer ' + token
+      },
+      success: function (res) {
+        if (res.statusCode === 200) {
+
+        }
+      },
+      fail: function (res) {
+        console.error('🚀 🚀 🚀 修改订单状态错误')
+        console.error(res)
+      },
+      complete: function (res) {
+      }
+    })
   }
-
-
-
-
 }))

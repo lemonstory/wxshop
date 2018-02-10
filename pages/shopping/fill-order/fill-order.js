@@ -241,8 +241,8 @@ Page({
         // totalFee:1,
         detail:''
       }
-      console.log('打印订单支付body')
-      console.log(Body)
+      // console.log('打印订单支付body')
+      // console.log(Body)
       // 测试token
       var token = util.getToken(constant.constant.userTokenKey)
       var url = constant.constant.domain + constant.constant.path + '/V1/mobileshop/wxpay';

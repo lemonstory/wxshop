@@ -12,7 +12,7 @@
       <view class="r">
         <view class="btn" wx:if="{{order.status == 'pending_payment'}}" catchtap='handleTapOrderCanceled' data-entity_id='{{order.entity_id}}' data-increment_id='{{order.increment_id}}'>取消订单</view>
 
-        <view class="btn active">去付款</view>
+        <view class="btn active" bindtap='orderPay'>去付款</view>
       </view>
     </view>
   </view>

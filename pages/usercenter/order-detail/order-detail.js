@@ -88,6 +88,7 @@ Page(Object.assign({}, Toast, Dialog, {
       success: function (res) {
         if (res.statusCode === 200) {
           console.log(res.data)
+          that.setData({ orderNo: res.data.entity_id, price: res.data.total_due})
           var tempOrder = res.data.extension_attributes.shipping_assignments[0]
           // 设置商品信息
           var goods = []
@@ -199,6 +200,120 @@ Page(Object.assign({}, Toast, Dialog, {
   handleTapMakeCall: function () {
     wx.makePhoneCall({
       phoneNumber: '15802973950'
+    })
+  },
+  /**
+      * 订单支付
+      */
+  orderPay: function () {
+    // orderNo = 111112
+    var that = this
+    var email = util.getToken(constant.constant.userInfoKey).email
+    var temp = email.indexOf('@')
+    var open_id = email.substring(0, temp)
+    var Body = {
+      openId: open_id,
+      productId: 2,
+      orderNo: that.data.orderNo,
+      body: '灞源味道',
+      // totalFee: Number(that.data.price)*100,
+      totalFee:1,
+      detail: ''
+    }
+    console.log(Body)
+    var token = util.getToken(constant.constant.userTokenKey)
+    var url = constant.constant.domain + constant.constant.path + '/V1/mobileshop/wxpay';
+    wx.request({
+      url: url,
+      data: Body,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json', // 默认值
+        'Authorization': 'Bearer ' + token
+      },
+      success: function (res) {
+        console.log(res)
+        if (res.statusCode === 200) {
+          var arr = res.data
+          that.transferWXPay(arr[0].data)
+          util.setToken(constant.constant.payParams, arr[0].data)
+          util.setToken(constant.constant.qty, 0)
+        }
+      },
+      fail: function (res) {
+        console.error('🚀 🚀 🚀 订单支付错误')
+        console.error(res)
+      },
+      complete: function (res) {
+      }
+    })
+  },
+
+  /**
+   * 调用微信支付
+   */
+  transferWXPay: function (body) {
+    console.log(body)
+    var that = this
+    wx.requestPayment({
+      timeStamp: body.timeStamp.toString(),
+      nonceStr: body.nonceStr,
+      package: body.package,
+      signType: body.signType,
+      paySign: body.paySign,
+      success: function (res) {
+        that.changeOrderStatus()
+      },
+      fail: function (res) {
+        console.log('支付失败')
+      }
+    })
+  },
+
+  /**
+   * 支付完成回调
+   */
+  payResultTransfer: function (sign) {
+    // console.log(sign)
+    var path = "/pages/pay-result/pay-result?sign=" + sign;
+    wx.navigateTo({
+      url: path
+    })
+  },
+
+  /**
+   * 修改订单状态
+   */
+  changeOrderStatus: function (sign) {
+    var that = this
+    var token = util.getToken(constant.constant.adminTokenKey)
+    var Body = {
+      entity: {
+        entity_id: that.data.orderNo,
+        status: 'pending_send_courier',
+        increment_id: ''
+      }
+    }
+    var url = constant.constant.domain + constant.constant.path + '/V1/orders';
+    wx.request({
+      url: url,
+      data: Body,
+      method: 'POST',
+      header: {
+        'content-type': 'application/json', // 默认值
+        'Authorization': 'Bearer ' + token
+      },
+      success: function (res) {
+        if (res.statusCode === 200) {
+          that.setData({ 'order.status': 'pending_send_courier'})
+        }
+      },
+      fail: function (res) {
+        console.error('🚀 🚀 🚀 修改订单状态错误')
+        console.error(res)
+      },
+      complete: function (res) {
+      }
     })
   }
 }))

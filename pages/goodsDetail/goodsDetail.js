@@ -563,6 +563,9 @@ Page({
           that.data.cartGoodsCount = Number(res.data.items_qty)
           that.setData({ cartGoodsCount: that.data.cartGoodsCount})
         }
+        if (res.statusCode === 404) {
+          util.createNewCart(token)
+        }
       },
       fail: function (res) {
         console.error('🚀 🚀 🚀 获取当前用户购物车信息错误')

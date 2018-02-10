@@ -394,7 +394,7 @@ Page({
           that.setData({ cartGoods: res.data.items, isCheckedNum: res.data.items.length, price: price })
         }
         if (res.statusCode === 404) {
-          that.createNewCart(token)
+          util.createNewCart(token)
         }
       },
       fail: function (res) {
@@ -473,7 +473,7 @@ Page({
   },
 
   /**
-   * 创建新购物车
+   * 创建新购物车   // 未使用
    */
   createNewCart: function (token) {
     var that = this

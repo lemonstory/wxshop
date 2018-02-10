@@ -114,7 +114,7 @@
 
   <view class="hidden-tell hidden-tell1">
     <image src='/static/images/msg.png' style='width:37rpx;height:37rpx;display:flex;margin-right:20rpx;'></image>
-    <view>help@xiaoningmeng.net</view>
+    <view><text selectable="true">help@xiaoningmeng.net</text></view>
   </view>
 
   <!-- <view class="hidden-tell hidden-tell2">
@@ -124,7 +124,7 @@
 
   <view class="hidden-tell hidden-tell2">
     <image src='/static/images/qq.png' style='width:37rpx;height:37rpx;display:flex;margin-right:20rpx;'></image>
-    <view>272443654</view>
+    <view><text selectable="true">272443654</text></view>
   </view>
 
 </view>

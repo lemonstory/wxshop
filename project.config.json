@@ -104,6 +104,12 @@
 					"name": "支付成功回调",
 					"pathName": "pages/pay-result/pay-result",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "搜索",
+					"pathName": "pages/usercenter/order-detail/order-detail",
+					"query": ""
 				}
 			]
 		}

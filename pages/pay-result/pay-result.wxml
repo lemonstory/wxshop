@@ -1,24 +1,35 @@
 <!--pages/pay-result/pay-result.wxml-->
 <view class="container" wx:if='{{isShow}}'>
-  <view class="pay-result">
-    <view class="success" wx:if="{{status}}">
-      <view class="msg">付款成功</view>
-      <view class="btns">
-        <navigator class="btn" url="/pages/usercenter/order/order" open-type="redirect">查看订单</navigator>
-        <navigator class="btn" url="/pages/index/index" open-type="switchTab">继续逛</navigator>
-      </view>
+    <view class="pay-result">
+        <view class="success" wx:if="{{status}}">
+            <view class="msg" style='margin-bottom:50rpx;'>支付成功</view>
+            <view class="btns">
+                <navigator class="btn" url="/pages/usercenter/order/order" open-type="redirect">查看订单</navigator>
+                <navigator class="btn" url="/pages/index/index" open-type="switchTab">继续逛</navigator>
+            </view>
+        </view>
+        <view class="error" wx:if="{{!status}}">
+            <view class="msg">支付失败</view>
+            <view class="tips">
+                <view class="p">请在
+                    <text class="time" style='color:#b4282d;'>1小时</text> 内完成付款</view>
+                <view class="p">否则订单将会被系统取消</view>
+            </view>
+            <view class="btns">
+                <navigator class="btn" url="/pages/usercenter/order/order" open-type="redirect">查看订单</navigator>
+                <view class="btn" bindtap='payOrder'>重新付款</view>
+            </view>
+        </view>
     </view>
-    <view class="error" wx:if="{{!status}}">
-      <view class="msg">付款失败</view>
-      <view class="tips">
-        <view class="p">请在 <text class="time" style='color:#b4282d;'>1小时</text> 内完成付款</view>
-        <view class="p">否则订单将会被系统取消</view>
-      </view>
-      <view class="btns">
-        <navigator class="btn" url="/pages/usercenter/order/order" open-type="redirect">查看订单</navigator>
-        <view class="btn" bindtap='payOrder'>重新付款</view>
-      </view>
-    </view>
-  </view>
+
+    
+        <!--用户信息开始  -->
+        <view class="usermsg">
+        <view style='display:flex;'><view style='width:140rpx;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;'>用户名</view>  <view>15735921111</view></view>
+        <view>山西省运城市哦哦哦哦哦哦</view>
+       <view style='display:flex;'><view style='width:140rpx;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;color:#999'>实付:</view>  <view>￥222</view></view>
+       </view>
+<!--用户信息结束  -->
+
 
 </view>

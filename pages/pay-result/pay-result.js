@@ -14,6 +14,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var pages = getCurrentPages();
+    var prevPage = pages[pages.length - 2];  //上一个页面
+    var prevPageData = prevPage.data.address;
+    var price = prevPage.data.price;
+    this.setData({ address: prevPageData, price: price })
     if (options.sign === 'ok') {
       this.setData({ status: true, isShow: true })
     } else {

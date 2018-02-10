@@ -191,5 +191,14 @@ Page(Object.assign({}, Toast, Dialog, {
     }).catch(() => {
       //console.log('=== dialog ===', 'type: cancel');
     });
+  },
+
+  /**
+    * 拨打电话
+    */
+  handleTapMakeCall: function () {
+    wx.makePhoneCall({
+      phoneNumber: '15802973950'
+    })
   }
 }))

@@ -349,5 +349,15 @@ Page({
         complete: function (res) {
         }
       })
+    },
+
+    /**
+     * 跳转服务协议
+     */
+    handleTapToProtocol: function () {
+      var path = "/pages/contract/contract";
+      wx.navigateTo({
+        url: path
+      })
     }
 })

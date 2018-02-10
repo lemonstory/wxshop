@@ -81,7 +81,7 @@
             </view>
             <view style='display:flex'>
                 <view style='color:#999'>我同意</view>
-                <view>《灞源味道平台服务协议》</view>
+                <view bindtap='handleTapToProtocol'>《灞源味道平台服务协议》</view>
             </view>
         </view>
         <!--协议结束  -->

@@ -2,90 +2,94 @@
 <import src="/zanui-weapp/dist/dialog/index.wxml" />
 <import src="/zanui-weapp/dist/toast/index.wxml" />
 <view class="container" wx:if='{{isShow}}'>
-    <view class="order-info">
-        <view class="item-a">下单时间：{{order.created_at}}</view>
-        <view class="item-b">订单编号：{{order.increment_id}}</view>
-        <view class="item-c">
-            <view class="l">实付：
-                <text class="cost">￥{{order.total_due}}</text>
-            </view>
-            <view class="r">
-                <view class="btn" wx:if="{{order.status == 'pending_payment'}}" catchtap='handleTapOrderCanceled' data-entity_id='{{order.entity_id}}' data-increment_id='{{order.increment_id}}'>取消订单</view>
+  <view class="order-info">
+    <view class="item-a">下单时间：{{order.created_at}}</view>
+    <view class="item-b">订单编号：{{order.increment_id}}</view>
+    <view class="item-c">
+      <view class="l">实付：
+        <text class="cost">￥{{order.total_due}}</text>
+      </view>
+      <view class="r">
+        <view class="btn" wx:if="{{order.status == 'pending_payment'}}" catchtap='handleTapOrderCanceled' data-entity_id='{{order.entity_id}}' data-increment_id='{{order.increment_id}}'>取消订单</view>
 
-                <view class="btn active">去付款</view>
-            </view>
-        </view>
+        <view class="btn active">去付款</view>
+      </view>
     </view>
+  </view>
 
-    <view class="order-goods">
-        <view class="h">
-            <view class="label">商品信息</view>
-            <view style='color:#ab2b2b' class='status' wx:if="{{order.status == 'canceled'}}">已取消</view>
-            <view style='color:#ab2b2b' class='status' wx:if="{{order.status == 'pending_payment'}}">待付款</view>
-            <view style='color:#ab2b2b' class='status' wx:if="{{order.status == 'pending_send_courier'}}">待发货</view>
-            <view style='color:#ab2b2b' class='status' wx:if="{{item.status == 'pending_receive_courier'}}">已发货</view>
-            <view style='color:#3d9a68' class='status' wx:if="{{order.status == 'complete'}}">交易成功</view>
-        </view>
-        <view class="goods">
-            <!--一个商品信息开始  -->
-            <block wx:for="{{order.goods}}" wx:key="{{item.item_id}}">
-                <view class="item">
-                    <view class="img">
-                        <image src="{{item.img_url}}"></image>
-                    </view>
-                    <view class="info">
-                        <view class="t">
-                            <text class="name">{{item.name}}</text>
-                            <text class="number">x{{item.qty}}</text>
-                        </view>
-                        <view class="attr"></view>
-                        <view class="price">￥{{item.price}}</view>
-                    </view>
-                </view>
-            </block>
-        </view>
+  <view class="order-goods">
+    <view class="h">
+      <view class="label">商品信息</view>
+      <view style='color:#ab2b2b' class='status' wx:if="{{order.status == 'canceled'}}">已取消</view>
+      <view style='color:#ab2b2b' class='status' wx:if="{{order.status == 'pending_payment'}}">待付款</view>
+      <view style='color:#ab2b2b' class='status' wx:if="{{order.status == 'pending_send_courier'}}">待发货</view>
+      <view style='color:#ab2b2b' class='status' wx:if="{{item.status == 'pending_receive_courier'}}">已发货</view>
+      <view style='color:#3d9a68' class='status' wx:if="{{order.status == 'complete'}}">交易成功</view>
     </view>
+    <view class="goods">
+      <!--一个商品信息开始  -->
+      <block wx:for="{{order.goods}}" wx:key="{{item.item_id}}">
+        <view class="item">
+          <view class="img">
+            <image src="{{item.img_url}}"></image>
+          </view>
+          <view class="info">
+            <view class="t">
+              <text class="name">{{item.name}}</text>
+              <text class="number">x{{item.qty}}</text>
+            </view>
+            <view class="attr"></view>
+            <view class="price">￥{{item.price}}</view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
 
-    <view class="order-bottom">
-        <view class="address">
-            <view class="t">
-                <text class="name">{{order.user_address.name}}</text>
-                <text class="mobile">{{order.user_address.telephone}}</text>
-            </view>
-            <view class="b">{{order.user_address.address}}</view>
-        </view>
-        <view class="total">
-            <view class="t">
-                <text class="label">支付方式：</text>
-                <text class="txt">微信</text>
-            </view>
-            <view class="t">
-                <text class="label">商品合计：</text>
-                <text class="txt">￥{{order.subtotal}}</text>
-            </view>
-            <view class="t">
-                <text class="label">运费：</text>
-                <text class="txt">{{order.shipping_amount > 0 ? '￥'+ order.shipping_amount:'包邮'}}</text>
-            </view>
-        </view>
-        <view class="pay-fee">
-            <view class="label">实付：</view>
-            <view class="txt">￥{{order.total_due}}</view>
-        </view>
+  <view class="order-bottom">
+    <view class="address">
+      <view class="t">
+        <text class="name">{{order.user_address.name}}</text>
+        <text class="mobile">{{order.user_address.telephone}}</text>
+      </view>
+      <view class="b">{{order.user_address.address}}</view>
     </view>
+    <view class="total">
+      <view class="t">
+        <text class="label">支付方式：</text>
+        <text class="txt">微信</text>
+      </view>
+      <view class="t">
+        <text class="label">商品合计：</text>
+        <text class="txt">￥{{order.subtotal}}</text>
+      </view>
+      <view class="t">
+        <text class="label">运费：</text>
+        <text class="txt">{{order.shipping_amount > 0 ? '￥'+ order.shipping_amount:'包邮'}}</text>
+      </view>
+    </view>
+    <view class="pay-fee">
+      <view class="label">实付：</view>
+      <view class="txt">￥{{order.total_due}}</view>
+    </view>
+  </view>
 
-    <!--底部服务开始  -->
-    <view class="server">
-        <view style='display:flex;'>
-            <view style="color:#999">服务时间：</view>9:00-22:00</view>
-        <view style='display:flex;justify-content: space-between;'>
-            <view style='width:330rpx;height:70rpx;border:1rpx solid #333;display: flex;align-items: center;justify-content: center;'>
-                <image src="/static/images/detail_kefu.png" style='width:38rpx;height:38rpx;margin-right:10rpx;display:flex'></image>在线客服</view>
-            <view style='width:330rpx;height:70rpx;border:1rpx solid #333;display: flex;align-items: center;justify-content: center;'>
-                <image src="/static/images/icon-tell.png" style='width:38rpx;height:38rpx;margin-right:10rpx;display:flex'></image>电话客服</view>
-        </view>
+  <!--底部服务开始  -->
+  <view class="server">
+    <view style='display:flex;'>
+      <view style="color:#999">服务时间：</view>9:00-22:00</view>
+    <view style='display:flex;justify-content: space-between;'>
+      <view style='width:330rpx;height:70rpx;border:1rpx solid #333;display: flex;align-items: center;justify-content: center;'>
+        <contact-button type="default-light" size="20" session-from="weapp"></contact-button>
+        <image src="/static/images/detail_kefu.png" style='width:38rpx;height:38rpx;margin-right:10rpx;display:flex'></image>在线客服
+        <contact-button type="default-light" size="20" session-from="weapp"></contact-button>
+      </view>
+
+      <view style='width:330rpx;height:70rpx;border:1rpx solid #333;display: flex;align-items: center;justify-content: center;' bindtap='handleTapMakeCall'>
+        <image src="/static/images/icon-tell.png" style='width:38rpx;height:38rpx;margin-right:10rpx;display:flex'></image>电话客服</view>
     </view>
-    <!--底部服务结束-->
-    <template is="zan-dialog" data="{{ zanDialog }}"></template>
-    <template is="zan-toast" data="{{ zanToast }}"></template>
+  </view>
+  <!--底部服务结束-->
+  <template is="zan-dialog" data="{{ zanDialog }}"></template>
+  <template is="zan-toast" data="{{ zanToast }}"></template>
 </view>

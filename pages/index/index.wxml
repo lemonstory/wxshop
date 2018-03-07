@@ -4,10 +4,10 @@
 <import src="../../template/footer.wxml" />
 <view class="container" wx:if='{{isShow}}'>
   <view class="search-box">
-     <view class="search-icon">
+    <view class="search-icon">
       <image src="../../iconimage/search.png"></image>
-    </view> 
-     <!-- 搜索暂不支持   handleTapSearch  -->
+    </view>
+    <!-- 搜索暂不支持   handleTapSearch  -->
     <input class="search" disabled="true" style="display:flex; justify-content: center;padding-left:240rpx;" placeholder='搜索商品，共11种土特产' placeholder-style='color:#7F7F7F;font-size:26rpx;' bindtap=''></input>
   </view>
   <view class="banner">
@@ -36,7 +36,6 @@
     </view>
   </view>
 
-
   <!--一个循环开始 -->
   <view style="background-color: #FFFFFF;margin-top:20rpx;width:100%;">
     <block wx:for="{{sectionTitle}}" wx:key="sectionTitle" wx:for-index="idx" wx:for-item="sectionTitleItem">
@@ -63,14 +62,22 @@
     </view>
   </view>
   <!--一个循环结束-->
+   
   <!-- 查看更多 -->
   <view style="background-color: #FFFFFF;width:100%;height:100rpx;display:flex;justify-content: center;align-items: center;border-top:1rpx solid #eee;" bindtap='handleTapMore'>
     查看更多
     <image src="../../static/images/go.png" style='width:14rpx;height:24rpx;display:flex;margin-left:10rpx;display:flex;'></image>
 
   </view>
+  <!-- 跳转小柠檬开始 -->
+  <view style="background-color: #FFFFFF;width:100%;" bindtap='handleTapToXNM'>
+    <view class="weui-flex row-container page__bd_spacing">
+      <image class="recommend-img" style="width:710rpx;height:150rpx;box-sizing: border-box;" mode="aspectFill" src="../../image/5.png"></image>
+    </view>
+  </view>
+  <!-- 跳转小柠檬结束 -->
   <!--一个循环开始 -->
-  <view style="background-color: #FFFFFF;margin-top:20rpx;width:100%;">
+  <view style="background-color: #FFFFFF;width:100%;">
     <block wx:for="{{sectionTitle}}" wx:key="sectionTitle" wx:for-index="idx" wx:for-item="sectionTitleItem">
       <view wx:if="{{idx == 1}}">
         <template is="sectionTitle" data="{{title:sectionTitleItem.title}}" />
@@ -79,7 +86,7 @@
     <view class="weui-flex row-container page__bd_spacing">
       <block wx:for="{{newData}}" wx:key="recommendItem" wx:for-index="idx" wx:for-item="recommendItem">
         <view wx:if="{{idx == 0}}" data-index="{{idx}}" data-id="{{recommendItem.id}}" data-sku="{{recommendItem.sku}}" bindtap='handleTapGoodsDetail'>
-          <image class="recommend-img" style="width:710rpx;height:375rpx;box-sizing: border-box;margin-bottom:20rpx;"mode="aspectFill" src="{{recommendItem.imgBanner}}">
+          <image class="recommend-img" style="width:710rpx;height:375rpx;box-sizing: border-box;margin-bottom:20rpx;" mode="aspectFill" src="{{recommendItem.imgBanner}}">
             <view class="brand-name">{{recommendItem.name}}</view>
             <!--大图图片描述  TODO 参数不正确  -->
             <view class="brand-desc">
@@ -94,7 +101,8 @@
     </view>
   </view>
   <!--一个循环结束  -->
-<template is="footer" />
+  
+  <template is="footer" />
 </view>
 
 
@@ -114,7 +122,9 @@
 
   <view class="hidden-tell hidden-tell1">
     <image src='/static/images/msg.png' style='width:37rpx;height:37rpx;display:flex;margin-right:20rpx;'></image>
-    <view><text selectable="true">help@xiaoningmeng.net</text></view>
+    <view>
+      <text selectable="true">help@xiaoningmeng.net</text>
+    </view>
   </view>
 
   <!-- <view class="hidden-tell hidden-tell2">
@@ -124,7 +134,9 @@
 
   <view class="hidden-tell hidden-tell2">
     <image src='/static/images/qq.png' style='width:37rpx;height:37rpx;display:flex;margin-right:20rpx;'></image>
-    <view><text selectable="true">272443654</text></view>
+    <view>
+      <text selectable="true">272443654</text>
+    </view>
   </view>
 
 </view>

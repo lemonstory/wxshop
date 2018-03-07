@@ -31,6 +31,16 @@ Page({
   onUnload: function () {
     // 页面关闭
   },
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+    return {
+      title: constant.constant.appName,
+      desc: constant.constant.appDesc,
+      path: 'pages/category/category'
+    }
+  },
 
   // 点击处理左侧导航选中事件 TODO
   handleTapSelected: function (event) {

@@ -62,9 +62,13 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-  
-  },
+  // onShareAppMessage: function () {
+  //   return {
+  //     title: constant.constant.appName,
+  //     desc: constant.constant.appDesc,
+  //     path: '/pages/index/index'
+  //   }
+  // },
 
   // 登录界面用户拒绝授权之后弹出层
   handleTapCancleAuth:function(){

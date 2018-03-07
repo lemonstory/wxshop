@@ -20,7 +20,11 @@ Page({
     // console.log(options)
     wx.showNavigationBarLoading()
     this.getProductComment(options.sku)
-    this.setData({ sku: options.sku,total: options.total})
+    // 将上一页面的数据在此页面显示
+    var pages = getCurrentPages();
+    var prevPage = pages[pages.length - 2];  //上一个页面
+    var imageData = prevPage.data.media_gallery_entries;
+    this.setData({ sku: options.sku, total: options.total, name: options.name, imageData: imageData})
   },
   onReady: function () {
     // 页面渲染完成
@@ -37,6 +41,18 @@ Page({
   onUnload: function () {
     // 页面关闭
 
+  },
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+    return {
+      title: this.data.name,
+      imageUrl: constant.constant.requestPath + this.data.imageData[0].file,
+      // desc: constant.constant.appDesc,
+      // path: '/pages/comment/comment?sku=' + this.data.sku + '&total=' + this.data.total + '&name' + this.data.name
+      path: '/pages/goodsDetail/goodsDetail?sku=' + this.data.sku
+    }
   },
   /**
   * 页面相关事件处理函数--监听用户下拉动作

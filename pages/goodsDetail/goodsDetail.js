@@ -68,7 +68,7 @@ Page({
     this.getGoodsDetails(options.sku)
     // this.setData({ sku: options.sku})
     wx.showNavigationBarLoading()
-    this.setData({ cartGoodsCount: util.getToken(constant.constant.qty), indexNum: parseInt(options.index)})
+    this.setData({ cartGoodsCount: util.getToken(constant.constant.qty), indexNum: parseInt(options.index) })
   },
   onReady: function () {
     // 页面渲染完成
@@ -91,7 +91,7 @@ Page({
     return {
       title: this.data.name,
       // desc: constant.constant.appDesc,
-      path: '/pages/goodsDetail/goodsDetail?sku='+this.data.sku
+      path: '/pages/goodsDetail/goodsDetail?sku=' + this.data.sku
     }
   },
   // 点击用户评论
@@ -354,9 +354,9 @@ Page({
         console.error('🚀 🚀 🚀 获取商品详情错误')
         console.error(res)
       },
-      complete: function(res) {
+      complete: function (res) {
         wx.hideNavigationBarLoading()
-        that.setData({ isShow: true})
+        that.setData({ isShow: true })
       }
     })
   },
@@ -571,7 +571,7 @@ Page({
       success: function (res) {
         if (res.statusCode === 200) {
           that.data.cartGoodsCount = parseInt(res.data.items_qty)
-          that.setData({ cartGoodsCount: that.data.cartGoodsCount})
+          that.setData({ cartGoodsCount: that.data.cartGoodsCount })
         }
         if (res.statusCode === 404) {
           util.createNewCart(token)
@@ -621,9 +621,3 @@ Page({
     })
   },
 })
-
-
-
-
-
-

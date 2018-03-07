@@ -85,13 +85,14 @@ data: {
   /**
    * 用户点击右上角分享
    */
-  // onShareAppMessage: function () {
-  //   return {
-  //     title: constant.constant.appName,
-  //     desc: constant.constant.appDesc,
-  //     path: '/pages/index/index'
-  //   }
-  // }, 
+  onShareAppMessage: function () {
+    return {
+      title: constant.constant.appName,
+      // desc: constant.constant.appDesc,
+      // imageUrl:'../../image/6.png',
+      path: '/pages/index/index'
+    }
+  }, 
 
   /**
    * 页面上拉触底事件的处理函数

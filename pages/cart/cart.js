@@ -59,7 +59,7 @@ Page({
     if (util.isEmptyStr(number)) {
       number = 1
     }
-    if (Number(number) === 0) {
+    if (parseInt(number) === 0) {
       number = 1
     }
     var price = 0
@@ -70,9 +70,9 @@ Page({
         that.exitCartGoodsCount(that.data.cartGoods[i], util.getToken(constant.constant.userTokenKey))
       }
       if (that.data.cartGoods[i].checked) {
-        price = price + Number(that.data.cartGoods[i].qty) * Number(that.data.cartGoods[i].price)
+        price = price + parseInt(that.data.cartGoods[i].qty) * parseInt(that.data.cartGoods[i].price)
       }
-      qty = qty + Number(that.data.cartGoods[i].qty)
+      qty = qty + parseInt(that.data.cartGoods[i].qty)
     }
     util.setToken(constant.constant.qty, qty)
     that.setData({ cartGoods: that.data.cartGoods, price: price })
@@ -89,9 +89,9 @@ Page({
         that.exitCartGoodsCount(that.data.cartGoods[i], util.getToken(constant.constant.userTokenKey))
       }
       if (that.data.cartGoods[i].checked) {
-        price = price + Number(that.data.cartGoods[i].qty) * Number(that.data.cartGoods[i].price)
+        price = price + parseInt(that.data.cartGoods[i].qty) * parseInt(that.data.cartGoods[i].price)
       }
-      qty = qty + Number(that.data.cartGoods[i].qty)
+      qty = parseInt(qty) + parseInt(that.data.cartGoods[i].qty)
     }
     util.setToken(constant.constant.qty, qty)
     that.setData({ cartGoods: that.data.cartGoods, price: price })
@@ -107,9 +107,9 @@ Page({
         that.exitCartGoodsCount(that.data.cartGoods[i], util.getToken(constant.constant.userTokenKey))
       }
       if (that.data.cartGoods[i].checked) {
-        price = price + Number(that.data.cartGoods[i].qty) * Number(that.data.cartGoods[i].price)
+        price = price + parseInt(that.data.cartGoods[i].qty) * parseInt(that.data.cartGoods[i].price)
       }
-      qty = qty + Number(that.data.cartGoods[i].qty)
+      qty = parseInt(qty) + parseInt(that.data.cartGoods[i].qty)
     }
     util.setToken(constant.constant.qty, qty)
     that.setData({ cartGoods: that.data.cartGoods, price: price })
@@ -151,7 +151,7 @@ Page({
     var price = 0
     for (var j = 0; j < that.data.cartGoods.length; j++) {
       if (that.data.cartGoods[j].checked) {
-        price = price + Number(that.data.cartGoods[j].qty) * Number(that.data.cartGoods[j].price)
+        price = price + parseInt(that.data.cartGoods[j].qty) * parseInt(that.data.cartGoods[j].price)
       }
     }
     that.setData({
@@ -200,7 +200,7 @@ Page({
         isCheckedNum++
       }
       if (!that.data.checkedAllStatus) {
-        price = price + Number(that.data.cartGoods[m].qty) * Number(that.data.cartGoods[m].price)
+        price = price + parseInt(that.data.cartGoods[m].qty) * parseInt(that.data.cartGoods[m].price)
       }
     }
     that.setData({
@@ -324,8 +324,8 @@ Page({
     for (var i = 0; i < list.length; i++) {
       if (item_id === list[i].item_id) {
         var qty = util.getToken(constant.constant.qty)
-        qty = qty - Number(list[i].qty)
-        price = Number(price) - Number(list[i].qty) * Number(list[i].price)
+        qty = qty - parseInt(list[i].qty)
+        price = parseInt(price) - parseInt(list[i].qty) * parseInt(list[i].price)
         list.splice(i, 1)
         isCheckedNum = isCheckedNum - 1
         // 删除购物车商品
@@ -365,14 +365,14 @@ Page({
       success: function (res) {
         if (res.statusCode === 200) {
           // 设置购物车id缓存  + 购物车商品数量
-          var quote_id = Number(res.data.id)
+          var quote_id = parseInt(res.data.id)
           util.setToken(constant.constant.quote_id, quote_id)
-          var qty = Number(res.data.items_qty)
+          var qty = parseInt(res.data.items_qty)
           util.setToken(constant.constant.qty, qty)
           var price = 0
           for (var i = 0; i < res.data.items.length; i++) {
             res.data.items[i].checked = true
-            price = price + Number(res.data.items[i].qty) * Number(res.data.items[i].price)
+            price = price + parseInt(res.data.items[i].qty) * parseInt(res.data.items[i].price)
             var description = ''
             if (res.data.items[i].product_type === 'configurable') {
               // console.log(JSON.parse(res.data.items[i].extension_attributes.options[0]))

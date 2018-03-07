@@ -68,7 +68,7 @@ Page({
     this.getGoodsDetails(options.sku)
     // this.setData({ sku: options.sku})
     wx.showNavigationBarLoading()
-    this.setData({ cartGoodsCount: util.getToken(constant.constant.qty), indexNum: Number(options.index)})
+    this.setData({ cartGoodsCount: util.getToken(constant.constant.qty), indexNum: parseInt(options.index)})
   },
   onReady: function () {
     // 页面渲染完成
@@ -119,12 +119,12 @@ Page({
           if (event.currentTarget.dataset.param === 'payNow') {
             // console.log('立即购买')
             // that.handleTapToAdressDetails()
-            var cartGoodsCount = that.data.cartGoodsCount + Number(that.data.number)
+            var cartGoodsCount = parseInt(that.data.cartGoodsCount) + parseInt(that.data.number)
             that.setData({ cartGoodsCount: cartGoodsCount })
             that.addProductToCart()
           }
           if (event.currentTarget.dataset.param === 'addCart') {
-            var cartGoodsCount = that.data.cartGoodsCount + Number(that.data.number)
+            var cartGoodsCount = parseInt(that.data.cartGoodsCount) + parseInt(that.data.number)
             that.setData({ cartGoodsCount: cartGoodsCount })
             that.addProductToCart()
           }
@@ -133,12 +133,12 @@ Page({
             if (event.currentTarget.dataset.param === 'payNow') {
               // console.log('立即购买')
               // that.handleTapToAdressDetails()
-              var cartGoodsCount = that.data.cartGoodsCount + Number(that.data.number)
+              var cartGoodsCount = parseInt(that.data.cartGoodsCount) + parseInt(that.data.number)
               that.setData({ cartGoodsCount: cartGoodsCount })
               that.addProductToCart()
             }
             if (event.currentTarget.dataset.param === 'addCart') {
-              var cartGoodsCount = that.data.cartGoodsCount + Number(that.data.number)
+              var cartGoodsCount = parseInt(that.data.cartGoodsCount) + parseInt(that.data.number)
               that.setData({ cartGoodsCount: cartGoodsCount })
               that.addProductToCart()
             }
@@ -384,10 +384,10 @@ Page({
   callBack: function (attributeId, array) {
     var that = this;
     for (var i = 0; i < that.data.extension_attributes.configurable_product_options.length; i++) {
-      if (Number(that.data.extension_attributes.configurable_product_options[i].attribute_id) === Number(attributeId)) {
+      if (parseInt(that.data.extension_attributes.configurable_product_options[i].attribute_id) === parseInt(attributeId)) {
         for (var k = 0; k < array.length; k++) {
           for (var j = 0; j < that.data.extension_attributes.configurable_product_options[i].values.length; j++) {
-            if (Number(array[k].value) === Number(that.data.extension_attributes.configurable_product_options[i].values[j].value_index)) {
+            if (parseInt(array[k].value) === parseInt(that.data.extension_attributes.configurable_product_options[i].values[j].value_index)) {
               that.data.extension_attributes.configurable_product_options[i].values[j].value_label = array[k].label
             }
           }
@@ -447,7 +447,7 @@ Page({
     if (Object.keys(that.data.selectedProductOptions).length === 0) {
       for (var i = 0; i < that.data.children.length; i++) {
         for (var j = 0; j < that.data.children[i].custom_attributes.length; j++) {
-          if (Number(value) === Number(that.data.children[i].custom_attributes[j].value)) {
+          if (parseInt(value) === parseInt(that.data.children[i].custom_attributes[j].value)) {
             that.data.normArr.push(that.data.children[i])
             childrenDetails = that.data.children[i]
           }
@@ -456,7 +456,7 @@ Page({
     } else {
       for (var s = 0; s < that.data.normArr.length; s++) {
         for (var m = 0; m < that.data.normArr[s].custom_attributes.length; m++) {
-          if (Number(value) === Number(that.data.normArr[s].custom_attributes[m].value)) {
+          if (parseInt(value) === parseInt(that.data.normArr[s].custom_attributes[m].value)) {
             flag = true
             childrenDetails = that.data.normArr[s]
           }
@@ -466,7 +466,7 @@ Page({
         that.data.normArr = []
         for (var i = 0; i < that.data.children.length; i++) {
           for (var j = 0; j < that.data.children[i].custom_attributes.length; j++) {
-            if (Number(value) === Number(that.data.children[i].custom_attributes[j].value)) {
+            if (parseInt(value) === parseInt(that.data.children[i].custom_attributes[j].value)) {
               that.data.normArr.push(that.data.children[i])
               childrenDetails = that.data.children[i]
             }
@@ -511,9 +511,9 @@ Page({
   getCommentSum: function (review) {
     var that = this
     if (util.isEmptyStr(review.customer_id)) {
-      review.imgNum = util.getRemainder(Number(review.review_id))
+      review.imgNum = util.getRemainder(parseInt(review.review_id))
     } else {
-      review.imgNum = util.getRemainder(Number(review.customer_id))
+      review.imgNum = util.getRemainder(parseInt(review.customer_id))
     }
     var nickname = review.nickname
     var arr = nickname.match(/./g)
@@ -537,10 +537,10 @@ Page({
       }
     }
     review.nicknameStr = nicknameStr
-    var temp = (Number(review.avg) * 100)
+    var temp = (parseInt(review.avg) * 100)
     review.avgStr = util.toDecimal(temp)
     // console.log(review.avgStr)
-    review.ratingNum = Number(review.rating)
+    review.ratingNum = parseInt(review.rating)
     that.setData({ review: review })
   },
 
@@ -560,7 +560,7 @@ Page({
       },
       success: function (res) {
         if (res.statusCode === 200) {
-          that.data.cartGoodsCount = Number(res.data.items_qty)
+          that.data.cartGoodsCount = parseInt(res.data.items_qty)
           that.setData({ cartGoodsCount: that.data.cartGoodsCount})
         }
         if (res.statusCode === 404) {

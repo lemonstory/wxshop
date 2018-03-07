@@ -89,7 +89,11 @@ Page(Object.assign({}, Toast, {
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: constant.constant.appName,
+      // desc: constant.constant.appDesc,
+      path: '/pages/index/index'
+    }
   },
 
   // 点击查看更多按钮
@@ -276,6 +280,23 @@ Page(Object.assign({}, Toast, {
   handleTapMakeCall: function () {
     wx.makePhoneCall({
       phoneNumber: '18600024911'
+    })
+  },
+
+  /**
+   * 跳转到小柠檬
+   */
+  handleTapToXNM: function () {
+    wx.navigateToMiniProgram({
+      appId: 'wxb97eb5916a278393',
+      envVersion:'release',
+      success(res) {
+        console.log('成功跳转到小柠檬')
+      },
+      fail(res) {
+        console.log('跳转到小柠檬失败')
+        console.error(res)
+      }
     })
   }
 }));

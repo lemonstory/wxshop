@@ -27,10 +27,14 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面显示
+   * 用户点击右上角分享
    */
-  onShow: function () {
-
+  onShareAppMessage: function () {
+    return {
+      title: constant.constant.appName,
+      desc: constant.constant.appDesc,
+      path: '/pages/index/index'
+    }
   },
 
   /**

@@ -87,11 +87,15 @@ Page({
     },
 
     /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-
-    },
+   * 用户点击右上角分享
+   */
+    // onShareAppMessage: function () {
+    //   return {
+    //     title: constant.constant.appName,
+    //     desc: constant.constant.appDesc,
+    //     path: '/pages/index/index'
+    //   }
+    // },
 
     // 点击选择地址事件：
     handleTapSelectAddress: function () {

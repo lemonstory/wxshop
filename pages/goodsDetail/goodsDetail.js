@@ -84,9 +84,19 @@ Page({
   onUnload: function () {
     // 页面关闭
   },
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+    return {
+      title: this.data.name,
+      // desc: constant.constant.appDesc,
+      path: '/pages/goodsDetail/goodsDetail?sku='+this.data.sku
+    }
+  },
   // 点击用户评论
   handleTapUserComment: function () {
-    var path = "/pages/comment/comment?sku=" + this.data.sku + '&total=' + this.data.review.total;
+    var path = "/pages/comment/comment?sku=" + this.data.sku + '&total=' + this.data.review.total + '&name=' + this.data.name;
     wx.navigateTo({
       url: path
     })

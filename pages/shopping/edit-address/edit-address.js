@@ -76,11 +76,15 @@ Page({
   },
 
   /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
+    * 用户点击右上角分享
+    */
+  // onShareAppMessage: function () {
+  //   return {
+  //     title: constant.constant.appName,
+  //     desc: constant.constant.appDesc,
+  //     path: '/pages/index/index'
+  //   }
+  // },
   // 默认地址的选择状态
   handleTapIsDefault: function () {
     var that = this;

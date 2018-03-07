@@ -35,6 +35,8 @@ var constant = {
   // 用户token
   userToken: '6qig7ehmngvw18p5j58vvwcdxycrpnmy',
   quote_id: 'quote_id', // 购物车id
-  qty: 'qty'   // 购物车商品数量
+  qty: 'qty',   // 购物车商品数量
+  appName: "秦岭原味 天然健康",
+  appDesc: "来自秦岭深山的原汁原味",
 }
 module.exports.constant = constant;
